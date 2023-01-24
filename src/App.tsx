@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {useAppDispatch, useAppSelector} from './store/store';
 import Header, {PATH} from './components/Header/Header';
-import {Route, Routes} from 'react-router-dom';
+import {Navigate, Route, Routes} from 'react-router-dom';
 import CommonComponents from './components/common/CommonComponents';
 import Error404 from './components/common/Errors/Error404/Error404';
 import LoginPage from './components/LoginPage/LoginPage';
@@ -19,8 +19,8 @@ function App() {
     return (
         <div className="App">
             <Header/>
-
             <Routes>
+                <Route path={'/'} element={<Navigate to={PATH.PROFILE}/>}/>
                 <Route path={PATH.LOGIN} element={<LoginPage/>}/>
                 <Route path={PATH.REGISTRATION} element={<RegistrationPage/>}/>
                 <Route path={PATH.PROFILE} element={<ProfilePage/>}/>
