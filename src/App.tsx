@@ -15,7 +15,7 @@ function App() {
     const profile = useAppSelector(state => state.profilePage)
     const dispatch = useAppDispatch()
 
-// проверка связи
+// Напишу про претир сразу чтобы не забыть
     return (
         <div className="App">
             <Header/>
