@@ -15,7 +15,7 @@ function App() {
     const profile = useAppSelector(state => state.profilePage)
     const dispatch = useAppDispatch()
 
-// Напишу про претир сразу чтобы не забыть
+// тест
     return (
         <div className="App">
             <Header/>
