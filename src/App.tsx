@@ -15,7 +15,7 @@ function App() {
     const profile = useAppSelector(state => state.profilePage)
     const dispatch = useAppDispatch()
 
-// тест
+// Я троху затупил )
     return (
         <div className="App">
             <Header/>
