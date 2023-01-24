@@ -17,8 +17,7 @@ const CommonComponents = () => {
         { id: 1, value: 'x' },
         { id: 2, value: 'y' },
         { id: 3, value: 'z' },
-    ] // value может быть изменено
-
+    ]
 
     const [value, setValue] = useState<string>('Test')
     const [selected, setSelected] = useState(1)
