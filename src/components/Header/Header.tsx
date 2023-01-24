@@ -4,10 +4,10 @@ import s from './Header.module.css'
 
 
 export const PATH = {
-    REGISTRATION: `/registration`,
-    LOGIN: `/login`,
-    PROFILE: `/profile`,
-    UNIVERSAL_COMPONENTS: `/universal-components`
+    REGISTRATION: `registration`,
+    LOGIN: `login`,
+    PROFILE: `profile`,
+    UNIVERSAL_COMPONENTS: `universal-components`
 }
 
 const Header = () => {
