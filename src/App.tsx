@@ -15,7 +15,7 @@ function App() {
     const profile = useAppSelector(state => state.profilePage)
     const dispatch = useAppDispatch()
 
-// раз размммммммммммммммммм
+// туц туц ===============================
     return (
         <div className="App">
             <Header/>
