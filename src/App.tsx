@@ -17,14 +17,6 @@ function App() {
         <div className="App">
             <Header/>
             <Outlet/>
-            {/*<Routes>
-                <Route path={'/'} element={<Navigate to={PATH.PROFILE}/>}/>
-                <Route path={PATH.LOGIN} element={<LoginPage/>}/>
-                <Route path={PATH.REGISTRATION} element={<RegistrationPage/>}/>
-                <Route path={PATH.PROFILE} element={<ProfilePage/>}/>
-                <Route path={PATH.UNIVERSAL_COMPONENTS} element={<CommonComponents/>}/>
-                <Route path={"*"} element={<Error404/>}/>
-            </Routes>*/}
         </div>
     );
 }
