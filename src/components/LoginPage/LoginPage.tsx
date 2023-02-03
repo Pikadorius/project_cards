@@ -3,7 +3,7 @@ import React from 'react';
 const LoginPage = () => {
     return (
         <div>
-            <button>Login</button>
+            <button onClick={()=>alert('YOOHOO')}>Login</button>
         </div>
     );
 };
