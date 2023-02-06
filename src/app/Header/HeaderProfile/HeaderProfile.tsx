@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ava from "../../../assets/ava.png";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
+import { PATH } from "../../../common/constans/path";
 
 const HeaderProfile = () => {
   const user = useAppSelector((state) => state.auth.user);
@@ -11,7 +12,7 @@ const HeaderProfile = () => {
   return (
     <div className={s.profileContainer}>
       <div className={s.userName}>{user.name}</div>
-      <Link to={"/profile"} className={s.avatarContainer}>
+      <Link to={PATH.ACCOUNT} className={s.avatarContainer}>
         <img className={s.userAvatar} src={ava} alt="user avatar" />
       </Link>
     </div>

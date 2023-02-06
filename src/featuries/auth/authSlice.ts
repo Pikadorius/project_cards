@@ -1,7 +1,7 @@
-import {createSlice, PayloadAction, createAsyncThunk} from "@reduxjs/toolkit";
-import {authApi, LoginType, RegistrationRequestType} from "./authApi";
-import {errorUtils} from "../../common/utils/ErrorHandler";
-import {setAppError} from '../../app/appSlice';
+import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
+import { authApi, LoginType, RegistrationRequestType } from "./authApi";
+import { errorUtils } from "../../common/utils/ErrorHandler";
+import { isInitialized, setAppError } from "../../app/appSlice";
 
 export type UserType = {
   _id: string;
@@ -27,11 +27,15 @@ type InitialStateType = {
 export const authMeTC = createAsyncThunk(
   "isLoggedIn",
   async (_, { dispatch }) => {
-    const res = await authApi.authMe();
+    dispatch(isInitialized(false));
     try {
+      const res = await authApi.authMe();
       dispatch(isLoggedIn(true));
       dispatch(setUser(res.data));
-    } catch (e: any) {}
+    } catch (e: any) {
+    } finally {
+      dispatch(isInitialized(true));
+    }
   }
 );
 
@@ -59,44 +63,40 @@ export const loginTC = createAsyncThunk(
   }
 );
 
-export const logoutTC = createAsyncThunk(
-    "logout",
-    async (_, {dispatch}) => {
-        try {
-            const res = await authApi.logout()
-            dispatch(isLoggedIn(false))
-            dispatch(setAppError(res.data.data.info))
-        } catch (e: any) {
-            errorUtils(e, dispatch)
-        }
-    }
-);
-
-
-const authSlice = createSlice({
-    name: "auth",
-    initialState: {
-        isLoggedIn: false,
-        isRegistred: true,
-        user: {}
-    } as InitialStateType,
-    reducers: {
-        isLoggedIn: (state, action: PayloadAction<boolean>) => {
-            state.isLoggedIn = action.payload;
-        },
-        isRegistred: (state, action: PayloadAction<boolean>) => {
-            state.isRegistred = action.payload;
-        },
-        setUser: (state, action: PayloadAction<UserType>) => {
-            state.user = action.payload
-        },
-
-        // под вопросом (можно передавать false в isLoggedIn)
-        logout: (state, action:PayloadAction<boolean>)=>{
-            state.isLoggedIn=action.payload
-        }
-    },
+export const logoutTC = createAsyncThunk("logout", async (_, { dispatch }) => {
+  try {
+    const res = await authApi.logout();
+    dispatch(isLoggedIn(false));
+    dispatch(setAppError(res.data.data.info));
+  } catch (e: any) {
+    errorUtils(e, dispatch);
+  }
 });
 
-const { isLoggedIn, isRegistred, setUser } = authSlice.actions;
+const authSlice = createSlice({
+  name: "auth",
+  initialState: {
+    isLoggedIn: false,
+    isRegistred: true,
+    user: {},
+  } as InitialStateType,
+  reducers: {
+    isLoggedIn: (state, action: PayloadAction<boolean>) => {
+      state.isLoggedIn = action.payload;
+    },
+    isRegistred: (state, action: PayloadAction<boolean>) => {
+      state.isRegistred = action.payload;
+    },
+    setUser: (state, action: PayloadAction<UserType>) => {
+      state.user = action.payload;
+    },
+
+    // под вопросом (можно передавать false в isLoggedIn)
+    logout: (state, action: PayloadAction<boolean>) => {
+      state.isLoggedIn = action.payload;
+    },
+  },
+});
+
+export const { isLoggedIn, isRegistred, setUser } = authSlice.actions;
 export const authReducer = authSlice.reducer;

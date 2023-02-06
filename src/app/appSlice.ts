@@ -17,9 +17,12 @@ export const appSlice = createSlice({
     setAppError: (state, action: PayloadAction<string | null>) => {
       state.appError = action.payload;
     },
+    isInitialized: (state, action: PayloadAction<boolean>) => {
+      state.isInitialized = action.payload;
+    },
   },
 });
 
-export const { setAppError } = appSlice.actions;
+export const { setAppError, isInitialized } = appSlice.actions;
 
 export const appReducer = appSlice.reducer;

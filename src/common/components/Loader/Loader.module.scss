@@ -1,0 +1,11 @@
+.container {
+  height: calc(100vh - 62px);
+  width: 100vw;
+  .wrapper {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
