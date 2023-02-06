@@ -7,6 +7,7 @@ import { useAppDispatch } from "../common/hooks/AppDispatch";
 import { useAppSelector } from "../common/hooks/AppSelector";
 
 function App() {
+    // sddsfsdf
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(authMeTC());
