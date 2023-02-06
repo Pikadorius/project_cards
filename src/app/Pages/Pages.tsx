@@ -5,6 +5,7 @@ import {Login} from "../../featuries/auth/Login/Login";
 import {Registration} from "../../featuries/auth/Registration/Registration";
 import {Recovery} from "../../featuries/auth/Recovery/Recovery";
 import RequireAuth from "./RequireAuth";
+import Profile from '../../featuries/Profile/Profile';
 
 
 const Pages = () => {
@@ -16,7 +17,7 @@ const Pages = () => {
 
             <Route element={<RequireAuth/>}>
                 <Route path={"/"} element={<Navigate to={"/profile"}/>}/>
-                <Route path={"/profile"} element={<div>Профайл</div>}/>
+                <Route path={"/profile"} element={<Profile/>}/>
             </Route>
         </Routes>
     );
