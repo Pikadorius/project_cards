@@ -8,7 +8,7 @@ import {useAppSelector} from "../common/hooks/AppSelector";
 import SimpleSnackbar from '../common/components/SnackBar/Snackbar';
 
 function App() {
-    // EGOR serg
+    // EGOR serg /////
     const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(authMeTC());
