@@ -25,9 +25,9 @@ export const Login = () => {
       title={"Sign In"}
       forgot={true}
       recoveryPath={PATH.RECOVERY}
-      questionText={"Already have an account?"}
+      questionText={"Do not have an account?"}
       linkPath={PATH.REGISTER}
-      linkTitle={"Sign In"}
+      linkTitle={"Sign Up"}
     >
       <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
         <Input
