@@ -23,7 +23,7 @@ export const Registration = () => {
 
   return (
     <FormWrapper
-      linkTitle={"Sign Up"}
+      linkTitle={"Sign In"}
       linkPath={PATH.LOGIN}
       title={"Sign Up"}
       questionText={"Already have an account?"}
@@ -60,7 +60,7 @@ export const Registration = () => {
           error={errorConfirmPwd}
         />
 
-        <Button isValid={isValid} type={"submit"} title={"Sign Up"} />
+        <Button isValid={isValid} type={"submit"} title={"Create account"} />
       </form>
     </FormWrapper>
   );
