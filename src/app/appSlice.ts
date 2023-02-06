@@ -1,11 +1,16 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const initialState = {
-    isInitialized: false
+
+type InitialStateType = {
+    appError: string | null
+}
+
+const initialState: InitialStateType = {
+    appError: null
 }
 
 export const appSlice = createSlice({
     name: "app",
-    initialState,
+    initialState: {},
     reducers: {},
 });

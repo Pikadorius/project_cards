@@ -5,8 +5,13 @@ import { PATH } from "../../../common/constans/path";
 import { FormWrapper } from "../../../common/components/Form/FormWrapper/FormWrapper";
 import s from "../../../common/components/Form/FormWrapper/FormWrapper.module.scss";
 import { formHandler } from "../../../common/utils/FormHandler";
+import {useAppDispatch} from '../../../common/hooks/AppDispatch';
+import {registerTC} from '../authSlice';
 
 export const Registration = () => {
+
+  const dispacth = useAppDispatch()
+
   const {
     errorEmail,
     errorPassword,
@@ -18,12 +23,12 @@ export const Registration = () => {
   } = formHandler();
   const onSubmit = (data: any) => {
     const { email, password } = data;
-    console.log({ email, password });
+    dispacth(registerTC({email, password}))
   };
 
   return (
     <FormWrapper
-      linkTitle={"Sign Up"}
+      linkTitle={"Sign In"}
       linkPath={PATH.LOGIN}
       title={"Sign Up"}
       questionText={"Already have an account?"}
@@ -60,7 +65,7 @@ export const Registration = () => {
           error={errorConfirmPwd}
         />
 
-        <Button isValid={isValid} type={"submit"} title={"Sign Up"} />
+        <Button isValid={isValid} type={"submit"} title={"Create account"} />
       </form>
     </FormWrapper>
   );
