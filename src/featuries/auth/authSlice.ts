@@ -1,7 +1,13 @@
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import { authApi, LoginType, RegistrationRequestType } from "./authApi";
+import {
+  authApi,
+  LoginType,
+  RecoveryPasswordRequestType,
+  RegistrationRequestType,
+} from "./authApi";
 import { errorUtils } from "../../common/utils/ErrorHandler";
 import { isInitialized, setAppError } from "../../app/appSlice";
+import { Recovery } from "./Recovery/Recovery";
 
 export type UserType = {
   _id: string;
@@ -72,6 +78,20 @@ export const logoutTC = createAsyncThunk("logout", async (_, { dispatch }) => {
     errorUtils(e, dispatch);
   }
 });
+
+export const recoveryTC = createAsyncThunk(
+  "recovery",
+  async (data: RecoveryPasswordRequestType, { dispatch }) => {
+    try {
+      const res = await authApi.recoveryPassword(data);
+      console.log(res);
+      /*dispatch(isLoggedIn(false));
+      dispatch(setAppError(res.data.data.info));*/
+    } catch (e: any) {
+      errorUtils(e, dispatch);
+    }
+  }
+);
 
 const authSlice = createSlice({
   name: "auth",
