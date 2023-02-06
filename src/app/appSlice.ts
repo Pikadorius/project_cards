@@ -1,4 +1,4 @@
-import {createSlice} from "@reduxjs/toolkit";
+import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 
 type InitialStateType = {
@@ -11,6 +11,14 @@ const initialState: InitialStateType = {
 
 export const appSlice = createSlice({
     name: "app",
-    initialState: {},
-    reducers: {},
+    initialState,
+    reducers: {
+        setAppError: (state, action: PayloadAction<string | null>) => {
+            state.appError = action.payload
+        }
+    },
 });
+
+export const {setAppError}=appSlice.actions
+
+export const appReducer = appSlice.reducer

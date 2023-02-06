@@ -1,6 +1,6 @@
-// import { setAppErrorAC, SetAppErrorActionType } from '../../app/app-reducer';
 import { Dispatch } from 'redux';
 import axios, { AxiosError } from 'axios';
+import {setAppError} from '../../app/appSlice';
 // import { AppThunk } from '../../app/store';
 // import { packsAPI } from '../../api/packs-api';
 
@@ -8,10 +8,10 @@ export const errorUtils = (e: Error | AxiosError<{error: string}>, dispatch: Dis
     const err = e as Error | AxiosError<{ error: string }>
     if (axios.isAxiosError(err)) {
         const error = err.response?.data ? err.response.data.error : err.message
-        // dispatch(setAppErrorAC(error))
+        dispatch(setAppError(error))
         console.log(error)
     } else {
-        // dispatch(setAppErrorAC(`Native error ${err.message}`))
+        dispatch(setAppError(`Native error ${err.message}`))
         console.log(err.message)
     }
 }
