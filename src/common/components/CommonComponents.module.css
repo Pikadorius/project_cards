@@ -1,0 +1,12 @@
+.itemsField {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.item {
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+}

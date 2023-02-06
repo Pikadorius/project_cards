@@ -1,0 +1,16 @@
+.logoContainer {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+
+  .logoLink {
+    text-decoration: none;
+
+    .logo {
+      width: 209px;
+      height: 50px;
+    }
+  }
+}
