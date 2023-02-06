@@ -21,12 +21,19 @@ export type RegistrationRequestType = {
     password: string
 }
 
+export type LoginType = {
+    email: string
+    password: string
+    rememberMe: string
+}
+
 
 export const authApi = {
     authMe: () => {
         return instance.post<{}, AxiosResponse<ResponseType>>(`auth/me`);
     },
-    loggedIn: () => {
+    loggedIn: (data: LoginType) => {
+        return instance.post(`auth/login`, data)
     },
     register: (data: RegistrationRequestType) => instance.post(`auth/register`, data),
 };
