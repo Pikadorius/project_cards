@@ -1,0 +1,23 @@
+.profileContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .userName {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+  }
+
+  .avatarContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+
+    .userAvatar {
+      width: 36px;
+      height: 36px;
+    }
+  }
+}
