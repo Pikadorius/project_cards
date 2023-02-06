@@ -27,13 +27,20 @@ export type LoginType = {
     rememberMe: string
 }
 
+export type UpdateType = {
+    name: string
+    avatar: string
+}
+
 
 export const authApi = {
     authMe: () => {
         return instance.post<{}, AxiosResponse<ResponseType>>(`auth/me`);
     },
+    update: (data: UpdateType) => instance.put(`auth/login`),
     loggedIn: (data: LoginType) => {
         return instance.post(`auth/login`, data)
     },
+    logout: () => instance.delete<AxiosResponse<{ info: string }>>(`auth/me`),
     register: (data: RegistrationRequestType) => instance.post(`auth/register`, data),
 };
