@@ -10,6 +10,7 @@ import EditableSpan from "../../../common/components/EditableSpan/EditableSpan";
 import { Navigate, useNavigate } from "react-router-dom";
 import { PATH } from "../../../common/constans/path";
 import arrow from "../../../assets/arrow.svg";
+import { UserNameHandler } from "../../../common/utils/userNameHandler";
 
 export const Profile = () => {
   const dispatch = useAppDispatch();
@@ -18,7 +19,7 @@ export const Profile = () => {
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   // данные для Profile (name and email)
   const user = useAppSelector((state) => state.auth.user);
-
+  const userName = UserNameHandler(user.name);
   // пока только на имя, аватарку не трогал
   const updateName = (newName: string) => {
     dispatch(updateNameTC(newName));
@@ -47,10 +48,10 @@ export const Profile = () => {
             </div>
             <img src={avatar} alt="user avatar" />
           </div>
-          <h3 className={s.userName}>
-            {/*пока сделал новую компоненту, не вижу смысла тут отслеживать с помощью react hook form*/}
-            <EditableSpan value={user.name} onChange={updateName} />
-          </h3>
+
+          {/*пока сделал новую компоненту, не вижу смысла тут отслеживать с помощью react hook form*/}
+          <EditableSpan value={userName} onChange={updateName} />
+
           <span className={s.emailText}>{user.email}</span>
           <span onClick={logoutHandler} className={s.logOut}>
             <img className={s.logOutIcon} src={logout} alt="button logout" />
