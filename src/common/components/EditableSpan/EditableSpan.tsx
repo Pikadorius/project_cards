@@ -1,4 +1,7 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
+import s from "./EditableSpan.module.scss";
+import pen from "../../../assets/pen.svg";
+import submit from "../../../assets/submit.svg";
 
 type EditableSpanType = {
   value: string;
@@ -23,12 +26,33 @@ const EditableSpan: React.FC<EditableSpanType> = (props) => {
   };
 
   return isEditMode ? (
-    <>
-      <input value={title} onChange={changeTitle} onKeyDown={onEnter} />
-      <button onClick={updateName}>Save</button>
-    </>
+    <div className={s.inputWrapper}>
+      <label className={s.labelInput}>
+        Nickname
+        <input
+          className={s.input}
+          value={title}
+          onChange={changeTitle}
+          onKeyDown={onEnter}
+        />
+      </label>
+      <img
+        onClick={updateName}
+        className={s.confirmName}
+        src={submit}
+        alt="confirm Name button"
+      />
+    </div>
   ) : (
-    <span onDoubleClick={() => setEditMode(true)}>{props.value}</span>
+    <div className={s.userNameContainer}>
+      <h3 className={s.userName}>{props.value}</h3>
+      <img
+        onClick={() => setEditMode(true)}
+        className={s.iconPen}
+        src={pen}
+        alt="icon pen for redaction name"
+      />
+    </div>
   );
 };
 
