@@ -7,9 +7,13 @@ import { logoutTC, updateNameTC } from "../../../featuries/auth/authSlice";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
 import EditableSpan from "../../../common/components/EditableSpan/EditableSpan";
+import { Navigate } from "react-router-dom";
+import { PATH } from "../../../common/constans/path";
 
 export const Profile = () => {
   const dispatch = useAppDispatch();
+
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   // данные для Profile (name and email)
   const user = useAppSelector((state) => state.auth.user);
 
@@ -21,6 +25,10 @@ export const Profile = () => {
   const logoutHandler = () => {
     dispatch(logoutTC());
   };
+
+  if (!isLoggedIn) {
+    return <Navigate to={PATH.LOGIN} />;
+  }
 
   return (
     <div className={s.container}>

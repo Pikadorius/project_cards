@@ -13,6 +13,7 @@ import { Navigate } from "react-router-dom";
 
 export const Registration = () => {
   const registered = useAppSelector((state) => state.auth.isRegistred);
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const dispacth = useAppDispatch();
 
   useEffect(() => {
@@ -35,6 +36,10 @@ export const Registration = () => {
 
   if (registered) {
     return <Navigate to={PATH.LOGIN} />;
+  }
+
+  if (isLoggedIn) {
+    return <Navigate to={PATH.PROFILE} />;
   }
 
   return (
