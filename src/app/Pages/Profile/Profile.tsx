@@ -3,14 +3,25 @@ import s from "./Profile.module.scss";
 import logout from "../../../assets/logout.svg";
 import avatar from "../../../assets/avatarBig.png";
 import camera from "../../../assets/cameraIcon.svg";
-import { logoutTC } from "../../../featuries/auth/authSlice";
+import { logoutTC, updateNameTC } from "../../../featuries/auth/authSlice";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
+import { useAppSelector } from "../../../common/hooks/AppSelector";
+import EditableSpan from "../../../common/components/EditableSpan/EditableSpan";
 
 export const Profile = () => {
   const dispatch = useAppDispatch();
-  const logOutHandler = () => {
+  // данные для Profile (name and email)
+  const user = useAppSelector((state) => state.auth.user);
+
+  // пока только на имя, аватарку не трогал
+  const updateName = (newName: string) => {
+    dispatch(updateNameTC(newName));
+  };
+
+  const logoutHandler = () => {
     dispatch(logoutTC());
   };
+
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
@@ -22,9 +33,12 @@ export const Profile = () => {
             </div>
             <img src={avatar} alt="user avatar" />
           </div>
-          <h3 className={s.userName}>User Name</h3>
-          <span className={s.emailText}>j&johnson@gmail.com</span>
-          <span onClick={logOutHandler} className={s.logOut}>
+          <h3 className={s.userName}>
+            {/*пока сделал новую компоненту, не вижу смысла тут отслеживать с помощью react hook form*/}
+            <EditableSpan value={user.name} onChange={updateName} />
+          </h3>
+          <span className={s.emailText}>{user.email}</span>
+          <span onClick={logoutHandler} className={s.logOut}>
             <img className={s.logOutIcon} src={logout} alt="button logout" />
             <span className={s.logOutText}>Log out</span>
           </span>
