@@ -1,17 +1,15 @@
 import React from "react";
 import s from "./Profile.module.scss";
-import { Link } from "react-router-dom";
-import { PATH } from "../../../common/constans/path";
 import logout from "../../../assets/logout.svg";
 import avatar from "../../../assets/avatarBig.png";
 import camera from "../../../assets/cameraIcon.svg";
-import { useDispatch } from "react-redux";
-import { isLoggedIn, loginTC } from "../../../featuries/auth/authSlice";
+import { logoutTC } from "../../../featuries/auth/authSlice";
+import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 
 export const Profile = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const logOutHandler = () => {
-    dispatch(isLoggedIn(false));
+    dispatch(logoutTC());
   };
   return (
     <div className={s.container}>
