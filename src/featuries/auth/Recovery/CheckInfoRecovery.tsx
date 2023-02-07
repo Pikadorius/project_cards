@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import { PATH } from "../../../common/constans/path";
 
 export const CheckInfoRecovery = () => {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const email = useAppSelector((state) => state.auth.emailInRecovery);
