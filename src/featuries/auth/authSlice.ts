@@ -62,7 +62,10 @@ export const loginTC = createAsyncThunk(
       const res = await authApi.loggedIn(data);
       dispatch(isLoggedIn(true));
       dispatch(setUser(res.data));
-    } catch (e: any) {}
+      dispatch(setAppError(res.statusText));
+    } catch (e: any) {
+      errorUtils(e, dispatch);
+    }
   }
 );
 
@@ -70,7 +73,7 @@ export const logoutTC = createAsyncThunk("logout", async (_, { dispatch }) => {
   try {
     const res = await authApi.logout();
     dispatch(isLoggedIn(false));
-    dispatch(setAppError(res.data.data.info));
+    dispatch(setAppError(res.data.info));
   } catch (e: any) {
     errorUtils(e, dispatch);
   }

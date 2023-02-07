@@ -39,7 +39,7 @@ export const authApi = {
   },
   update: (data: UpdateType) => instance.put(`auth/login`),
   loggedIn: (data: LoginType) => {
-    return instance.post(`auth/login`, data);
+    return instance.post<{}, AxiosResponse>(`auth/login`, data);
   },
   logout: () => instance.delete<{}, AxiosResponse<{ info: string }>>(`auth/me`),
   register: (data: RegistrationRequestType) =>
