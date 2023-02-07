@@ -23,6 +23,7 @@ function App() {
       <Header />
       <Pages />
       <SimpleSnackbar />
+      {/*<Loader />*/}
     </div>
   );
 }
