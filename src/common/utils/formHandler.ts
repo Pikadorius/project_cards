@@ -22,8 +22,8 @@ const schemaParam = {
 export const formHandler = (...keys: string[]) => {
   const param: any = {};
   const schemaParamEntries = Object.entries(schemaParam);
-  keys.forEach((k, i) =>
-    schemaParamEntries.forEach((el, i) =>
+  keys.forEach((k) =>
+    schemaParamEntries.forEach((el) =>
       el.includes(k) ? (param[k] = el[1]) : null
     )
   );
