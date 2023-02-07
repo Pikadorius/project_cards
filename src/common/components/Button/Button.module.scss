@@ -1,3 +1,4 @@
+@import "./src/styles/mixins";
 .btn {
   padding: 8px 0;
   background: #366EFF;
@@ -11,20 +12,5 @@
   color: #FFFFFF;
   cursor: pointer;
 
-  &:hover {
-    transform: translateY(1px);
-  }
-  &:active {
-    transform: translateY(-1px);
-  }
-
-  &:disabled {
-    opacity: .5;
-    &:hover {
-      transform: none;
-    }
-    &:active {
-      transform: none;
-    }
-  }
+  @include btn
 }
