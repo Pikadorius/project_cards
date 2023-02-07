@@ -6,7 +6,7 @@ const Loader = () => {
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
-        <CircularProgress />
+        <CircularProgress variant={"indeterminate"} color={"inherit"} />
       </div>
     </div>
   );
