@@ -6,10 +6,10 @@ import { Button } from "../../../common/components/Button/Button";
 import { FormWrapper } from "../../../common/components/Form/FormWrapper/FormWrapper";
 import s from "../../../common/components/Form/FormWrapper/FormWrapper.module.scss";
 import { formHandler } from "../../../common/utils/FormHandler";
-import {useAppDispatch} from "../../../common/hooks/AppDispatch";
-import {loginTC} from "../authSlice";
-import {useAppSelector} from "../../../common/hooks/AppSelector";
-import {Navigate} from "react-router-dom";
+import { useAppDispatch } from "../../../common/hooks/AppDispatch";
+import { loginTC } from "../authSlice";
+import { useAppSelector } from "../../../common/hooks/AppSelector";
+import { Navigate } from "react-router-dom";
 
 export type FormLoginType = {
   email: string;
@@ -19,15 +19,15 @@ export type FormLoginType = {
 
 export const Login = () => {
   const dispatch = useAppDispatch();
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const { errorEmail, errorPassword, handleSubmit, isValid, register, reset } =
     formHandler();
   const onSubmit = (data: any) => {
-    dispatch(loginTC(data))
+    dispatch(loginTC(data));
   };
 
   if (isLoggedIn) {
-    return <Navigate to={PATH.PROFILE}/>
+    return <Navigate to={PATH.PROFILE} />;
   }
 
   return (
