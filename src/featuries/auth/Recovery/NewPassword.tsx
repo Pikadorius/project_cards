@@ -1,5 +1,4 @@
 import React from "react";
-import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { formHandler } from "../../../common/utils/formHandler";
 import { FormWrapper } from "../../../common/components/Form/FormWrapper/FormWrapper";
 import { PATH } from "../../../common/constans/path";
@@ -9,16 +8,17 @@ import { Button } from "../../../common/components/Button/Button";
 import eye from "../../../assets/eye.svg";
 
 export const NewPassword = () => {
-  const discriptionText =
-    "Create new password and we will send you further instructions to email";
-
-  const dispatch = useAppDispatch();
-
-  const { errorPassword, handleSubmit, isValid, register } =
-    formHandler("password");
+  const {
+    errorPassword,
+    errorConfirmPwd,
+    handleSubmit,
+    isValid,
+    register,
+    reset,
+  } = formHandler("password", "confirmPwd");
   const onSubmit = (data: any) => {
-    const { newPassword } = data;
-    console.log(data, newPassword);
+    const { password, confirmPass } = data;
+    console.log(password);
   };
 
   return (
@@ -27,14 +27,24 @@ export const NewPassword = () => {
         <Input
           type={"password"}
           label={"Password"}
+          nameForValidate={"password"}
           altForIcon={"show password"}
           placeholder={"example12"}
           icon={eye}
           register={register}
           error={errorPassword}
-          nameForValidate={"password"}
         />
-        {discriptionText}
+
+        <Input
+          type={"password"}
+          label={"Confirm password"}
+          nameForValidate={"confirmPwd"}
+          altForIcon={"show password"}
+          placeholder={"********"}
+          icon={eye}
+          register={register}
+          error={errorConfirmPwd}
+        />
         <Button isValid={isValid} title={"New password"} type={"submit"} />
       </form>
     </FormWrapper>

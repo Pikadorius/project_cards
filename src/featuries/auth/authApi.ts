@@ -53,7 +53,7 @@ export const authApi = {
       `/auth/forgot`,
       {
         email,
-        message: `<div style="background-color: lime; padding: 15px">password recovery link: <a href='http://localhost:3000/#/${PATH.NEW_PASSWORD}/$token$'>link</a></div>`,
+        message: `<div style="background-color: lime; padding: 15px">password recovery link: <a href='http://localhost:3000/#${PATH.NEW_PASSWORD}/$token$'>link</a></div>`,
       }
       //путь href
     );
