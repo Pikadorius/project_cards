@@ -41,7 +41,7 @@ export const authApi = {
   loggedIn: (data: LoginType) => {
     return instance.post(`auth/login`, data);
   },
-  logout: () => instance.delete<AxiosResponse<{ info: string }>>(`auth/me`),
+  logout: () => instance.delete<{}, AxiosResponse<{ info: string }>>(`auth/me`),
   register: (data: RegistrationRequestType) =>
     instance.post(`auth/register`, data),
   recoveryPassword: (email: string) => {
