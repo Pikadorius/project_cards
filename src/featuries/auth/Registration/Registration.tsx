@@ -4,7 +4,7 @@ import { Button } from "../../../common/components/Button/Button";
 import { PATH } from "../../../common/constans/path";
 import { FormWrapper } from "../../../common/components/Form/FormWrapper/FormWrapper";
 import s from "../../../common/components/Form/FormWrapper/FormWrapper.module.scss";
-import { formHandler } from "../../../common/utils/FormHandler";
+import { formHandler } from "../../../common/utils/formHandler";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { isRegistred, registerTC } from "../authSlice";
 import { useEffect } from "react";
