@@ -58,15 +58,12 @@ export const registerTC = createAsyncThunk(
 export const loginTC = createAsyncThunk(
   "login",
   async (data: LoginType, { dispatch }) => {
-    dispatch(isInitialized(false));
     try {
       const res = await authApi.loggedIn(data);
       dispatch(isLoggedIn(true));
       dispatch(setUser(res.data));
     } catch (e: any) {
       errorUtils(e, dispatch);
-    } finally {
-      dispatch(isInitialized(true));
     }
   }
 );
