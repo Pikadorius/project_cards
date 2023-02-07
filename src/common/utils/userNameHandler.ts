@@ -1,4 +1,4 @@
-export const UserNameHandler = (userName: string) => {
+export const userNameHandler = (userName: string) => {
   const maxLength = 22;
   const cutIndex =
     userName.indexOf("@") !== -1 ? userName.indexOf("@") : maxLength;
