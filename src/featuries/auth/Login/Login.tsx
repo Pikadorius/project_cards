@@ -25,7 +25,6 @@ export const Login = () => {
     formHandler("email", "password");
   const onSubmit = (data: any) => {
     dispatch(loginTC(data));
-    reset();
   };
 
   if (isLoggedIn) {
