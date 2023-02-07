@@ -95,6 +95,26 @@ export const recoveryTC = createAsyncThunk(
   }
 );
 
+export const updateNameTC = createAsyncThunk(
+  "updateName",
+  async (newName: string, { dispatch }) => {
+    if (newName.length > 30) {
+      dispatch(setAppError("Name should be less then 30 symbols"));
+    } else {
+      dispatch(isInitialized(false));
+      try {
+        const res = await authApi.update({ name: newName });
+        dispatch(updateUser(res.data.updatedUser.name));
+        dispatch(setAppError("Name changed"));
+      } catch (e: any) {
+        errorUtils(e, dispatch);
+      } finally {
+        dispatch(isInitialized(true));
+      }
+    }
+  }
+);
+
 const authSlice = createSlice({
   name: "auth",
   initialState: {
@@ -114,7 +134,6 @@ const authSlice = createSlice({
     setUser: (state, action: PayloadAction<UserType>) => {
       state.user = action.payload;
     },
-
     // под вопросом (можно передавать false в isLoggedIn)
     logout: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload;
@@ -126,9 +145,17 @@ const authSlice = createSlice({
       //GJLGHFDBNM
       state.emailInRecovery = action.payload.emailInRecovery;
     },
+    updateUser: (state, action: PayloadAction<string>) => {
+      state.user.name = action.payload;
+    },
   },
 });
 
-export const { isLoggedIn, isRegistred, setUser, setEmailInRecovery } =
-  authSlice.actions;
+export const {
+  isLoggedIn,
+  isRegistred,
+  setUser,
+  setEmailInRecovery,
+  updateUser,
+} = authSlice.actions;
 export const authReducer = authSlice.reducer;
