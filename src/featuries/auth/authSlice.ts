@@ -1,13 +1,7 @@
-import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  authApi,
-  LoginType,
-  RecoveryPasswordRequestType,
-  RegistrationRequestType,
-} from "./authApi";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { authApi, LoginType, RegistrationRequestType } from "./authApi";
 import { errorUtils } from "../../common/utils/ErrorHandler";
 import { isInitialized, setAppError } from "../../app/appSlice";
-import { Recovery } from "./Recovery/Recovery";
 
 export type UserType = {
   _id: string;
@@ -28,6 +22,8 @@ type InitialStateType = {
   isLoggedIn: boolean;
   isRegistred: boolean;
   user: UserType;
+  emailInRecovery: string;
+  isPasswordChanged: boolean;
 };
 
 export const authMeTC = createAsyncThunk(
@@ -81,14 +77,16 @@ export const logoutTC = createAsyncThunk("logout", async (_, { dispatch }) => {
 
 export const recoveryTC = createAsyncThunk(
   "recovery",
-  async (data: RecoveryPasswordRequestType, { dispatch }) => {
+  async (email: string, { dispatch }) => {
+    dispatch(isInitialized(false));
     try {
-      const res = await authApi.recoveryPassword(data);
-      console.log(res);
-      /*dispatch(isLoggedIn(false));
-      dispatch(setAppError(res.data.data.info));*/
+      const res = await authApi.recoveryPassword(email);
+      dispatch(setEmailInRecovery({ emailInRecovery: email }));
+      dispatch(setAppError(res.data.info));
     } catch (e: any) {
       errorUtils(e, dispatch);
+    } finally {
+      dispatch(isInitialized(true));
     }
   }
 );
@@ -99,6 +97,8 @@ const authSlice = createSlice({
     isLoggedIn: false,
     isRegistred: true,
     user: {},
+    emailInRecovery: "",
+    isPasswordChanged: false,
   } as InitialStateType,
   reducers: {
     isLoggedIn: (state, action: PayloadAction<boolean>) => {
@@ -115,8 +115,16 @@ const authSlice = createSlice({
     logout: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload;
     },
+    setEmailInRecovery: (
+      state,
+      action: PayloadAction<{ emailInRecovery: string }>
+    ) => {
+      //GJLGHFDBNM
+      state.emailInRecovery = action.payload.emailInRecovery;
+    },
   },
 });
 
-export const { isLoggedIn, isRegistred, setUser } = authSlice.actions;
+export const { isLoggedIn, isRegistred, setUser, setEmailInRecovery } =
+  authSlice.actions;
 export const authReducer = authSlice.reducer;

@@ -51,10 +51,7 @@ export const formHandlerRec = () => {
     email: Yup.string()
       .required("No email provided")
       .email("Incorrect email")
-      .matches(
-        /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-        "Incorrect email"
-      ),
+      .min(6, "Incorrect email"),
   });
 
   const {
@@ -72,5 +69,32 @@ export const formHandlerRec = () => {
     reset,
     isValid,
     errorEmail,
+  };
+};
+
+export const formHandlerPass = () => {
+  const formSchema = Yup.object().shape({
+    password: Yup.string()
+      .required("No password provided")
+      .matches(/(?=.*\d)(?=.*[a-z]).{8,}/, "Incorrect password"),
+  });
+
+  const {
+    register,
+    formState: { errors, isValid },
+    handleSubmit,
+    reset,
+  } = useForm({ resolver: yupResolver(formSchema), mode: "onTouched" });
+
+  const errorPassword = errors.password
+    ? String(errors.password.message)
+    : undefined;
+
+  return {
+    register,
+    handleSubmit,
+    reset,
+    isValid,
+    errorPassword,
   };
 };

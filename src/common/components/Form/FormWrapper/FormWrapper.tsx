@@ -1,6 +1,5 @@
 import React, { ReactNode } from "react";
 import s from "./FormWrapper.module.scss";
-import { PATH } from "../../../constans/path";
 import { useNavigate } from "react-router-dom";
 
 type FormWrapperType = {
@@ -9,8 +8,8 @@ type FormWrapperType = {
   forgot?: boolean;
   questionText?: string;
   recoveryPath?: string;
-  linkTitle: string;
-  linkPath: string;
+  linkTitle?: string;
+  linkPath?: string;
 };
 
 export const FormWrapper = React.memo(
@@ -41,18 +40,17 @@ export const FormWrapper = React.memo(
             {questionText && (
               <span className={s.textQuestion}>{questionText}</span>
             )}
-
-            <span
-              className={s.linkRegistration}
-              onClick={() => navigate(linkPath, { replace: true })}
-            >
-              {linkTitle}
-            </span>
+            {linkPath && (
+              <span
+                className={s.linkRegistration}
+                onClick={() => navigate(linkPath, { replace: true })}
+              >
+                {linkTitle}
+              </span>
+            )}
           </div>
         </div>
       </div>
     );
   }
 );
-
-

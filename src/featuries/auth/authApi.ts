@@ -1,5 +1,6 @@
-import { instance } from "../../common/constans/instance";
-import axios, { AxiosResponse } from "axios";
+import { instance, instanceRec } from "../../common/constans/instance";
+import { AxiosResponse } from "axios";
+import { PATH } from "../../common/constans/path";
 
 export type ResponseType = {
   _id: string;
@@ -32,12 +33,6 @@ export type UpdateType = {
   avatar: string;
 };
 
-export type RecoveryPasswordRequestType = {
-  email: string;
-  from: string;
-  message: string;
-};
-
 export const authApi = {
   authMe: () => {
     return instance.post<{}, AxiosResponse<ResponseType>>(`auth/me`);
@@ -48,11 +43,15 @@ export const authApi = {
   },
   logout: () => instance.delete<AxiosResponse<{ info: string }>>(`auth/me`),
   register: (data: RegistrationRequestType) =>
-    instance.post(`auth/register`, data),
-  recoveryPassword: (data: RecoveryPasswordRequestType) => {
-    return instance.post<AxiosResponse<{ info: string; error: string }>>(
+    instanceRec.post(`auth/register`, data),
+  recoveryPassword: (email: string) => {
+    return instanceRec.post<{}, AxiosResponse<{ info: string; error: string }>>(
       `/auth/forgot`,
-      data
+      {
+        email,
+        message: `<div style="background-color: lime; padding: 15px">password recovery link: <a href='http://localhost:3000/#/${PATH.NEW_PASSWORD}/$token$'>link</a></div>`,
+      }
+      //путь href
     );
   },
 };

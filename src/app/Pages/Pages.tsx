@@ -6,6 +6,8 @@ import { Registration } from "../../featuries/auth/Registration/Registration";
 import { Recovery } from "../../featuries/auth/Recovery/Recovery";
 import RequireAuth from "./RequireAuth";
 import { Profile } from "./Profile/Profile";
+import { NewPassword } from "../../featuries/auth/Recovery/NewPassword";
+import { CheckInfoRecovery } from "../../featuries/auth/Recovery/CheckInfoRecovery";
 
 const Pages = () => {
   return (
@@ -13,6 +15,8 @@ const Pages = () => {
       <Route path={PATH.LOGIN} element={<Login />} />
       <Route path={PATH.REGISTER} element={<Registration />} />
       <Route path={PATH.RECOVERY} element={<Recovery />} />
+      <Route path={PATH.NEW_PASSWORD} element={<NewPassword />} />
+      <Route path={PATH.RECOVERY_INFO} element={<CheckInfoRecovery />} />
 
       <Route element={<RequireAuth />}>
         <Route path={"/"} element={<Navigate to={"/profile"} />} />

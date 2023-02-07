@@ -4,4 +4,6 @@ export const PATH = {
   RECOVERY: "/recovery",
   PROFILE: "/profile",
   ACCOUNT: "/account",
+  NEW_PASSWORD: "/set-new-password",
+  RECOVERY_INFO: "/recovery-info",
 };
