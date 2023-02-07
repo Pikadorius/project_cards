@@ -5,23 +5,16 @@ import { CheckBox } from "../../../common/components/CheckBox/CheckBox";
 import { Button } from "../../../common/components/Button/Button";
 import { FormWrapper } from "../../../common/components/Form/FormWrapper/FormWrapper";
 import s from "../../../common/components/Form/FormWrapper/FormWrapper.module.scss";
-import { formHandler } from "../../../common/utils/FormHandler";
+import { formHandler } from "../../../common/utils/formHandler";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { loginTC } from "../authSlice";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
 import { Navigate } from "react-router-dom";
-import { isAllOf } from "@reduxjs/toolkit";
-
-export type FormLoginType = {
-  email: string;
-  password: string;
-  rememberMe: boolean;
-};
 
 export const Login = () => {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
-  const { errorEmail, errorPassword, handleSubmit, isValid, register, reset } =
+  const { errorEmail, errorPassword, handleSubmit, isValid, register } =
     formHandler("email", "password");
   const onSubmit = (data: any) => {
     dispatch(loginTC(data));
