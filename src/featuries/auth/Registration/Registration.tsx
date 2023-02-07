@@ -5,12 +5,19 @@ import { PATH } from "../../../common/constans/path";
 import { FormWrapper } from "../../../common/components/Form/FormWrapper/FormWrapper";
 import s from "../../../common/components/Form/FormWrapper/FormWrapper.module.scss";
 import { formHandler } from "../../../common/utils/FormHandler";
-import {useAppDispatch} from '../../../common/hooks/AppDispatch';
-import {registerTC} from '../authSlice';
+import { useAppDispatch } from "../../../common/hooks/AppDispatch";
+import { isRegistred, registerTC } from "../authSlice";
+import { useEffect } from "react";
+import { useAppSelector } from "../../../common/hooks/AppSelector";
+import { Navigate } from "react-router-dom";
 
 export const Registration = () => {
+  const registered = useAppSelector((state) => state.auth.isRegistred);
+  const dispacth = useAppDispatch();
 
-  const dispacth = useAppDispatch()
+  useEffect(() => {
+    dispacth(isRegistred(false));
+  }, []);
 
   const {
     errorEmail,
@@ -23,8 +30,12 @@ export const Registration = () => {
   } = formHandler();
   const onSubmit = (data: any) => {
     const { email, password } = data;
-    dispacth(registerTC({email, password}))
+    dispacth(registerTC({ email, password }));
   };
+
+  if (registered) {
+    return <Navigate to={PATH.LOGIN} />;
+  }
 
   return (
     <FormWrapper
