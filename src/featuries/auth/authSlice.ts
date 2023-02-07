@@ -58,24 +58,29 @@ export const registerTC = createAsyncThunk(
 export const loginTC = createAsyncThunk(
   "login",
   async (data: LoginType, { dispatch }) => {
+    dispatch(isInitialized(false));
     try {
       const res = await authApi.loggedIn(data);
       dispatch(isLoggedIn(true));
       dispatch(setUser(res.data));
-      dispatch(setAppError(res.statusText));
     } catch (e: any) {
       errorUtils(e, dispatch);
+    } finally {
+      dispatch(isInitialized(true));
     }
   }
 );
 
 export const logoutTC = createAsyncThunk("logout", async (_, { dispatch }) => {
+  dispatch(isInitialized(false));
   try {
     const res = await authApi.logout();
     dispatch(isLoggedIn(false));
     dispatch(setAppError(res.data.info));
   } catch (e: any) {
     errorUtils(e, dispatch);
+  } finally {
+    dispatch(isInitialized(true));
   }
 });
 
