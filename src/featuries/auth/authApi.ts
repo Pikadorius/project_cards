@@ -28,16 +28,20 @@ export type LoginType = {
   rememberMe: string;
 };
 
-export type UpdateType = {
+export type UpdateUserType = {
   name: string;
-  avatar: string;
+  avatar?: string;
 };
 
 export const authApi = {
   authMe: () => {
     return instance.post<{}, AxiosResponse<ResponseType>>(`auth/me`);
   },
-  update: (data: UpdateType) => instance.put(`auth/login`),
+  update: (data: UpdateUserType) =>
+    instance.put<{}, AxiosResponse<{ updatedUser: ResponseType }>>(
+      `auth/me`,
+      data
+    ),
   loggedIn: (data: LoginType) => {
     return instance.post<{}, AxiosResponse>(`auth/login`, data);
   },
