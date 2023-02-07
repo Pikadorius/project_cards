@@ -1,5 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { authApi, LoginType, RegistrationRequestType } from "./authApi";
+import {
+  authApi,
+  LoginType,
+  RegistrationRequestType,
+  SetNewPasswordType,
+} from "./authApi";
 import { errorUtils } from "../../common/utils/errorHandler";
 import { isInitialized, setAppError } from "../../app/appSlice";
 
@@ -24,6 +29,7 @@ type InitialStateType = {
   user: UserType;
   emailInRecovery: string;
   isPasswordChanged: boolean;
+  isMessageSend: boolean;
 };
 
 export const authMeTC = createAsyncThunk(
@@ -87,8 +93,25 @@ export const recoveryTC = createAsyncThunk(
     dispatch(isInitialized(false));
     try {
       const res = await authApi.recoveryPassword(email);
-      dispatch(setEmailInRecovery({ emailInRecovery: email }));
-      dispatch(setAppError(res.data.info));
+      dispatch(setEmailInRecovery(email));
+      dispatch(setAppError("Message has been sent"));
+      dispatch(isMessageSend(true));
+    } catch (e: any) {
+      errorUtils(e, dispatch);
+    } finally {
+      dispatch(isInitialized(true));
+    }
+  }
+);
+
+export const setNewPasswordTC = createAsyncThunk(
+  "newPassword",
+  async (data: SetNewPasswordType, { dispatch }) => {
+    dispatch(isInitialized(false));
+    try {
+      const res = await authApi.setNewPassword(data);
+      dispatch(isPasswordChanged(true));
+      dispatch(setAppError("Password changed"));
     } catch (e: any) {
       errorUtils(e, dispatch);
     } finally {
@@ -125,6 +148,7 @@ const authSlice = createSlice({
     user: {},
     emailInRecovery: "",
     isPasswordChanged: false,
+    isMessageSend: false,
   } as InitialStateType,
   reducers: {
     isLoggedIn: (state, action: PayloadAction<boolean>) => {
@@ -140,12 +164,14 @@ const authSlice = createSlice({
     logout: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload;
     },
-    setEmailInRecovery: (
-      state,
-      action: PayloadAction<{ emailInRecovery: string }>
-    ) => {
-      //GJLGHFDBNM
-      state.emailInRecovery = action.payload.emailInRecovery;
+    setEmailInRecovery: (state, action: PayloadAction<string>) => {
+      state.emailInRecovery = action.payload;
+    },
+    isMessageSend: (state, action: PayloadAction<boolean>) => {
+      state.isMessageSend = action.payload;
+    },
+    isPasswordChanged: (state, action: PayloadAction<boolean>) => {
+      state.isPasswordChanged = action.payload;
     },
     updateUser: (state, action: PayloadAction<string>) => {
       state.user.name = action.payload;
@@ -157,6 +183,8 @@ export const {
   isLoggedIn,
   isRegistred,
   setUser,
+  isPasswordChanged,
+  isMessageSend,
   setEmailInRecovery,
   updateUser,
 } = authSlice.actions;

@@ -1,20 +1,21 @@
 import React from "react";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { formHandler } from "../../../common/utils/formHandler";
-import { recoveryTC } from "../authSlice";
+import { isMessageSend, recoveryTC } from "../authSlice";
 import { PATH } from "../../../common/constans/path";
 import { FormWrapper } from "../../../common/components/Form/FormWrapper/FormWrapper";
 import s from "../../../common/components/Form/FormWrapper/FormWrapper.module.scss";
 import { Input } from "../../../common/components/Input/Input";
 import { Button } from "../../../common/components/Button/Button";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../../common/hooks/AppSelector";
 
 export const Recovery = () => {
   const discriptionText =
     "Enter your email address and we will send you further instructions";
   const messageText =
     "Enter your email address and we will send you further instructions";
-
+  const messageSend = useAppSelector((state) => state.auth.isMessageSend);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -23,9 +24,12 @@ export const Recovery = () => {
   const onSubmit = (data: any) => {
     const { email } = data;
     dispatch(recoveryTC(email));
-    reset();
-    navigate(PATH.RECOVERY_INFO);
   };
+
+  if (messageSend) {
+    dispatch(isMessageSend(false));
+    return <Navigate to={PATH.RECOVERY_INFO} />;
+  }
 
   return (
     <FormWrapper

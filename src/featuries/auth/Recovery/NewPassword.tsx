@@ -6,20 +6,28 @@ import s from "../../../common/components/Form/FormWrapper/FormWrapper.module.sc
 import { Input } from "../../../common/components/Input/Input";
 import { Button } from "../../../common/components/Button/Button";
 import eye from "../../../assets/eye.svg";
+import { Navigate, useParams } from "react-router-dom";
+import { useAppDispatch } from "../../../common/hooks/AppDispatch";
+import { setNewPasswordTC } from "../authSlice";
+import { useAppSelector } from "../../../common/hooks/AppSelector";
 
 export const NewPassword = () => {
-  const {
-    errorPassword,
-    errorConfirmPwd,
-    handleSubmit,
-    isValid,
-    register,
-    reset,
-  } = formHandler("password", "confirmPwd");
+  let { resetPasswordToken } = useParams();
+  const isPasswordChanged = useAppSelector(
+    (state) => state.auth.isPasswordChanged
+  );
+  const dispatch = useAppDispatch();
+  const { errorPassword, errorConfirmPwd, handleSubmit, isValid, register } =
+    formHandler("password", "confirmPwd");
   const onSubmit = (data: any) => {
-    const { password, confirmPass } = data;
-    console.log(password);
+    const password = data.password;
+    console.log(data, { password, resetPasswordToken });
+    dispatch(setNewPasswordTC({ password, resetPasswordToken }));
   };
+
+  if (isPasswordChanged) {
+    return <Navigate to={PATH.LOGIN} />;
+  }
 
   return (
     <FormWrapper title={"Create new password"} recoveryPath={PATH.NEW_PASSWORD}>

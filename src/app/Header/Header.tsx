@@ -7,7 +7,6 @@ import Logo from "../../common/components/Logo/Logo";
 import HeaderProfile from "./HeaderProfile/HeaderProfile";
 
 import HeaderSignIn from "./HeaderSignIn/HeaderSignIn";
-import { useAppDispatch } from "../../common/hooks/AppDispatch";
 import { useAppSelector } from "../../common/hooks/AppSelector";
 
 export const Header = () => {
