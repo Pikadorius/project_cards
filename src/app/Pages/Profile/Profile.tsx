@@ -7,16 +7,19 @@ import { logoutTC, updateNameTC } from "../../../featuries/auth/authSlice";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
 import EditableSpan from "../../../common/components/EditableSpan/EditableSpan";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { PATH } from "../../../common/constans/path";
+import arrow from "../../../assets/arrow.svg";
+import { userNameHandler } from "../../../common/utils/userNameHandler";
 
 export const Profile = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   // данные для Profile (name and email)
   const user = useAppSelector((state) => state.auth.user);
-
+  const userName = userNameHandler(user.name);
   // пока только на имя, аватарку не трогал
   const updateName = (newName: string) => {
     dispatch(updateNameTC(newName));
@@ -33,6 +36,10 @@ export const Profile = () => {
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
+        <div onClick={() => navigate(-1)} className={s.linkBackward}>
+          <img className={s.arrow} src={arrow} alt="arrow backward" />
+          <span className={s.backwardText}>Back to Packs List</span>
+        </div>
         <div className={s.profileContainer}>
           <h2 className={s.title}>Personal Information</h2>
           <div className={s.avatarContainer}>
@@ -41,10 +48,10 @@ export const Profile = () => {
             </div>
             <img src={avatar} alt="user avatar" />
           </div>
-          <h3 className={s.userName}>
-            {/*пока сделал новую компоненту, не вижу смысла тут отслеживать с помощью react hook form*/}
-            <EditableSpan value={user.name} onChange={updateName} />
-          </h3>
+
+          {/*пока сделал новую компоненту, не вижу смысла тут отслеживать с помощью react hook form*/}
+          <EditableSpan value={userName} onChange={updateName} />
+
           <span className={s.emailText}>{user.email}</span>
           <span onClick={logoutHandler} className={s.logOut}>
             <img className={s.logOutIcon} src={logout} alt="button logout" />

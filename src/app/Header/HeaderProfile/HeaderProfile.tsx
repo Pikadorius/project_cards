@@ -2,15 +2,16 @@ import React from "react";
 import s from "./HeaderProfile.module.scss";
 import { Link } from "react-router-dom";
 import ava from "../../../assets/ava.png";
-import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
 import { PATH } from "../../../common/constans/path";
+import { userNameHandler } from "../../../common/utils/userNameHandler";
 
 const HeaderProfile = () => {
   const user = useAppSelector((state) => state.auth.user);
+  const userName = userNameHandler(user.name);
   return (
     <div className={s.profileContainer}>
-      <div className={s.userName}>{user.name}</div>
+      <div className={s.userName}>{userName}</div>
       <Link to={PATH.ACCOUNT} className={s.avatarContainer}>
         <img className={s.userAvatar} src={ava} alt="user avatar" />
       </Link>

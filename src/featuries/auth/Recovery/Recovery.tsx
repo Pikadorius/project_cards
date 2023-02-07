@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
-import { formHandler } from "../../../common/utils/FormHandler";
+import { formHandler } from "../../../common/utils/formHandler";
 import { recoveryTC } from "../authSlice";
 import { PATH } from "../../../common/constans/path";
 import { FormWrapper } from "../../../common/components/Form/FormWrapper/FormWrapper";

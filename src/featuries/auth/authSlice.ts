@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { authApi, LoginType, RegistrationRequestType } from "./authApi";
-import { errorUtils } from "../../common/utils/ErrorHandler";
+import { errorUtils } from "../../common/utils/errorHandler";
 import { isInitialized, setAppError } from "../../app/appSlice";
 
 export type UserType = {

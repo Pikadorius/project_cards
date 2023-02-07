@@ -14,16 +14,22 @@ type InputType = {
 };
 
 export const Input: React.FC<InputType> = React.memo(
-  ({ type, label, icon, placeholder, error, altForIcon, register, nameForValidate }) => {
+  ({
+    type,
+    label,
+    icon,
+    placeholder,
+    error,
+    altForIcon,
+    register,
+    nameForValidate,
+  }) => {
     const [typeInput, setTypeInput] = useState<string>(type);
     const showPasswordHandler = () => {
       typeInput === "password"
         ? setTypeInput("text")
         : setTypeInput("password");
     };
-    
-    
-    
     return (
       <label className={s.labelInput}>
         {label}
@@ -46,5 +52,3 @@ export const Input: React.FC<InputType> = React.memo(
     );
   }
 );
-
-
