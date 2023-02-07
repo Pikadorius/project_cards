@@ -27,7 +27,7 @@ export const Registration = () => {
     isValid,
     register,
     reset,
-  } = formHandler();
+  } = formHandler("email", "password", "confirmPwd");
   const onSubmit = (data: any) => {
     const { email, password } = data;
     dispacth(registerTC({ email, password }));

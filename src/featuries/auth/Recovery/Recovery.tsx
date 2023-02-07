@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
-import { formHandlerRec } from "../../../common/utils/FormHandler";
+import { formHandler } from "../../../common/utils/FormHandler";
 import { recoveryTC } from "../authSlice";
 import { PATH } from "../../../common/constans/path";
 import { FormWrapper } from "../../../common/components/Form/FormWrapper/FormWrapper";
@@ -19,7 +19,7 @@ export const Recovery = () => {
   const navigate = useNavigate();
 
   const { errorEmail, handleSubmit, isValid, register, reset } =
-    formHandlerRec();
+    formHandler("email");
   const onSubmit = (data: any) => {
     const { email } = data;
     dispatch(recoveryTC(email));

@@ -1,6 +1,6 @@
 import React from "react";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
-import { formHandlerPass } from "../../../common/utils/FormHandler";
+import { formHandler } from "../../../common/utils/FormHandler";
 import { FormWrapper } from "../../../common/components/Form/FormWrapper/FormWrapper";
 import { PATH } from "../../../common/constans/path";
 import s from "../../../common/components/Form/FormWrapper/FormWrapper.module.scss";
@@ -14,7 +14,8 @@ export const NewPassword = () => {
 
   const dispatch = useAppDispatch();
 
-  const { errorPassword, handleSubmit, isValid, register } = formHandlerPass();
+  const { errorPassword, handleSubmit, isValid, register } =
+    formHandler("password");
   const onSubmit = (data: any) => {
     const { newPassword } = data;
     console.log(data, newPassword);

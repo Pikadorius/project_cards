@@ -8,7 +8,6 @@ import { PATH } from "../../../common/constans/path";
 
 const HeaderProfile = () => {
   const user = useAppSelector((state) => state.auth.user);
-  console.log(user);
   return (
     <div className={s.profileContainer}>
       <div className={s.userName}>{user.name}</div>

@@ -10,6 +10,7 @@ import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { loginTC } from "../authSlice";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
 import { Navigate } from "react-router-dom";
+import { isAllOf } from "@reduxjs/toolkit";
 
 export type FormLoginType = {
   email: string;
@@ -21,9 +22,10 @@ export const Login = () => {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const { errorEmail, errorPassword, handleSubmit, isValid, register, reset } =
-    formHandler();
+    formHandler("email", "password");
   const onSubmit = (data: any) => {
     dispatch(loginTC(data));
+    reset();
   };
 
   if (isLoggedIn) {

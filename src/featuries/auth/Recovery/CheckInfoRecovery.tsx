@@ -14,6 +14,7 @@ export const CheckInfoRecovery = () => {
   const discriptionText = `We’ve sent an Email with instructions to ${email}`;
 
   const onClickInInfoHandler = () => {
+    // dispatch(isMessageSend({ isMessageSend: false }));
     navigate(PATH.LOGIN);
   };
 
