@@ -47,6 +47,7 @@ export const registerTC = createAsyncThunk(
     try {
       const res = await authApi.register(data);
       dispatch(isRegistred(true));
+      dispatch(setAppError("Account created"));
     } catch (e: any) {
       errorUtils(e, dispatch);
       dispatch(isRegistred(false));
@@ -95,7 +96,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState: {
     isLoggedIn: false,
-    isRegistred: true,
+    isRegistred: false,
     user: {},
     emailInRecovery: "",
     isPasswordChanged: false,
