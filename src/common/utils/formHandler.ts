@@ -21,8 +21,11 @@ const schemaParam = {
 
 export const formHandler = (...keys: string[]) => {
   const param: any = {};
-  Object.entries(schemaParam).forEach((el, i) =>
-    el.includes(keys[i]) ? (param[el[0]] = el[1]) : null
+  const schemaParamEntries = Object.entries(schemaParam);
+  keys.forEach((k, i) =>
+    schemaParamEntries.forEach((el, i) =>
+      el.includes(k) ? (param[k] = el[1]) : null
+    )
   );
 
   const formSchema = Yup.object().shape(param);
@@ -49,59 +52,5 @@ export const formHandler = (...keys: string[]) => {
     errorEmail,
     errorPassword,
     errorConfirmPwd,
-    keys,
   };
 };
-
-// export const formHandlerRec = () => {
-//   const formSchema = Yup.object().shape({
-//     email: Yup.string()
-//       .required("No email provided")
-//       .email("Incorrect email")
-//       .min(6, "Incorrect email"),
-//   });
-//
-//   const {
-//     register,
-//     formState: { errors, isValid },
-//     handleSubmit,
-//     reset,
-//   } = useForm({ resolver: yupResolver(formSchema), mode: "onTouched" });
-//
-//   const errorEmail = errors.email ? String(errors.email.message) : undefined;
-//
-//   return {
-//     register,
-//     handleSubmit,
-//     reset,
-//     isValid,
-//     errorEmail,
-//   };
-// };
-//
-// export const formHandlerPass = () => {
-//   const formSchema = Yup.object().shape({
-//     password: Yup.string()
-//       .required("No password provided")
-//       .matches(/(?=.*\d)(?=.*[a-z]).{8,}/, "Incorrect password"),
-//   });
-//
-//   const {
-//     register,
-//     formState: { errors, isValid },
-//     handleSubmit,
-//     reset,
-//   } = useForm({ resolver: yupResolver(formSchema), mode: "onTouched" });
-//
-//   const errorPassword = errors.password
-//     ? String(errors.password.message)
-//     : undefined;
-//
-//   return {
-//     register,
-//     handleSubmit,
-//     reset,
-//     isValid,
-//     errorPassword,
-//   };
-// };

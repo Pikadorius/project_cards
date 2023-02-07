@@ -1,5 +1,4 @@
 import React from "react";
-import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { FormWrapper } from "../../../common/components/Form/FormWrapper/FormWrapper";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
 import s from "../../../app/Header/HeaderSignIn/HeaderSignIn.module.scss";
