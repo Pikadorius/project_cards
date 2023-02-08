@@ -33,6 +33,11 @@ export type UpdateUserType = {
   avatar?: string;
 };
 
+export type BlockUserType = {
+  id: string;
+  blockReason: string;
+};
+
 export const authApi = {
   authMe: () => {
     return instance.post<{}, AxiosResponse<ResponseType>>(`auth/me`);
@@ -70,5 +75,9 @@ export const authApi = {
       `/auth/set-new-password`,
       data
     );
+  },
+
+  blockUser: (data: BlockUserType) => {
+    return instance.post(`/auth/block`, data);
   },
 };
