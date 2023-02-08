@@ -3,7 +3,7 @@ import s from "./Profile.module.scss";
 import logout from "../../../assets/logout.svg";
 import avatar from "../../../assets/avatarBig.png";
 import camera from "../../../assets/cameraIcon.svg";
-import { logoutTC, updateNameTC } from "../../../featuries/auth/authSlice";
+import { logoutTC } from "../../../featuries/auth/authSlice";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
 import EditableSpan from "../../../common/components/EditableSpan/EditableSpan";
@@ -15,15 +15,11 @@ import { userNameHandler } from "../../../common/utils/userNameHandler";
 export const Profile = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   // данные для Profile (name and email)
   const user = useAppSelector((state) => state.auth.user);
   const userName = userNameHandler(user.name);
   // пока только на имя, аватарку не трогал
-  const updateName = (newName: string) => {
-    dispatch(updateNameTC(newName));
-  };
 
   const logoutHandler = () => {
     dispatch(logoutTC());
@@ -50,7 +46,7 @@ export const Profile = () => {
           </div>
 
           {/*пока сделал новую компоненту, не вижу смысла тут отслеживать с помощью react hook form*/}
-          <EditableSpan value={userName} onChange={updateName} />
+          <EditableSpan value={userName} />
 
           <span className={s.emailText}>{user.email}</span>
           <span onClick={logoutHandler} className={s.logOut}>

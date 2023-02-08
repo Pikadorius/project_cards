@@ -1,51 +1,47 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from "react";
+import React, { useState } from "react";
 import s from "./EditableSpan.module.scss";
 import pen from "../../../assets/pen.svg";
 import submit from "../../../assets/submit.svg";
+import { formHandler } from "../../utils/formHandler";
+import { useAppDispatch } from "../../hooks/AppDispatch";
+import { FieldValues } from "react-hook-form";
+import { updateNameTC } from "../../../featuries/auth/authSlice";
 
 type EditableSpanType = {
   value: string;
-  onChange: (newValue: string) => void;
+  onChange?: (newValue: string) => void;
 };
 
-const EditableSpan: React.FC<EditableSpanType> = (props) => {
+const EditableSpan: React.FC<EditableSpanType> = ({ value }) => {
+  const dispatch = useAppDispatch();
   const [isEditMode, setEditMode] = useState(false);
-  const [title, setTitle] = useState(props.value);
-
-  const updateName = () => {
+  const { errorName, register, reset, isValid, handleSubmit } =
+    formHandler("name");
+  const onSubmit = (data: FieldValues) => {
+    dispatch(updateNameTC(data.name));
     setEditMode(false);
-    props.onChange(title);
-  };
-
-  const onEnter = (e: KeyboardEvent<HTMLInputElement>) => {
-    e.key === "Enter" && props.onChange(title);
-  };
-
-  const changeTitle = (e: ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.currentTarget.value);
+    reset();
   };
 
   return isEditMode ? (
     <div className={s.inputWrapper}>
-      <label className={s.labelInput}>
-        Nickname
-        <input
-          className={s.input}
-          value={title}
-          onChange={changeTitle}
-          onKeyDown={onEnter}
-        />
-      </label>
-      <img
-        onClick={updateName}
-        className={s.confirmName}
-        src={submit}
-        alt="confirm Name button"
-      />
+      <form className={s.form} onSubmit={handleSubmit(onSubmit)}>
+        <label className={s.labelInput}>
+          Nickname
+          <input
+            {...register("name")}
+            className={errorName ? `${s.input} ${s.errorInput}` : s.input}
+          />
+          <button disabled={!isValid} type={"submit"} className={s.confirmName}>
+            <img className={s.updateIcon} src={submit} alt="submit icon" />
+          </button>
+        </label>
+      </form>
+      {errorName && <div className={s.errorName}>{errorName}</div>}
     </div>
   ) : (
     <div className={s.userNameContainer}>
-      <h3 className={s.userName}>{props.value}</h3>
+      <h3 className={s.userName}>{value}</h3>
       <img
         onClick={() => setEditMode(true)}
         className={s.iconPen}

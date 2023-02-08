@@ -1,4 +1,5 @@
 @import "./src/styles/mixins";
+
 .userNameContainer {
   margin-bottom: 14px;
   display: flex;
@@ -39,64 +40,35 @@
   justify-content: center;
   align-self: center;
 
-  @include input
+  @include input;
+
+  .errorName {
+    color: #B31232;
   }
 
   .confirmName {
-    top: 50%;
-    //transform: translateX(-50%);
-    position: absolute;
-    right: 0;
     width: 24px;
     height: 24px;
-    transition: all .2s ease-in-out;
+    position: absolute;
+    top: 70%;
+    right: 2%;
+    transform: translateY(-50%);
+    @include flexCenter;
     cursor: pointer;
+    transition: all .2s ease-in-out;
+    border: none;
+    border-radius: 50%;
+    background-color: #fff;
 
-    &:hover {
-      transform: translateY(-1px);
+    &:disabled {
+      opacity: .5;
     }
 
-    &:active {
-      transform: translateY(1px);
+    .updateIcon {
+      width: 25px;
+      height: 24px;
     }
   }
+}
 
 
-
-//.label {
-//  margin-bottom: 14px;
-//  font-weight: 400;
-//  font-size: 13px;
-//  line-height: 20px;
-//  color: #000000;
-//  opacity: 0.5;
-//
-//  .inputWrapper {
-//    display: flex;
-//
-//
-//    .editInput {
-//      width: 347px;
-//      height: 48px;
-//      padding: 5px;
-//      border: none;
-//      background: #fff;
-//      color: #000;
-//      border-bottom: 1px solid gray;
-//
-//      font-weight: 500;
-//      font-size: 16px;
-//      line-height: 24px;
-//
-//      &:hover {
-//        outline: none;
-//        border-bottom: 1px solid gray;
-//      }
-//
-//      &:focus{
-//        outline: none;
-//        border-bottom: 1px solid gray;
-//      }
-//    }
-//  }
-//}
