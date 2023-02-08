@@ -10,6 +10,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { setNewPasswordTC } from "../authSlice";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
+import { FieldValues } from "react-hook-form";
 
 export const NewPassword = () => {
   let { resetPasswordToken } = useParams();
@@ -19,7 +20,7 @@ export const NewPassword = () => {
   const dispatch = useAppDispatch();
   const { errorPassword, errorConfirmPwd, handleSubmit, isValid, register } =
     formHandler("password", "confirmPwd");
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FieldValues) => {
     const password = data.password;
     console.log(data, { password, resetPasswordToken });
     dispatch(setNewPasswordTC({ password, resetPasswordToken }));

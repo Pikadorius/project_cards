@@ -9,6 +9,7 @@ import { Input } from "../../../common/components/Input/Input";
 import { Button } from "../../../common/components/Button/Button";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
+import { FieldValues } from "react-hook-form";
 
 export const Recovery = () => {
   const discriptionText =
@@ -19,9 +20,8 @@ export const Recovery = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { errorEmail, handleSubmit, isValid, register, reset } =
-    formHandler("email");
-  const onSubmit = (data: any) => {
+  const { errorEmail, handleSubmit, isValid, register } = formHandler("email");
+  const onSubmit = (data: FieldValues) => {
     const { email } = data;
     dispatch(recoveryTC(email));
   };

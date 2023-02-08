@@ -10,6 +10,7 @@ import { isRegistred, registerTC } from "../authSlice";
 import { useEffect } from "react";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
 import { Navigate } from "react-router-dom";
+import { FieldValues } from "react-hook-form";
 
 export const Registration = () => {
   const registered = useAppSelector((state) => state.auth.isRegistred);
@@ -27,9 +28,8 @@ export const Registration = () => {
     handleSubmit,
     isValid,
     register,
-    reset,
   } = formHandler("email", "password", "confirmPwd");
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FieldValues) => {
     const { email, password } = data;
     dispacth(registerTC({ email, password }));
   };

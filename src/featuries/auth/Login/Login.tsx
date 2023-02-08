@@ -10,13 +10,14 @@ import { useAppDispatch } from "../../../common/hooks/AppDispatch";
 import { loginTC } from "../authSlice";
 import { useAppSelector } from "../../../common/hooks/AppSelector";
 import { Navigate } from "react-router-dom";
+import { FieldValues } from "react-hook-form";
 
 export const Login = () => {
   const dispatch = useAppDispatch();
   const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
   const { errorEmail, errorPassword, handleSubmit, isValid, register } =
     formHandler("email", "password");
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: FieldValues) => {
     dispatch(loginTC(data));
   };
 

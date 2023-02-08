@@ -18,7 +18,7 @@ export const CheckInfoRecovery = () => {
 
   return (
     <FormWrapper title={"Check Email"}>
-      <img src={sendMessage} />
+      <img src={sendMessage} alt={"sen message"} />
       <div className={style.discription}>
         We’ve sent an Email with instructions to <div>{email}</div>
       </div>

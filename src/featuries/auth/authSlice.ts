@@ -1,12 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   authApi,
-  LoginType,
   RegistrationRequestType,
   SetNewPasswordType,
 } from "./authApi";
 import { errorUtils } from "../../common/utils/errorHandler";
 import { isInitialized, setAppError } from "../../app/appSlice";
+import { FieldValues } from "react-hook-form";
 
 export type UserType = {
   _id: string;
@@ -63,7 +63,7 @@ export const registerTC = createAsyncThunk(
 
 export const loginTC = createAsyncThunk(
   "login",
-  async (data: LoginType, { dispatch }) => {
+  async (data: FieldValues, { dispatch }) => {
     try {
       const res = await authApi.loggedIn(data);
       dispatch(isLoggedIn(true));

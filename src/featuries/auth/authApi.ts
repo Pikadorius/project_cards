@@ -1,6 +1,7 @@
 import { instance, instanceRec } from "../../common/constans/instance";
 import { AxiosResponse } from "axios";
 import { PATH } from "../../common/constans/path";
+import { FieldValues } from "react-hook-form";
 
 export type ResponseType = {
   _id: string;
@@ -47,7 +48,7 @@ export const authApi = {
       `auth/me`,
       data
     ),
-  loggedIn: (data: LoginType) => {
+  loggedIn: (data: FieldValues) => {
     return instance.post<{}, AxiosResponse>(`auth/login`, data);
   },
   logout: () => instance.delete<{}, AxiosResponse<{ info: string }>>(`auth/me`),
