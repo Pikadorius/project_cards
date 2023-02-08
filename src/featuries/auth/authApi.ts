@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios'
 import { FieldValues } from 'react-hook-form'
 
 import { instance, instanceRec } from '../../common/constans/instance'
-import { messageEmail } from '../../common/constans/messageEmailPassword'
+import { createMessage } from '../../common/utils/messageCreator'
 
 export type ResponseType = {
   _id: string
@@ -53,7 +53,7 @@ export const authApi = {
   recoveryPassword: (email: string) => {
     return instanceRec.post<{}, AxiosResponse<{ info: string; error: string }>>(`/auth/forgot`, {
       email,
-      message: messageEmail(email),
+      message: createMessage(email),
     })
   },
   setNewPassword: (data: SetNewPasswordType) => {

@@ -12,9 +12,9 @@ import style from '../../../featuries/auth/Recovery/CheckInfoRecovery.module.css
 import { isMessageSend } from '../authSlice'
 
 export const CheckInfoRecovery = () => {
-  const dispatch = useAppDispatch()
-
   const navigate = useNavigate()
+
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
     dispatch(isMessageSend(false))

@@ -1,6 +1,6 @@
-import { PATH } from './path'
+import { PATH } from '../constans/path'
 
-export const messageEmail = (email: string) => {
+export const createMessage = (email: string) => {
   return `<div style=padding: "15px">
             <div>Hi, ${email}!</div>
             <div>There was a request to change your password!</div>
