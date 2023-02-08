@@ -23,12 +23,6 @@ export type RegistrationRequestType = {
   password: string;
 };
 
-export type LoginType = {
-  email: string;
-  password: string;
-  rememberMe: string;
-};
-
 export type SetNewPasswordType = {
   password: string;
   resetPasswordToken: string | undefined;
