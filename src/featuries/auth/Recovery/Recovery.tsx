@@ -28,8 +28,6 @@ export const Recovery = () => {
   }
 
   if (messageSend) {
-    dispatch(isMessageSend(false))
-
     return <Navigate to={PATH.RECOVERY_INFO} />
   }
 

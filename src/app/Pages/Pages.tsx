@@ -24,6 +24,7 @@ const Pages = () => {
         <Route path=":resetPasswordToken" element={<NewPassword />} />
       </Route>
       <Route path={PATH.RECOVERY_INFO} element={<CheckInfoRecovery />} />
+
       <Route element={<RequireAuth />}>
         <Route path={'/'} element={<Navigate to={PATH.PACK_LIST} />} />
         <Route path={PATH.PACK_LIST} element={<PackList />} />
