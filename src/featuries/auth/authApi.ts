@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios'
 import { FieldValues } from 'react-hook-form'
 
 import { instance, instanceRec } from '../../common/constans/instance'
-import { PATH } from '../../common/constans/path'
+import { messageEmail } from '../../common/constans/messageEmailPassword'
 
 export type ResponseType = {
   _id: string
@@ -51,17 +51,9 @@ export const authApi = {
   logout: () => instance.delete<{}, AxiosResponse<{ info: string }>>(`auth/me`),
   register: (data: RegistrationRequestType) => instance.post(`auth/register`, data),
   recoveryPassword: (email: string) => {
-    const message = `<div style=padding: "15px">
-            <div>Hi, ${email}!</div>
-            <div>There was a request to change your password!</div>
-            <div>If you did not make this request then please ignore this email.</div>
-            <div>Otherwise, please click this link to change your password: 
-            <a href='http://localhost:3000/#${PATH.NEW_PASSWORD}/$token$'>[link] </a></div>
-            </div>`
-
     return instanceRec.post<{}, AxiosResponse<{ info: string; error: string }>>(`/auth/forgot`, {
       email,
-      message: message,
+      message: messageEmail(email),
     })
   },
   setNewPassword: (data: SetNewPasswordType) => {

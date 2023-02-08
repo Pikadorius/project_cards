@@ -25,7 +25,6 @@ export const NewPassword = () => {
   const onSubmit = (data: FieldValues) => {
     const password = data.password
 
-    console.log(data, { password, resetPasswordToken })
     dispatch(setNewPasswordTC({ password, resetPasswordToken }))
   }
 
