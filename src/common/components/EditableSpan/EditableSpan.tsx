@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import s from "./EditableSpan.module.scss";
 import pen from "../../../assets/pen.svg";
 import submit from "../../../assets/submit.svg";
@@ -14,13 +14,17 @@ type EditableSpanType = {
 
 const EditableSpan: React.FC<EditableSpanType> = ({ value }) => {
   const dispatch = useAppDispatch();
+
   const [isEditMode, setEditMode] = useState(false);
+  const [userName, setUserName] = useState(value);
+  const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
+    setUserName(e.currentTarget.value);
+  };
   const { errorName, register, reset, isValid, handleSubmit } =
     formHandler("name");
   const onSubmit = (data: FieldValues) => {
     dispatch(updateNameTC(data.name));
     setEditMode(false);
-    reset();
   };
 
   return isEditMode ? (
@@ -30,6 +34,8 @@ const EditableSpan: React.FC<EditableSpanType> = ({ value }) => {
           Nickname
           <input
             {...register("name")}
+            value={userName}
+            onChange={onChangeName}
             className={errorName ? `${s.input} ${s.errorInput}` : s.input}
           />
           <button disabled={!isValid} type={"submit"} className={s.confirmName}>
