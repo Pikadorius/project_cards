@@ -9,8 +9,9 @@ import { NewPassword } from '../../featuries/auth/Recovery/NewPassword'
 import { Recovery } from '../../featuries/auth/Recovery/Recovery'
 import { Registration } from '../../featuries/auth/Registration/Registration'
 
-import { Profile } from './Profile/Profile'
+import { PackList } from './PackList/PackList'
 import RequireAuth from './RequireAuth'
+import { UserAccount } from './UserAccount/UserAccount'
 
 const Pages = () => {
   return (
@@ -24,8 +25,9 @@ const Pages = () => {
       </Route>
       <Route path={PATH.RECOVERY_INFO} element={<CheckInfoRecovery />} />
       <Route element={<RequireAuth />}>
-        <Route path={'/'} element={<Navigate to={'/profile'} />} />
-        <Route path={PATH.ACCOUNT} element={<Profile />} />
+        <Route path={'/'} element={<Navigate to={PATH.PACK_LIST} />} />
+        <Route path={PATH.PACK_LIST} element={<PackList />} />
+        <Route path={PATH.ACCOUNT} element={<UserAccount />} />
       </Route>
     </Routes>
   )
