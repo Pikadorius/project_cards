@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 
@@ -15,7 +15,7 @@ type InputType = {
   nameForValidate: string
 }
 
-export const Input: React.FC<InputType> = React.memo(
+export const Input: FC<InputType> = memo(
   ({ type, label, icon, placeholder, error, altForIcon, register, nameForValidate }) => {
     const [typeInput, setTypeInput] = useState<string>(type)
     const showPasswordHandler = () => {

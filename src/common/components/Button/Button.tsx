@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC, memo } from 'react'
 
 import s from './Button.module.scss'
 
@@ -8,7 +8,7 @@ type ButtonType = {
   isValid: boolean
 }
 
-export const Button: React.FC<ButtonType> = React.memo(({ type, title, isValid }) => {
+export const Button: FC<ButtonType> = memo(({ type, title, isValid }) => {
   return (
     <button disabled={!isValid} className={s.btn} type={type ? type : undefined}>
       {title}

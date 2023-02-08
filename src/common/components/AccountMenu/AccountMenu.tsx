@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { Logout, Settings } from '@mui/icons-material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
@@ -16,7 +16,7 @@ export function AccountMenu() {
   const logoutHandler = () => {
     dispatch(logoutTC())
   }
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget)
