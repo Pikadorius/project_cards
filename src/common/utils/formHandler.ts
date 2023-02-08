@@ -17,6 +17,10 @@ const schemaParam = {
     [Yup.ref("password")],
     "Passwords does not match"
   ),
+  name: Yup.string()
+    .required("Enter your name")
+    .min(3, "At least 3 characters")
+    .max(22, "Maximum number of characters 22"),
 };
 
 export const formHandler = (...keys: string[]) => {
@@ -44,6 +48,8 @@ export const formHandler = (...keys: string[]) => {
     ? String(errors.confirmPwd.message)
     : undefined;
 
+  const errorName = errors.name ? String(errors.name.message) : undefined;
+
   return {
     register,
     handleSubmit,
@@ -52,5 +58,6 @@ export const formHandler = (...keys: string[]) => {
     errorEmail,
     errorPassword,
     errorConfirmPwd,
+    errorName,
   };
 };
