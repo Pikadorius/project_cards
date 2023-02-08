@@ -1,74 +1,75 @@
 .button {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 5px 24px;
-    gap: 10px;
-    height: 30px;
-    border-radius: 3px;
+  display: flex;
+  flex: none;
+  flex-direction: row;
+  flex-grow: 0;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  order: 0;
 
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 20px;
+  height: 30px;
+  padding: 5px 24px;
 
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    border: none;
-    outline: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  font-style: normal;
+  line-height: 20px;
 
-
+  border: none;
+  border-radius: 3px;
+  outline: none;
 }
 
 .disabled {
-    opacity: 0.5;
+  opacity: 0.5;
 }
 
 .secondary {
-    background: #Ffffff;
-    border: 1px solid #0066CC;
-    color: #0066CC;
+  color: #0066cc;
+
+  background: #ffffff;
+  border: 1px solid #0066cc;
 }
 
 .default {
-    background: #0066CC;
-    color: #FFFFFF;
+  color: #ffffff;
+
+  background: #0066cc;
 }
 
 .red {
-    background: #CC1439;
-    color: #FFFFFF;
+  color: #ffffff;
+
+  background: #cc1439;
 }
 
 .default:hover {
-    background: #0080FF;
-    border: 1px solid #0066CC;
+  background: #0080ff;
+  border: 1px solid #0066cc;
 }
 
 .red:hover {
-    background: #FF1A47;
+  background: #ff1a47;
 }
 
 .secondary:hover {
-    background: #E5F0FA;
+  background: #e5f0fa;
 }
 
-
 .default:active {
-    background: #0059B3;
+  background: #0059b3;
 }
 
 .secondary:active {
-    background: #C9E5FF;
+  background: #c9e5ff;
 }
 
 .red:active {
-    background: #B31232;
+  background: #b31232;
 }
 
 .button:disabled {
-    opacity: 0.5;
+  opacity: 0.5;
 }

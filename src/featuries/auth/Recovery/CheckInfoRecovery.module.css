@@ -1,12 +1,12 @@
-.discription{
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
+.discription {
   margin-bottom: 20px;
 
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 24px;
+  color: #000000;
   text-align: center;
 
-  color: #000000;
   opacity: 0.5;
 }

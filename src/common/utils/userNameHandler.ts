@@ -1,19 +1,17 @@
 export const userNameHandler = (userName: string) => {
-  const maxLength = 22;
-  const cutIndex =
-    userName.indexOf("@") !== -1 ? userName.indexOf("@") : maxLength;
+  const maxLength = 22
+  const cutIndex = userName.indexOf('@') !== -1 ? userName.indexOf('@') : maxLength
   const newUserName = `${userName
-    .split("")
+    .split('')
     .map((el, i) => {
-      const firstLetter = el.toUpperCase();
+      const firstLetter = el.toUpperCase()
 
-      return i === 0
-        ? firstLetter
-        : i >= cutIndex || i >= maxLength
-        ? null
-        : el;
+      if (i === 0) return firstLetter
+
+      return i >= cutIndex || i >= maxLength ? null : el
     })
-    .filter((el) => el !== null)
-    .join("")}`;
-  return userName.length > maxLength ? `${newUserName}...` : newUserName;
-};
+    .filter(el => el !== null)
+    .join('')}`
+
+  return userName.length > maxLength ? `${newUserName}...` : newUserName
+}

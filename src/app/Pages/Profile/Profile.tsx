@@ -1,32 +1,35 @@
-import React from "react";
-import s from "./Profile.module.scss";
-import logout from "../../../assets/logout.svg";
-import avatar from "../../../assets/avatarBig.png";
-import camera from "../../../assets/cameraIcon.svg";
-import { logoutTC } from "../../../featuries/auth/authSlice";
-import { useAppDispatch } from "../../../common/hooks/AppDispatch";
-import { useAppSelector } from "../../../common/hooks/AppSelector";
-import EditableSpan from "../../../common/components/EditableSpan/EditableSpan";
-import { Navigate, useNavigate } from "react-router-dom";
-import { PATH } from "../../../common/constans/path";
-import arrow from "../../../assets/arrow.svg";
-import { userNameHandler } from "../../../common/utils/userNameHandler";
+import React from 'react'
+
+import { Navigate, useNavigate } from 'react-router-dom'
+
+import arrow from '../../../assets/arrow.svg'
+import avatar from '../../../assets/avatarBig.png'
+import camera from '../../../assets/cameraIcon.svg'
+import logout from '../../../assets/logout.svg'
+import EditableSpan from '../../../common/components/EditableSpan/EditableSpan'
+import { PATH } from '../../../common/constans/path'
+import { useAppDispatch } from '../../../common/hooks/AppDispatch'
+import { useAppSelector } from '../../../common/hooks/AppSelector'
+import { userNameHandler } from '../../../common/utils/userNameHandler'
+import { logoutTC } from '../../../featuries/auth/authSlice'
+
+import s from './Profile.module.scss'
 
 export const Profile = () => {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
   // данные для Profile (name and email)
-  const user = useAppSelector((state) => state.auth.user);
-  const userName = userNameHandler(user.name);
+  const user = useAppSelector(state => state.auth.user)
+  const userName = userNameHandler(user.name)
   // пока только на имя, аватарку не трогал
 
   const logoutHandler = () => {
-    dispatch(logoutTC());
-  };
+    dispatch(logoutTC())
+  }
 
   if (!isLoggedIn) {
-    return <Navigate to={PATH.LOGIN} />;
+    return <Navigate to={PATH.LOGIN} />
   }
 
   return (
@@ -56,5 +59,5 @@ export const Profile = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

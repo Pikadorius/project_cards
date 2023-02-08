@@ -2,48 +2,46 @@
 }
 
 .input {
-    border: 1px solid #D1D1D1;
-    border-radius: 5px;
-    width: 276px;
-    height: 36px;
-    padding: 8px 0 8px 24px;
-    outline: none;
+  width: 276px;
+  height: 36px;
+  padding: 8px 0 8px 24px;
 
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+  line-height: 20px;
+  /* identical to box height */
 
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    /* identical to box height */
+  color: #000000;
 
-
-    color: #000000;
+  border: 1px solid #d1d1d1;
+  border-radius: 5px;
+  outline: none;
 }
 
 .inputWrapper {
-    display: flex;
-    flex-direction: column-reverse;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .superInput {
 }
 
 .errorInput {
-    border: 1px solid #CC1439;
+  border: 1px solid #cc1439;
 }
 
 .errorInput:focus {
 }
 
 .error {
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    /* identical to box height */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 17px;
+  /* identical to box height */
 
-
-    color: #CC1439;
+  color: #cc1439;
 }

@@ -1,22 +1,23 @@
 .slider :global .MuiSlider-thumb {
-    content: '';
-    box-sizing: border-box;
-    width: 18px;
-    height: 18px;
-    background: #FFFFFF;
-    border: 1px solid #00CC22;
+  content: '';
+
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+
+  background: #ffffff;
+  border: 1px solid #00cc22;
 }
 
 .slider :global .MuiSlider-thumb::after {
-    width: 6px;
-    height: 6px;
-    background: #01CB22;
-    border: 1px solid;
+  width: 6px;
+  height: 6px;
+
+  background: #01cb22;
+  border: 1px solid;
 }
 
-
-
 .slider :global .MuiSlider-rail {
-    background: #8B8B8B;
-    border-radius: 10px;
+  background: #8b8b8b;
+  border-radius: 10px;
 }

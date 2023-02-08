@@ -1,13 +1,16 @@
-import React from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { PATH } from "../../common/constans/path";
-import { Login } from "../../featuries/auth/Login/Login";
-import { Registration } from "../../featuries/auth/Registration/Registration";
-import { Recovery } from "../../featuries/auth/Recovery/Recovery";
-import RequireAuth from "./RequireAuth";
-import { Profile } from "./Profile/Profile";
-import { NewPassword } from "../../featuries/auth/Recovery/NewPassword";
-import { CheckInfoRecovery } from "../../featuries/auth/Recovery/CheckInfoRecovery";
+import React from 'react'
+
+import { Navigate, Route, Routes } from 'react-router-dom'
+
+import { PATH } from '../../common/constans/path'
+import { Login } from '../../featuries/auth/Login/Login'
+import { CheckInfoRecovery } from '../../featuries/auth/Recovery/CheckInfoRecovery'
+import { NewPassword } from '../../featuries/auth/Recovery/NewPassword'
+import { Recovery } from '../../featuries/auth/Recovery/Recovery'
+import { Registration } from '../../featuries/auth/Registration/Registration'
+
+import { Profile } from './Profile/Profile'
+import RequireAuth from './RequireAuth'
 
 const Pages = () => {
   return (
@@ -21,11 +24,11 @@ const Pages = () => {
       </Route>
       <Route path={PATH.RECOVERY_INFO} element={<CheckInfoRecovery />} />
       <Route element={<RequireAuth />}>
-        <Route path={"/"} element={<Navigate to={"/profile"} />} />
+        <Route path={'/'} element={<Navigate to={'/profile'} />} />
         <Route path={PATH.ACCOUNT} element={<Profile />} />
       </Route>
     </Routes>
-  );
-};
+  )
+}
 
-export default Pages;
+export default Pages

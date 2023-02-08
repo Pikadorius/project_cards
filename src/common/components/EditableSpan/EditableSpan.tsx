@@ -1,31 +1,33 @@
-import React, { ChangeEvent, useState } from "react";
-import s from "./EditableSpan.module.scss";
-import pen from "../../../assets/pen.svg";
-import submit from "../../../assets/submit.svg";
-import { formHandler } from "../../utils/formHandler";
-import { useAppDispatch } from "../../hooks/AppDispatch";
-import { FieldValues } from "react-hook-form";
-import { updateNameTC } from "../../../featuries/auth/authSlice";
+import React, { ChangeEvent, useState } from 'react'
+
+import { FieldValues } from 'react-hook-form'
+
+import pen from '../../../assets/pen.svg'
+import submit from '../../../assets/submit.svg'
+import { updateNameTC } from '../../../featuries/auth/authSlice'
+import { useAppDispatch } from '../../hooks/AppDispatch'
+import { formHandler } from '../../utils/formHandler'
+
+import s from './EditableSpan.module.scss'
 
 type EditableSpanType = {
-  value: string;
-  onChange?: (newValue: string) => void;
-};
+  value: string
+  onChange?: (newValue: string) => void
+}
 
 const EditableSpan: React.FC<EditableSpanType> = ({ value }) => {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
-  const [isEditMode, setEditMode] = useState(false);
-  const [userName, setUserName] = useState(value);
+  const [isEditMode, setEditMode] = useState(false)
+  const [userName, setUserName] = useState(value)
   const onChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserName(e.currentTarget.value);
-  };
-  const { errorName, register, reset, isValid, handleSubmit } =
-    formHandler("name");
+    setUserName(e.currentTarget.value)
+  }
+  const { errorName, register, reset, isValid, handleSubmit } = formHandler('name')
   const onSubmit = (data: FieldValues) => {
-    dispatch(updateNameTC(data.name));
-    setEditMode(false);
-  };
+    dispatch(updateNameTC(data.name))
+    setEditMode(false)
+  }
 
   return isEditMode ? (
     <div className={s.inputWrapper}>
@@ -33,12 +35,12 @@ const EditableSpan: React.FC<EditableSpanType> = ({ value }) => {
         <label className={s.labelInput}>
           Nickname
           <input
-            {...register("name")}
+            {...register('name')}
             value={userName}
             onChange={onChangeName}
             className={errorName ? `${s.input} ${s.errorInput}` : s.input}
           />
-          <button disabled={!isValid} type={"submit"} className={s.confirmName}>
+          <button disabled={!isValid} type={'submit'} className={s.confirmName}>
             <img className={s.updateIcon} src={submit} alt="submit icon" />
           </button>
         </label>
@@ -55,7 +57,7 @@ const EditableSpan: React.FC<EditableSpanType> = ({ value }) => {
         alt="icon pen for redaction name"
       />
     </div>
-  );
-};
+  )
+}
 
-export default EditableSpan;
+export default EditableSpan

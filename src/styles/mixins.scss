@@ -1,60 +1,63 @@
 @mixin input {
   .labelInput {
     position: relative;
-    font-weight: 400;
+
     font-size: 13px;
+    font-weight: 400;
 
     .input {
       width: 347px;
       height: 45px;
       padding: 5px;
-      border: none;
-      background: #fff;
+
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 24px;
       color: #000;
+
+      background: #fff;
+      border: none;
       border-bottom: 1px solid gray;
 
-      font-weight: 500;
-      font-size: 16px;
-      line-height: 24px;
-
       &:hover {
-        outline: none;
         border-bottom: 1px solid gray;
+        outline: none;
       }
 
-      &:focus{
-        outline: none;
+      &:focus {
         border-bottom: 1px solid gray;
+        outline: none;
       }
     }
 
     .errorInput {
-      border-color: #CC1439;
+      border-color: #cc1439;
     }
 
     .iconShowPassword {
+      cursor: pointer;
+
       position: absolute;
       top: 50%;
       right: 2%;
       transform: translateY(-50%);
-      cursor: pointer;
     }
 
     .errorText {
       color: #ff244b;
     }
-  }}
-
+  }
+}
 
 @mixin flexCenter {
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 @mixin btn {
   &:disabled {
-    opacity: .5;
+    opacity: 0.5;
     &:hover {
       transform: none;
     }
@@ -68,5 +71,4 @@
   &:active {
     transform: translateY(-1px);
   }
-
 }

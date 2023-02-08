@@ -1,16 +1,18 @@
-import React, { ReactNode } from "react";
-import s from "./FormWrapper.module.scss";
-import { useNavigate } from "react-router-dom";
+import React, { ReactNode } from 'react'
+
+import { useNavigate } from 'react-router-dom'
+
+import s from './FormWrapper.module.scss'
 
 type FormWrapperType = {
-  children?: ReactNode;
-  title: string;
-  forgot?: boolean;
-  questionText?: string;
-  recoveryPath?: string;
-  linkTitle?: string;
-  linkPath?: string;
-};
+  children?: ReactNode
+  title: string
+  forgot?: boolean
+  questionText?: string
+  recoveryPath?: string
+  linkTitle?: string
+  linkPath?: string
+}
 
 export const FormWrapper = React.memo(
   ({
@@ -22,7 +24,8 @@ export const FormWrapper = React.memo(
     linkTitle,
     linkPath,
   }: FormWrapperType) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
+
     return (
       <div className={s.container}>
         <div className={s.wrapper}>
@@ -31,15 +34,13 @@ export const FormWrapper = React.memo(
             {children}
             {forgot && (
               <span
-                onClick={() => navigate(recoveryPath || "", { replace: true })}
+                onClick={() => navigate(recoveryPath || '', { replace: true })}
                 className={s.recoveryLink}
               >
                 Forgot Password?
               </span>
             )}
-            {questionText && (
-              <span className={s.textQuestion}>{questionText}</span>
-            )}
+            {questionText && <span className={s.textQuestion}>{questionText}</span>}
             {linkPath && (
               <span
                 className={s.linkRegistration}
@@ -51,6 +52,6 @@ export const FormWrapper = React.memo(
           </div>
         </div>
       </div>
-    );
+    )
   }
-);
+)

@@ -1,11 +1,12 @@
-@import "./src/styles/mixins";
+@import './src/styles/mixins';
 .profileContainer {
   display: flex;
-  align-items: center;
   gap: 12px;
-  transition: all .3s ease-in-out;
-  &:hover{
-    opacity: .7;
+  align-items: center;
+
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    opacity: 0.7;
   }
 
   .userName {
@@ -15,7 +16,9 @@
   }
 
   .avatarContainer {
+
     @include flexCenter;
+
     width: max-content;
 
     .userAvatar {

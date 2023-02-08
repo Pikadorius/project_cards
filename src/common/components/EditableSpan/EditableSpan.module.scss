@@ -1,26 +1,28 @@
-@import "./src/styles/mixins";
+@import './src/styles/mixins';
 
 .userNameContainer {
-  margin-bottom: 14px;
   display: flex;
   gap: 8px;
   align-items: center;
 
+  margin-bottom: 14px;
+
   .userName {
-
-
-    font-weight: 500;
     font-size: 20px;
+    font-weight: 500;
     line-height: 24px;
     color: inherit;
   }
 
   .iconPen {
+    cursor: pointer;
+
     align-self: center;
+
     width: 16px;
     height: 16px;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
+
+    transition: all 0.2s ease-in-out;
 
     &:hover {
       transform: translateY(-1px);
@@ -33,35 +35,44 @@
 }
 
 .inputWrapper {
-  position: relative;
-  margin-bottom: 14px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-self: center;
 
   @include input;
 
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+
   .errorName {
-    color: #B31232;
+    color: #b31232;
   }
 
   .confirmName {
-    width: 24px;
-    height: 24px;
+
+    @include flexCenter;
+
+    cursor: pointer;
+
     position: absolute;
     top: 70%;
     right: 2%;
     transform: translateY(-50%);
-    @include flexCenter;
-    cursor: pointer;
-    transition: all .2s ease-in-out;
+
+    width: 24px;
+    height: 24px;
+
+    background-color: #fff;
     border: none;
     border-radius: 50%;
-    background-color: #fff;
+
+    transition: all 0.2s ease-in-out;
 
     &:disabled {
-      opacity: .5;
+      opacity: 0.5;
     }
 
     .updateIcon {
@@ -70,5 +81,3 @@
     }
   }
 }
-
-
