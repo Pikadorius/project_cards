@@ -5,6 +5,7 @@
   height: calc(100vh - 62px);
 
   .wrapper {
+
     @include flexCenter;
 
     width: 100%;

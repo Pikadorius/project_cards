@@ -35,6 +35,7 @@
 }
 
 .inputWrapper {
+
   @include input;
 
   position: relative;
@@ -51,6 +52,7 @@
   }
 
   .confirmName {
+
     @include flexCenter;
 
     cursor: pointer;
