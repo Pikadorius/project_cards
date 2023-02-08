@@ -11,7 +11,7 @@ import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
 import { formHandler } from '../../../common/utils/formHandler'
-import { isMessageSend, recoveryTC } from '../authSlice'
+import { recoveryTC } from '../authSlice'
 
 export const Recovery = () => {
   const discriptionText = 'Enter your email address and we will send you further instructions'
@@ -28,8 +28,6 @@ export const Recovery = () => {
   }
 
   if (messageSend) {
-    dispatch(isMessageSend(false))
-
     return <Navigate to={PATH.RECOVERY_INFO} />
   }
 
