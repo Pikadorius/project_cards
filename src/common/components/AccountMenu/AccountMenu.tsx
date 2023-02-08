@@ -22,6 +22,7 @@ export function AccountMenu() {
   const logoutHandler = () => {
     dispatch(logoutTC());
   };
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -88,12 +89,14 @@ export function AccountMenu() {
             <Avatar src={ava} /> My account
           </MenuItem>
         </Link>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <AccountCircleIcon />
-          </ListItemIcon>
-          My Pack
-        </MenuItem>
+        <Link to={PATH.PROFILE}>
+          <MenuItem onClick={handleClose}>
+            <ListItemIcon>
+              <AccountCircleIcon />
+            </ListItemIcon>
+            My Pack
+          </MenuItem>
+        </Link>
 
         <Divider />
         <MenuItem onClick={handleClose}>
