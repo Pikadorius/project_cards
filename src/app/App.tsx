@@ -11,6 +11,8 @@ import Loader from "../common/components/Loader/Loader";
 function App() {
   const dispatch = useAppDispatch();
   const isInitialized = useAppSelector((state) => state.app.isInitialized);
+  const appStatus = useAppSelector((state) => state.app.appStatus);
+
   useEffect(() => {
     dispatch(authMeTC());
   }, []);
@@ -18,12 +20,13 @@ function App() {
   if (!isInitialized) {
     return <Loader />;
   }
+
   return (
     <div className="app">
       <Header />
       <Pages />
       <SimpleSnackbar />
-      {/*<Loader />*/}
+      {appStatus === "loading" && <Loader />}
     </div>
   );
 }
