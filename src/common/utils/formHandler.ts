@@ -38,7 +38,10 @@ export const formHandler = (...keys: string[]) => {
     formState: { errors, isValid },
     handleSubmit,
     reset,
-  } = useForm({ resolver: yupResolver(formSchema), mode: "onTouched" });
+  } = useForm({
+    resolver: yupResolver(formSchema),
+    mode: "onTouched",
+  });
 
   const errorEmail = errors.email ? String(errors.email.message) : undefined;
   const errorPassword = errors.password
