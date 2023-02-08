@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   authApi,
+  BlockUserType,
   RegistrationRequestType,
   SetNewPasswordType,
 } from "./authApi";
@@ -116,6 +117,19 @@ export const setNewPasswordTC = createAsyncThunk(
       const res = await authApi.setNewPassword(data);
       dispatch(isPasswordChanged(true));
       dispatch(setAppError("Password changed"));
+      dispatch(setAppStatus("success"));
+    } catch (e: any) {
+      errorUtils(e, dispatch);
+    }
+  }
+);
+
+export const blockUserTC = createAsyncThunk(
+  "blockUser",
+  async (data: BlockUserType, { dispatch }) => {
+    dispatch(setAppStatus("loading"));
+    try {
+      const res = await authApi.blockUser(data);
       dispatch(setAppStatus("success"));
     } catch (e: any) {
       errorUtils(e, dispatch);

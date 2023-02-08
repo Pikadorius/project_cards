@@ -6,6 +6,12 @@
     box-sizing: border-box;
 }
 
+a,
+Link {
+    text-decoration: none;
+    color: inherit;
+}
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
