@@ -5,7 +5,7 @@ import {
   SetNewPasswordType,
 } from "./authApi";
 import { errorUtils } from "../../common/utils/errorHandler";
-import { isInitialized, setAppError } from "../../app/appSlice";
+import { isInitialized, setAppError, setAppStatus } from "../../app/appSlice";
 import { FieldValues } from "react-hook-form";
 
 export type UserType = {
@@ -50,10 +50,12 @@ export const authMeTC = createAsyncThunk(
 export const registerTC = createAsyncThunk(
   "isRegistred",
   async (data: RegistrationRequestType, { dispatch }) => {
+    dispatch(setAppStatus("loading"));
     try {
       const res = await authApi.register(data);
       dispatch(isRegistred(true));
       dispatch(setAppError("Account created"));
+      dispatch(setAppStatus("success"));
     } catch (e: any) {
       errorUtils(e, dispatch);
       dispatch(isRegistred(false));
@@ -64,10 +66,12 @@ export const registerTC = createAsyncThunk(
 export const loginTC = createAsyncThunk(
   "login",
   async (data: FieldValues, { dispatch }) => {
+    dispatch(setAppStatus("loading"));
     try {
       const res = await authApi.loggedIn(data);
       dispatch(isLoggedIn(true));
       dispatch(setUser(res.data));
+      dispatch(setAppStatus("success"));
     } catch (e: any) {
       errorUtils(e, dispatch);
     }
@@ -75,11 +79,12 @@ export const loginTC = createAsyncThunk(
 );
 
 export const logoutTC = createAsyncThunk("logout", async (_, { dispatch }) => {
-  dispatch(isInitialized(false));
+  dispatch(setAppStatus("loading"));
   try {
     const res = await authApi.logout();
     dispatch(isLoggedIn(false));
     dispatch(setAppError(res.data.info));
+    dispatch(setAppStatus("success"));
   } catch (e: any) {
     errorUtils(e, dispatch);
   } finally {
@@ -90,16 +95,15 @@ export const logoutTC = createAsyncThunk("logout", async (_, { dispatch }) => {
 export const recoveryTC = createAsyncThunk(
   "recovery",
   async (email: string, { dispatch }) => {
-    dispatch(isInitialized(false));
+    dispatch(setAppStatus("loading"));
     try {
       const res = await authApi.recoveryPassword(email);
       dispatch(setEmailInRecovery(email));
       dispatch(setAppError("Message has been sent"));
       dispatch(isMessageSend(true));
+      dispatch(setAppStatus("success"));
     } catch (e: any) {
       errorUtils(e, dispatch);
-    } finally {
-      dispatch(isInitialized(true));
     }
   }
 );
@@ -107,15 +111,14 @@ export const recoveryTC = createAsyncThunk(
 export const setNewPasswordTC = createAsyncThunk(
   "newPassword",
   async (data: SetNewPasswordType, { dispatch }) => {
-    dispatch(isInitialized(false));
+    dispatch(setAppStatus("loading"));
     try {
       const res = await authApi.setNewPassword(data);
       dispatch(isPasswordChanged(true));
       dispatch(setAppError("Password changed"));
+      dispatch(setAppStatus("success"));
     } catch (e: any) {
       errorUtils(e, dispatch);
-    } finally {
-      dispatch(isInitialized(true));
     }
   }
 );
@@ -123,19 +126,14 @@ export const setNewPasswordTC = createAsyncThunk(
 export const updateNameTC = createAsyncThunk(
   "updateName",
   async (newName: string, { dispatch }) => {
-    if (newName.length > 30) {
-      dispatch(setAppError("Name should be less then 30 symbols"));
-    } else {
-      dispatch(isInitialized(false));
-      try {
-        const res = await authApi.update({ name: newName });
-        dispatch(updateUser(res.data.updatedUser.name));
-        dispatch(setAppError("Name changed"));
-      } catch (e: any) {
-        errorUtils(e, dispatch);
-      } finally {
-        dispatch(isInitialized(true));
-      }
+    dispatch(setAppStatus("loading"));
+    try {
+      const res = await authApi.update({ name: newName });
+      dispatch(updateUser(res.data.updatedUser.name));
+      dispatch(setAppError("Name changed"));
+      dispatch(setAppStatus("success"));
+    } catch (e: any) {
+      errorUtils(e, dispatch);
     }
   }
 );
