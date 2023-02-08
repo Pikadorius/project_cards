@@ -8,5 +8,5 @@
   align-items: center;
   justify-content: center;
 
-  height: calc(100vh - var(--header_height));
+  height: calc(100vh - 62px);
 }
