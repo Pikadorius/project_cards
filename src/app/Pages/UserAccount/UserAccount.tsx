@@ -13,13 +13,13 @@ import { useAppSelector } from '../../../common/hooks/AppSelector'
 import { userNameHandler } from '../../../common/utils/userNameHandler'
 import { logoutTC } from '../../../featuries/auth/authSlice'
 
-import s from './Profile.module.scss'
+import s from './UserAccount.module.scss'
 
-export const Profile = () => {
+export const UserAccount = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
-  // данные для Profile (name and email)
+  // данные для UserAccount (name and email)
   const user = useAppSelector(state => state.auth.user)
   const userName = userNameHandler(user.name)
   // пока только на имя, аватарку не трогал
