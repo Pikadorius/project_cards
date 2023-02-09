@@ -6,6 +6,6 @@ export const createMessage = (email: string) => {
             <div>There was a request to change your password!</div>
             <div>If you did not make this request then please ignore this email.</div>
             <div>Otherwise, please click this link to change your password: 
-            <a href='http://localhost:3000/#${PATH.NEW_PASSWORD}/$token$'>[link] </a></div>
+            <a href='${PATH.CURRENT_URL}#${PATH.NEW_PASSWORD}/$token$'>[link] </a></div>
             </div>`
 }
