@@ -6,4 +6,5 @@ export const PATH = {
   NEW_PASSWORD: '/set-new-password',
   RECOVERY_INFO: '/recovery-info',
   PACK_LIST: '/pack-list',
+  CURRENT_URL: window.location.href.split('#')[0],
 }
