@@ -4,7 +4,7 @@ import { FieldValues } from 'react-hook-form'
 import { instance, instanceRec } from '../../common/constans/instance'
 import { createMessage } from '../../common/utils/messageCreator'
 
-export type ResponseType = {
+export type UserResponseType = {
   _id: string
   email: string
   rememberMe: boolean
@@ -41,12 +41,12 @@ export type BlockUserType = {
 
 export const authApi = {
   authMe: () => {
-    return instance.post<{}, AxiosResponse<ResponseType>>(`auth/me`)
+    return instance.post<{}, AxiosResponse<UserResponseType>>(`auth/me`)
   },
   update: (data: UpdateUserType) =>
-    instance.put<{}, AxiosResponse<{ updatedUser: ResponseType }>>(`auth/me`, data),
+    instance.put<UpdateUserType, AxiosResponse<{ updatedUser: UserResponseType }>>(`auth/me`, data),
   loggedIn: (data: FieldValues) => {
-    return instance.post<{}, AxiosResponse>(`auth/login`, data)
+    return instance.post<FieldValues, AxiosResponse>(`auth/login`, data)
   },
   logout: () => instance.delete<{}, AxiosResponse<{ info: string }>>(`auth/me`),
   register: (data: RegistrationRequestType) => instance.post(`auth/register`, data),
@@ -57,7 +57,7 @@ export const authApi = {
     })
   },
   setNewPassword: (data: SetNewPasswordType) => {
-    return instanceRec.post<{}, AxiosResponse<{ info: string; error: string }>>(
+    return instanceRec.post<SetNewPasswordType, AxiosResponse<{ info: string; error: string }>>(
       `/auth/set-new-password`,
       data
     )
