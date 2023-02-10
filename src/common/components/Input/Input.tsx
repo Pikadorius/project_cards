@@ -22,6 +22,8 @@ export const Input: FC<InputType> = memo(
       typeInput === 'password' ? setTypeInput('text') : setTypeInput('password')
     }
 
+    const iconPas = typeInput === 'password' ? icon : ''
+
     return (
       <label className={s.labelInput}>
         {label}
@@ -35,7 +37,7 @@ export const Input: FC<InputType> = memo(
           <img
             onClick={showPasswordHandler}
             className={s.iconShowPassword}
-            src={icon}
+            src={iconPas}
             alt={altForIcon}
           />
         )}
