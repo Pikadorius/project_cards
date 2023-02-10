@@ -38,7 +38,7 @@ export const authMeTC = createAsyncThunk('isLoggedIn', async (_, { dispatch }) =
     dispatch(isLoggedIn(true))
     dispatch(setUser(res.data))
   } catch (e: any) {
-    errorUtils(e, dispatch)
+    // errorUtils(e, dispatch)
   } finally {
     dispatch(isInitialized(true))
   }
