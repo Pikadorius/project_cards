@@ -37,3 +37,13 @@ export type GetPacksResponseType = {
   token: string
   tokenDeathTime: number
 }
+
+export type CreatePackType = {
+  name?: string // если не отправить будет таким
+  deckCover?: string // не обязателен
+  private?: boolean
+}
+
+export type CreatePackRequestType = {
+  cardsPack: CreatePackType
+}
