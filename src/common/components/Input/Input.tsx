@@ -2,27 +2,28 @@ import React, { FC, memo, useState } from 'react'
 
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 
+import eyeClose from '../../../assets/eye-close.svg'
+import eye from '../../../assets/eye.svg'
+
 import s from './Input.module.scss'
 
 type InputType = {
   label: string
   type: string
-  icon?: string
   placeholder?: string
   error?: string
-  altForIcon?: string
   register: UseFormRegister<FieldValues>
   nameForValidate: string
 }
 
 export const Input: FC<InputType> = memo(
-  ({ type, label, icon, placeholder, error, altForIcon, register, nameForValidate }) => {
+  ({ type, label, placeholder, error, register, nameForValidate }) => {
     const [typeInput, setTypeInput] = useState<string>(type)
     const showPasswordHandler = () => {
       typeInput === 'password' ? setTypeInput('text') : setTypeInput('password')
     }
 
-    const iconPas = typeInput === 'password' ? icon : ''
+    const iconPas = typeInput === 'password' ? eye : eyeClose
 
     return (
       <label className={s.labelInput}>
@@ -33,12 +34,12 @@ export const Input: FC<InputType> = memo(
           type={typeInput}
           placeholder={placeholder}
         />
-        {icon && (
+        {type === 'password' && (
           <img
             onClick={showPasswordHandler}
             className={s.iconShowPassword}
             src={iconPas}
-            alt={altForIcon}
+            alt={'icon eye'}
           />
         )}
         {error && <div className={s.errorText}>{error}</div>}

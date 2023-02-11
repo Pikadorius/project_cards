@@ -50,9 +50,7 @@ export const Login = () => {
         <Input
           type={'password'}
           label={'Password'}
-          altForIcon={'show password'}
           placeholder={'example12'}
-          icon={eye}
           register={register}
           error={errorPassword}
           nameForValidate={'password'}
