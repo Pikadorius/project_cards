@@ -1,6 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { GetPacksResponseType, PackType } from './packsType'
+import { setAppStatus } from '../../app/appSlice'
+
+import { packsAPI } from './packsAPI'
+import { GetPacksResponseType, PacksQueryParamsType, PackType } from './packsType'
 
 const initialState = {
   cardPacks: [] as PackType[],
@@ -13,14 +16,28 @@ const initialState = {
   tokenDeathTime: 0,
 } as GetPacksResponseType
 
-export const fetchPacks = createAsyncThunk('fetchPacks', () => {})
+export const fetchPacks = createAsyncThunk(
+  'fetchPacks',
+  async (params: PacksQueryParamsType, { dispatch }) => {
+    dispatch(setAppStatus('loading'))
+    try {
+      const res = await packsAPI.getPacks(params)
+
+      console.log(res.data)
+      dispatch(setPacks(res.data))
+      dispatch(setAppStatus('success'))
+    } catch (e) {
+      console.log(e)
+    }
+  }
+)
 
 const packsSlice = createSlice({
   name: 'packsList',
   initialState,
   reducers: {
     setPacks: (state, action: PayloadAction<GetPacksResponseType>) => {
-      state = action.payload
+      return action.payload
     },
   },
 })
