@@ -19,7 +19,7 @@ const initialState = {
 
 export const fetchPacks = createAsyncThunk(
   'fetchPacks',
-  async (params: PacksQueryParamsType, { dispatch }) => {
+  async (params: PacksQueryParamsType, { dispatch, getState }) => {
     dispatch(setAppStatus('loading'))
     try {
       const res = await packsAPI.getPacks(params)
