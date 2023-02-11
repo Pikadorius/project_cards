@@ -4,7 +4,7 @@ import { FieldValues } from 'react-hook-form'
 import { instance, instanceRec } from '../../common/constans/instance'
 import { createMessage } from '../../common/utils/messageCreator'
 
-export type ResponseType = {
+export type UserResponseType = {
   _id: string
   email: string
   rememberMe: boolean
@@ -41,29 +41,37 @@ export type BlockUserType = {
 
 export const authApi = {
   authMe: () => {
-    return instance.post<{}, AxiosResponse<ResponseType>>(`auth/me`)
+    return instance.post<'', AxiosResponse<UserResponseType>, {}>(`auth/me`)
   },
   update: (data: UpdateUserType) =>
-    instance.put<{}, AxiosResponse<{ updatedUser: ResponseType }>>(`auth/me`, data),
+    instance.put<'', AxiosResponse<{ updatedUser: UserResponseType }>, UpdateUserType>(
+      `auth/me`,
+      data
+    ),
   loggedIn: (data: FieldValues) => {
-    return instance.post<{}, AxiosResponse>(`auth/login`, data)
+    return instance.post<'', AxiosResponse<UserResponseType>, FieldValues>(`auth/login`, data)
   },
-  logout: () => instance.delete<{}, AxiosResponse<{ info: string }>>(`auth/me`),
-  register: (data: RegistrationRequestType) => instance.post(`auth/register`, data),
+  logout: () => instance.delete<'', AxiosResponse<{ info: string }>, {}>(`auth/me`),
+  register: (data: RegistrationRequestType) =>
+    instance.post<AxiosResponse<UserResponseType>>(`auth/register`, data),
   recoveryPassword: (email: string) => {
-    return instanceRec.post<{}, AxiosResponse<{ info: string; error: string }>>(`/auth/forgot`, {
+    return instanceRec.post<AxiosResponse<{ info: string; error: string }>>(`/auth/forgot`, {
       email,
       message: createMessage(email),
     })
   },
   setNewPassword: (data: SetNewPasswordType) => {
-    return instanceRec.post<{}, AxiosResponse<{ info: string; error: string }>>(
+    return instanceRec.post<'', AxiosResponse<{ info: string; error: string }>, SetNewPasswordType>(
       `/auth/set-new-password`,
       data
     )
   },
 
   blockUser: (data: BlockUserType) => {
-    return instance.post(`/auth/block`, data)
+    return instance.post<
+      '',
+      AxiosResponse<{ user: string; blockedCardPacksCount: number }>,
+      BlockUserType
+    >(`/auth/block`, data)
   },
 }

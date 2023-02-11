@@ -7,4 +7,4 @@ export const PATH = {
   RECOVERY_INFO: '/recovery-info',
   PACK_LIST: '/pack-list',
   CURRENT_URL: window.location.href.split('#')[0],
-}
+} as const
