@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { setAppStatus } from '../../app/appSlice'
+import { errorUtils } from '../../common/utils/errorHandler'
 
 import { packsAPI } from './packsAPI'
 import { GetPacksResponseType, PacksQueryParamsType, PackType } from './packsType'
@@ -26,8 +27,8 @@ export const fetchPacks = createAsyncThunk(
       console.log(res.data)
       dispatch(setPacks(res.data))
       dispatch(setAppStatus('success'))
-    } catch (e) {
-      console.log(e)
+    } catch (e: any) {
+      errorUtils(e, dispatch)
     }
   }
 )
