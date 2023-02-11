@@ -60,9 +60,7 @@ export const Registration = () => {
           type={'password'}
           label={'Password'}
           nameForValidate={'password'}
-          altForIcon={'show password'}
           placeholder={'example12'}
-          icon={eye}
           register={register}
           error={errorPassword}
         />
@@ -71,9 +69,7 @@ export const Registration = () => {
           type={'password'}
           label={'Confirm password'}
           nameForValidate={'confirmPwd'}
-          altForIcon={'show password'}
           placeholder={'********'}
-          icon={eye}
           register={register}
           error={errorConfirmPwd}
         />
