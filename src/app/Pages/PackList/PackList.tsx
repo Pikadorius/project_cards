@@ -11,6 +11,7 @@ import s from './PackList.module.scss'
 
 export const PackList = () => {
   const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const userId = useAppSelector(state => state.auth.user._id)
   const packs = useAppSelector(state => state.packs.cardPacks)
   const page = useAppSelector(state => state.packs.page)
   const pageCount = useAppSelector(state => state.packs.pageCount)
@@ -21,7 +22,7 @@ export const PackList = () => {
     if (!isLoggedIn) {
       return
     }
-    dispatch(fetchPacks({ pageCount: '20', packName: 'eng' }))
+    dispatch(fetchPacks({ pageCount: '20' }))
   }, [])
 
   if (!isLoggedIn) {
