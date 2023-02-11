@@ -5,12 +5,13 @@ import { Navigate } from 'react-router-dom'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
+import { getIsLoggedIn } from '../../../common/selectors/selectors'
 import { fetchPacks } from '../../../featuries/packs/packsSlice'
 
 import s from './PackList.module.scss'
 
 export const PackList = () => {
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(getIsLoggedIn)
   const userId = useAppSelector(state => state.auth.user._id)
   const packs = useAppSelector(state => state.packs.cardPacks)
   const page = useAppSelector(state => state.packs.page)
@@ -22,7 +23,7 @@ export const PackList = () => {
     if (!isLoggedIn) {
       return
     }
-    dispatch(fetchPacks({ pageCount: '20' }))
+    dispatch(fetchPacks({}))
   }, [])
 
   if (!isLoggedIn) {
