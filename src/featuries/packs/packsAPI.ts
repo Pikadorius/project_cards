@@ -1,9 +1,10 @@
 import { instance } from '../../common/constans/instance'
 
-import { CreatePackRequestType, GetPacksResponseType, PacksQueryParamsType } from './packsType'
+import { SearchParamsType } from './packsSlice'
+import { CreatePackRequestType, GetPacksResponseType } from './packsType'
 
 export const packsAPI = {
-  getPacks: (params: PacksQueryParamsType = {}) => {
+  getPacks: (params: SearchParamsType) => {
     return instance.get<GetPacksResponseType>('cards/pack', { params })
   },
   createPack: (data: CreatePackRequestType) => {
