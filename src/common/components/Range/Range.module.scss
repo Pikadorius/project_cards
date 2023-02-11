@@ -1,0 +1,38 @@
+@import 'src/styles/mixins';
+
+
+.container {
+  @include sort;
+  width: min-content;
+  .rangeContainer {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .inputContainer {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      .input {
+        outline: none;
+        width: 30px;
+        height: 20px;
+        border: none;
+
+        font-size: 18px;
+      }
+
+      .description {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 20px;
+      }
+
+    }
+
+
+    .slider {
+      width: 200px ;
+    }
+  }
+}

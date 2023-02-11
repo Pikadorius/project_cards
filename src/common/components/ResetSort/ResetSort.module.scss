@@ -1,0 +1,21 @@
+@import 'src/styles/mixins';
+
+.container {
+  @include sort;
+
+  .sort {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: max-content;
+    padding: 5px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    cursor: pointer;
+
+    .sortIcon {
+      width: 22px;
+      height: 22px;
+    }
+  }
+}

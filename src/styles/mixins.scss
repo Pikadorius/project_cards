@@ -57,19 +57,42 @@
 }
 
 @mixin btn {
+  transition: all .2s ease-in-out;
   &:disabled {
     opacity: 0.5;
+
     &:hover {
       transform: none;
     }
+
     &:active {
       transform: none;
     }
   }
   &:hover {
     transform: translateY(1px);
+    opacity: .9;
   }
   &:active {
     transform: translateY(-1px);
   }
+}
+
+
+@mixin sort {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .title {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px
+  }
+}
+
+@mixin tr {
+  height: 52.5px;
+  border: 1px solid rgba(190, 186, 186, 0.13);
 }

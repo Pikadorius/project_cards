@@ -1,0 +1,16 @@
+@import 'src/styles/mixins';
+.header {
+  height: calc(100% / 11);
+  background: #EFEFEF;
+
+  .th {
+    padding-left: 36px;
+    text-align: start;
+  }
+  .tr {
+    @include tr;
+    &:first-child {
+
+    }
+  }
+}

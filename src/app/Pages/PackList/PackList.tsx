@@ -2,26 +2,36 @@ import React, { useEffect } from 'react'
 
 import { Navigate, useSearchParams } from 'react-router-dom'
 
+import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
+import { Search } from '../../../common/components/Search/Search'
+import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
+import { Sort } from '../../../common/components/Sort/Sort'
+import { Table } from '../../../common/components/Table/Table'
 import { PATH } from '../../../common/constans/path'
+import { sortTitlePackList } from '../../../common/constans/sort'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
 import { getIsLoggedIn } from '../../../common/selectors/selectors'
 import { fetchPacks, setSearchParams } from '../../../featuries/packs/packsSlice'
 
 import s from './PackList.module.scss'
+import { PacksHeader } from './PacksHeader/PacksHeader'
 
 export const PackList = () => {
   const isLoggedIn = useAppSelector(getIsLoggedIn)
   const packs = useAppSelector(state => state.packs.cardPacks)
-  const searchParams = useAppSelector(state => state.packs.searchParams)
+  const userId = useAppSelector(state => state.auth.user._id)
+  const totalPagesCount = useAppSelector(state => state.packs.searchParams.totalPagesCount)
+  const params = useAppSelector(state => state.packs.searchParams)
   const page = useAppSelector(state => state.packs.searchParams.page)
+  const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
   const dispatch = useAppDispatch()
 
   const [urlParams, setUrlParams] = useSearchParams()
 
-  const nextPage = () => {
-    dispatch(setSearchParams({ ...searchParams, page: page + 1 }))
-    setUrlParams(`page=${searchParams.page}?min=${searchParams.min}`)
+  const onChange = (page: number, pageCount: number) => {
+    console.log(pageCount)
+    dispatch(setSearchParams({ ...params, page, pageCount }))
   }
 
   useEffect(() => {
@@ -29,7 +39,7 @@ export const PackList = () => {
       return
     }
     dispatch(fetchPacks())
-  }, [page])
+  }, [page, pageCount])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
@@ -37,11 +47,22 @@ export const PackList = () => {
 
   return (
     <div className={s.container}>
-      <h2>Pack List</h2>
-      {packs.map(p => {
-        return <div key={p._id}>{p.name}</div>
-      })}
-      <button onClick={nextPage}>Next</button>
+      <div className={s.wrapper}>
+        <div className={s.innerWrapper}>
+          <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} />
+          <SearchPanel>
+            <Search />
+            <Sort />
+          </SearchPanel>
+          <Table sortTitlePackList={sortTitlePackList} packs={packs} userId={userId} />
+          <SuperPagination
+            page={page}
+            totalCount={totalPagesCount}
+            itemsCountForPage={pageCount}
+            onChange={onChange}
+          />
+        </div>
+      </div>
     </div>
   )
 }

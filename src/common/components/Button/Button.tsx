@@ -5,12 +5,13 @@ import s from './Button.module.scss'
 type ButtonType = {
   type?: 'submit'
   title: string
-  isValid: boolean
+  isValid?: boolean
+  callBack?: () => void
 }
 
-export const Button: FC<ButtonType> = memo(({ type, title, isValid }) => {
+export const Button: FC<ButtonType> = memo(({ type, title, isValid, callBack }) => {
   return (
-    <button disabled={!isValid} className={s.btn} type={type ? type : undefined}>
+    <button onClick={callBack} disabled={!isValid} className={s.btn} type={type ? type : undefined}>
       {title}
     </button>
   )
