@@ -51,7 +51,7 @@ export const PackList = () => {
       return
     }
     dispatch(fetchPacksTC())
-  }, [page, pageCount, min, max, sortPack, user_id])
+  }, [page, pageCount, min, max, sortPack, user_id, packName])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
@@ -63,7 +63,7 @@ export const PackList = () => {
         <div className={s.innerWrapper}>
           <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
           <SearchPanel>
-            <Search />
+            <Search page={'packs'} />
             <Sort />
           </SearchPanel>
           <TablePackListWrapper packList={packList} packs={packs} />

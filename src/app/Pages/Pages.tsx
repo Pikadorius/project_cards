@@ -9,6 +9,7 @@ import { NewPassword } from '../../featuries/auth/Recovery/NewPassword'
 import { Recovery } from '../../featuries/auth/Recovery/Recovery'
 import { Registration } from '../../featuries/auth/Registration/Registration'
 
+import { CardListPage } from './CardListPage/CardListPage'
 import { PackList } from './PackList/PackList'
 import RequireAuth from './RequireAuth'
 import { UserAccount } from './UserAccount/UserAccount'
@@ -28,6 +29,9 @@ const Pages = () => {
       <Route element={<RequireAuth />}>
         <Route path={'/'} element={<Navigate to={PATH.PACK_LIST} />} />
         <Route path={PATH.PACK_LIST} element={<PackList />} />
+        <Route path={PATH.CARD_LIST} element={<CardListPage />} />
+        <Route path={`${PATH.CARD_LIST}/:cardsPack_id`} element={<CardListPage />} />
+
         <Route path={PATH.ACCOUNT} element={<UserAccount />} />
       </Route>
     </Routes>
