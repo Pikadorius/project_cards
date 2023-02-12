@@ -1,11 +1,14 @@
 import React, { useEffect } from 'react'
 
-import { useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 
 import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
-import { Sort } from '../../../common/components/Sort/Sort'
+import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
+import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
+import { useAppSelector } from '../../../common/hooks/AppSelector'
+import { getIsLoggedIn } from '../../../common/selectors/selectors'
 import { fetchCardTC } from '../../../featuries/card/cardSlice'
 
 import { CardHeader } from './CardHeader/CardHeader'
@@ -13,18 +16,24 @@ import s from './CardListPage.module.scss'
 
 export const CardListPage = () => {
   const dispatch = useAppDispatch()
-  let { cardsPack_id } = useParams()
-
+  let { id } = useParams<{ id: string }>()
+  const isLoggedIn = useAppSelector(getIsLoggedIn)
   const createCards = () => {
     console.log('createCards')
   }
+  const cardsList = useAppSelector(state => state.app.cardList)
 
-  useEffect(function () {
-    debugger
-    if (cardsPack_id) {
-      dispatch(fetchCardTC(cardsPack_id))
-    }
-  }, [])
+  useEffect(
+    function () {
+      if (!id) return
+      dispatch(fetchCardTC(id))
+    },
+    [id]
+  )
+
+  if (!isLoggedIn) {
+    return <Navigate to={PATH.LOGIN} />
+  }
 
   return (
     <div className={s.container}>
@@ -33,9 +42,10 @@ export const CardListPage = () => {
           <CardHeader title={'Card list'} buttonTitle={'Add new card'} onClick={createCards} />
           <SearchPanel>
             <Search page={'card'} />
-            <Sort />
           </SearchPanel>
-          {/*<TablePackListWrapper packList={packList}>*/}
+          <TablePackListWrapper cardList={cardsList}>
+            <div>body</div>
+          </TablePackListWrapper>
           {/*  <Tbody packs={cardPacks} />*/}
           {/*</TablePackListWrapper>*/}
           {/*<SuperPagination

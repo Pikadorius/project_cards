@@ -30,7 +30,7 @@ const Pages = () => {
         <Route path={'/'} element={<Navigate to={PATH.PACK_LIST} />} />
         <Route path={PATH.PACK_LIST} element={<PackList />} />
         <Route path={PATH.CARD_LIST} element={<CardListPage />} />
-        <Route path={`${PATH.CARD_LIST}/:cardsPack_id`} element={<CardListPage />} />
+        <Route path={PATH.CARD_LIST_ID} element={<CardListPage />} />
 
         <Route path={PATH.ACCOUNT} element={<UserAccount />} />
       </Route>

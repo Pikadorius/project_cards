@@ -25,6 +25,7 @@ export const Thead: React.FC<TheadType> = ({ packList, cardList }) => {
 
   const thList = sortParam?.map((el, i) => {
     const sortHandler = () => {
+      debugger
       const status = el.status === 0 ? 1 : 0
 
       if (packList) {
@@ -36,6 +37,7 @@ export const Thead: React.FC<TheadType> = ({ packList, cardList }) => {
         dispatch(setSearchParams({ ...params, sortPack: `${el.status}${el.sortName}` }))
       }
       if (cardList) {
+        console.log('1')
         const newPacksList = cardList.map(p =>
           p.title === el.title ? { ...p, status: status } : p
         )

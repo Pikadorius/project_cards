@@ -1,12 +1,14 @@
 import React from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 import { PackType } from '../../../../featuries/packs/packsType'
+import { PATH } from '../../../constans/path'
 import { useAppSelector } from '../../../hooks/AppSelector'
 import { userNameHandler } from '../../../utils/userNameHandler'
 
 import teacher from './../../../../assets/teacher.svg'
 import s from './Tbody.module.scss'
-import { useNavigate } from 'react-router-dom'
 
 type TbodyType = {
   packs?: PackType[]
@@ -22,7 +24,7 @@ export const Tbody: React.FC<TbodyType> = ({ packs }) => {
         const dateUpdate = t.updated.toString()
         const userName = userNameHandler(t.user_name)
         const getCardsPack = () => {
-          navigate(`/cards/${t._id}`)
+          return navigate(`${PATH.CARD_LIST}/${t._id}`)
         }
 
         return (

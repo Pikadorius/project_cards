@@ -7,6 +7,7 @@ import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
 import { Sort } from '../../../common/components/Sort/Sort'
 import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
+import { Tbody } from '../../../common/components/Table/Tbody/Tbody'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
@@ -31,6 +32,7 @@ export const PackList = () => {
     min,
     user_id,
     sortPack,
+    packName,
   } = params
   // const page = useAppSelector(state => state.packs.searchParams.page)
   // const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
@@ -66,10 +68,10 @@ export const PackList = () => {
             <Search page={'packs'} />
             <Sort />
           </SearchPanel>
-          <TablePackListWrapper packList={packList} packs={packs} />
-          {/*<TablePackListWrapper packList={packList}>*/}
-          {/*  <Tbody packs={cardPacks} />*/}
-          {/*</TablePackListWrapper>*/}
+          {/*<TablePackListWrapper packList={packList} packs={packs} />*/}
+          <TablePackListWrapper packList={packList}>
+            <Tbody packs={packs} />
+          </TablePackListWrapper>
           <SuperPagination
             page={page}
             totalCount={totalPagesCount}
