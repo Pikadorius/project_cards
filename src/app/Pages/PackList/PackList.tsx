@@ -19,6 +19,7 @@ import { PacksHeader } from './PacksHeader/PacksHeader'
 
 export const PackList = () => {
   const packList = useAppSelector(state => state.app.packList)
+
   const cardPacks = useAppSelector(state => state.packs.cardPacks)
   const isLoggedIn = useAppSelector(getIsLoggedIn)
   const params = useAppSelector(state => state.packs.searchParams)

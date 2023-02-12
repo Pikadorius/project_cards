@@ -12,8 +12,8 @@ export type SearchParamsType = {
   user_id: string | undefined
   page: number
   pageCount: number
-  min: number
-  max: number
+  min: number | undefined
+  max: number | undefined
   sortPack: string | undefined
   totalPagesCount: number
   minCardsCount: number
@@ -99,17 +99,24 @@ const packsSlice = createSlice({
       state.searchParams.totalPagesCount = Math.ceil(
         action.payload.cardPacksTotalCount / action.payload.pageCount
       )
+      if (state.searchParams.min === undefined) {
+        state.searchParams.minCardsCount = action.payload.minCardsCount
+      }
+      if (state.searchParams.max === undefined) {
+        state.searchParams.maxCardsCount = action.payload.maxCardsCount
+      }
     },
     setSearchParams: (state, action: PayloadAction<SearchParamsType>) => {
       state.searchParams = { ...state.searchParams, ...action.payload }
     },
-    setMinMax: (state, action: PayloadAction<number[]>) => {
-      state.searchParams = { ...state.searchParams, min: action.payload[0], max: action.payload[1] }
+    resetMinMax: state => {
+      state.searchParams.min = undefined
+      state.searchParams.max = undefined
     },
   },
 })
 
-export const { setState, setSearchParams, setMinMax } = packsSlice.actions
+export const { setState, setSearchParams, resetMinMax } = packsSlice.actions
 
 const packsReducer = packsSlice.reducer
 
