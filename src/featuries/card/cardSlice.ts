@@ -20,6 +20,7 @@ const initialState: InititalStateCardType = {
     sortCards: '',
     page: 1,
     pageCount: 10,
+    packName: '',
   },
 }
 
@@ -33,7 +34,8 @@ export const fetchCardTC = createAsyncThunk(
     try {
       const res = await cardAPI.getCard(params, cardsPackID)
 
-      console.log(res)
+      console.log(res.data)
+      dispatch(setState(res.data))
       dispatch(setAppStatus('success'))
     } catch (e: any) {
       errorUtils(e, dispatch)
@@ -45,7 +47,14 @@ const cardSlice = createSlice({
   name: 'cardListPage',
   initialState,
   reducers: {
-    setState: (state, action: PayloadAction<GetCardResponseType>) => {},
+    setState: (state, action: PayloadAction<GetCardResponseType>) => {
+      state.cards = action.payload.cards
+      state.searchParams.page = action.payload.page
+      state.searchParams.pageCount = action.payload.pageCount
+      state.searchParams.max = action.payload.maxGrade
+      state.searchParams.min = action.payload.minGrade
+      state.searchParams.packName = action.payload.packName
+    },
   },
 })
 

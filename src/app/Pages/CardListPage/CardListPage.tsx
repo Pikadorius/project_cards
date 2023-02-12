@@ -5,6 +5,8 @@ import { Navigate, useParams } from 'react-router-dom'
 import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
 import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
+import { Tbody } from '../../../common/components/Table/Tbody/Tbody'
+import { TbodyCard } from '../../../common/components/Table/TbodyCard/TbodyCard'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
@@ -22,6 +24,7 @@ export const CardListPage = () => {
     console.log('createCards')
   }
   const cardsList = useAppSelector(state => state.app.cardList)
+  const card = useAppSelector(state => state.card.cards)
 
   useEffect(
     function () {
@@ -44,7 +47,7 @@ export const CardListPage = () => {
             <Search page={'card'} />
           </SearchPanel>
           <TablePackListWrapper cardList={cardsList}>
-            <div>body</div>
+            <TbodyCard card={card} />
           </TablePackListWrapper>
           {/*  <Tbody packs={cardPacks} />*/}
           {/*</TablePackListWrapper>*/}

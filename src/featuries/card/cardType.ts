@@ -26,6 +26,7 @@ export type SearchParamsCardType = {
   sortCards: string
   page: number
   pageCount: number
+  packName: string
 }
 
 export type GetCardResponseType = {
@@ -35,28 +36,12 @@ export type GetCardResponseType = {
   minGrade: number
   page: number
   pageCount: number
+  packCreated: string
+  packDeckCover: string
   packUserId: string
-}
-/*
-
-export type GetPacksResponseType = {
-  cardPacks: PackType[]
-  page: number
-  pageCount: number
-  cardPacksTotalCount: number
-  minCardsCount: number
-  maxCardsCount: number
+  packName: string
+  packPrivate: string
+  packUpdated: string
   token: string
-  tokenDeathTime: number
+  tokenDeathTime: string
 }
-
-export type CreatePackType = {
-  name?: string // если не отправить будет таким
-  deckCover?: string // не обязателен
-  private?: boolean
-}
-
-export type CreatePackRequestType = {
-  cardsPack: CreatePackType
-}
-*/
