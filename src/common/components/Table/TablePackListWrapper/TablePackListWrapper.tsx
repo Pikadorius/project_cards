@@ -1,8 +1,8 @@
-import React, { ReactNode } from 'react'
+import React from 'react'
 
-import { PackListType } from '../../../../app/appSlice'
+import { CardsListType, PackListType } from '../../../../app/appSlice'
+import { InitialStateTypeCards } from '../../../../featuries/cards/cardsSlice'
 import { PackType } from '../../../../featuries/packs/packsType'
-import { useAppSelector } from '../../../hooks/AppSelector'
 import { Table } from '../Table'
 import { Tbody } from '../Tbody/Tbody'
 import { Thead } from '../Thead/Thead'
@@ -11,23 +11,22 @@ import s from './TablePackListWrapper.module.scss'
 
 type TablePackListWrapperType = {
   packList?: PackListType
-  cardList?: PackListType
-  cardPacks?: PackType[]
-  children: ReactNode
+  cardList?: CardsListType
+  packs?: PackType[]
+  packCard?: InitialStateTypeCards[]
 }
 
 export const TablePackListWrapper: React.FC<TablePackListWrapperType> = ({
   cardList,
   packList,
-  cardPacks,
-  children,
+  packCard,
+  packs,
 }) => {
   return (
     <div className={s.container}>
       <Table>
-        <Thead packList={packList} />
-        {children}
-        {/*<Tbody packs={cardPacks} />*/}
+        <Thead packList={packList} cardList={cardList} />
+        <Tbody packs={packs} />
       </Table>
     </div>
   )

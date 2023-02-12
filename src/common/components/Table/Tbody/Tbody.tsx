@@ -6,6 +6,7 @@ import { userNameHandler } from '../../../utils/userNameHandler'
 
 import teacher from './../../../../assets/teacher.svg'
 import s from './Tbody.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 type TbodyType = {
   packs?: PackType[]
@@ -13,16 +14,22 @@ type TbodyType = {
 
 export const Tbody: React.FC<TbodyType> = ({ packs }) => {
   const userId = useAppSelector(state => state.auth.user._id)
+  const navigate = useNavigate()
 
   return (
     <tbody>
       {packs?.map(t => {
         const dateUpdate = t.updated.toString()
         const userName = userNameHandler(t.user_name)
+        const getCardsPack = () => {
+          navigate(`/cards/${t._id}`)
+        }
 
         return (
           <tr key={t._id} className={s.tr}>
-            <td className={s.td}>{t.name}</td>
+            <td onClick={getCardsPack} className={s.td}>
+              {t.name}
+            </td>
             <td className={s.td}>{t.cardsCount}</td>
             <td className={s.td}>{dateUpdate}</td>
             <td className={s.td}>{userName}</td>

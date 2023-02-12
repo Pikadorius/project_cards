@@ -1,6 +1,11 @@
 import React from 'react'
 
-import { PackListType, setSortStatus } from '../../../../app/appSlice'
+import {
+  CardsListType,
+  PackListType,
+  setSortStatusCards,
+  setSortStatusPack,
+} from '../../../../app/appSlice'
 import sort from '../../../../assets/sortTable.svg'
 import { setSearchParams } from '../../../../featuries/packs/packsSlice'
 import { useAppDispatch } from '../../../hooks/AppDispatch'
@@ -10,7 +15,7 @@ import s from './Thead.module.scss'
 
 type TheadType = {
   packList?: PackListType
-  cardList?: PackListType //типизацию свою
+  cardList?: CardsListType
 }
 
 export const Thead: React.FC<TheadType> = ({ packList, cardList }) => {
@@ -21,11 +26,23 @@ export const Thead: React.FC<TheadType> = ({ packList, cardList }) => {
   const thList = sortParam?.map((el, i) => {
     const sortHandler = () => {
       const status = el.status === 0 ? 1 : 0
-      const newPacksList = sortParam.map(p => (p.title === el.title ? { ...p, status: status } : p))
 
-      dispatch(setSortStatus(newPacksList))
+      if (packList) {
+        const newPacksList = packList.map(p =>
+          p.title === el.title ? { ...p, status: status } : p
+        )
 
-      dispatch(setSearchParams({ ...params, sortPack: `${el.status}${el.sortName}` }))
+        dispatch(setSortStatusPack(newPacksList))
+        dispatch(setSearchParams({ ...params, sortPack: `${el.status}${el.sortName}` }))
+      }
+      if (cardList) {
+        const newPacksList = cardList.map(p =>
+          p.title === el.title ? { ...p, status: status } : p
+        )
+
+        dispatch(setSortStatusCards(newPacksList))
+        // dispatch(setSearchParams({ ...params, sortPack: `${el.status}${el.sortName}` }))
+      }
     }
 
     return (

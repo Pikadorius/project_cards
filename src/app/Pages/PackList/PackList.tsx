@@ -7,7 +7,6 @@ import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
 import { Sort } from '../../../common/components/Sort/Sort'
 import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
-import { Tbody } from '../../../common/components/Table/Tbody/Tbody'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
@@ -19,11 +18,20 @@ import { PacksHeader } from './PacksHeader/PacksHeader'
 
 export const PackList = () => {
   const packList = useAppSelector(state => state.app.packList)
-  const cardPacks = useAppSelector(state => state.packs.cardPacks)
+  const packs = useAppSelector(state => state.packs.cardPacks)
   const isLoggedIn = useAppSelector(getIsLoggedIn)
   const params = useAppSelector(state => state.packs.searchParams)
-  const { pageCount, totalPagesCount, page, maxCardsCount, minCardsCount, max, min, user_id, sortPack } =
-    params
+  const {
+    pageCount,
+    totalPagesCount,
+    page,
+    maxCardsCount,
+    minCardsCount,
+    max,
+    min,
+    user_id,
+    sortPack,
+  } = params
   // const page = useAppSelector(state => state.packs.searchParams.page)
   // const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
   const dispatch = useAppDispatch()
@@ -58,10 +66,10 @@ export const PackList = () => {
             <Search />
             <Sort />
           </SearchPanel>
-          {/*<TablePackListWrapper packList={packList} />*/}
-          <TablePackListWrapper packList={packList}>
-            <Tbody packs={cardPacks} />
-          </TablePackListWrapper>
+          <TablePackListWrapper packList={packList} packs={packs} />
+          {/*<TablePackListWrapper packList={packList}>*/}
+          {/*  <Tbody packs={cardPacks} />*/}
+          {/*</TablePackListWrapper>*/}
           <SuperPagination
             page={page}
             totalCount={totalPagesCount}
