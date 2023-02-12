@@ -12,7 +12,7 @@ import { sortTitlePackList } from '../../../common/constans/sort'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
 import { getIsLoggedIn } from '../../../common/selectors/selectors'
-import { fetchPacks, setSearchParams } from '../../../featuries/packs/packsSlice'
+import { createPackTC, fetchPacksTC, setSearchParams } from '../../../featuries/packs/packsSlice'
 
 import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
@@ -35,11 +35,15 @@ export const PackList = () => {
     dispatch(setSearchParams({ ...params, page, pageCount }))
   }
 
+  const createPack = () => {
+    dispatch(createPackTC({ cardsPack: { name: 'test pack' } }))
+  }
+
   useEffect(() => {
     if (!isLoggedIn) {
       return
     }
-    dispatch(fetchPacks())
+    dispatch(fetchPacksTC())
   }, [page, pageCount, min, max, user_id])
 
   if (!isLoggedIn) {
@@ -50,7 +54,7 @@ export const PackList = () => {
     <div className={s.container}>
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
-          <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} />
+          <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
           <SearchPanel>
             <Search />
             <Sort />
