@@ -22,8 +22,18 @@ export const PackList = () => {
   const cardPacks = useAppSelector(state => state.packs.cardPacks)
   const isLoggedIn = useAppSelector(getIsLoggedIn)
   const params = useAppSelector(state => state.packs.searchParams)
-  const { pageCount, totalPagesCount, page, maxCardsCount, minCardsCount, max, min, user_id, sortPack } =
-    params
+  const {
+    pageCount,
+    totalPagesCount,
+    page,
+    maxCardsCount,
+    minCardsCount,
+    max,
+    min,
+    user_id,
+    sortPack,
+    packName,
+  } = params
   // const page = useAppSelector(state => state.packs.searchParams.page)
   // const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
   const dispatch = useAppDispatch()
@@ -43,7 +53,7 @@ export const PackList = () => {
       return
     }
     dispatch(fetchPacksTC())
-  }, [page, pageCount, min, max, sortPack, user_id])
+  }, [page, pageCount, min, max, sortPack, user_id, packName])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
@@ -55,7 +65,7 @@ export const PackList = () => {
         <div className={s.innerWrapper}>
           <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
           <SearchPanel>
-            <Search />
+            <Search page={'packs'} />
             <Sort />
           </SearchPanel>
           {/*<TablePackListWrapper packList={packList} />*/}

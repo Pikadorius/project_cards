@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { setAppStatus } from '../../app/appSlice'
+import { setAppError, setAppStatus } from '../../app/appSlice'
 import { RootStateType } from '../../common/hooks/AppSelector'
 import { errorUtils } from '../../common/utils/errorHandler'
 
@@ -48,10 +48,12 @@ export const fetchPacksTC = createAsyncThunk('fetchPacks', async (_, { dispatch,
   dispatch(setAppStatus('loading'))
   try {
     const res = await packsAPI.getPacks(params)
+
+    console.log(res)
     // const { maxCardsCount, pageCount, page, minCardsCount, cardPacksTotalCount } = res.data
-
-    console.log(res.data)
-
+    if (res.data.cardPacks.length === 0) {
+      dispatch(setAppError('Not found. Change the request parameters'))
+    }
     dispatch(setState(res.data))
     dispatch(setAppStatus('success'))
   } catch (e: any) {
