@@ -73,6 +73,17 @@ export const createPackTC = createAsyncThunk(
   }
 )
 
+export const deletePackTC = createAsyncThunk('deletePack', async (id: string, { dispatch }) => {
+  dispatch(setAppStatus('loading'))
+  try {
+    const res = await packsAPI.deletePack(id)
+
+    dispatch(fetchPacksTC())
+  } catch (e: any) {
+    errorUtils(e, dispatch)
+  }
+})
+
 const packsSlice = createSlice({
   name: 'packsList',
   initialState,
