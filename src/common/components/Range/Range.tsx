@@ -60,6 +60,12 @@ export const Range = () => {
 
   const handleChange = (event: React.SyntheticEvent | Event, newValue: number | number[]) => {
     setValue(newValue as number[])
+  }
+
+  const handleChangeCommitted = (
+    event: React.SyntheticEvent | Event,
+    newValue: number | number[]
+  ) => {
     dispatch(setSearchParams({ ...params, min: value[0], max: value[1] }))
   }
 
@@ -80,11 +86,11 @@ export const Range = () => {
           sx={{ width: '200px', color: '#366EFF' }}
           getAriaLabel={() => 'Temperature range'}
           value={value}
-          // onChange={handleChange}
+          onChange={handleChange}
           min={minCardsCount}
           max={maxCardsCount}
           valueLabelDisplay="auto"
-          onChangeCommitted={handleChange}
+          onChangeCommitted={handleChangeCommitted}
         />
         <div className={s.inputContainer}>
           <span className={s.description}>max:</span>
