@@ -5,7 +5,7 @@ import { RootStateType } from '../../common/hooks/AppSelector'
 import { errorUtils } from '../../common/utils/errorHandler'
 
 import { packsAPI } from './packsAPI'
-import { GetPacksResponseType, PackType } from './packsType'
+import { CreatePackRequestType, GetPacksResponseType, PackType } from './packsType'
 
 export type SearchParamsType = {
   packName: string | undefined
@@ -41,23 +41,37 @@ const initialState: InititalStateType = {
   },
 }
 
-export const fetchPacks = createAsyncThunk('fetchPacks', async (_, { dispatch, getState }) => {
+export const fetchPacksTC = createAsyncThunk('fetchPacks', async (_, { dispatch, getState }) => {
   const state = getState() as RootStateType
   const params = state.packs.searchParams
 
   dispatch(setAppStatus('loading'))
   try {
     const res = await packsAPI.getPacks(params)
-
-    const { maxCardsCount, pageCount, page, minCardsCount, cardPacksTotalCount } = res.data
+    // const { maxCardsCount, pageCount, page, minCardsCount, cardPacksTotalCount } = res.data
 
     console.log(res.data)
+
     dispatch(setState(res.data))
     dispatch(setAppStatus('success'))
   } catch (e: any) {
     errorUtils(e, dispatch)
   }
 })
+
+export const createPackTC = createAsyncThunk(
+  'createPack',
+  async (data: CreatePackRequestType, { dispatch }) => {
+    dispatch(setAppStatus('loading'))
+    try {
+      const res = await packsAPI.createPack(data)
+
+      dispatch(fetchPacksTC())
+    } catch (e: any) {
+      errorUtils(e, dispatch)
+    }
+  }
+)
 
 const packsSlice = createSlice({
   name: 'packsList',
