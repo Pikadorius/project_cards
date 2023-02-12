@@ -23,7 +23,8 @@ export const PackList = () => {
   const userId = useAppSelector(state => state.auth.user._id)
   // const totalPagesCount = useAppSelector(state => state.packs.searchParams.totalPagesCount)
   const params = useAppSelector(state => state.packs.searchParams)
-  const { pageCount, totalPagesCount, page, maxCardsCount, minCardsCount, max, min } = params
+  const { pageCount, totalPagesCount, page, maxCardsCount, minCardsCount, max, min, user_id } =
+    params
   // const page = useAppSelector(state => state.packs.searchParams.page)
   // const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
   const dispatch = useAppDispatch()
@@ -39,7 +40,7 @@ export const PackList = () => {
       return
     }
     dispatch(fetchPacks())
-  }, [page, pageCount, min, max])
+  }, [page, pageCount, min, max, user_id])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
