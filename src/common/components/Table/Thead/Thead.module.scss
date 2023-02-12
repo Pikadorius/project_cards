@@ -6,6 +6,10 @@
 
   .tr {
     @include tr;
+
+    &:last-child {
+      cursor: inherit;
+    }
     .th {
       padding-left: 36px;
       text-align: start;
@@ -15,6 +19,29 @@
       line-height: 17px;
       &:first-child {
         width: 35vw;
+      }
+
+      .titleContainer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        cursor: pointer;
+
+        .sortText {
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 17px;
+        }
+
+        .iconSort {
+          width: 20px;
+          height: 20px;
+          transition: all .3s ease-in-out;
+        }
+
+        .rotate {
+          transform: rotate(180deg);
+        }
       }
     }
   }

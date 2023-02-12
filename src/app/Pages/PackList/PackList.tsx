@@ -6,9 +6,9 @@ import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-
 import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
 import { Sort } from '../../../common/components/Sort/Sort'
-import { Table } from '../../../common/components/Table/Table'
+import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
+import { Tbody } from '../../../common/components/Table/Tbody/Tbody'
 import { PATH } from '../../../common/constans/path'
-import { sortTitlePackList } from '../../../common/constans/sort'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
 import { getIsLoggedIn } from '../../../common/selectors/selectors'
@@ -18,14 +18,12 @@ import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
 
 export const PackList = () => {
+  const packList = useAppSelector(state => state.app.packList)
+  const cardPacks = useAppSelector(state => state.packs.cardPacks)
   const isLoggedIn = useAppSelector(getIsLoggedIn)
-  const packs = useAppSelector(state => state.packs.cardPacks)
-  const userId = useAppSelector(state => state.auth.user._id)
-  // const totalPagesCount = useAppSelector(state => state.packs.searchParams.totalPagesCount)
   const params = useAppSelector(state => state.packs.searchParams)
-  const { pageCount, totalPagesCount, page, maxCardsCount, minCardsCount, max, min } = params
-  // const page = useAppSelector(state => state.packs.searchParams.page)
-  // const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
+  const { pageCount, totalPagesCount, page, maxCardsCount, minCardsCount, max, min, sortPack } =
+    params
   const dispatch = useAppDispatch()
 
   const [urlParams, setUrlParams] = useSearchParams()
@@ -39,7 +37,7 @@ export const PackList = () => {
       return
     }
     dispatch(fetchPacks())
-  }, [page, pageCount, min, max])
+  }, [page, pageCount, min, max, sortPack])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
@@ -54,7 +52,10 @@ export const PackList = () => {
             <Search />
             <Sort />
           </SearchPanel>
-          <Table sortTitlePackList={sortTitlePackList} packs={packs} userId={userId} />
+          {/*<TablePackListWrapper packList={packList} />*/}
+          <TablePackListWrapper packList={packList}>
+            <Tbody packs={cardPacks} />
+          </TablePackListWrapper>
           <SuperPagination
             page={page}
             totalCount={totalPagesCount}

@@ -19,8 +19,6 @@ export const Range = () => {
 
   const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount])
 
-  console.log(value)
-
   const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue: number | number[] = Number(e.currentTarget.value)
 

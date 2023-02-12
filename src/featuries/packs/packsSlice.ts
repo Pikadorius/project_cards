@@ -51,7 +51,6 @@ export const fetchPacks = createAsyncThunk('fetchPacks', async (_, { dispatch, g
 
     const { maxCardsCount, pageCount, page, minCardsCount, cardPacksTotalCount } = res.data
 
-    console.log(res.data)
     dispatch(setState(res.data))
     dispatch(setAppStatus('success'))
   } catch (e: any) {
