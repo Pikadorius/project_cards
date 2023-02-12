@@ -51,8 +51,10 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
       <SuperSelect
         value={itemsCountForPage}
         options={[
+          { id: 2, value: 2 },
           { id: 4, value: 4 },
-          { id: 7, value: 7 },
+          { id: 6, value: 6 },
+          { id: 8, value: 8 },
           { id: 10, value: 10 },
         ]}
         onChangeOption={onChangeSelect}

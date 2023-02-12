@@ -76,6 +76,7 @@ const packsSlice = createSlice({
       )
     },
     setSearchParams: (state, action: PayloadAction<SearchParamsType>) => {
+      console.log(action.payload)
       state.searchParams = action.payload
     },
   },

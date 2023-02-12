@@ -30,7 +30,6 @@ export const PackList = () => {
   const [urlParams, setUrlParams] = useSearchParams()
 
   const onChange = (page: number, pageCount: number) => {
-    console.log(pageCount)
     dispatch(setSearchParams({ ...params, page, pageCount }))
   }
 
@@ -39,7 +38,7 @@ export const PackList = () => {
       return
     }
     dispatch(fetchPacks())
-  }, [page, pageCount])
+  }, [page, pageCount, params.min, params.max])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
