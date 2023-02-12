@@ -1,7 +1,8 @@
 import React from 'react'
 
-import s from './Thead.module.scss'
 import { SortTitlePackListType } from '../../../constans/sort'
+
+import s from './Thead.module.scss'
 
 type TheadType = {
   sortTitlePackList: SortTitlePackListType

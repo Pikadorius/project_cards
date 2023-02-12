@@ -16,6 +16,8 @@ export type SearchParamsType = {
   max: number
   sortPack: string | undefined
   totalPagesCount: number
+  minCardsCount: number
+  maxCardsCount: number
 }
 
 type InititalStateType = {
@@ -26,14 +28,16 @@ type InititalStateType = {
 const initialState: InititalStateType = {
   cardPacks: [],
   searchParams: {
-    user_id: '',
-    packName: '',
+    user_id: undefined,
+    packName: undefined,
     page: 1,
     pageCount: 10,
     min: 0,
-    max: 200,
-    sortPack: '',
+    max: 0,
+    sortPack: undefined,
     totalPagesCount: 0,
+    minCardsCount: 0,
+    maxCardsCount: 0,
   },
 }
 
@@ -47,18 +51,9 @@ export const fetchPacks = createAsyncThunk('fetchPacks', async (_, { dispatch, g
 
     const { maxCardsCount, pageCount, page, minCardsCount, cardPacksTotalCount } = res.data
 
-    dispatch(setPacks(res.data))
+    console.log(res.data)
+    dispatch(setState(res.data))
     dispatch(setAppStatus('success'))
-    dispatch(
-      setSearchParams({
-        ...params,
-        page,
-        max: maxCardsCount,
-        min: minCardsCount,
-        totalPagesCount: cardPacksTotalCount,
-        pageCount,
-      })
-    )
   } catch (e: any) {
     errorUtils(e, dispatch)
   }
@@ -68,21 +63,23 @@ const packsSlice = createSlice({
   name: 'packsList',
   initialState,
   reducers: {
-    setPacks: (state, action: PayloadAction<GetPacksResponseType>) => {
+    setState: (state, action: PayloadAction<GetPacksResponseType>) => {
       state.cardPacks = action.payload.cardPacks
-      state.searchParams.max = action.payload.maxCardsCount
+      state.searchParams.page = action.payload.page
+      state.searchParams.pageCount = action.payload.pageCount
+      state.searchParams.minCardsCount = action.payload.minCardsCount
+      state.searchParams.maxCardsCount = action.payload.maxCardsCount
       state.searchParams.totalPagesCount = Math.ceil(
         action.payload.cardPacksTotalCount / action.payload.pageCount
       )
     },
     setSearchParams: (state, action: PayloadAction<SearchParamsType>) => {
-      console.log(action.payload)
-      state.searchParams = action.payload
+      state.searchParams = { ...state.searchParams, ...action.payload }
     },
   },
 })
 
-export const { setPacks, setSearchParams } = packsSlice.actions
+export const { setState, setSearchParams } = packsSlice.actions
 
 const packsReducer = packsSlice.reducer
 

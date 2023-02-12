@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { FC, memo } from 'react'
 
 import s from './PacksHeader.module.scss'
 
@@ -7,7 +7,7 @@ type PacksHeaderType = {
   buttonTitle: string
 }
 
-export const PacksHeader: React.FC<PacksHeaderType> = React.memo(({ title, buttonTitle }) => {
+export const PacksHeader: FC<PacksHeaderType> = memo(({ title, buttonTitle }) => {
   return (
     <div className={s.innerWrapper}>
       <h2>{title}</h2>

@@ -1,4 +1,4 @@
-import React, { ChangeEvent, KeyboardEvent } from 'react'
+import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 
 import { Slider } from '@mui/material'
 
@@ -11,8 +11,15 @@ import s from './Range.module.scss'
 export const Range = () => {
   const dispatch = useAppDispatch()
   const params = useAppSelector(state => state.packs.searchParams)
+  const { minCardsCount, maxCardsCount } = params
 
-  const [value, setValue] = React.useState<number[]>([0, 100])
+  useEffect(() => {
+    setValue([minCardsCount, maxCardsCount])
+  }, [minCardsCount, maxCardsCount])
+
+  const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount])
+
+  console.log(value)
 
   const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue: number | number[] = Number(e.currentTarget.value)
@@ -33,11 +40,25 @@ export const Range = () => {
     const newValue: number | number[] = Number(e.currentTarget.value)
 
     setValue([value[0], newValue])
-    dispatch(setSearchParams({ ...params, max: newValue }))
+  }
+
+  const changeMaxValueOnPressEnter = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      let newValue: number | number[] = Number(e.currentTarget.value)
+
+      // проверка на NaN
+      if (typeof newValue !== 'number') {
+        newValue = value[1]
+      }
+
+      setValue([value[0], newValue])
+      dispatch(setSearchParams({ ...params, max: newValue }))
+    }
   }
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[])
+    // dispatch(setSearchParams({...params, min: value[0], max: value[1]}))
   }
 
   return (
@@ -58,11 +79,18 @@ export const Range = () => {
           getAriaLabel={() => 'Temperature range'}
           value={value}
           onChange={handleChange}
+          min={minCardsCount}
+          max={maxCardsCount}
           valueLabelDisplay="auto"
         />
         <div className={s.inputContainer}>
           <span className={s.description}>max:</span>
-          <input onChange={changeMaxValue} value={value[1]} className={s.input} />
+          <input
+            onChange={changeMaxValue}
+            value={value[1]}
+            className={s.input}
+            onKeyDown={changeMaxValueOnPressEnter}
+          />
         </div>
       </div>
     </div>

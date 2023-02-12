@@ -1,11 +1,11 @@
 export type PacksQueryParamsType = {
-  packName?: string
-  min?: string
-  max?: string
-  sortPacks?: string
-  page?: string
-  pageCount?: string
-  user_id?: string
+  packName: string
+  min: string
+  max: string
+  sortPacks: string
+  page: string
+  pageCount: string
+  user_id: string
 }
 
 export type PackType = {
