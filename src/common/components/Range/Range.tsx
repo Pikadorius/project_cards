@@ -2,7 +2,7 @@ import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 
 import { Slider } from '@mui/material'
 
-import { setSearchParams } from '../../../featuries/packs/packsSlice'
+import { setMinMax, setSearchParams } from '../../../featuries/packs/packsSlice'
 import { useAppDispatch } from '../../hooks/AppDispatch'
 import { useAppSelector } from '../../hooks/AppSelector'
 
@@ -18,13 +18,6 @@ export const Range = () => {
   }, [minCardsCount, maxCardsCount])
 
   const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount])
-  // const debouncedValue = useDebounce<number[]>(value, 500)
-
-  // useEffect(() => {
-  //   // Do fetch here...
-  //   // Triggers when "debouncedValue" changes
-  //   dispatch(setSearchParams({ ...params, min: value[0], max: value[1] }))
-  // }, [debouncedValue])
 
   console.log(value)
 
@@ -86,6 +79,7 @@ export const Range = () => {
           sx={{ width: '200px', color: '#366EFF' }}
           getAriaLabel={() => 'Temperature range'}
           value={value}
+          defaultValue={value}
           onChange={handleChange}
           min={minCardsCount}
           max={maxCardsCount}

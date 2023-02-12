@@ -101,10 +101,13 @@ const packsSlice = createSlice({
     setSearchParams: (state, action: PayloadAction<SearchParamsType>) => {
       state.searchParams = { ...state.searchParams, ...action.payload }
     },
+    setMinMax: (state, action: PayloadAction<number[]>) => {
+      state.searchParams = { ...state.searchParams, min: action.payload[0], max: action.payload[1] }
+    },
   },
 })
 
-export const { setState, setSearchParams } = packsSlice.actions
+export const { setState, setSearchParams, setMinMax } = packsSlice.actions
 
 const packsReducer = packsSlice.reducer
 
