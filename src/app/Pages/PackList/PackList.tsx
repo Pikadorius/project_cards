@@ -12,7 +12,7 @@ import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
 import { getIsLoggedIn } from '../../../common/selectors/selectors'
-import { fetchPacks, setSearchParams } from '../../../featuries/packs/packsSlice'
+import { createPackTC, fetchPacksTC, setSearchParams } from '../../../featuries/packs/packsSlice'
 
 import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
@@ -22,8 +22,10 @@ export const PackList = () => {
   const cardPacks = useAppSelector(state => state.packs.cardPacks)
   const isLoggedIn = useAppSelector(getIsLoggedIn)
   const params = useAppSelector(state => state.packs.searchParams)
-  const { pageCount, totalPagesCount, page, maxCardsCount, minCardsCount, max, min, sortPack } =
+  const { pageCount, totalPagesCount, page, maxCardsCount, minCardsCount, max, min, user_id, sortPack } =
     params
+  // const page = useAppSelector(state => state.packs.searchParams.page)
+  // const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
   const dispatch = useAppDispatch()
 
   const [urlParams, setUrlParams] = useSearchParams()
@@ -32,12 +34,16 @@ export const PackList = () => {
     dispatch(setSearchParams({ ...params, page, pageCount }))
   }
 
+  const createPack = () => {
+    dispatch(createPackTC({ cardsPack: { name: 'test pack' } }))
+  }
+
   useEffect(() => {
     if (!isLoggedIn) {
       return
     }
-    dispatch(fetchPacks())
-  }, [page, pageCount, min, max, sortPack])
+    dispatch(fetchPacksTC())
+  }, [page, pageCount, min, max, sortPack, user_id])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
@@ -47,7 +53,7 @@ export const PackList = () => {
     <div className={s.container}>
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
-          <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} />
+          <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
           <SearchPanel>
             <Search />
             <Sort />

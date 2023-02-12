@@ -2,7 +2,7 @@ import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 
 import { Slider } from '@mui/material'
 
-import { setSearchParams } from '../../../featuries/packs/packsSlice'
+import { setMinMax, setSearchParams } from '../../../featuries/packs/packsSlice'
 import { useAppDispatch } from '../../hooks/AppDispatch'
 import { useAppSelector } from '../../hooks/AppSelector'
 
@@ -11,7 +11,7 @@ import s from './Range.module.scss'
 export const Range = () => {
   const dispatch = useAppDispatch()
   const params = useAppSelector(state => state.packs.searchParams)
-  const { minCardsCount, maxCardsCount } = params
+  const { minCardsCount, maxCardsCount, min, max } = params
 
   useEffect(() => {
     setValue([minCardsCount, maxCardsCount])
@@ -44,19 +44,20 @@ export const Range = () => {
     if (e.key === 'Enter') {
       let newValue: number | number[] = Number(e.currentTarget.value)
 
-      // проверка на NaN
-      if (typeof newValue !== 'number') {
-        newValue = value[1]
-      }
-
       setValue([value[0], newValue])
       dispatch(setSearchParams({ ...params, max: newValue }))
     }
   }
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
+  const handleChange = (event: React.SyntheticEvent | Event, newValue: number | number[]) => {
     setValue(newValue as number[])
-    // dispatch(setSearchParams({...params, min: value[0], max: value[1]}))
+  }
+
+  const handleChangeCommitted = (
+    event: React.SyntheticEvent | Event,
+    newValue: number | number[]
+  ) => {
+    dispatch(setSearchParams({ ...params, min: value[0], max: value[1] }))
   }
 
   return (
@@ -76,10 +77,12 @@ export const Range = () => {
           sx={{ width: '200px', color: '#366EFF' }}
           getAriaLabel={() => 'Temperature range'}
           value={value}
+          defaultValue={value}
           onChange={handleChange}
           min={minCardsCount}
           max={maxCardsCount}
           valueLabelDisplay="auto"
+          onChangeCommitted={handleChangeCommitted}
         />
         <div className={s.inputContainer}>
           <span className={s.description}>max:</span>

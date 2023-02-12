@@ -20,4 +20,7 @@ export const packsAPI = {
   createPack: (data: CreatePackRequestType) => {
     return instance.post('/cards/pack', data)
   },
+  deletePack: (id: string) => {
+    return instance.delete(`/cards/pack?id=${id}`)
+  },
 }
