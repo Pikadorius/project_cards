@@ -2,7 +2,7 @@ import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 
 import { Slider } from '@mui/material'
 
-import { setMinMax, setSearchParams } from '../../../featuries/packs/packsSlice'
+import { setSearchParams } from '../../../featuries/packs/packsSlice'
 import { useAppDispatch } from '../../hooks/AppDispatch'
 import { useAppSelector } from '../../hooks/AppSelector'
 
@@ -13,11 +13,12 @@ export const Range = () => {
   const params = useAppSelector(state => state.packs.searchParams)
   const { minCardsCount, maxCardsCount, min, max } = params
 
+  const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount])
+
   useEffect(() => {
     setValue([minCardsCount, maxCardsCount])
   }, [minCardsCount, maxCardsCount])
-
-  const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount])
+  console.log(value)
 
   const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue: number | number[] = Number(e.currentTarget.value)
@@ -75,9 +76,10 @@ export const Range = () => {
         </div>
         <Slider
           sx={{ width: '200px', color: '#366EFF' }}
+          key={maxCardsCount + '' + minCardsCount}
           getAriaLabel={() => 'Temperature range'}
           value={value}
-          defaultValue={value}
+          defaultValue={[minCardsCount, maxCardsCount]}
           onChange={handleChange}
           min={minCardsCount}
           max={maxCardsCount}
