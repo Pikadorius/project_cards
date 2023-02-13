@@ -17,7 +17,7 @@ export const ButtonGroupe = () => {
   const showUserPacksHandler = () => {
     setToggle('my')
     dispatch(resetAll())
-    dispatch(setSearchParams({ user_id: userId, min: 0, max: Infinity, page: 1 }))
+    dispatch(setSearchParams({ user_id: userId, page: 1 }))
   }
 
   const showAllPacksHandler = () => {
