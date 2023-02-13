@@ -53,6 +53,9 @@ export const PackList = () => {
       return
     }
     dispatch(fetchPacksTC())
+    setUrlParams(
+      `page=${page}&pageCount=${pageCount}&min=${min}&max=${max}&user_id=${user_id}&packName=${packName}`
+    )
   }, [page, pageCount, min, max, sortPack, user_id, packName])
 
   if (!isLoggedIn) {

@@ -16,14 +16,14 @@ export const ButtonGroupe = () => {
 
   const showUserPacksHandler = () => {
     setToggle('my')
-    dispatch(resetMinMax())
-    dispatch(setSearchParams({ user_id: userId, page: 1 }))
+    // dispatch(resetMinMax())
+    dispatch(setSearchParams({ user_id: userId, page: 1, min: undefined, max: undefined }))
   }
 
   const showAllPacksHandler = () => {
     setToggle('all')
-    dispatch(resetMinMax())
-    dispatch(setSearchParams({ user_id: undefined, page: 1 }))
+    // dispatch(resetMinMax())
+    dispatch(setSearchParams({ user_id: undefined, page: 1, min: undefined, max: undefined }))
   }
 
   return (
