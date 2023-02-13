@@ -19,3 +19,9 @@ export const getIsInitialized = (state: RootStateType) => state.app.isInitialize
 export const getAppError = (state: RootStateType) => state.app.appError
 
 // packs
+
+export const getPackSearchParams = (state: RootStateType) => {
+  console.log('loading params')
+
+  return state.packs.searchParams
+}

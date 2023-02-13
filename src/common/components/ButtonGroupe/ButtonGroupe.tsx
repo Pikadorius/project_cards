@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { resetMinMax, setSearchParams } from '../../../featuries/packs/packsSlice'
+import { resetAll, setSearchParams } from '../../../featuries/packs/packsSlice'
 import { useAppDispatch } from '../../hooks/AppDispatch'
 import { useAppSelector } from '../../hooks/AppSelector'
 
@@ -16,16 +16,14 @@ export const ButtonGroupe = () => {
 
   const showUserPacksHandler = () => {
     setToggle('my')
-    dispatch(resetMinMax())
-    dispatch(
-      setSearchParams({ ...params, user_id: userId, min: 0, max: Infinity, packName: undefined })
-    )
+    dispatch(resetAll())
+    dispatch(setSearchParams({ user_id: userId, min: 0, max: Infinity, page: 1 }))
   }
 
   const showAllPacksHandler = () => {
     setToggle('all')
-    dispatch(resetMinMax())
-    dispatch(setSearchParams({ ...params, user_id: undefined, packName: undefined }))
+    dispatch(resetAll())
+    dispatch(setSearchParams({ user_id: undefined, page: 1 }))
   }
 
   return (

@@ -5,10 +5,15 @@ import { RootStateType } from '../../common/hooks/AppSelector'
 import { errorUtils } from '../../common/utils/errorHandler'
 
 import { packsAPI } from './packsAPI'
-import { CreatePackRequestType, GetPacksResponseType, PackType } from './packsType'
+import {
+  CreatePackRequestType,
+  GetPacksResponseType,
+  PacksQueryParamsType,
+  PackType,
+} from './packsType'
 
 export type SearchParamsType = {
-  packName: string | undefined
+  packName: string
   user_id: string | undefined
   page: number
   pageCount: number
@@ -29,7 +34,7 @@ const initialState: InititalStateType = {
   cardPacks: [],
   searchParams: {
     user_id: undefined,
-    packName: undefined,
+    packName: '',
     page: 1,
     pageCount: 10,
     min: 0,
@@ -106,17 +111,16 @@ const packsSlice = createSlice({
         state.searchParams.maxCardsCount = action.payload.maxCardsCount
       }
     },
-    setSearchParams: (state, action: PayloadAction<SearchParamsType>) => {
+    setSearchParams: (state, action: PayloadAction<PacksQueryParamsType>) => {
       state.searchParams = { ...state.searchParams, ...action.payload }
     },
-    resetMinMax: state => {
-      state.searchParams.min = undefined
-      state.searchParams.max = undefined
+    resetAll: state => {
+      state.searchParams = initialState.searchParams
     },
   },
 })
 
-export const { setState, setSearchParams, resetMinMax } = packsSlice.actions
+export const { setState, setSearchParams, resetAll } = packsSlice.actions
 
 const packsReducer = packsSlice.reducer
 

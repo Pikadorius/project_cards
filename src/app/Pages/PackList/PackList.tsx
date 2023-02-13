@@ -4,6 +4,7 @@ import { Navigate, useSearchParams } from 'react-router-dom'
 
 import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from '../../../common/components/Search/Search'
+import { Search2 } from '../../../common/components/Search2/Search2'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
 import { Sort } from '../../../common/components/Sort/Sort'
 import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
@@ -11,7 +12,7 @@ import { Tbody } from '../../../common/components/Table/Tbody/Tbody'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
-import { getIsLoggedIn } from '../../../common/selectors/selectors'
+import { getIsLoggedIn, getPackSearchParams } from '../../../common/selectors/selectors'
 import { createPackTC, fetchPacksTC, setSearchParams } from '../../../featuries/packs/packsSlice'
 
 import s from './PackList.module.scss'
@@ -21,31 +22,30 @@ export const PackList = () => {
   const packList = useAppSelector(state => state.app.packList)
   const packs = useAppSelector(state => state.packs.cardPacks)
   const isLoggedIn = useAppSelector(getIsLoggedIn)
-  const params = useAppSelector(state => state.packs.searchParams)
-  const {
-    pageCount,
-    totalPagesCount,
-    page,
-    maxCardsCount,
-    minCardsCount,
-    max,
-    min,
-    user_id,
-    sortPack,
-    packName,
-  } = params
-  // const page = useAppSelector(state => state.packs.searchParams.page)
-  // const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
+
+  const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
+  const totalPagesCount = useAppSelector(state => state.packs.searchParams.totalPagesCount)
+  const page = useAppSelector(state => state.packs.searchParams.page)
+  const max = useAppSelector(state => state.packs.searchParams.max)
+  const min = useAppSelector(state => state.packs.searchParams.min)
+  const user_id = useAppSelector(state => state.packs.searchParams.user_id)
+  const sortPack = useAppSelector(state => state.packs.searchParams.sortPack)
+  const packName = useAppSelector(state => state.packs.searchParams.packName)
+
   const dispatch = useAppDispatch()
 
   const [urlParams, setUrlParams] = useSearchParams()
 
   const onChange = (page: number, pageCount: number) => {
-    dispatch(setSearchParams({ ...params, page, pageCount }))
+    dispatch(setSearchParams({ page, pageCount }))
   }
 
   const createPack = () => {
     dispatch(createPackTC({ cardsPack: { name: 'test pack' } }))
+  }
+
+  const searchByName = (value: string) => {
+    dispatch(setSearchParams({ packName: value }))
   }
 
   useEffect(() => {
@@ -65,7 +65,8 @@ export const PackList = () => {
         <div className={s.innerWrapper}>
           <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
           <SearchPanel>
-            <Search page={'packs'} />
+            {/*<Search page={'packs'} />*/}
+            <Search2 initialValue={packName} onChange={searchByName} />
             <Sort />
           </SearchPanel>
           {/*<TablePackListWrapper packList={packList} packs={packs} />*/}
