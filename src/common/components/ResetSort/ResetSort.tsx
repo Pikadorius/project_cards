@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { setAppError } from '../../../app/appSlice'
 import sort from '../../../assets/filterRemove.svg'
 import { resetAll, setSearchParams } from '../../../featuries/packs/packsSlice'
 import { useAppDispatch } from '../../hooks/AppDispatch'
@@ -10,10 +11,25 @@ import s from './ResetSort.module.scss'
 export const ResetSort = () => {
   const dispatch = useAppDispatch()
   const userId = useAppSelector(state => state.packs.searchParams.user_id)
+  const packName = useAppSelector(state => state.packs.searchParams.packName)
+  const page = useAppSelector(state => state.packs.searchParams.page)
+  const min = useAppSelector(state => state.packs.searchParams.min)
+  const max = useAppSelector(state => state.packs.searchParams.max)
+  const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
 
   const onClick = () => {
-    dispatch(resetAll())
-    dispatch(setSearchParams({ user_id: userId }))
+    if (
+      packName.length > 0 ||
+      page !== 1 ||
+      min !== undefined ||
+      max !== undefined ||
+      pageCount !== 10
+    ) {
+      dispatch(resetAll())
+      dispatch(setSearchParams({ user_id: userId }))
+    } else {
+      dispatch(setAppError('Nothing to reset...'))
+    }
   }
 
   return (

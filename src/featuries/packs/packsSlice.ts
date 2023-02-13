@@ -14,12 +14,12 @@ import {
 
 export type SearchParamsType = {
   packName: string
-  user_id: string | undefined
+  user_id: string
   page: number
   pageCount: number
   min: number | undefined
   max: number | undefined
-  sortPack: string | undefined
+  sortPack: string
   totalPagesCount: number
   minCardsCount: number
   maxCardsCount: number
@@ -33,13 +33,13 @@ type InititalStateType = {
 const initialState: InititalStateType = {
   cardPacks: [],
   searchParams: {
-    user_id: undefined,
+    user_id: '',
     packName: '',
     page: 1,
     pageCount: 10,
-    min: 0,
-    max: 0,
-    sortPack: undefined,
+    min: undefined,
+    max: undefined,
+    sortPack: '',
     totalPagesCount: 0,
     minCardsCount: 0,
     maxCardsCount: 0,
@@ -55,7 +55,7 @@ export const fetchPacksTC = createAsyncThunk('fetchPacks', async (_, { dispatch,
     const res = await packsAPI.getPacks(params)
 
     console.log(res)
-    // const { maxCardsCount, pageCount, page, minCardsCount, cardPacksTotalCount } = res.data
+
     if (res.data.cardPacks.length === 0) {
       dispatch(setAppError('Not found. Change the request parameters'))
     }
@@ -105,10 +105,10 @@ const packsSlice = createSlice({
         action.payload.cardPacksTotalCount / action.payload.pageCount
       )
       if (state.searchParams.min === undefined) {
-        state.searchParams.minCardsCount = action.payload.minCardsCount
+        state.searchParams.min = action.payload.minCardsCount
       }
       if (state.searchParams.max === undefined) {
-        state.searchParams.maxCardsCount = action.payload.maxCardsCount
+        state.searchParams.max = action.payload.maxCardsCount
       }
     },
     setSearchParams: (state, action: PayloadAction<PacksQueryParamsType>) => {
@@ -117,10 +117,14 @@ const packsSlice = createSlice({
     resetAll: state => {
       state.searchParams = initialState.searchParams
     },
+    resetMinMax: state => {
+      state.searchParams.min = undefined
+      state.searchParams.max = undefined
+    },
   },
 })
 
-export const { setState, setSearchParams, resetAll } = packsSlice.actions
+export const { setState, setSearchParams, resetAll, resetMinMax } = packsSlice.actions
 
 const packsReducer = packsSlice.reducer
 
