@@ -7,6 +7,7 @@ import {
   setSortStatusPack,
 } from '../../../../app/appSlice'
 import sort from '../../../../assets/sortTable.svg'
+import { setSearchCardParams } from '../../../../featuries/card/cardSlice'
 import { setSearchParams } from '../../../../featuries/packs/packsSlice'
 import { useAppDispatch } from '../../../hooks/AppDispatch'
 import { useAppSelector } from '../../../hooks/AppSelector'
@@ -43,7 +44,7 @@ export const Thead: React.FC<TheadType> = ({ packList, cardList }) => {
         )
 
         dispatch(setSortStatusCards(newPacksList))
-        // dispatch(setSearchParams({ ...params, sortPack: `${el.status}${el.sortName}` }))
+        dispatch(setSearchCardParams({ sortCards: `${el.status}${el.sortName}` }))
       }
     }
 

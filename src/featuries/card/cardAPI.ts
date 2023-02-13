@@ -2,7 +2,12 @@ import { AxiosResponse } from 'axios'
 
 import { instance } from '../../common/constans/instance'
 
-import { CreateCardRequestType, GetCardResponseType, SearchParamsCardType } from './cardType'
+import {
+  CreateCardRequestType,
+  CreateCardType,
+  GetCardResponseType,
+  SearchParamsCardType,
+} from './cardType'
 
 export const cardAPI = {
   getCard: (params: SearchParamsCardType, cardsPackID: string) => {
@@ -27,5 +32,15 @@ export const cardAPI = {
       'cards/card',
       data
     )
+  },
+  deleteCard: (cardID: string) => {
+    return instance.delete<AxiosResponse<GetCardResponseType>>(`cards/card/?id=${cardID}`)
+  },
+  updateCard: (data: { card: Omit<CreateCardType, 'cardsPack_id'> & { _id: string } }) => {
+    return instance.put<
+      '',
+      AxiosResponse<GetCardResponseType>,
+      { card: Omit<CreateCardType, 'cardsPack_id'> & { _id: string } }
+    >('cards/card', data)
   },
 }

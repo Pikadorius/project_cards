@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { Navigate, useParams } from 'react-router-dom'
 
 import EmptyPack from '../../../common/components/EmptyPack/EmptyPack'
+import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
 import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
@@ -11,7 +12,7 @@ import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
 import { getIsLoggedIn } from '../../../common/selectors/selectors'
-import { createCardTC, fetchCardTC } from '../../../featuries/card/cardSlice'
+import { createCardTC, fetchCardTC, setSearchCardParams } from '../../../featuries/card/cardSlice'
 import { PacksHeader } from '../PackList/PacksHeader/PacksHeader'
 
 import s from './CardListPage.module.scss'
@@ -23,13 +24,21 @@ export const CardListPage = () => {
   const isLoggedIn = useAppSelector(getIsLoggedIn)
   const cardsList = useAppSelector(state => state.app.cardList)
   const card = useAppSelector(state => state.card.cards)
+  const page = useAppSelector(state => state.card.searchParams.page)
+  const pageCount = useAppSelector(state => state.card.searchParams.pageCount)
+  const cardsTotalCount = useAppSelector(state => state.card.searchParams.cardsTotalCount)
   const cardQuestion = useAppSelector(state => state.card.searchParams.cardQuestion)
+  const sortCards = useAppSelector(state => state.card.searchParams.sortCards)
   const pack = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
   const isMyPack = pack && userId === pack.user_id
 
   const searchByName = (value: string) => {
-    console.log(value)
+    dispatch(setSearchCardParams({ cardQuestion: value }))
   }
+  const onChange = (page: number, pageCount: number) => {
+    dispatch(setSearchCardParams({ page, pageCount }))
+  }
+
   const createCards = () => {
     if (!id) return
     let newCard = {
@@ -56,7 +65,7 @@ export const CardListPage = () => {
       if (!id) return
       dispatch(fetchCardTC(id))
     },
-    [id]
+    [id, cardQuestion, sortCards]
   )
 
   if (pack && pack.cardsCount === 0) {
@@ -74,14 +83,12 @@ export const CardListPage = () => {
           <TablePackListWrapper cardList={cardsList}>
             <TbodyCard card={card} />
           </TablePackListWrapper>
-          {/*  <Tbody packs={cardPacks} />*/}
-          {/*</TablePackListWrapper>*/}
-          {/*<SuperPagination
+          <SuperPagination
             page={page}
-            totalCount={totalPagesCount}
+            totalCount={cardsTotalCount}
             itemsCountForPage={pageCount}
             onChange={onChange}
-          />*/}
+          />
         </div>
       </div>
     </div>

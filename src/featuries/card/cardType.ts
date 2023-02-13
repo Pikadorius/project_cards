@@ -26,6 +26,7 @@ export type SearchParamsCardType = {
   pageCount: number
   packName: string
   packUserId: string
+  cardsTotalCount: number
 }
 
 export type GetCardResponseType = {
@@ -49,7 +50,7 @@ export type CreateCardRequestType = {
   card: CreateCardType
 }
 
-type CreateCardType = {
+export type CreateCardType = {
   cardsPack_id: string
   question: string
   answer: string
@@ -59,4 +60,25 @@ type CreateCardType = {
   questionImg: string
   questionVideo: string
   answerVideo: string
+}
+
+export type UpdateCardObjType = {
+  updateCard: {
+    card: Omit<CreateCardType, 'cardsPack_id'> & { _id: string }
+  }
+  cardsPackID: string
+}
+
+export type CardQueryParamsType = {
+  cardQuestion?: string
+  min?: number
+  max?: number
+  sortCards?: string
+  page?: number
+  pageCount?: number
+  user_id?: string
+  cardAnswer?: string
+  cardsPack_id?: string
+  packName?: string
+  packUserId?: string
 }
