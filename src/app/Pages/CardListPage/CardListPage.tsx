@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 
 import { Navigate, useParams } from 'react-router-dom'
 
+import EmptyPack from '../../../common/components/EmptyPack/EmptyPack'
 import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
 import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
@@ -19,10 +20,13 @@ import s from './CardListPage.module.scss'
 export const CardListPage = () => {
   const dispatch = useAppDispatch()
   let { id } = useParams<{ id: string }>()
+  const userId = useAppSelector(state => state.auth.user._id)
   const isLoggedIn = useAppSelector(getIsLoggedIn)
   const cardsList = useAppSelector(state => state.app.cardList)
   const card = useAppSelector(state => state.card.cards)
   const cardQuestion = useAppSelector(state => state.card.searchParams.cardQuestion)
+  const pack = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
+  const isMyPack = pack && userId === pack.user_id
 
   const searchByName = (value: string) => {
     console.log(value)
@@ -42,6 +46,10 @@ export const CardListPage = () => {
     },
     [id]
   )
+
+  if (pack && pack.cardsCount === 0) {
+    return <EmptyPack isMyPack={isMyPack} name={pack.name} />
+  }
 
   return (
     <div className={s.container}>
