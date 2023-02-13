@@ -60,7 +60,7 @@ export const CardListPage = () => {
   )
 
   if (pack && pack.cardsCount === 0) {
-    return <EmptyPack isMyPack={isMyPack} name={pack.name} />
+    return <EmptyPack isMyPack={isMyPack} name={pack.name} onClick={createCards} />
   }
 
   return (
