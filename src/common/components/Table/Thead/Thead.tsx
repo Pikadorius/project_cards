@@ -1,7 +1,7 @@
 import React from 'react'
 
 import {
-  CardsListType,
+  CardListType,
   PackListType,
   setSortStatusCards,
   setSortStatusPack,
@@ -15,7 +15,7 @@ import s from './Thead.module.scss'
 
 type TheadType = {
   packList?: PackListType
-  cardList?: CardsListType
+  cardList?: CardListType
 }
 
 export const Thead: React.FC<TheadType> = ({ packList, cardList }) => {

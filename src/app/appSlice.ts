@@ -14,14 +14,14 @@ const packList = [
   { title: 'Actions', status: 0 },
 ]
 
-const cardsList = [
+const cardList = [
   { title: 'Question', status: 0, sortName: 'question' },
   { title: 'Answer', status: 0, sortName: 'answer' },
   { title: 'Last Updated', status: 0, sortName: 'updated' },
   { title: 'Grade', status: 0, sortName: 'grade' },
 ]
 
-export type CardsListType = typeof cardsList
+export type CardListType = typeof cardList
 
 export type PackListType = typeof packList
 
@@ -30,7 +30,7 @@ type InitialStateType = {
   appStatus: StatusType
   isInitialized: boolean
   packList: PackListType
-  cardList: CardsListType
+  cardList: CardListType
 }
 
 const initialState: InitialStateType = {
@@ -38,7 +38,7 @@ const initialState: InitialStateType = {
   appStatus: 'idle',
   isInitialized: false,
   packList,
-  cardList: cardsList,
+  cardList,
 }
 
 export const appSlice = createSlice({
@@ -57,7 +57,7 @@ export const appSlice = createSlice({
     setSortStatusPack: (state, action: PayloadAction<PackListType>) => {
       state.packList = action.payload
     },
-    setSortStatusCards: (state, action: PayloadAction<CardsListType>) => {
+    setSortStatusCards: (state, action: PayloadAction<CardListType>) => {
       state.cardList = action.payload
     },
   },

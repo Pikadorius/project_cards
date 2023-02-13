@@ -23,7 +23,7 @@ export type UserType = {
 
 type InitialStateType = {
   isLoggedIn: boolean
-  isRegistred: boolean
+  isRegistered: boolean
   user: UserType
   emailInRecovery: string
   isPasswordChanged: boolean
@@ -153,7 +153,7 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     isLoggedIn: false,
-    isRegistred: false,
+    isRegistered: false,
     user: {},
     emailInRecovery: '',
     isPasswordChanged: false,
@@ -164,7 +164,7 @@ const authSlice = createSlice({
       state.isLoggedIn = action.payload
     },
     isRegistred: (state, action: PayloadAction<boolean>) => {
-      state.isRegistred = action.payload
+      state.isRegistered = action.payload
     },
     setUser: (state, action: PayloadAction<UserType>) => {
       state.user = action.payload
