@@ -105,10 +105,10 @@ const packsSlice = createSlice({
         action.payload.cardPacksTotalCount / action.payload.pageCount
       )
       if (state.searchParams.min === undefined) {
-        state.searchParams.min = action.payload.minCardsCount
+        state.searchParams.minCardsCount = action.payload.minCardsCount
       }
       if (state.searchParams.max === undefined) {
-        state.searchParams.max = action.payload.maxCardsCount
+        state.searchParams.maxCardsCount = action.payload.maxCardsCount
       }
     },
     setSearchParams: (state, action: PayloadAction<PacksQueryParamsType>) => {

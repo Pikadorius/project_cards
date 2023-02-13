@@ -8,6 +8,8 @@ import { useAppSelector } from '../../hooks/AppSelector'
 
 import s from './Range.module.scss'
 
+type RangeType = {}
+
 export const Range = () => {
   const dispatch = useAppDispatch()
   const params = useAppSelector(state => state.packs.searchParams)
