@@ -8,6 +8,7 @@ import { FormWrapper } from '../../../common/components/Form/FormWrapper/FormWra
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
+import { getRecoveryEmail } from '../../../common/selectors/selectors'
 import style from '../../../featuries/auth/Recovery/CheckInfoRecovery.module.css'
 import { isMessageSend } from '../authSlice'
 
@@ -20,7 +21,7 @@ export const CheckInfoRecovery = () => {
     dispatch(isMessageSend(false))
   }, [])
 
-  const email = useAppSelector(state => state.auth.emailInRecovery)
+  const email = useAppSelector(getRecoveryEmail)
 
   const onClickInInfoHandler = () => {
     navigate(PATH.LOGIN)

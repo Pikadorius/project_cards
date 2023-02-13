@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { FieldValues } from 'react-hook-form'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 import { Button } from '../../../common/components/Button/Button'
 import { FormWrapper } from '../../../common/components/Form/FormWrapper/FormWrapper'
@@ -10,15 +10,14 @@ import { Input } from '../../../common/components/Input/Input'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
+import { getIsMessageSend } from '../../../common/selectors/selectors'
 import { formHandler } from '../../../common/utils/formHandler'
 import { recoveryTC } from '../authSlice'
 
 export const Recovery = () => {
-  const discriptionText = 'Enter your email address and we will send you further instructions'
-  const messageText = 'Enter your email address and we will send you further instructions'
-  const messageSend = useAppSelector(state => state.auth.isMessageSend)
+  const descriptionText = 'Enter your email address and we will send you further instructions'
+  const messageSend = useAppSelector(getIsMessageSend)
   const dispatch = useAppDispatch()
-  const navigate = useNavigate()
 
   const { errorEmail, handleSubmit, isValid, register } = formHandler('email')
   const onSubmit = (data: FieldValues) => {
@@ -49,7 +48,7 @@ export const Recovery = () => {
           nameForValidate={'email'}
         />
 
-        {discriptionText}
+        {descriptionText}
         <Button isValid={isValid} title={'Send Instructions'} type={'submit'} />
       </form>
     </FormWrapper>

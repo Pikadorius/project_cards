@@ -8,9 +8,10 @@ import Snackbar from '@mui/material/Snackbar'
 import { setAppError } from '../../../app/appSlice'
 import { useAppDispatch } from '../../hooks/AppDispatch'
 import { useAppSelector } from '../../hooks/AppSelector'
+import { getAppError } from '../../selectors/selectors'
 
 export default function SimpleSnackbar() {
-  const error = useAppSelector(state => state.app.appError)
+  const error = useAppSelector(getAppError)
   const dispatch = useAppDispatch()
 
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {

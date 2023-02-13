@@ -10,12 +10,13 @@ import { Input } from '../../../common/components/Input/Input'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
+import { getIsLoggedIn } from '../../../common/selectors/selectors'
 import { formHandler } from '../../../common/utils/formHandler'
 import { loginTC } from '../authSlice'
 
 export const Login = () => {
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(getIsLoggedIn)
   const { errorEmail, errorPassword, handleSubmit, isValid, register } = formHandler(
     'email',
     'password'
