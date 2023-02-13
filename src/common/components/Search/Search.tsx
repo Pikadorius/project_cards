@@ -1,11 +1,10 @@
 import React, { ChangeEvent, FC, memo, useEffect, useState } from 'react'
 
-import { useDebounce } from 'usehooks-ts'
-
 import search from '../../../assets/search.svg'
 import { setSearchParams } from '../../../featuries/packs/packsSlice'
 import { useAppDispatch } from '../../hooks/AppDispatch'
 import { useAppSelector } from '../../hooks/AppSelector'
+import useDebounce from '../../hooks/useDebounce'
 
 import s from './Search.module.scss'
 

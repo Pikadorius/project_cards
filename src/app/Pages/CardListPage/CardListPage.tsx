@@ -11,8 +11,8 @@ import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
 import { getIsLoggedIn } from '../../../common/selectors/selectors'
 import { fetchCardTC } from '../../../featuries/card/cardSlice'
+import { PacksHeader } from '../PackList/PacksHeader/PacksHeader'
 
-import { CardHeader } from './CardHeader/CardHeader'
 import s from './CardListPage.module.scss'
 
 export const CardListPage = () => {
@@ -41,7 +41,7 @@ export const CardListPage = () => {
     <div className={s.container}>
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
-          <CardHeader title={'Card list'} buttonTitle={'Add new card'} onClick={createCards} />
+          <PacksHeader title={'Card list'} buttonTitle={'Add new card'} onClick={createCards} />
           <SearchPanel>
             <Search page={'card'} />
           </SearchPanel>
