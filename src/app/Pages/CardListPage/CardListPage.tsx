@@ -11,6 +11,7 @@ import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
 import { getIsLoggedIn } from '../../../common/selectors/selectors'
 import { fetchCardTC } from '../../../featuries/card/cardSlice'
+import { setSearchParams } from '../../../featuries/packs/packsSlice'
 import { PacksHeader } from '../PackList/PacksHeader/PacksHeader'
 
 import s from './CardListPage.module.scss'
@@ -19,11 +20,20 @@ export const CardListPage = () => {
   const dispatch = useAppDispatch()
   let { id } = useParams<{ id: string }>()
   const isLoggedIn = useAppSelector(getIsLoggedIn)
+  const cardsList = useAppSelector(state => state.app.cardList)
+  const card = useAppSelector(state => state.card.cards)
+  const cardQuestion = useAppSelector(state => state.card.searchParams.cardQuestion)
+
+  const searchByName = (value: string) => {
+    console.log(value)
+  }
   const createCards = () => {
     console.log('createCards')
   }
-  const cardsList = useAppSelector(state => state.app.cardList)
-  const card = useAppSelector(state => state.card.cards)
+
+  if (!isLoggedIn) {
+    return <Navigate to={PATH.LOGIN} />
+  }
 
   useEffect(
     function () {
@@ -33,17 +43,13 @@ export const CardListPage = () => {
     [id]
   )
 
-  if (!isLoggedIn) {
-    return <Navigate to={PATH.LOGIN} />
-  }
-
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
           <PacksHeader title={'Card list'} buttonTitle={'Add new card'} onClick={createCards} />
           <SearchPanel>
-            <Search page={'card'} />
+            <Search initialValue={cardQuestion} onChange={searchByName} />
           </SearchPanel>
           <TablePackListWrapper cardList={cardsList}>
             <TbodyCard card={card} />

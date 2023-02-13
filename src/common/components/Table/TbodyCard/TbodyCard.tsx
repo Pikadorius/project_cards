@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
+import { fetchCardTC } from '../../../../featuries/card/cardSlice'
 import { CardType } from '../../../../featuries/card/cardType'
 import { useAppSelector } from '../../../hooks/AppSelector'
 import { userNameHandler } from '../../../utils/userNameHandler'
@@ -14,7 +15,14 @@ type TbodyType = {
 
 export const TbodyCard: React.FC<TbodyType> = ({ card }) => {
   const userId = useAppSelector(state => state.auth.user._id)
+  const packUserId = useAppSelector(state => state.card.searchParams.packUserId)
   const navigate = useNavigate()
+
+  let myCard = userId === packUserId
+
+  useEffect(() => {
+    console.log(userId === packUserId)
+  }, [packUserId])
 
   return (
     <tbody>
@@ -23,7 +31,12 @@ export const TbodyCard: React.FC<TbodyType> = ({ card }) => {
         //   return navigate(`${PATH.CARD_LIST}/${t._id}`)
         // }
 
-        return (
+        return myCard ? (
+          <tr key={t._id} className={s.tr}>
+            <td className={s.td}>up</td>
+            <td className={s.td}>del</td>
+          </tr>
+        ) : (
           <tr key={t._id} className={s.tr}>
             <td className={s.td}>{t.question}</td>
             <td className={s.td}>{t.answer}</td>

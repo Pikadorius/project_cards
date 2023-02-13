@@ -4,7 +4,6 @@ import { Navigate, useSearchParams } from 'react-router-dom'
 
 import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from '../../../common/components/Search/Search'
-import { Search2 } from '../../../common/components/Search2/Search2'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
 import { Sort } from '../../../common/components/Sort/Sort'
 import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
@@ -65,8 +64,7 @@ export const PackList = () => {
         <div className={s.innerWrapper}>
           <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
           <SearchPanel>
-            {/*<Search page={'packs'} />*/}
-            <Search2 initialValue={packName} onChange={searchByName} />
+            <Search initialValue={packName} onChange={searchByName} />
             <Sort />
           </SearchPanel>
           {/*<TablePackListWrapper packList={packList} packs={packs} />*/}

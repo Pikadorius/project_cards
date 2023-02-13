@@ -27,6 +27,7 @@ export type SearchParamsCardType = {
   page: number
   pageCount: number
   packName: string
+  packUserId: string
 }
 
 export type GetCardResponseType = {

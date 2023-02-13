@@ -21,6 +21,7 @@ const initialState: InititalStateCardType = {
     page: 1,
     pageCount: 10,
     packName: '',
+    packUserId: '',
   },
 }
 
@@ -54,6 +55,7 @@ const cardSlice = createSlice({
       state.searchParams.max = action.payload.maxGrade
       state.searchParams.min = action.payload.minGrade
       state.searchParams.packName = action.payload.packName
+      state.searchParams.packUserId = action.payload.packUserId
     },
   },
 })
