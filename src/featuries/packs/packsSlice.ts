@@ -117,10 +117,14 @@ const packsSlice = createSlice({
     resetAll: state => {
       state.searchParams = initialState.searchParams
     },
+    resetMinMax: state => {
+      state.searchParams.min = undefined
+      state.searchParams.max = undefined
+    },
   },
 })
 
-export const { setState, setSearchParams, resetAll } = packsSlice.actions
+export const { setState, setSearchParams, resetAll, resetMinMax } = packsSlice.actions
 
 const packsReducer = packsSlice.reducer
 
