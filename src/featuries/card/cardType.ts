@@ -1,5 +1,3 @@
-import { PackType } from '../packs/packsType'
-
 export type InititalStateCardType = {
   cards: CardType[]
   searchParams: SearchParamsCardType
@@ -45,4 +43,20 @@ export type GetCardResponseType = {
   packUpdated: string
   token: string
   tokenDeathTime: string
+}
+
+export type CreateCardRequestType = {
+  card: CreateCardType
+}
+
+type CreateCardType = {
+  cardsPack_id: string
+  question: string
+  answer: string
+  grade: number
+  shots: number
+  answerImg: string
+  questionImg: string
+  questionVideo: string
+  answerVideo: string
 }

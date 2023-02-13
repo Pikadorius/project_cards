@@ -2,7 +2,7 @@ import { AxiosResponse } from 'axios'
 
 import { instance } from '../../common/constans/instance'
 
-import { GetCardResponseType, SearchParamsCardType } from './cardType'
+import { CreateCardRequestType, GetCardResponseType, SearchParamsCardType } from './cardType'
 
 export const cardAPI = {
   getCard: (params: SearchParamsCardType, cardsPackID: string) => {
@@ -20,6 +20,12 @@ export const cardAPI = {
           pageCount: params.pageCount,
         },
       }
+    )
+  },
+  createCard: (data: CreateCardRequestType) => {
+    return instance.post<'', AxiosResponse<GetCardResponseType>, CreateCardRequestType>(
+      'cards/card',
+      data
     )
   },
 }

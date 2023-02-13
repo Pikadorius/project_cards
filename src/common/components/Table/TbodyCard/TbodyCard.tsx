@@ -18,7 +18,7 @@ export const TbodyCard: React.FC<TbodyType> = ({ card }) => {
   const packUserId = useAppSelector(state => state.card.searchParams.packUserId)
   const navigate = useNavigate()
 
-  let myCard = userId === packUserId
+  let isMyCard = userId === packUserId
 
   useEffect(() => {
     console.log(userId === packUserId)
@@ -27,12 +27,12 @@ export const TbodyCard: React.FC<TbodyType> = ({ card }) => {
   return (
     <tbody>
       {card?.map(t => {
-        // const getCardsPack = () => {
-        //   return navigate(`${PATH.CARD_LIST}/${t._id}`)
-        // }
-
-        return myCard ? (
+        return isMyCard ? (
           <tr key={t._id} className={s.tr}>
+            <td className={s.td}>{t.question}</td>
+            <td className={s.td}>{t.answer}</td>
+            <td className={s.td}>{t.updated}</td>
+            <td className={s.td}>{t.grade}</td>
             <td className={s.td}>up</td>
             <td className={s.td}>del</td>
           </tr>

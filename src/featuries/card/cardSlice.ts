@@ -3,11 +3,9 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { setAppStatus } from '../../app/appSlice'
 import { RootStateType } from '../../common/hooks/AppSelector'
 import { errorUtils } from '../../common/utils/errorHandler'
-import { SearchParamsType } from '../packs/packsSlice'
-import { GetPacksResponseType } from '../packs/packsType'
 
 import { cardAPI } from './cardAPI'
-import { GetCardResponseType, InititalStateCardType } from './cardType'
+import { CreateCardRequestType, GetCardResponseType, InititalStateCardType } from './cardType'
 
 const initialState: InititalStateCardType = {
   cards: [],
@@ -37,6 +35,23 @@ export const fetchCardTC = createAsyncThunk(
 
       console.log(res.data)
       dispatch(setState(res.data))
+      dispatch(setAppStatus('success'))
+    } catch (e: any) {
+      errorUtils(e, dispatch)
+    }
+  }
+)
+
+export const createCardTC = createAsyncThunk(
+  'createCard',
+  async (data: CreateCardRequestType, { dispatch }) => {
+    dispatch(setAppStatus('loading'))
+
+    try {
+      const res = await cardAPI.createCard(data)
+
+      console.log(res.data)
+      dispatch(fetchCardTC(data.card.cardsPack_id))
       dispatch(setAppStatus('success'))
     } catch (e: any) {
       errorUtils(e, dispatch)

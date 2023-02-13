@@ -11,8 +11,7 @@ import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
 import { getIsLoggedIn } from '../../../common/selectors/selectors'
-import { fetchCardTC } from '../../../featuries/card/cardSlice'
-import { setSearchParams } from '../../../featuries/packs/packsSlice'
+import { createCardTC, fetchCardTC } from '../../../featuries/card/cardSlice'
 import { PacksHeader } from '../PackList/PacksHeader/PacksHeader'
 
 import s from './CardListPage.module.scss'
@@ -32,7 +31,20 @@ export const CardListPage = () => {
     console.log(value)
   }
   const createCards = () => {
-    console.log('createCards')
+    if (!id) return
+    let newCard = {
+      cardsPack_id: id,
+      question: 'What is your name?',
+      answer: 'Den',
+      grade: 0,
+      shots: 4,
+      answerImg: 'url or base 64',
+      questionImg: 'url or base 64',
+      questionVideo: 'url or base 64',
+      answerVideo: 'url or base 64',
+    }
+
+    dispatch(createCardTC({ card: newCard }))
   }
 
   if (!isLoggedIn) {
