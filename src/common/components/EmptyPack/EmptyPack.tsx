@@ -1,18 +1,23 @@
 import React, { FC } from 'react'
 
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 
 import arrow from '../../../assets/arrow.svg'
+import { PATH } from '../../constans/path'
 
 import s from './EmptyPack.module.scss'
 
 type EmptyPackType = {
   name: string
   isMyPack?: boolean
+  onClick: () => void
 }
-const EmptyPack: FC<EmptyPackType> = ({ isMyPack, name }) => {
+const EmptyPack: FC<EmptyPackType> = ({ isMyPack, name, onClick }) => {
   const navigate = useNavigate()
-  const addNewCard = () => {}
+  const onClickHandler = () => {
+    onClick()
+    navigate(PATH.PACK_LIST)
+  }
 
   return (
     <div className={s.container}>
@@ -29,7 +34,7 @@ const EmptyPack: FC<EmptyPackType> = ({ isMyPack, name }) => {
             <span>This pack is empty</span>
           )}
           {isMyPack && (
-            <span onClick={addNewCard} className={s.addCardBtn}>
+            <span onClick={onClickHandler} className={s.addCardBtn}>
               Add new card
             </span>
           )}
