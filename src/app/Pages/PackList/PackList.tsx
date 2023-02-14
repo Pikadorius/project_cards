@@ -11,7 +11,7 @@ import { Tbody } from '../../../common/components/Table/Tbody/Tbody'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
-import { getIsLoggedIn, getPackSearchParams } from '../../../common/selectors/selectors'
+import { getIsLoggedIn } from '../../../common/selectors/selectors'
 import { createPackTC, fetchPacksTC, setSearchParams } from '../../../featuries/packs/packsSlice'
 
 import s from './PackList.module.scss'
@@ -21,7 +21,6 @@ export const PackList = () => {
   const packList = useAppSelector(state => state.app.packList)
   const packs = useAppSelector(state => state.packs.cardPacks)
   const isLoggedIn = useAppSelector(getIsLoggedIn)
-
   const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
   const totalPagesCount = useAppSelector(state => state.packs.searchParams.totalPagesCount)
   const page = useAppSelector(state => state.packs.searchParams.page)

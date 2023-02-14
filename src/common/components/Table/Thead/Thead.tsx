@@ -26,7 +26,6 @@ export const Thead: React.FC<TheadType> = ({ packList, cardList }) => {
 
   const thList = sortParam?.map((el, i) => {
     const sortHandler = () => {
-      debugger
       const status = el.status === 0 ? 1 : 0
 
       if (packList) {

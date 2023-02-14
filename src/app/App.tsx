@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
 import './App.css'
+
 import Loader from '../common/components/Loader/Loader'
 import SimpleSnackbar from '../common/components/SnackBar/Snackbar'
 import { useAppDispatch } from '../common/hooks/AppDispatch'

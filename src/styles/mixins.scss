@@ -104,3 +104,35 @@
     width: 35vw;
   }
 }
+
+
+@mixin backward {
+  .linkBackward {
+    cursor: pointer;
+
+    position: absolute;
+    top: 30px;
+    left: 0;
+
+    display: flex;
+    gap: 12px;
+    align-items: center;
+
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: translateX(-5px);
+    }
+
+    .arrow {
+      width: 14px;
+      height: 9px;
+    }
+
+    .backwardText {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+  }
+}

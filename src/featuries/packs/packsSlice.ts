@@ -55,8 +55,6 @@ export const fetchPacksTC = createAsyncThunk('fetchPacks', async (_, { dispatch,
   try {
     const res = await packsAPI.getPacks(params)
 
-    console.log(res)
-
     if (res.data.cardPacks.length === 0) {
       dispatch(setAppError('Not found. Change the request parameters'))
     }
@@ -120,12 +118,6 @@ const packsSlice = createSlice({
       state.searchParams.totalPagesCount = Math.ceil(
         action.payload.cardPacksTotalCount / action.payload.pageCount
       )
-      if (!state.searchParams.min) {
-        state.searchParams.min = action.payload.minCardsCount
-      }
-      if (!state.searchParams.max) {
-        state.searchParams.max = action.payload.maxCardsCount
-      }
     },
     setSearchParams: (state, action: PayloadAction<PacksQueryParamsType>) => {
       state.searchParams = { ...state.searchParams, ...action.payload }

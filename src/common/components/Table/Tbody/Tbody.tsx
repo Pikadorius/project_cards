@@ -2,7 +2,8 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { deleteCardTC } from '../../../../featuries/card/cardSlice'
+import Delete from '../../../../assets/Delete.svg'
+import edit from '../../../../assets/Edit.svg'
 import { deletePackTC, updatePackTC } from '../../../../featuries/packs/packsSlice'
 import { PackType, UpdatePackRequestType } from '../../../../featuries/packs/packsType'
 import { PATH } from '../../../constans/path'
@@ -56,12 +57,13 @@ export const Tbody: React.FC<TbodyType> = ({ packs }) => {
             <td className={s.td}>{userName}</td>
             <td className={s.td}>
               {t.user_id === userId ? (
-                <div>
-                  <span onClick={deletePack}> Delete </span>
-                  <span onClick={updatePack}> Update </span>
+                <div className={s.iconContainer}>
+                  <img className={s.icon} src={teacher} alt="learn pack" />
+                  <img className={s.icon} onClick={updatePack} src={edit} alt="edit" />
+                  <img className={s.icon} onClick={deletePack} src={Delete} alt="delete" />
                 </div>
               ) : (
-                <img src={teacher} alt="learn pack" />
+                <img className={s.icon} src={teacher} alt="learn pack" />
               )}
             </td>
           </tr>

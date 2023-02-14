@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { resetAll, resetMinMax, setSearchParams } from '../../../featuries/packs/packsSlice'
+import { setSearchParams } from '../../../featuries/packs/packsSlice'
 import { useAppDispatch } from '../../hooks/AppDispatch'
 import { useAppSelector } from '../../hooks/AppSelector'
 
@@ -9,8 +9,8 @@ import s from './ButtonGroupe.module.scss'
 export const ButtonGroupe = () => {
   const userId = useAppSelector(state => state.auth.user._id)
   const isMyPack = useAppSelector(state => state.packs.cardPacks.every(t => t.user_id === userId))
-
-  console.log(isMyPack)
+  const cardsPack = useAppSelector(state => state.packs.cardPacks)
+  const [countPack] = cardsPack
 
   const dispatch = useAppDispatch()
 
@@ -23,13 +23,13 @@ export const ButtonGroupe = () => {
   const showUserPacksHandler = () => {
     setToggle('my')
     // dispatch(resetMinMax())
-    dispatch(setSearchParams({ user_id: userId, page: 1, min: undefined, max: undefined }))
+    dispatch(setSearchParams({ user_id: userId, page: 1, min: 0, max: 0 }))
   }
 
   const showAllPacksHandler = () => {
     setToggle('all')
     // dispatch(resetMinMax())
-    dispatch(setSearchParams({ user_id: undefined, page: 1, min: undefined, max: undefined }))
+    dispatch(setSearchParams({ user_id: undefined, page: 1, min: 0, max: 0 }))
   }
 
   return (

@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 
-import { Navigate, useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
+import arrow from '../../../assets/arrow.svg'
 import EmptyPack from '../../../common/components/EmptyPack/EmptyPack'
 import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from '../../../common/components/Search/Search'
@@ -20,6 +21,7 @@ import s from './CardListPage.module.scss'
 export const CardListPage = () => {
   const dispatch = useAppDispatch()
   let { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const userId = useAppSelector(state => state.auth.user._id)
   const isLoggedIn = useAppSelector(getIsLoggedIn)
   const cardsList = useAppSelector(state => state.app.cardList)
@@ -75,6 +77,10 @@ export const CardListPage = () => {
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
+        <div onClick={() => navigate(-2)} className={s.linkBackward}>
+          <img className={s.arrow} src={arrow} alt="arrow backward" />
+          <span className={s.backwardText}>Back to Packs List</span>
+        </div>
         <div className={s.innerWrapper}>
           <PacksHeader title={'Card list'} buttonTitle={'Add new card'} onClick={createCards} />
           <SearchPanel>

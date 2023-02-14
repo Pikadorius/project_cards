@@ -18,8 +18,8 @@ export const Range = () => {
   const [value, setValue] = useState<number[]>([min, max])
 
   useEffect(() => {
-    setValue([min, max])
-  }, [min, max])
+    setValue([minCardsCount, maxCardsCount])
+  }, [minCardsCount, maxCardsCount])
 
   const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue: number | number[] = Number(e.currentTarget.value)

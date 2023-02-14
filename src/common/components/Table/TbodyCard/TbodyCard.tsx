@@ -6,7 +6,6 @@ import { deleteCardTC, fetchCardTC, updateCardTC } from '../../../../featuries/c
 import { CardType } from '../../../../featuries/card/cardType'
 import { useAppDispatch } from '../../../hooks/AppDispatch'
 import { useAppSelector } from '../../../hooks/AppSelector'
-import { userNameHandler } from '../../../utils/userNameHandler'
 
 import s from './TbodyCard.module.scss'
 
@@ -47,6 +46,8 @@ export const TbodyCard: React.FC<TbodyType> = ({ card }) => {
   useEffect(() => {
     console.log(userId === packUserId)
   }, [packUserId])
+
+  console.log(card)
 
   return (
     <tbody>
