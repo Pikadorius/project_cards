@@ -2,8 +2,11 @@ import React from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { PackType } from '../../../../featuries/packs/packsType'
+import { deleteCardTC } from '../../../../featuries/card/cardSlice'
+import { deletePackTC, updatePackTC } from '../../../../featuries/packs/packsSlice'
+import { PackType, UpdatePackRequestType } from '../../../../featuries/packs/packsType'
 import { PATH } from '../../../constans/path'
+import { useAppDispatch } from '../../../hooks/AppDispatch'
 import { useAppSelector } from '../../../hooks/AppSelector'
 import { userNameHandler } from '../../../utils/userNameHandler'
 
@@ -15,6 +18,7 @@ type TbodyType = {
 }
 
 export const Tbody: React.FC<TbodyType> = ({ packs }) => {
+  const dispatch = useAppDispatch()
   const userId = useAppSelector(state => state.auth.user._id)
   const navigate = useNavigate()
 
@@ -27,6 +31,21 @@ export const Tbody: React.FC<TbodyType> = ({ packs }) => {
           return navigate(`${PATH.CARD_LIST}/${t._id}`)
         }
 
+        const deletePack = () => {
+          dispatch(deletePackTC(t._id))
+        }
+
+        const updatePack = () => {
+          const data: UpdatePackRequestType = {
+            cardsPack: {
+              name: 'Updated pack',
+              _id: t._id,
+            },
+          }
+
+          dispatch(updatePackTC(data))
+        }
+
         return (
           <tr key={t._id} className={s.tr}>
             <td onClick={getCardsPack} className={s.td}>
@@ -36,7 +55,14 @@ export const Tbody: React.FC<TbodyType> = ({ packs }) => {
             <td className={s.td}>{dateUpdate}</td>
             <td className={s.td}>{userName}</td>
             <td className={s.td}>
-              {t.user_id === userId ? 1 : <img src={teacher} alt="learn pack" />}
+              {t.user_id === userId ? (
+                <div>
+                  <span onClick={deletePack}> Delete </span>
+                  <span onClick={updatePack}> Update </span>
+                </div>
+              ) : (
+                <img src={teacher} alt="learn pack" />
+              )}
             </td>
           </tr>
         )
