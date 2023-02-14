@@ -15,7 +15,9 @@
     margin: 0 auto;
     padding: 60px;
 
-    @include backward;
+    .linkBackward {
+      @include backward;
+    }
 
     .profileContainer {
       display: flex;
