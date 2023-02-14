@@ -16,7 +16,7 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
   const packUserId = useAppSelector(state => state.card.searchParams.packUserId)
   const packName = useAppSelector(state => state.card.searchParams.packName)
   const pack = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
-  let packByName = pack ? pack.name : 'Unknown...'
+  let packByName = pack ? pack.user_name : 'Unknown...'
 
   let isMyCard = userId === packUserId
 
@@ -24,7 +24,7 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
     <div className={s.innerWrapper}>
       <div>
         <h2 className={s.title}>{packName}</h2>
-        {!isMyCard && <div>{`@${packByName}`}</div>}
+        <div>{`@${packByName}`}</div>
       </div>
       {isMyCard && (
         <button onClick={onClick} className={s.btn}>
