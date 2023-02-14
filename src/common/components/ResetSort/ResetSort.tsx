@@ -18,13 +18,7 @@ export const ResetSort = () => {
   const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
 
   const onClick = () => {
-    if (
-      packName.length > 0 ||
-      page !== 1 ||
-      min !== undefined ||
-      max !== undefined ||
-      pageCount !== 10
-    ) {
+    if (packName.length > 0 || page !== 1 || min !== 0 || max !== 0 || pageCount !== 10) {
       dispatch(resetAll())
       dispatch(setSearchParams({ user_id: userId }))
     } else {
