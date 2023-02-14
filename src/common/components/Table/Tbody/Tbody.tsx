@@ -9,6 +9,7 @@ import { PackType, UpdatePackRequestType } from '../../../../featuries/packs/pac
 import { PATH } from '../../../constans/path'
 import { useAppDispatch } from '../../../hooks/AppDispatch'
 import { useAppSelector } from '../../../hooks/AppSelector'
+import { dateHandler } from '../../../utils/dateHandler'
 import { userNameHandler } from '../../../utils/userNameHandler'
 
 import teacher from './../../../../assets/teacher.svg'
@@ -26,7 +27,7 @@ export const Tbody: React.FC<TbodyType> = ({ packs }) => {
   return (
     <tbody>
       {packs?.map(t => {
-        const dateUpdate = t.updated.toString()
+        const dateUpdate = dateHandler(t.updated)
         const userName = userNameHandler(t.user_name)
         const getCardsPack = () => {
           return navigate(`${PATH.CARD_LIST}/${t._id}`)
