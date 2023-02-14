@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React, { memo, useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { deleteCardTC, fetchCardTC, updateCardTC } from '../../../../featuries/card/cardSlice'
+import { deleteCardTC,fetchCardTC, updateCardTC } from '../../../../featuries/card/cardSlice'
 import { CardType } from '../../../../featuries/card/cardType'
 import { useAppDispatch } from '../../../hooks/AppDispatch'
 import { useAppSelector } from '../../../hooks/AppSelector'
@@ -13,7 +13,7 @@ type TbodyType = {
   card?: CardType[]
 }
 
-export const TbodyCard: React.FC<TbodyType> = ({ card }) => {
+export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
   const userId = useAppSelector(state => state.auth.user._id)
   const packUserId = useAppSelector(state => state.card.searchParams.packUserId)
   const navigate = useNavigate()
@@ -28,10 +28,10 @@ export const TbodyCard: React.FC<TbodyType> = ({ card }) => {
     let updateCard = {
       card: {
         _id: cardID,
-        question: 'What do you buy?',
-        answer: 'Bread',
+        question: 'Updated',
+        answer: '....',
         grade: 0,
-        shots: 0,
+        shots: 6,
         answerImg: 'url or base 64',
         questionImg: 'url or base 64',
         questionVideo: 'url or base 64',
@@ -46,8 +46,6 @@ export const TbodyCard: React.FC<TbodyType> = ({ card }) => {
   useEffect(() => {
     console.log(userId === packUserId)
   }, [packUserId])
-
-  console.log(card)
 
   return (
     <tbody>
@@ -76,4 +74,4 @@ export const TbodyCard: React.FC<TbodyType> = ({ card }) => {
       })}
     </tbody>
   )
-}
+})

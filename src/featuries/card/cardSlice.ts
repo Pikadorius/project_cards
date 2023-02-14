@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { setAppStatus } from '../../app/appSlice'
+import { setAppError, setAppStatus } from '../../app/appSlice'
 import { RootStateType } from '../../common/hooks/AppSelector'
 import { errorUtils } from '../../common/utils/errorHandler'
 
@@ -41,6 +41,9 @@ export const fetchCardTC = createAsyncThunk(
     try {
       const res = await cardAPI.getCard(params, cardsPackID)
 
+      if (res.data.cards.length === 0) {
+        dispatch(setAppError('Not found. Change the request parameters'))
+      }
       dispatch(setState(res.data))
       dispatch(setAppStatus('success'))
     } catch (e: any) {

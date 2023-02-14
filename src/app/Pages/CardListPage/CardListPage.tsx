@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
@@ -16,6 +16,7 @@ import { getIsLoggedIn } from '../../../common/selectors/selectors'
 import { createCardTC, fetchCardTC, setSearchCardParams } from '../../../featuries/card/cardSlice'
 import { PacksHeader } from '../PackList/PacksHeader/PacksHeader'
 
+import { CardHeader } from './CardHeader/CardHeader'
 import s from './CardListPage.module.scss'
 
 export const CardListPage = () => {
@@ -41,12 +42,12 @@ export const CardListPage = () => {
     dispatch(setSearchCardParams({ page, pageCount }))
   }
 
-  const createCards = () => {
+  const createCards = useCallback(() => {
     if (!id) return
     let newCard = {
       cardsPack_id: id,
-      question: 'What is your name?',
-      answer: 'Den',
+      question: 'New card',
+      answer: '...',
       grade: 0,
       shots: 4,
       answerImg: 'url or base 64',
@@ -56,7 +57,7 @@ export const CardListPage = () => {
     }
 
     dispatch(createCardTC({ card: newCard }))
-  }
+  }, [])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
@@ -64,6 +65,7 @@ export const CardListPage = () => {
 
   useEffect(
     function () {
+      console.log(pack)
       if (!id) return
       dispatch(fetchCardTC(id))
     },
@@ -82,7 +84,7 @@ export const CardListPage = () => {
           <span className={s.backwardText}>Back to Packs List</span>
         </div>
         <div className={s.innerWrapper}>
-          <PacksHeader title={'Card list'} buttonTitle={'Add new card'} onClick={createCards} />
+          <CardHeader pack={pack} onClick={createCards} />
           <SearchPanel>
             <Search initialValue={cardQuestion} onChange={searchByName} />
           </SearchPanel>
