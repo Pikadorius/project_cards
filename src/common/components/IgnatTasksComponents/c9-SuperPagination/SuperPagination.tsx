@@ -2,6 +2,8 @@ import React from 'react'
 
 import { Pagination } from '@mui/material'
 
+import { setSearchParams } from '../../../../featuries/packs/packsSlice'
+import { useAppDispatch } from '../../../hooks/AppDispatch'
 import SuperSelect from '../../Select/SuperSelect'
 
 import s from './SuperPagination.module.css'
@@ -21,6 +23,7 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
   onChange,
 }) => {
   const lastPage = totalCount
+  const dispatch = useAppDispatch()
   const onChangeCallback = (event: any, page: number) => {
     // пишет студент
     onChange(page, itemsCountForPage)
@@ -29,6 +32,7 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
   const onChangeSelect = (count: number) => {
     // пишет студент
     onChange(page, count)
+    dispatch(setSearchParams({ page: 1 }))
   }
 
   return (
