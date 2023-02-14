@@ -23,10 +23,11 @@ const initialState: InititalStateCardType = {
     max: 0,
     sortCards: '',
     page: 1,
-    pageCount: 5,
+    pageCount: 10,
     packName: '',
     packUserId: '',
     cardsTotalCount: 0,
+    totalPagesCount: 0,
   },
 }
 
@@ -106,6 +107,9 @@ const cardSlice = createSlice({
       state.searchParams.packName = action.payload.packName
       state.searchParams.packUserId = action.payload.packUserId
       state.searchParams.cardsTotalCount = action.payload.cardsTotalCount
+      state.searchParams.totalPagesCount = Math.ceil(
+        action.payload.cardsTotalCount / action.payload.pageCount
+      )
     },
     setSearchCardParams: (state, action: PayloadAction<CardQueryParamsType>) => {
       state.searchParams = { ...state.searchParams, ...action.payload }
