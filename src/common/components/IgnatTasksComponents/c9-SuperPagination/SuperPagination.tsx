@@ -42,8 +42,8 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
         page={page}
         count={lastPage}
         onChange={onChangeCallback}
-        hideNextButton
-        hidePrevButton
+        showFirstButton
+        showLastButton
       />
 
       <span className={s.text1}>показать</span>
