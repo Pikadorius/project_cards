@@ -4,7 +4,7 @@ import { Logout, Settings } from '@mui/icons-material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { Avatar, Box, Divider, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material'
 import IconButton from '@mui/material/IconButton'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import ava from '../../../assets/ava.png'
 import { logoutTC } from '../../../featuries/auth/authSlice'
@@ -13,8 +13,12 @@ import { useAppDispatch } from '../../hooks/AppDispatch'
 
 export function AccountMenu() {
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const logoutHandler = () => {
     dispatch(logoutTC())
+  }
+  const goToPacks = () => {
+    navigate(PATH.PACK_LIST)
   }
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
@@ -83,11 +87,11 @@ export function AccountMenu() {
             <Avatar src={ava} /> My account
           </MenuItem>
         </Link>
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={goToPacks}>
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>
-          My Pack
+          Packs
         </MenuItem>
 
         <Divider />
