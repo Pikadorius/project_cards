@@ -8,16 +8,20 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import ava from '../../../assets/ava.png'
 import { logoutTC } from '../../../featuries/auth/authSlice'
+import { setSearchParams } from '../../../featuries/packs/packsSlice'
 import { PATH } from '../../constans/path'
 import { useAppDispatch } from '../../hooks/AppDispatch'
+import { useAppSelector } from '../../hooks/AppSelector'
 
 export function AccountMenu() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
+  const user_id = useAppSelector(state => state.auth.user._id)
   const logoutHandler = () => {
     dispatch(logoutTC())
   }
   const goToPacks = () => {
+    dispatch(setSearchParams({ user_id }))
     navigate(PATH.PACK_LIST)
   }
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
@@ -91,7 +95,7 @@ export function AccountMenu() {
           <ListItemIcon>
             <AccountCircleIcon />
           </ListItemIcon>
-          Packs
+          My packs
         </MenuItem>
 
         <Divider />
