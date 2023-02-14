@@ -9,7 +9,7 @@ import { CardType } from '../../../../featuries/card/cardType'
 import { useAppDispatch } from '../../../hooks/AppDispatch'
 import { useAppSelector } from '../../../hooks/AppSelector'
 import { dateHandler } from '../../../utils/dateHandler'
-import { RatingCard } from '../../Rating/Rating'
+import { CardsRating } from '../../Rating/Rating'
 
 import s from './TbodyCard.module.scss'
 
@@ -64,7 +64,7 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
             <td className={s.td}>
               <div className={s.gradeColumn}>
                 <div className={s.grade}>
-                  <RatingCard value={t.grade} />
+                  <CardsRating value={t.grade} />
                 </div>
                 <div className={s.iconContainer}>
                   <img
@@ -89,7 +89,7 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
             <td className={s.td}>{t.answer}</td>
             <td className={s.td}>{update}</td>
             <td className={s.td}>
-              <RatingCard value={t.grade} />
+              <CardsRating value={t.grade} />
             </td>
           </tr>
         )

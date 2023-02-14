@@ -2,7 +2,7 @@ import React, { FC, memo, useState } from 'react'
 
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 
-import eyeClose from '../../../assets/eye-close.svg'
+import noEye from '../../../assets/eye-close.svg'
 import eye from '../../../assets/eye.svg'
 
 import s from './Input.module.scss'
@@ -23,7 +23,7 @@ export const Input: FC<InputType> = memo(
       typeInput === 'password' ? setTypeInput('text') : setTypeInput('password')
     }
 
-    const iconPas = typeInput === 'password' ? eye : eyeClose
+    const iconPas = typeInput === 'password' ? eye : noEye
 
     return (
       <label className={s.labelInput}>

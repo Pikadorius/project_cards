@@ -7,7 +7,7 @@ type RatingCard = {
   value: number
 }
 
-export const RatingCard: React.FC<RatingCard> = memo(({ value }) => {
+export const CardsRating: React.FC<RatingCard> = memo(({ value }) => {
   return (
     <div>
       <Rating
