@@ -3,7 +3,7 @@ import React, { useCallback, useEffect } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import arrow from '../../../assets/arrow.svg'
-import EmptyPack from '../../../common/components/EmptyPack/EmptyPack'
+import { EmptyPack } from '../../../common/components/EmptyPack/EmptyPack'
 import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'

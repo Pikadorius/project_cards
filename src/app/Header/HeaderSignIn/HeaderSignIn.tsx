@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { PATH } from '../../../common/constans/path'
 
 import s from './HeaderSignIn.module.scss'
 
-const HeaderSignIn = () => {
+export const HeaderSignIn = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const disable = location.pathname === '/login'
@@ -17,5 +17,3 @@ const HeaderSignIn = () => {
     </button>
   )
 }
-
-export default HeaderSignIn

@@ -1,4 +1,4 @@
-import React, { DetailedHTMLProps, FC, SelectHTMLAttributes } from 'react'
+import React, { DetailedHTMLProps, FC, memo, SelectHTMLAttributes } from 'react'
 
 import FormControl from '@mui/material/FormControl'
 import InputLabel from '@mui/material/InputLabel'
@@ -17,41 +17,34 @@ type SuperSelectPropsType = DefaultSelectPropsType & {
   onChangeOption?: (option: any) => void
 }
 
-const SuperSelect: FC<SuperSelectPropsType> = ({
-  options,
-  className,
-  onChange,
-  onChangeOption,
-  value,
-  ...restProps
-}) => {
-  const mappedOptions: any[] = options
-    ? options.map(o => (
-        <MenuItem key={o.id} value={o.id}>
-          {o.value}
-        </MenuItem>
-      ))
-    : []
+export const SuperSelect: FC<SuperSelectPropsType> = memo(
+  ({ options, className, onChange, onChangeOption, value, ...restProps }) => {
+    const mappedOptions: any[] = options
+      ? options.map(o => (
+          <MenuItem key={o.id} value={o.id}>
+            {o.value}
+          </MenuItem>
+        ))
+      : []
 
-  const onChangeCallback = (e: SelectChangeEvent) => {
-    onChangeOption?.(e.target.value)
+    const onChangeCallback = (e: SelectChangeEvent) => {
+      onChangeOption?.(e.target.value)
+    }
+
+    return (
+      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+        <InputLabel id="demo-select-small">rows</InputLabel>
+        <Select
+          className={s.select}
+          value={'' + value}
+          labelId="demo-select-small"
+          id="demo-select-small"
+          label="rows"
+          onChange={onChangeCallback}
+        >
+          {mappedOptions}
+        </Select>
+      </FormControl>
+    )
   }
-
-  return (
-    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-      <InputLabel id="demo-select-small">rows</InputLabel>
-      <Select
-        className={s.select}
-        value={'' + value}
-        labelId="demo-select-small"
-        id="demo-select-small"
-        label="rows"
-        onChange={onChangeCallback}
-      >
-        {mappedOptions}
-      </Select>
-    </FormControl>
-  )
-}
-
-export default SuperSelect
+)

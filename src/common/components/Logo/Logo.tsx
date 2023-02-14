@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 
 import s from './Logo.module.scss'
 
@@ -6,7 +6,7 @@ type LogoType = {
   img: string
 }
 
-const Logo: FC<LogoType> = ({ img }) => {
+export const Logo: FC<LogoType> = memo(({ img }) => {
   return (
     <div className={s.logoContainer}>
       <a
@@ -19,6 +19,4 @@ const Logo: FC<LogoType> = ({ img }) => {
       </a>
     </div>
   )
-}
-
-export default Logo
+})

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 import StarIcon from '@mui/icons-material/Star'
 import Rating from '@mui/material/Rating'
@@ -7,7 +7,7 @@ type RatingCard = {
   value: number
 }
 
-export const RatingCard: React.FC<RatingCard> = ({ value }) => {
+export const RatingCard: React.FC<RatingCard> = memo(({ value }) => {
   return (
     <div>
       <Rating
@@ -19,4 +19,4 @@ export const RatingCard: React.FC<RatingCard> = ({ value }) => {
       />
     </div>
   )
-}
+})

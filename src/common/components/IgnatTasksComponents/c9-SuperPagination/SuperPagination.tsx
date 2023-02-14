@@ -4,7 +4,7 @@ import { Pagination } from '@mui/material'
 
 import { setSearchParams } from '../../../../featuries/packs/packsSlice'
 import { useAppDispatch } from '../../../hooks/AppDispatch'
-import SuperSelect from '../../Select/SuperSelect'
+import { SuperSelect } from '../../Select/SuperSelect'
 
 import s from './SuperPagination.module.css'
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
@@ -19,7 +19,7 @@ type TbodyType = {
   packs?: PackType[]
 }
 
-export const Tbody: React.FC<TbodyType> = ({ packs }) => {
+export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
   const dispatch = useAppDispatch()
   const userId = useAppSelector(state => state.auth.user._id)
   const navigate = useNavigate()
@@ -72,4 +72,4 @@ export const Tbody: React.FC<TbodyType> = ({ packs }) => {
       })}
     </tbody>
   )
-}
+})

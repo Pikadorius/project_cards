@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 import {
   CardListType,
@@ -19,7 +19,7 @@ type TheadType = {
   cardList?: CardListType
 }
 
-export const Thead: React.FC<TheadType> = ({ packList, cardList }) => {
+export const Thead: React.FC<TheadType> = memo(({ packList, cardList }) => {
   const dispatch = useAppDispatch()
   const params = useAppSelector(state => state.packs.searchParams)
   const sortParam = packList ? packList : cardList
@@ -73,4 +73,4 @@ export const Thead: React.FC<TheadType> = ({ packList, cardList }) => {
       <tr className={s.tr}>{thList}</tr>
     </thead>
   )
-}
+})

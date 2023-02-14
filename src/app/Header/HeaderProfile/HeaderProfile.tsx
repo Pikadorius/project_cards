@@ -6,7 +6,7 @@ import { userNameHandler } from '../../../common/utils/userNameHandler'
 
 import s from './HeaderProfile.module.scss'
 
-const HeaderProfile = () => {
+export const HeaderProfile = () => {
   const user = useAppSelector(state => state.auth.user)
   const userName = userNameHandler(user.name)
 
@@ -17,5 +17,3 @@ const HeaderProfile = () => {
     </div>
   )
 }
-
-export default HeaderProfile

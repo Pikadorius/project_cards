@@ -1,6 +1,6 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import arrow from '../../../assets/arrow.svg'
 import { PATH } from '../../constans/path'
@@ -12,7 +12,7 @@ type EmptyPackType = {
   isMyPack?: boolean
   onClick: () => void
 }
-const EmptyPack: FC<EmptyPackType> = ({ isMyPack, name, onClick }) => {
+export const EmptyPack: FC<EmptyPackType> = memo(({ isMyPack, name, onClick }) => {
   const navigate = useNavigate()
   const onClickHandler = () => {
     onClick()
@@ -42,6 +42,4 @@ const EmptyPack: FC<EmptyPackType> = ({ isMyPack, name, onClick }) => {
       </div>
     </div>
   )
-}
-
-export default EmptyPack
+})
