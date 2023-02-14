@@ -1,23 +1,30 @@
 {
   "files": {
-    "main.css": "/project_cards/static/css/main.802bc1d2.css",
-    "main.js": "/project_cards/static/js/main.19106443.js",
+    "main.css": "/project_cards/static/css/main.b481e12f.css",
+    "main.js": "/project_cards/static/js/main.76932476.js",
     "static/js/787.42edc0ed.chunk.js": "/project_cards/static/js/787.42edc0ed.chunk.js",
     "static/media/avatarBig.png": "/project_cards/static/media/avatarBig.5974632cbf5d7edfaf82.png",
     "static/media/logo.svg": "/project_cards/static/media/logo.3c09153556dc0fef65c4fc532ee16562.svg",
+    "static/media/filterRemove.svg": "/project_cards/static/media/filterRemove.7f0d40d6feda4fe746870365c9e94454.svg",
+    "static/media/Delete.svg": "/project_cards/static/media/Delete.5074d598f7a8970a63dfa17b33aebe95.svg",
+    "static/media/eye-close.svg": "/project_cards/static/media/eye-close.27cbb7284ab275283eb5b100055ab46e.svg",
+    "static/media/Edit.svg": "/project_cards/static/media/Edit.22b87cfecc031e713e076cd779cde7e3.svg",
     "static/media/pen.svg": "/project_cards/static/media/pen.a169cd90c950b39da314c5bb65c8ed51.svg",
     "static/media/cameraIcon.svg": "/project_cards/static/media/cameraIcon.90ad4ef14262e7bebbb5e1c2b2223f5a.svg",
+    "static/media/teacher.svg": "/project_cards/static/media/teacher.61316ef9f9bb14acdf57faf399645aeb.svg",
     "static/media/submit.svg": "/project_cards/static/media/submit.9e79f7080b9ba4968c9eb10360394020.svg",
     "index.html": "/project_cards/index.html",
+    "static/media/search.svg": "/project_cards/static/media/search.4b251b6bc34f5014a8e3d79305fc2d08.svg",
     "static/media/logout.svg": "/project_cards/static/media/logout.4631dbd136b384a8118857f16dae43d5.svg",
+    "static/media/sortTable.svg": "/project_cards/static/media/sortTable.39ad529904fbdbc02861931e8f398415.svg",
     "static/media/eye.svg": "/project_cards/static/media/eye.2d50f92250443e4d80c88f2bb50e7eb9.svg",
     "static/media/arrow.svg": "/project_cards/static/media/arrow.19c7bd8ee7d32ca8451f1de3f6803354.svg",
-    "main.802bc1d2.css.map": "/project_cards/static/css/main.802bc1d2.css.map",
-    "main.19106443.js.map": "/project_cards/static/js/main.19106443.js.map",
+    "main.b481e12f.css.map": "/project_cards/static/css/main.b481e12f.css.map",
+    "main.76932476.js.map": "/project_cards/static/js/main.76932476.js.map",
     "787.42edc0ed.chunk.js.map": "/project_cards/static/js/787.42edc0ed.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.802bc1d2.css",
-    "static/js/main.19106443.js"
+    "static/css/main.b481e12f.css",
+    "static/js/main.76932476.js"
   ]
 }
