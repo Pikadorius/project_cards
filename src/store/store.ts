@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import { appReducer } from '../app/appSlice'
+import { loadState, saveState } from '../common/utils/localStorage'
 import { authReducer } from '../featuries/auth/authSlice'
 import { cardReducer } from '../featuries/card/cardSlice'
 import packsReducer from '../featuries/packs/packsSlice'
@@ -12,12 +13,12 @@ export const store = configureStore({
     packs: packsReducer,
     card: cardReducer,
   },
-  // loadState()
+  preloadedState: loadState(),
 })
 
-/*store.subscribe(() => {
+store.subscribe(() => {
   saveState(store.getState())
-})*/
+})
 
 // export type AppDispatch = typeof store.dispatch
 // export const useAppDispatch: () => AppDispatch = useDispatch
