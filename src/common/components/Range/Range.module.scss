@@ -3,9 +3,11 @@
 .container {
   @include sort;
   width: 30vw;
+  display: flex;
+  justify-content: center;
 
   .rangeContainer {
-    width: 100%;
+    width: max-content;
     display: flex;
     align-items: center;
     gap: 15px;
