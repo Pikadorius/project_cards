@@ -1,4 +1,4 @@
-@import "src/styles/mixins";
+@import 'src/styles/mixins';
 .container {
   @include sort;
 
@@ -16,9 +16,8 @@
     }
 
     .active {
-      background: #366EFF;
+      background: #366eff;
       color: #fff;
     }
   }
-
 }

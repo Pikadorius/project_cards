@@ -1,15 +1,18 @@
 @import 'src/styles/mixins';
+
 .container {
-  margin-right: 80px;
+  min-width: 25vw;
+  margin-right: 6%;
   @include sort;
   align-items: flex-start;
-
+  flex-grow: 2;
 
   .inputContainer {
+    width: 100%;
     position: relative;
 
     .search {
-      width: 500px;
+      min-width: 100%;
       padding: 10px 15px 10px 40px;
       border-radius: 15px;
       background-color: rgba(76, 85, 154, 0.09);
@@ -35,5 +38,3 @@
     }
   }
 }
-
-
