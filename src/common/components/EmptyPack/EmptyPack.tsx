@@ -16,7 +16,7 @@ const EmptyPack: FC<EmptyPackType> = ({ isMyPack, name, onClick }) => {
   const navigate = useNavigate()
   const onClickHandler = () => {
     onClick()
-    navigate(PATH.PACK_LIST)
+    navigate(PATH.CARD_LIST)
   }
 
   return (
