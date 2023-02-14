@@ -42,7 +42,7 @@ export const fetchCardTC = createAsyncThunk(
       const res = await cardAPI.getCard(params, cardsPackID)
 
       if (res.data.cards.length === 0) {
-        dispatch(setAppError('Not found. Change the request parameters'))
+        dispatch(setAppError('No cards'))
       }
       dispatch(setState(res.data))
       dispatch(setAppStatus('success'))
@@ -91,7 +91,6 @@ export const deleteCardTC = createAsyncThunk('deleteCard', async (data: string[]
     const res = await cardAPI.deleteCard(data[0])
 
     dispatch(fetchCardTC(data[1]))
-    dispatch(setAppStatus('success'))
   } catch (e: any) {
     errorUtils(e, dispatch)
   }
