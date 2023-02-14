@@ -68,11 +68,13 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
                 </div>
                 <div className={s.iconContainer}>
                   <img
+                    className={s.icon}
                     onClick={() => onClickUpdateHandler(t._id, t.cardsPack_id)}
                     src={edit}
                     alt="edit"
                   />
                   <img
+                    className={s.icon}
                     onClick={() => onClickDeleteHandler(t._id, t.cardsPack_id)}
                     src={Delete}
                     alt="delete"
