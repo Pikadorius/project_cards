@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Pagination } from '@mui/material'
 
-import SuperSelect from '../c5-SuperSelect/SuperSelect'
+import SuperSelect from '../../Select/SuperSelect'
 
 import s from './SuperPagination.module.css'
 
@@ -46,7 +46,7 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
         showLastButton
       />
 
-      <span className={s.text1}>показать</span>
+      <span className={s.text1}>Show</span>
 
       <SuperSelect
         value={itemsCountForPage}
@@ -60,7 +60,7 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
         onChangeOption={onChangeSelect}
       />
 
-      <span className={s.text2}>строк в таблице</span>
+      <span className={s.text2}>in table</span>
     </div>
   )
 }
