@@ -47,3 +47,10 @@ export type CreatePackType = {
 export type CreatePackRequestType = {
   cardsPack: CreatePackType
 }
+
+export type UpdatePackRequestType = {
+  cardsPack: {
+    _id: string
+    name?: string
+  }
+}

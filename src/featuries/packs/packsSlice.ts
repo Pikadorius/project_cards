@@ -10,6 +10,7 @@ import {
   GetPacksResponseType,
   PacksQueryParamsType,
   PackType,
+  UpdatePackRequestType,
 } from './packsType'
 
 export type SearchParamsType = {
@@ -91,6 +92,21 @@ export const deletePackTC = createAsyncThunk('deletePack', async (id: string, { 
   }
 })
 
+export const updatePackTC = createAsyncThunk(
+  'updatePack',
+  async (data: UpdatePackRequestType, { dispatch }) => {
+    dispatch(setAppStatus('loading'))
+
+    try {
+      const res = await packsAPI.updatePack(data)
+
+      dispatch(fetchPacksTC())
+    } catch (e: any) {
+      errorUtils(e, dispatch)
+    }
+  }
+)
+
 const packsSlice = createSlice({
   name: 'packsList',
   initialState,
@@ -120,6 +136,7 @@ const packsSlice = createSlice({
     resetMinMax: state => {
       state.searchParams.min = undefined
       state.searchParams.max = undefined
+      state.searchParams.page = 1
     },
   },
 })

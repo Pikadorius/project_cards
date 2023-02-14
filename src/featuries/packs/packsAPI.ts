@@ -1,7 +1,7 @@
 import { instance } from '../../common/constans/instance'
 
 import { SearchParamsType } from './packsSlice'
-import { CreatePackRequestType, GetPacksResponseType } from './packsType'
+import { CreatePackRequestType, GetPacksResponseType, UpdatePackRequestType } from './packsType'
 
 export const packsAPI = {
   getPacks: (params: SearchParamsType) => {
@@ -23,4 +23,5 @@ export const packsAPI = {
   deletePack: (id: string) => {
     return instance.delete(`/cards/pack?id=${id}`)
   },
+  updatePack: (data: UpdatePackRequestType) => instance.put(`/cards/pack`, data),
 }
