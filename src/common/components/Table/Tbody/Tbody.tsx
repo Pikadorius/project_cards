@@ -50,8 +50,8 @@ export const Tbody: React.FC<TbodyType> = ({ packs }) => {
 
         return (
           <tr key={t._id} className={s.tr}>
-            <td onClick={getCardsPack} className={s.td}>
-              {t.name}
+            <td onClick={getCardsPack} className={`${s.td} ${s.packTitle}`}>
+              <span>{t.name}</span>
             </td>
             <td className={s.td}>{t.cardsCount}</td>
             <td className={s.td}>{dateUpdate}</td>

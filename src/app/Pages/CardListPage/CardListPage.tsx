@@ -14,7 +14,6 @@ import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
 import { getIsLoggedIn } from '../../../common/selectors/selectors'
 import { createCardTC, fetchCardTC, setSearchCardParams } from '../../../featuries/card/cardSlice'
-import { PacksHeader } from '../PackList/PacksHeader/PacksHeader'
 
 import { CardHeader } from './CardHeader/CardHeader'
 import s from './CardListPage.module.scss'
@@ -79,12 +78,12 @@ export const CardListPage = () => {
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
-        <div onClick={() => navigate(-2)} className={s.linkBackward}>
-          <img className={s.arrow} src={arrow} alt="arrow backward" />
-          <span className={s.backwardText}>Back to Packs List</span>
-        </div>
         <div className={s.innerWrapper}>
-          <CardHeader pack={pack} onClick={createCards} />
+          <div onClick={() => navigate(-2)} className={s.linkBackward}>
+            <img className={s.arrow} src={arrow} alt="arrow backward" />
+            <span className={s.backwardText}>Back to Packs List</span>
+          </div>
+          <CardHeader onClick={createCards} />
           <SearchPanel>
             <Search initialValue={cardQuestion} onChange={searchByName} />
           </SearchPanel>

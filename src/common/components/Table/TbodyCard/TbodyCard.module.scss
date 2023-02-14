@@ -1,10 +1,30 @@
 @import 'src/styles/mixins';
+
 .tr {
-  height: 52.5px;
+  height: 50px;
   border: 1px solid rgba(190, 186, 186, 0.13);
 
   .td {
     padding-left: 36px;
-    @include td;
+    width: calc((100vw - 80vw) / 2);
+
+    &:first-child {
+      width: 40vw;
+    }
+
+    &:nth-child(2) {
+      width: 40vw;
+    }
+
+    .gradeColumn {
+      display: flex;
+      align-items: center;
+      gap: 35px;
+
+      .iconContainer {
+        display: flex;
+        gap: 10px;
+      }
+    }
   }
 }

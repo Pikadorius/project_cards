@@ -2,10 +2,14 @@ import React, { memo, useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { deleteCardTC,fetchCardTC, updateCardTC } from '../../../../featuries/card/cardSlice'
+import Delete from '../../../../assets/Delete.svg'
+import edit from '../../../../assets/Edit.svg'
+import { deleteCardTC, updateCardTC } from '../../../../featuries/card/cardSlice'
 import { CardType } from '../../../../featuries/card/cardType'
 import { useAppDispatch } from '../../../hooks/AppDispatch'
 import { useAppSelector } from '../../../hooks/AppSelector'
+import { dateHandler } from '../../../utils/dateHandler'
+import { RatingCard } from '../../Rating/Rating'
 
 import s from './TbodyCard.module.scss'
 
@@ -50,25 +54,41 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
   return (
     <tbody>
       {card?.map(t => {
+        const update = dateHandler(t.updated)
+
         return isMyCard ? (
           <tr key={t._id} className={s.tr}>
             <td className={s.td}>{t.question}</td>
             <td className={s.td}>{t.answer}</td>
-            <td className={s.td}>{t.updated}</td>
-            <td className={s.td}>{t.grade}</td>
-            <td className={s.td} onClick={() => onClickUpdateHandler(t._id, t.cardsPack_id)}>
-              up
-            </td>
-            <td className={s.td} onClick={() => onClickDeleteHandler(t._id, t.cardsPack_id)}>
-              del
+            <td className={s.td}>{update}</td>
+            <td className={s.td}>
+              <div className={s.gradeColumn}>
+                <div className={s.grade}>
+                  <RatingCard value={t.grade} />
+                </div>
+                <div className={s.iconContainer}>
+                  <img
+                    onClick={() => onClickUpdateHandler(t._id, t.cardsPack_id)}
+                    src={edit}
+                    alt="edit"
+                  />
+                  <img
+                    onClick={() => onClickDeleteHandler(t._id, t.cardsPack_id)}
+                    src={Delete}
+                    alt="delete"
+                  />
+                </div>
+              </div>
             </td>
           </tr>
         ) : (
           <tr key={t._id} className={s.tr}>
             <td className={s.td}>{t.question}</td>
             <td className={s.td}>{t.answer}</td>
-            <td className={s.td}>{t.updated}</td>
-            <td className={s.td}>{t.grade}</td>
+            <td className={s.td}>{update}</td>
+            <td className={s.td}>
+              <RatingCard value={t.grade} />
+            </td>
           </tr>
         )
       })}
