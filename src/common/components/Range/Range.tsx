@@ -15,11 +15,11 @@ export const Range = () => {
   const params = useAppSelector(state => state.packs.searchParams)
   const { minCardsCount, maxCardsCount, min, max } = params
 
-  const [value, setValue] = useState<number[]>([minCardsCount, maxCardsCount])
+  const [value, setValue] = useState<number[]>([min, max])
 
   useEffect(() => {
-    setValue([minCardsCount, maxCardsCount])
-  }, [minCardsCount, maxCardsCount])
+    setValue([min, max])
+  }, [min, max])
 
   const changeMinValue = (e: ChangeEvent<HTMLInputElement>) => {
     const newValue: number | number[] = Number(e.currentTarget.value)
@@ -80,7 +80,6 @@ export const Range = () => {
           key={maxCardsCount + '' + minCardsCount}
           getAriaLabel={() => 'Temperature range'}
           value={value}
-          defaultValue={[minCardsCount, maxCardsCount]}
           onChange={handleChange}
           min={minCardsCount}
           max={maxCardsCount}
