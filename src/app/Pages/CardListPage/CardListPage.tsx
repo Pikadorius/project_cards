@@ -26,7 +26,7 @@ export const CardListPage = () => {
   const card = useAppSelector(state => state.card.cards)
   const page = useAppSelector(state => state.card.searchParams.page)
   const pageCount = useAppSelector(state => state.card.searchParams.pageCount)
-  const cardsTotalCount = useAppSelector(state => state.card.searchParams.cardsTotalCount)
+  const pagesTotalCount = useAppSelector(state => state.card.searchParams.totalPagesCount)
   const cardQuestion = useAppSelector(state => state.card.searchParams.cardQuestion)
   const sortCards = useAppSelector(state => state.card.searchParams.sortCards)
   const pack = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
@@ -65,7 +65,7 @@ export const CardListPage = () => {
       if (!id) return
       dispatch(fetchCardTC(id))
     },
-    [id, cardQuestion, sortCards]
+    [id, cardQuestion, sortCards, page, pageCount]
   )
 
   if (pack && pack.cardsCount === 0) {
@@ -85,7 +85,7 @@ export const CardListPage = () => {
           </TablePackListWrapper>
           <SuperPagination
             page={page}
-            totalCount={cardsTotalCount}
+            totalCount={pagesTotalCount}
             itemsCountForPage={pageCount}
             onChange={onChange}
           />
