@@ -66,7 +66,6 @@ export const PackList = () => {
             <Search initialValue={packName} onChange={searchByName} />
             <Sort />
           </SearchPanel>
-          {/*<TablePackListWrapper packList={packList} packs={packs} />*/}
           <TablePackListWrapper packList={packList}>
             <Tbody packs={packs} />
           </TablePackListWrapper>

@@ -12,7 +12,12 @@ export const store = configureStore({
     packs: packsReducer,
     card: cardReducer,
   },
+  // loadState()
 })
+
+/*store.subscribe(() => {
+  saveState(store.getState())
+})*/
 
 // export type AppDispatch = typeof store.dispatch
 // export const useAppDispatch: () => AppDispatch = useDispatch

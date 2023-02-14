@@ -1,6 +1,9 @@
 import React, { ChangeEvent, FC, memo, useEffect, useState } from 'react'
 
+import { setAppStatus } from '../../../app/appSlice'
+import del from '../../../assets/close.png'
 import search from '../../../assets/search.svg'
+import { useAppDispatch } from '../../hooks/AppDispatch'
 import useDebounce from '../../hooks/useDebounce'
 
 import s from './Search.module.scss'
@@ -15,12 +18,16 @@ export const Search: FC<SearchPropsType> = memo(({ initialValue, onChange }) => 
     setValue(initialValue)
   }, [initialValue])
 
+  const dispatch = useAppDispatch()
   const [value, setValue] = useState<string>(initialValue)
 
-  let debouncedValue = useDebounce<string>(value, 500)
+  let debouncedValue = useDebounce<string>(value, 200)
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
+  }
+  const onClickDelHandler = () => {
+    setValue('')
   }
 
   useEffect(() => {
@@ -40,6 +47,7 @@ export const Search: FC<SearchPropsType> = memo(({ initialValue, onChange }) => 
           onChange={handleChange}
         />
         <img className={s.searchIcon} src={search} alt="search icon" />
+        <img className={s.delIcon} src={del} alt="del icon" onClick={onClickDelHandler} />
       </div>
     </div>
   )

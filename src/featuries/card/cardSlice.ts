@@ -42,7 +42,7 @@ export const fetchCardTC = createAsyncThunk(
       const res = await cardAPI.getCard(params, cardsPackID)
 
       if (res.data.cards.length === 0) {
-        dispatch(setAppError('No cards'))
+        dispatch(setAppError('Cards not found'))
       }
       dispatch(setState(res.data))
       dispatch(setAppStatus('success'))
@@ -61,7 +61,6 @@ export const createCardTC = createAsyncThunk(
       const res = await cardAPI.createCard(data)
 
       dispatch(fetchCardTC(data.card.cardsPack_id))
-      dispatch(setAppStatus('success'))
     } catch (e: any) {
       errorUtils(e, dispatch)
     }
@@ -77,7 +76,6 @@ export const updateCardTC = createAsyncThunk(
       const res = await cardAPI.updateCard(data.updateCard)
 
       dispatch(fetchCardTC(data.cardsPackID))
-      dispatch(setAppStatus('success'))
     } catch (e: any) {
       errorUtils(e, dispatch)
     }
