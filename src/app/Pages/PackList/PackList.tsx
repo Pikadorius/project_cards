@@ -32,7 +32,7 @@ export const PackList = () => {
 
   const dispatch = useAppDispatch()
 
-  const [urlParams, setUrlParams] = useSearchParams()
+  const [sortParams, setSortParams] = useSearchParams()
 
   const onChange = (page: number, pageCount: number) => {
     dispatch(setSearchParams({ page, pageCount }))
@@ -51,6 +51,15 @@ export const PackList = () => {
       return
     }
     dispatch(fetchPacksTC())
+    setSortParams({
+      user_id: String(user_id),
+      min: String(min),
+      max: String(max),
+      pageCount: String(pageCount),
+      page: String(page),
+      packName: packName,
+      sortPack: sortPack,
+    })
   }, [page, pageCount, min, max, sortPack, user_id, packName])
 
   if (!isLoggedIn) {

@@ -40,7 +40,7 @@ const initialState: InititalStateType = {
     pageCount: 10,
     min: 0,
     max: 0,
-    sortPack: '',
+    sortPack: '0name',
     totalPagesCount: 0,
     minCardsCount: 0,
     maxCardsCount: 0,
@@ -58,6 +58,7 @@ export const fetchPacksTC = createAsyncThunk('fetchPacks', async (_, { dispatch,
     if (res.data.cardPacks.length === 0) {
       dispatch(setAppError('Not found. Change the request parameters'))
     }
+
     dispatch(setState(res.data))
     dispatch(setAppStatus('success'))
   } catch (e: any) {
@@ -133,7 +134,7 @@ const packsSlice = createSlice({
   },
 })
 
-export const { setState, setSearchParams, resetAll, resetMinMax } = packsSlice.actions
+export const { setState, setSearchParams, resetAll } = packsSlice.actions
 
 const packsReducer = packsSlice.reducer
 

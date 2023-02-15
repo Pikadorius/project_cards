@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { setSearchParams } from '../../../featuries/packs/packsSlice'
 import { useAppDispatch } from '../../hooks/AppDispatch'
@@ -8,17 +8,13 @@ import s from './ButtonGroupe.module.scss'
 
 export const ButtonGroupe = () => {
   const userId = useAppSelector(state => state.auth.user._id)
-  const isMyPack = useAppSelector(state => state.packs.cardPacks.every(t => t.user_id === userId))
+  const paramId = useAppSelector(state => state.packs.searchParams.user_id)
   const cardsPack = useAppSelector(state => state.packs.cardPacks)
   const [countPack] = cardsPack
 
   const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    setToggle(isMyPack ? 'my' : 'all')
-  }, [isMyPack])
-
-  const [toggle, setToggle] = useState<'all' | 'my'>(isMyPack ? 'my' : 'all')
+  const [toggle, setToggle] = useState<string | null>(paramId ? 'my' : 'all')
 
   const showUserPacksHandler = () => {
     setToggle('my')

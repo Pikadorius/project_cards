@@ -34,16 +34,15 @@ export const Thead: React.FC<TheadType> = memo(({ packList, cardList }) => {
         )
 
         dispatch(setSortStatusPack(newPacksList))
-        dispatch(setSearchParams({ ...params, sortPack: `${el.status}${el.sortName}` }))
+        dispatch(setSearchParams({ ...params, sortPack: `${status}${el.sortName}` }))
       }
       if (cardList) {
-        console.log('1')
         const newPacksList = cardList.map(p =>
           p.title === el.title ? { ...p, status: status } : p
         )
 
         dispatch(setSortStatusCards(newPacksList))
-        dispatch(setSearchCardParams({ sortCards: `${el.status}${el.sortName}` }))
+        dispatch(setSearchCardParams({ ...params, sortCards: `${status}${el.sortName}` }))
       }
     }
 

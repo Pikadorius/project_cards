@@ -3,12 +3,11 @@ import React, { FC, memo } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import arrow from '../../../assets/arrow.svg'
-import { PATH } from '../../constans/path'
 
 import s from './EmptyPack.module.scss'
 
 type EmptyPackType = {
-  name: string
+  name?: string
   isMyPack?: boolean
   onClick: () => void
 }
@@ -16,7 +15,8 @@ export const EmptyPack: FC<EmptyPackType> = memo(({ isMyPack, name, onClick }) =
   const navigate = useNavigate()
   const onClickHandler = () => {
     onClick()
-    navigate(PATH.CARD_LIST)
+
+    // return navigate(`${PATH.CARD_LIST}/${id}`)
   }
 
   return (

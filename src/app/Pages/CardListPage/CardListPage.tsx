@@ -3,7 +3,6 @@ import React, { useCallback, useEffect } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import arrow from '../../../assets/arrow.svg'
-import { EmptyPack } from '../../../common/components/EmptyPack/EmptyPack'
 import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
@@ -31,8 +30,9 @@ export const CardListPage = () => {
   const pagesTotalCount = useAppSelector(state => state.card.searchParams.totalPagesCount)
   const cardQuestion = useAppSelector(state => state.card.searchParams.cardQuestion)
   const sortCards = useAppSelector(state => state.card.searchParams.sortCards)
+  const cardsTotalCount = useAppSelector(state => state.card.searchParams.cardsTotalCount)
   const pack = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
-  const isMyPack = pack && userId === pack.user_id
+  const name = pack?.name
 
   const searchByName = (value: string) => {
     dispatch(setSearchCardParams({ cardQuestion: value }))
@@ -56,7 +56,7 @@ export const CardListPage = () => {
     }
 
     dispatch(createCardTC({ card: newCard }))
-  }, [])
+  }, [id])
 
   if (!isLoggedIn) {
     return <Navigate to={PATH.LOGIN} />
@@ -64,22 +64,17 @@ export const CardListPage = () => {
 
   useEffect(
     function () {
-      console.log(pack)
       if (!id) return
       dispatch(fetchCardTC(id))
     },
-    [id, cardQuestion, sortCards, page, pageCount]
+    [id, cardQuestion, name]
   )
-
-  if (pack && pack.cardsCount === 0) {
-    return <EmptyPack isMyPack={isMyPack} name={pack.name} onClick={createCards} />
-  }
 
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
-          <div onClick={() => navigate(-2)} className={s.linkBackward}>
+          <div onClick={() => navigate(-1)} className={s.linkBackward}>
             <img className={s.arrow} src={arrow} alt="arrow backward" />
             <span className={s.backwardText}>Back to Packs List</span>
           </div>
@@ -87,9 +82,11 @@ export const CardListPage = () => {
           <SearchPanel>
             <Search initialValue={cardQuestion} onChange={searchByName} />
           </SearchPanel>
+
           <TablePackListWrapper cardList={cardsList}>
-            <TbodyCard card={card} />
+            {!!cardsTotalCount && <TbodyCard card={card} />}
           </TablePackListWrapper>
+
           <SuperPagination
             page={page}
             totalCount={pagesTotalCount}

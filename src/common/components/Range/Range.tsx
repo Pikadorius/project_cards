@@ -12,6 +12,7 @@ type RangeType = {}
 
 export const Range = () => {
   const dispatch = useAppDispatch()
+  const userId = useAppSelector(state => state.auth.user._id)
   const params = useAppSelector(state => state.packs.searchParams)
   const { minCardsCount, maxCardsCount, min, max } = params
 
