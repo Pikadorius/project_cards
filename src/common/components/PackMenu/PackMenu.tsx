@@ -14,6 +14,7 @@ import { deletePackTC, updatePackTC } from '../../../featuries/packs/packsSlice'
 import { UpdatePackRequestType } from '../../../featuries/packs/packsType'
 import { PATH } from '../../constans/path'
 import { useAppDispatch } from '../../hooks/AppDispatch'
+import { useAppSelector } from '../../hooks/AppSelector'
 
 import s from './PackMenu.module.scss'
 
@@ -24,6 +25,7 @@ type PackMenuType = {
 
 export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const card = useAppSelector(state => state.card.cards)
   const open = Boolean(anchorEl)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -37,20 +39,22 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
   const deletePack = () => {
     if (packId) {
       dispatch(deletePackTC(packId))
+
       navigate(PATH.PACK_LIST)
-    } else return
+    }
   }
 
   const updatePack = () => {
-    if (!packId) return
-    const data: UpdatePackRequestType = {
-      cardsPack: {
-        name: 'Updated pack',
-        _id: packId,
-      },
-    }
+    if (packId) {
+      const data: UpdatePackRequestType = {
+        cardsPack: {
+          name: 'Updated pack',
+          _id: packId,
+        },
+      }
 
-    dispatch(updatePackTC(data))
+      dispatch(updatePackTC(data))
+    }
   }
 
   return (
@@ -103,7 +107,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
         <MenuItem onClick={deletePack}>
           <img className={s.icon} src={Delete} alt="delete" /> Delete
         </MenuItem>
-        <MenuItem>
+        <MenuItem onClick={() => alert('Learn to pack')}>
           <img className={s.icon} src={teacher} alt="learn pack" /> Learn
         </MenuItem>
       </Menu>
