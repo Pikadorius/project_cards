@@ -60,10 +60,19 @@ export const appSlice = createSlice({
     setSortStatusCards: (state, action: PayloadAction<CardListType>) => {
       state.cardList = action.payload
     },
+    resetSort: state => {
+      state.packList = initialState.packList
+    },
   },
 })
 
-export const { setAppError, isInitialized, setAppStatus, setSortStatusPack, setSortStatusCards } =
-  appSlice.actions
+export const {
+  setAppError,
+  isInitialized,
+  setAppStatus,
+  setSortStatusPack,
+  setSortStatusCards,
+  resetSort,
+} = appSlice.actions
 
 export const appReducer = appSlice.reducer

@@ -23,12 +23,11 @@
         height: 16px;
         cursor: pointer;
       }
+    }
 
-      .disIcon {
-        opacity: 0.5;
-        background-color: #00cc22;
-        cursor: inherit;
-      }
+    .disIcon {
+      background-color: rgba(128, 128, 128, 0.02);
+      opacity: .9;
     }
   }
 

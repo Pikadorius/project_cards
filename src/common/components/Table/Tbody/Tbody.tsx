@@ -2,8 +2,6 @@ import React, { memo } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import Delete from '../../../../assets/Delete.svg'
-import edit from '../../../../assets/Edit.svg'
 import { deletePackTC, updatePackTC } from '../../../../featuries/packs/packsSlice'
 import { PackType, UpdatePackRequestType } from '../../../../featuries/packs/packsType'
 import { PATH } from '../../../constans/path'
@@ -11,8 +9,10 @@ import { useAppDispatch } from '../../../hooks/AppDispatch'
 import { useAppSelector } from '../../../hooks/AppSelector'
 import { dateHandler } from '../../../utils/dateHandler'
 import { userNameHandler } from '../../../utils/userNameHandler'
+import { DeleteIcon } from '../../Icon/DeleteIcon/Delete'
+import { EditIcon } from '../../Icon/EditIcon/EditIcon'
+import { TeachIcon } from '../../Icon/TeachIcon/TeachIcon'
 
-import teacher from './../../../../assets/teacher.svg'
 import s from './Tbody.module.scss'
 
 type TbodyType = {
@@ -48,7 +48,16 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
           dispatch(updatePackTC(data))
         }
 
-        let resClass = t.cardsCount === 0 ? s.disIcon + '' + s.icon : s.icon
+        const teachPack = () => {
+          alert('Learn pack')
+        }
+
+        let resClass = t.cardsCount === 0 ? '#908c8c' : ''
+        const teachIcon = resClass ? (
+          <TeachIcon stroke={resClass} />
+        ) : (
+          <TeachIcon onClick={teachPack} stroke={resClass} />
+        )
 
         return (
           <tr key={t._id} className={s.tr}>
@@ -61,26 +70,13 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
             <td className={s.td}>
               {t.user_id === userId ? (
                 <div className={s.iconContainer}>
-                  <img
-                    className={resClass}
-                    src={teacher}
-                    alt="learn pack"
-                    onClick={() => {
-                      alert('Learn pack')
-                    }}
-                  />
-                  <img className={s.icon} onClick={updatePack} src={edit} alt="edit" />
-                  <img className={s.icon} onClick={deletePack} src={Delete} alt="delete" />
+                  {teachIcon}
+
+                  <EditIcon onClick={updatePack} />
+                  <DeleteIcon onClick={deletePack} />
                 </div>
               ) : (
-                <img
-                  className={resClass}
-                  src={teacher}
-                  alt="learn pack"
-                  onClick={() => {
-                    alert('Learn pack')
-                  }}
-                />
+                teachIcon
               )}
             </td>
           </tr>

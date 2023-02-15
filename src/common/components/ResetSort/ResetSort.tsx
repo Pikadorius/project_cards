@@ -17,7 +17,8 @@ export const ResetSort = () => {
   const max = useAppSelector(state => state.packs.searchParams.max)
   const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
   const sortPack = useAppSelector(state => state.packs.searchParams.sortPack)
-
+  const packList = useAppSelector(state => state.app.packList)
+  // const resetSort = packList.map(t => ({ ...t, status: 0 }))
   const onClick = () => {
     if (
       packName.length > 0 ||
@@ -28,6 +29,7 @@ export const ResetSort = () => {
       sortPack !== ''
     ) {
       dispatch(resetAll())
+      // dispatch(setSortStatusCards(packList))
       dispatch(setSearchParams({ user_id: userId }))
     } else {
       dispatch(setAppError('Nothing to reset...'))
