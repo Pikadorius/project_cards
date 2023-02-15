@@ -23,6 +23,12 @@
         height: 16px;
         cursor: pointer;
       }
+
+      .disIcon {
+        opacity: 0.5;
+        background-color: #00cc22;
+        cursor: inherit;
+      }
     }
   }
 
@@ -30,7 +36,7 @@
     cursor: pointer;
   }
 
-  .disabledBtn {
+  /*.disabledBtn {
     width: 16px;
     height: 16px;
     padding: 0;
@@ -42,7 +48,7 @@
 
   .disabledBtn:disabled {
     opacity: 0.5;
-  }
+  }*/
 
 }
 

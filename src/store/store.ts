@@ -13,7 +13,7 @@ export const store = configureStore({
     packs: packsReducer,
     card: cardReducer,
   },
-  preloadedState: loadState(),
+  /*preloadedState: loadState(),*/
 })
 
 store.subscribe(() => {

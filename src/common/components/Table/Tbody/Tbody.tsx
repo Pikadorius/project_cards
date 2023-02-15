@@ -48,6 +48,8 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
           dispatch(updatePackTC(data))
         }
 
+        let resClass = t.cardsCount === 0 ? s.disIcon + '' + s.icon : s.icon
+
         return (
           <tr key={t._id} className={s.tr}>
             <td onClick={getCardsPack} className={`${s.td} ${s.packTitle}`}>
@@ -59,28 +61,26 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
             <td className={s.td}>
               {t.user_id === userId ? (
                 <div className={s.iconContainer}>
-                  <button
-                    className={s.disabledBtn}
-                    disabled={t.cardsCount === 0}
+                  <img
+                    className={resClass}
+                    src={teacher}
+                    alt="learn pack"
                     onClick={() => {
                       alert('Learn pack')
                     }}
-                  >
-                    <img className={s.icon} src={teacher} alt="learn pack" />
-                  </button>
+                  />
                   <img className={s.icon} onClick={updatePack} src={edit} alt="edit" />
                   <img className={s.icon} onClick={deletePack} src={Delete} alt="delete" />
                 </div>
               ) : (
-                <button
-                  className={s.disabledBtn}
-                  disabled={t.cardsCount === 0}
+                <img
+                  className={resClass}
+                  src={teacher}
+                  alt="learn pack"
                   onClick={() => {
                     alert('Learn pack')
                   }}
-                >
-                  <img className={s.icon} src={teacher} alt="learn pack" />
-                </button>
+                />
               )}
             </td>
           </tr>
@@ -89,3 +89,14 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
     </tbody>
   )
 })
+
+/*
+    <button
+className={s.disabledBtn}
+disabled={t.cardsCount === 0}
+onClick={() => {
+  alert('Learn pack')
+}}
+>
+<img className={s.icon} src={teacher} alt="learn pack" />
+    </button>*/
