@@ -1,5 +1,7 @@
 import React, { memo } from 'react'
 
+import s from './EditIcon.module.scss'
+
 type EditIconType = {
   fill?: string
   stroke?: string
@@ -9,6 +11,7 @@ type EditIconType = {
 export const EditIcon: React.FC<EditIconType> = memo(({ stroke, fill, onClick }) => {
   return (
     <svg
+      className={!fill ? s.cursor : ''}
       onClick={onClick}
       width="16"
       height="16"

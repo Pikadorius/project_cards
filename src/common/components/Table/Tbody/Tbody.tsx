@@ -85,14 +85,3 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
     </tbody>
   )
 })
-
-/*
-    <button
-className={s.disabledBtn}
-disabled={t.cardsCount === 0}
-onClick={() => {
-  alert('Learn pack')
-}}
->
-<img className={s.icon} src={teacher} alt="learn pack" />
-    </button>*/

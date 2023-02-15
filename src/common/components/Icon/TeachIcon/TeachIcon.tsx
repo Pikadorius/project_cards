@@ -1,5 +1,7 @@
 import React, { memo } from 'react'
 
+import s from './TeachIcon.module.scss'
+
 type TeachIconType = {
   fill?: string
   stroke?: string
@@ -9,6 +11,7 @@ type TeachIconType = {
 export const TeachIcon: React.FC<TeachIconType> = memo(({ stroke, fill, onClick }) => {
   return (
     <svg
+      className={!stroke ? s.cursor : ''}
       onClick={onClick}
       width="16"
       height="16"
