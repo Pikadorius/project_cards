@@ -61,7 +61,7 @@ export const appSlice = createSlice({
       state.cardList = action.payload
     },
     resetSort: state => {
-      state.packList = initialState.packList
+      state.packList = state.packList.map(t => (t.status ? { ...t, status: 0 } : t))
     },
   },
 })
