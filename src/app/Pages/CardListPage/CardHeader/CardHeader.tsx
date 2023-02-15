@@ -2,6 +2,7 @@ import React, { FC, memo } from 'react'
 
 import { useParams } from 'react-router-dom'
 
+import { PackMenu } from '../../../../common/components/PackMenu/PackMenu'
 import { useAppSelector } from '../../../../common/hooks/AppSelector'
 
 import s from './CardHeader.module.scss'
@@ -23,7 +24,11 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
   return (
     <div className={s.innerWrapper}>
       <div>
-        <h2 className={s.title}>{packName}</h2>
+        {isMyCard ? (
+          <PackMenu title={packName} packId={id} />
+        ) : (
+          <h2 className={s.title}>{packName}</h2>
+        )}
         {!isMyCard && <div>{`@${packByName}`}</div>}
       </div>
       {isMyCard && (
