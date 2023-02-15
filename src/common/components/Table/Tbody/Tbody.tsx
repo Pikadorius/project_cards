@@ -59,12 +59,28 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
             <td className={s.td}>
               {t.user_id === userId ? (
                 <div className={s.iconContainer}>
-                  <img className={s.icon} src={teacher} alt="learn pack" />
+                  <button
+                    className={s.disabledBtn}
+                    disabled={t.cardsCount === 0}
+                    onClick={() => {
+                      alert('Learn pack')
+                    }}
+                  >
+                    <img className={s.icon} src={teacher} alt="learn pack" />
+                  </button>
                   <img className={s.icon} onClick={updatePack} src={edit} alt="edit" />
                   <img className={s.icon} onClick={deletePack} src={Delete} alt="delete" />
                 </div>
               ) : (
-                <img className={s.icon} src={teacher} alt="learn pack" />
+                <button
+                  className={s.disabledBtn}
+                  disabled={t.cardsCount === 0}
+                  onClick={() => {
+                    alert('Learn pack')
+                  }}
+                >
+                  <img className={s.icon} src={teacher} alt="learn pack" />
+                </button>
               )}
             </td>
           </tr>
