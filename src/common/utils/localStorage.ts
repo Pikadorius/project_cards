@@ -1,4 +1,6 @@
-const KEY = 'redux'
+import { RootStateType } from '../hooks/AppSelector'
+
+const KEY = 'packs/card'
 
 export function loadState() {
   try {
@@ -12,9 +14,13 @@ export function loadState() {
   }
 }
 
-export async function saveState(state: any) {
+export async function saveState(state: RootStateType) {
+  let card = state.card
+  let packs = state.packs
+  let lsData = { card, packs }
+
   try {
-    const serializedState = JSON.stringify(state)
+    const serializedState = JSON.stringify(lsData)
 
     localStorage.setItem(KEY, serializedState)
   } catch (e) {
