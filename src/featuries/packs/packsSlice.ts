@@ -40,7 +40,7 @@ const initialState: InititalStateType = {
     pageCount: 10,
     min: 0,
     max: 0,
-    sortPack: '0name',
+    sortPack: '',
     totalPagesCount: 0,
     minCardsCount: 0,
     maxCardsCount: 0,
