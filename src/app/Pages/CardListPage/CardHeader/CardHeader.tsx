@@ -36,7 +36,11 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
           Add new card
         </button>
       ) : (
-        <button onClick={() => alert('Learn to pack')} className={s.btn}>
+        <button
+          onClick={() => alert('Learn to pack')}
+          className={s.btn}
+          disabled={pack && pack.cardsCount === 0}
+        >
           Learn to pack
         </button>
       )}
