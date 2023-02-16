@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 
 import { Navigate, useSearchParams } from 'react-router-dom'
 
+import { EmptyPackSearch } from '../../../common/components/EmptyPackSearch/EmptyPackSearch'
 import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
@@ -30,6 +31,7 @@ export const PackList = () => {
   const user_id = useAppSelector(state => state.packs.searchParams.user_id)
   const sortPack = useAppSelector(state => state.packs.searchParams.sortPack)
   const packName = useAppSelector(state => state.packs.searchParams.packName)
+  const emptyCheck = packName !== '' && packs.length === 0
 
   const dispatch = useAppDispatch()
 
@@ -76,16 +78,22 @@ export const PackList = () => {
             <Search initialValue={packName} onChange={searchByName} />
             <Sort />
           </SearchPanel>
-          <TablePackListWrapper>
-            <Thead packList={packList} />
-            <Tbody packs={packs} />
-          </TablePackListWrapper>
-          <SuperPagination
-            page={page}
-            totalCount={totalPagesCount}
-            itemsCountForPage={pageCount}
-            onChange={onChange}
-          />
+          {emptyCheck ? (
+            <EmptyPackSearch />
+          ) : (
+            <>
+              <TablePackListWrapper>
+                <Thead packList={packList} />
+                <Tbody packs={packs} />
+              </TablePackListWrapper>
+              <SuperPagination
+                page={page}
+                totalCount={totalPagesCount}
+                itemsCountForPage={pageCount}
+                onChange={onChange}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
