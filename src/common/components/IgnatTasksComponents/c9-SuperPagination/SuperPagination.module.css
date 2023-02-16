@@ -1,12 +1,11 @@
 .pagination {
-  width: 100%;
-  padding-bottom: 15px;
-  position: fixed;
-  bottom: 0;
-  left: 10vw;
-  display: flex;
-  background-color: #fff;
-  align-items: center;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 10vw;
+    display: flex;
+    background-color: #fff;
+    align-items: center;
 }
 
 .text1 {

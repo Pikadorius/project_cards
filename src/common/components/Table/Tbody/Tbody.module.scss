@@ -12,6 +12,7 @@
   .td {
     padding-left: 36px;
     @include td;
+    word-wrap: break-word;
 
     .iconContainer {
       display: flex;

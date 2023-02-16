@@ -97,8 +97,10 @@
 }
 
 @mixin td {
-  width: calc((100vw - 35vw) / 4);
-
+  max-width: calc((100vw - 35vw) / 4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   &:first-child {
     width: 35vw;
   }

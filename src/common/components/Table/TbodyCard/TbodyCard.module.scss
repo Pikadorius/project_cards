@@ -7,13 +7,15 @@
   .td {
     padding-left: 36px;
     width: calc((100vw - 80vw) / 2);
+    word-wrap: break-word;
 
     &:first-child {
       width: 40vw;
+
     }
 
     &:nth-child(2) {
-      width: 40vw;
+      max-width: 40vw;
     }
 
     .gradeColumn {
