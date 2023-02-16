@@ -55,10 +55,6 @@ export const fetchPacksTC = createAsyncThunk('fetchPacks', async (_, { dispatch,
   try {
     const res = await packsAPI.getPacks(params)
 
-    if (res.data.cardPacks.length === 0) {
-      dispatch(setAppError('Not found. Change the request parameters'))
-    }
-
     dispatch(setState(res.data))
     dispatch(setAppStatus('success'))
   } catch (e: any) {
