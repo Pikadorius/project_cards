@@ -41,9 +41,6 @@ export const fetchCardTC = createAsyncThunk(
     try {
       const res = await cardAPI.getCard(params, cardsPackID)
 
-      if (res.data.cards.length === 0) {
-        dispatch(setAppError('Cards not found'))
-      }
       dispatch(setState(res.data))
       dispatch(setAppStatus('success'))
     } catch (e: any) {

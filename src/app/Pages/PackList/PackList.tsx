@@ -8,6 +8,7 @@ import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
 import { Sort } from '../../../common/components/Sort/Sort'
 import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
 import { Tbody } from '../../../common/components/Table/Tbody/Tbody'
+import { Thead } from '../../../common/components/Table/Thead/Thead'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
@@ -75,7 +76,8 @@ export const PackList = () => {
             <Search initialValue={packName} onChange={searchByName} />
             <Sort />
           </SearchPanel>
-          <TablePackListWrapper packList={packList}>
+          <TablePackListWrapper>
+            <Thead packList={packList} />
             <Tbody packs={packs} />
           </TablePackListWrapper>
           <SuperPagination

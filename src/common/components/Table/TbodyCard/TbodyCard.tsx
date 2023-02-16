@@ -9,6 +9,7 @@ import { CardType } from '../../../../featuries/card/cardType'
 import { useAppDispatch } from '../../../hooks/AppDispatch'
 import { useAppSelector } from '../../../hooks/AppSelector'
 import { dateHandler } from '../../../utils/dateHandler'
+import { EmptyPack } from '../../EmptyPack/EmptyPack'
 import { CardsRating } from '../../Rating/Rating'
 
 import s from './TbodyCard.module.scss'

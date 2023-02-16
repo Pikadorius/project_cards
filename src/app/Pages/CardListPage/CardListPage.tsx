@@ -3,11 +3,13 @@ import React, { useCallback, useEffect } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import arrow from '../../../assets/arrow.svg'
+import { EmptyPack } from '../../../common/components/EmptyPack/EmptyPack'
 import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SerachPanel'
 import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
 import { TbodyCard } from '../../../common/components/Table/TbodyCard/TbodyCard'
+import { Thead } from '../../../common/components/Table/Thead/Thead'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch } from '../../../common/hooks/AppDispatch'
 import { useAppSelector } from '../../../common/hooks/AppSelector'
@@ -31,8 +33,8 @@ export const CardListPage = () => {
   const cardQuestion = useAppSelector(state => state.card.searchParams.cardQuestion)
   const sortCards = useAppSelector(state => state.card.searchParams.sortCards)
   const cardsTotalCount = useAppSelector(state => state.card.searchParams.cardsTotalCount)
-  const pack = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
-  const name = pack?.name
+  const packActive = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
+  const namePackActive = packActive?.name
 
   const searchByName = (value: string) => {
     dispatch(setSearchCardParams({ cardQuestion: value }))
@@ -67,7 +69,7 @@ export const CardListPage = () => {
       if (!id) return
       dispatch(fetchCardTC(id))
     },
-    [id, cardQuestion, name]
+    [id, cardQuestion, sortCards, page, pageCount, namePackActive]
   )
 
   return (
@@ -79,20 +81,26 @@ export const CardListPage = () => {
             <span className={s.backwardText}>Back to Packs List</span>
           </div>
           <CardHeader onClick={createCards} />
+
           <SearchPanel>
             <Search initialValue={cardQuestion} onChange={searchByName} />
           </SearchPanel>
-
-          <TablePackListWrapper cardList={cardsList}>
-            {!!cardsTotalCount && <TbodyCard card={card} />}
-          </TablePackListWrapper>
-
-          <SuperPagination
-            page={page}
-            totalCount={pagesTotalCount}
-            itemsCountForPage={pageCount}
-            onChange={onChange}
-          />
+          {cardsTotalCount === 0 ? (
+            <EmptyPack />
+          ) : (
+            <>
+              <TablePackListWrapper>
+                <Thead cardList={cardsList} />
+                <TbodyCard card={card} />
+              </TablePackListWrapper>
+              <SuperPagination
+                page={page}
+                totalCount={pagesTotalCount}
+                itemsCountForPage={pageCount}
+                onChange={onChange}
+              />
+            </>
+          )}
         </div>
       </div>
     </div>
