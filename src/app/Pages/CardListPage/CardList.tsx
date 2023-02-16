@@ -17,9 +17,9 @@ import { getIsLoggedIn } from '../../../common/selectors/selectors'
 import { createCardTC, fetchCardTC, setSearchCardParams } from '../../../featuries/card/cardSlice'
 
 import { CardHeader } from './CardHeader/CardHeader'
-import s from './CardListPage.module.scss'
+import s from './CardList.module.scss'
 
-export const CardListPage = () => {
+export const CardList = () => {
   const dispatch = useAppDispatch()
   let { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
