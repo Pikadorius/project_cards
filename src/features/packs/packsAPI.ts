@@ -1,7 +1,7 @@
-import { instance } from '../../common/constans/instance'
-
 import { SearchParamsType } from './packsSlice'
 import { CreatePackRequestType, GetPacksResponseType, UpdatePackRequestType } from './packsType'
+
+import { instance } from 'common/constans/instance'
 
 export const packsAPI = {
   getPacks: (params: SearchParamsType) => {

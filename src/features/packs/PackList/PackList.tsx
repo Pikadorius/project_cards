@@ -1,8 +1,20 @@
 import React, { useEffect } from 'react'
 
-import { Navigate, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 
-import { isLoggedInSelector } from '../../features/auth/authSelectors'
+import { isLoggedInSelector } from '../../auth/authSelectors'
+import {
+  packByUserSelector,
+  packNameSelector,
+  packsCountOnPageSelector,
+  packsListSelector,
+  packsMaxSelector,
+  packsMinSelector,
+  packSortSelector,
+  packsPageSelector,
+  packsSelector,
+  packsTotalPageCountSelector,
+} from '../packsSelectors'
 
 import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
@@ -19,17 +31,17 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { createPackTC, fetchPacksTC, setSearchParams } from 'features/packs/packsSlice'
 
 export const PackList = () => {
-  const packList = useAppSelector(state => state.app.packList)
-  const packs = useAppSelector(state => state.packs.cardPacks)
+  const packList = useAppSelector(packsListSelector)
+  const packs = useAppSelector(packsSelector)
   const isLoggedIn = useAppSelector(isLoggedInSelector)
-  const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
-  const totalPagesCount = useAppSelector(state => state.packs.searchParams.totalPagesCount)
-  const page = useAppSelector(state => state.packs.searchParams.page)
-  const max = useAppSelector(state => state.packs.searchParams.max)
-  const min = useAppSelector(state => state.packs.searchParams.min)
-  const user_id = useAppSelector(state => state.packs.searchParams.user_id)
-  const sortPack = useAppSelector(state => state.packs.searchParams.sortPack)
-  const packName = useAppSelector(state => state.packs.searchParams.packName)
+  const pageCount = useAppSelector(packsCountOnPageSelector)
+  const totalPagesCount = useAppSelector(packsTotalPageCountSelector)
+  const page = useAppSelector(packsPageSelector)
+  const max = useAppSelector(packsMaxSelector)
+  const min = useAppSelector(packsMinSelector)
+  const user_id = useAppSelector(packByUserSelector)
+  const sortPack = useAppSelector(packSortSelector)
+  const packName = useAppSelector(packNameSelector)
   const emptyCheck = packName !== '' && packs.length === 0
 
   const dispatch = useAppDispatch()

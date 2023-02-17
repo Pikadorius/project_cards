@@ -2,18 +2,19 @@ import React from 'react'
 
 import { Navigate, useNavigate } from 'react-router-dom'
 
-import arrow from '../../assets/arrow.svg'
-import avatar from '../../assets/avatarBig.png'
-import camera from '../../assets/cameraIcon.svg'
-import logout from '../../assets/logout.svg'
-import EditableSpan from '../../common/components/EditableSpan/EditableSpan'
-import { PATH } from '../../common/constans/path'
-import { useAppDispatch } from '../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../common/hooks/useAppSelector'
-import { userNameHandler } from '../../common/utils/userNameHandler'
-import { logoutTC } from '../../features/auth/authSlice'
+import EditableSpan from '../EditableSpan/EditableSpan'
 
 import s from './UserAccount.module.scss'
+
+import arrow from 'assets/arrow.svg'
+import avatar from 'assets/avatarBig.png'
+import camera from 'assets/cameraIcon.svg'
+import logout from 'assets/logout.svg'
+import { PATH } from 'common/constans/path'
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { useAppSelector } from 'common/hooks/useAppSelector'
+import { userNameHandler } from 'common/utils/userNameHandler'
+import { logoutTC } from 'features/auth/authSlice'
 
 export const UserAccount = () => {
   const dispatch = useAppDispatch()

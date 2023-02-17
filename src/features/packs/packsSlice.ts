@@ -1,8 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { setAppError, setAppStatus } from '../../app/appSlice'
-import { RootStateType } from '../../store/store'
-
 import { packsAPI } from './packsAPI'
 import {
   CreatePackRequestType,
@@ -12,7 +9,9 @@ import {
   UpdatePackRequestType,
 } from './packsType'
 
+import { setAppError, setAppStatus } from 'app/appSlice'
 import { errorUtils } from 'common/utils/errorHandler'
+import { RootStateType } from 'store/store'
 
 export type SearchParamsType = {
   packName: string
