@@ -1,16 +1,15 @@
 import * as React from 'react'
 
 import CloseIcon from '@mui/icons-material/Close'
-import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import Snackbar from '@mui/material/Snackbar'
 
+import { appErrorSelector } from '../../../app/appSelectors'
 import { setAppError } from '../../../app/appSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks'
-import { getAppError } from '../../selectors/selectors'
 
 export default function SimpleSnackbar() {
-  const error = useAppSelector(getAppError)
+  const error = useAppSelector(appErrorSelector)
   const dispatch = useAppDispatch()
 
   const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {

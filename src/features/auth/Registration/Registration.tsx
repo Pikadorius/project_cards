@@ -3,21 +3,20 @@ import { useEffect } from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Navigate } from 'react-router-dom'
 
-import eye from '../../../assets/eye.svg'
-import { Button } from '../../../common/components/Button/Button'
-import { FormWrapper } from '../../../common/components/Form/FormWrapper/FormWrapper'
-import s from '../../../common/components/Form/FormWrapper/FormWrapper.module.scss'
-import { Input } from '../../../common/components/Input/Input'
-import { PATH } from '../../../common/constans/path'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import { getIsLoggedIn, getIsRegistred } from '../../../common/selectors/selectors'
-import { formHandler } from '../../../common/utils/formHandler'
+import { isLoggedInSelector, isRegisteredSelector } from '../authSelectors'
 import { isRegistred, registerTC } from '../authSlice'
 
+import { Button } from 'common/components/Button/Button'
+import { FormWrapper } from 'common/components/Form/FormWrapper/FormWrapper'
+import s from 'common/components/Form/FormWrapper/FormWrapper.module.scss'
+import { Input } from 'common/components/Input/Input'
+import { PATH } from 'common/constans/path'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { formHandler } from 'common/utils'
+
 export const Registration = () => {
-  const isRegistered = useAppSelector(getIsRegistred)
-  const isLoggedIn = useAppSelector(getIsLoggedIn)
+  const isRegistered = useAppSelector(isRegisteredSelector)
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
   const dispacth = useAppDispatch()
 
   useEffect(() => {

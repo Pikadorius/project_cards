@@ -2,6 +2,8 @@ import React, { useEffect } from 'react'
 
 import { Navigate, useSearchParams } from 'react-router-dom'
 
+import { isLoggedInSelector } from '../../features/auth/authSelectors'
+
 import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
 
@@ -14,13 +16,12 @@ import { TablePackListWrapper } from 'common/components/Table/TablePackListWrapp
 import { Tbody } from 'common/components/Table/Tbody/Tbody'
 import { Thead } from 'common/components/Table/Thead/Thead'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { getIsLoggedIn } from 'common/selectors/selectors'
 import { createPackTC, fetchPacksTC, setSearchParams } from 'features/packs/packsSlice'
 
 export const PackList = () => {
   const packList = useAppSelector(state => state.app.packList)
   const packs = useAppSelector(state => state.packs.cardPacks)
-  const isLoggedIn = useAppSelector(getIsLoggedIn)
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
   const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
   const totalPagesCount = useAppSelector(state => state.packs.searchParams.totalPagesCount)
   const page = useAppSelector(state => state.packs.searchParams.page)

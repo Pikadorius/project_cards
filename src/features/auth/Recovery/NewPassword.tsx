@@ -3,20 +3,20 @@ import React from 'react'
 import { FieldValues } from 'react-hook-form'
 import { Navigate, useParams } from 'react-router-dom'
 
-import { Button } from '../../../common/components/Button/Button'
-import { FormWrapper } from '../../../common/components/Form/FormWrapper/FormWrapper'
-import s from '../../../common/components/Form/FormWrapper/FormWrapper.module.scss'
-import { Input } from '../../../common/components/Input/Input'
-import { PATH } from '../../../common/constans/path'
-import { useAppDispatch } from '../../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
-import { getIsPasswordChanged } from '../../../common/selectors/selectors'
-import { formHandler } from '../../../common/utils/formHandler'
+import { isPasswordChangedSelector } from '../authSelectors'
 import { setNewPasswordTC } from '../authSlice'
+
+import { Button } from 'common/components/Button/Button'
+import { FormWrapper } from 'common/components/Form/FormWrapper/FormWrapper'
+import s from 'common/components/Form/FormWrapper/FormWrapper.module.scss'
+import { Input } from 'common/components/Input/Input'
+import { PATH } from 'common/constans/path'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { formHandler } from 'common/utils'
 
 export const NewPassword = () => {
   let { resetPasswordToken } = useParams()
-  const isPasswordChanged = useAppSelector(getIsPasswordChanged)
+  const isPasswordChanged = useAppSelector(isPasswordChangedSelector)
   const dispatch = useAppDispatch()
   const { errorPassword, errorConfirmPwd, handleSubmit, isValid, register } = formHandler(
     'password',

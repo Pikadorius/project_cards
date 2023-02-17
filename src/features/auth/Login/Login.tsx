@@ -1,7 +1,6 @@
 import { FieldValues } from 'react-hook-form'
 import { Navigate } from 'react-router-dom'
 
-import eye from '../../../assets/eye.svg'
 import { Button } from '../../../common/components/Button/Button'
 import { CheckBox } from '../../../common/components/CheckBox/CheckBox'
 import { FormWrapper } from '../../../common/components/Form/FormWrapper/FormWrapper'
@@ -9,13 +8,13 @@ import s from '../../../common/components/Form/FormWrapper/FormWrapper.module.sc
 import { Input } from '../../../common/components/Input/Input'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks'
-import { getIsLoggedIn } from '../../../common/selectors/selectors'
 import { formHandler } from '../../../common/utils'
+import { isLoggedInSelector } from '../authSelectors'
 import { loginTC } from '../authSlice'
 
 export const Login = () => {
   const dispatch = useAppDispatch()
-  const isLoggedIn = useAppSelector(getIsLoggedIn)
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
   const { errorEmail, errorPassword, handleSubmit, isValid, register } = formHandler(
     'email',
     'password'

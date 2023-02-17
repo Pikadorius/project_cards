@@ -11,9 +11,8 @@ import { TablePackListWrapper } from '../../common/components/Table/TablePackLis
 import { TbodyCard } from '../../common/components/Table/TbodyCard/TbodyCard'
 import { Thead } from '../../common/components/Table/Thead/Thead'
 import { PATH } from '../../common/constans/path'
-import { useAppDispatch } from '../../common/hooks/useAppDispatch'
-import { useAppSelector } from '../../common/hooks/useAppSelector'
-import { getIsLoggedIn } from '../../common/selectors/selectors'
+import { useAppDispatch, useAppSelector } from '../../common/hooks'
+import { isLoggedInSelector } from '../../features/auth/authSelectors'
 import { createCardTC, fetchCardTC, setSearchCardParams } from '../../features/cards/cardSlice'
 
 import { CardHeader } from './CardHeader/CardHeader'
@@ -23,8 +22,7 @@ export const CardList = () => {
   const dispatch = useAppDispatch()
   let { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const userId = useAppSelector(state => state.auth.user._id)
-  const isLoggedIn = useAppSelector(getIsLoggedIn)
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
   const cardsList = useAppSelector(state => state.app.cardList)
   const card = useAppSelector(state => state.card.cards)
   const page = useAppSelector(state => state.card.searchParams.page)
