@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 
-import { appReducer } from '../app/appSlice'
-import { loadState, saveState } from '../common/utils'
-import { authReducer } from '../features/auth/authSlice'
-import { cardReducer } from '../features/cards/cardSlice'
-import packsReducer from '../features/packs/packsSlice'
+import { appReducer } from 'app/appSlice'
+import { loadState, saveState } from 'common/utils'
+import { authReducer } from 'features/auth/authSlice'
+import { cardReducer } from 'features/cards/cardSlice'
+import packsReducer from 'features/packs/packsSlice'
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +15,8 @@ export const store = configureStore({
   },
   preloadedState: loadState(),
 })
+
+export type RootStateType = ReturnType<typeof store.getState>
 
 store.subscribe(() => {
   saveState(store.getState())

@@ -9,7 +9,7 @@ import { NewPassword } from '../features/auth/Recovery/NewPassword'
 import { Recovery } from '../features/auth/Recovery/Recovery'
 import { Registration } from '../features/auth/Registration/Registration'
 
-import { CardList } from './CardListPage/CardList'
+import { CardList } from './CardList/CardList'
 import { PackList } from './PackList/PackList'
 import RequireAuth from './RequireAuth'
 import { UserAccount } from './UserAccount/UserAccount'

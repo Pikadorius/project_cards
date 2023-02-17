@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { setAppError, setAppStatus } from '../../app/appSlice'
-import { RootStateType } from '../../common/hooks/useAppSelector'
+import { RootStateType } from '../../store/store'
 
 import { packsAPI } from './packsAPI'
 import {

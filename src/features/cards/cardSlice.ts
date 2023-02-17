@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { setAppError, setAppStatus } from '../../app/appSlice'
-
 import { cardAPI } from './cardAPI'
 import {
   CardQueryParamsType,
@@ -11,8 +9,9 @@ import {
   UpdateCardObjType,
 } from './cardType'
 
-import { RootStateType } from 'common/hooks/useAppSelector'
+import { setAppError, setAppStatus } from 'app/appSlice'
 import { errorUtils } from 'common/utils/errorHandler'
+import { RootStateType } from 'store/store'
 
 const initialState: InititalStateCardType = {
   cards: [],

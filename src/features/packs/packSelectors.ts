@@ -1,4 +1,4 @@
-import { RootStateType } from '../../common/hooks/useAppSelector'
+import { RootStateType } from '../../store/store'
 
 export const packsListSelector = (state: RootStateType) => state.app.packList
 export const packsSelector = (state: RootStateType) => state.packs.cardPacks

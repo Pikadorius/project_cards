@@ -1,4 +1,4 @@
-import { RootStateType } from '../hooks/useAppSelector'
+import { RootStateType } from '../../store/store'
 
 const KEY = 'packs/cards'
 

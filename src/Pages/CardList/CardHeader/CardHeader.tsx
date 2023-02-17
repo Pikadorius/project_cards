@@ -2,10 +2,10 @@ import React, { FC, memo } from 'react'
 
 import { useParams } from 'react-router-dom'
 
-import { PackMenu } from '../../../common/components/PackMenu/PackMenu'
-import { useAppSelector } from '../../../common/hooks/useAppSelector'
-
 import s from './CardHeader.module.scss'
+
+import { PackMenu } from 'common/components/PackMenu/PackMenu'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 
 type CardHeaderType = {
   onClick: () => void
