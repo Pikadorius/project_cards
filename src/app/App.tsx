@@ -9,7 +9,7 @@ import Loader from '../common/components/Loader/Loader'
 import SimpleSnackbar from '../common/components/SnackBar/Snackbar'
 import { useAppDispatch, useAppSelector } from '../common/hooks'
 import { authMeTC } from '../features/auth/authSlice'
-import Pages from '../Pages/Pages'
+import Pages from '../pages/Pages'
 
 import { appStatusSelector, isInitializedSelector } from './appSelectors'
 
