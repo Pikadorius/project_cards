@@ -2,9 +2,9 @@ import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 
 import { Slider } from '@mui/material'
 
-import { setSearchParams } from '../../../featuries/packs/packsSlice'
-import { useAppDispatch } from '../../hooks/AppDispatch'
-import { useAppSelector } from '../../hooks/AppSelector'
+import { setSearchParams } from '../../../features/packs/packsSlice'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 
 import s from './Range.module.scss'
 

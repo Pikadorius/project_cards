@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-import { setSearchParams } from '../../../featuries/packs/packsSlice'
-import { useAppDispatch } from '../../hooks/AppDispatch'
-import { useAppSelector } from '../../hooks/AppSelector'
+import { setSearchParams } from '../../../features/packs/packsSlice'
+import { useAppDispatch, useAppSelector } from '../../hooks'
 
 import s from './ButtonGroupe.module.scss'
 

@@ -1,9 +1,6 @@
 import React, { memo, ReactNode } from 'react'
 
-import { CardListType, PackListType } from '../../../../app/appSlice'
-import { PackType } from '../../../../featuries/packs/packsType'
 import { Table } from '../Table'
-import { Thead } from '../Thead/Thead'
 
 import s from './TablePackListWrapper.module.scss'
 

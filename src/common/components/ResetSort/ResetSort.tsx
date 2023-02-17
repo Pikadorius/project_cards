@@ -2,9 +2,9 @@ import React from 'react'
 
 import { resetSort, setAppError } from '../../../app/appSlice'
 import sort from '../../../assets/filterRemove.svg'
-import { resetAll, setSearchParams } from '../../../featuries/packs/packsSlice'
-import { useAppDispatch } from '../../hooks/AppDispatch'
-import { useAppSelector } from '../../hooks/AppSelector'
+import { resetAll, setSearchParams } from '../../../features/packs/packsSlice'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { useAppSelector } from '../../hooks/useAppSelector'
 
 import s from './ResetSort.module.scss'
 

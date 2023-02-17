@@ -6,8 +6,7 @@ import IconButton from '@mui/material/IconButton'
 import Snackbar from '@mui/material/Snackbar'
 
 import { setAppError } from '../../../app/appSlice'
-import { useAppDispatch } from '../../hooks/AppDispatch'
-import { useAppSelector } from '../../hooks/AppSelector'
+import { useAppDispatch, useAppSelector } from '../../hooks'
 import { getAppError } from '../../selectors/selectors'
 
 export default function SimpleSnackbar() {

@@ -7,11 +7,10 @@ import IconButton from '@mui/material/IconButton'
 import { Link } from 'react-router-dom'
 
 import ava from '../../../assets/ava.png'
-import { logoutTC } from '../../../featuries/auth/authSlice'
-import { setSearchParams } from '../../../featuries/packs/packsSlice'
+import { logoutTC } from '../../../features/auth/authSlice'
+import { setSearchParams } from '../../../features/packs/packsSlice'
 import { PATH } from '../../constans/path'
-import { useAppDispatch } from '../../hooks/AppDispatch'
-import { useAppSelector } from '../../hooks/AppSelector'
+import { useAppDispatch, useAppSelector } from '../../hooks'
 
 export function AccountMenu() {
   const dispatch = useAppDispatch()

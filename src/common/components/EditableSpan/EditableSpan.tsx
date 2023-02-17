@@ -4,8 +4,8 @@ import { FieldValues } from 'react-hook-form'
 
 import pen from '../../../assets/pen.svg'
 import submit from '../../../assets/submit.svg'
-import { updateNameTC } from '../../../featuries/auth/authSlice'
-import { useAppDispatch } from '../../hooks/AppDispatch'
+import { updateNameTC } from '../../../features/auth/authSlice'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { formHandler } from '../../utils/formHandler'
 
 import s from './EditableSpan.module.scss'

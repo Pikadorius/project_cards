@@ -7,10 +7,9 @@ import {
   setSortStatusPack,
 } from '../../../../app/appSlice'
 import sort from '../../../../assets/sortTable.svg'
-import { setSearchCardParams } from '../../../../featuries/card/cardSlice'
-import { setSearchParams } from '../../../../featuries/packs/packsSlice'
-import { useAppDispatch } from '../../../hooks/AppDispatch'
-import { useAppSelector } from '../../../hooks/AppSelector'
+import { setSearchCardParams } from '../../../../features/cards/cardSlice'
+import { setSearchParams } from '../../../../features/packs/packsSlice'
+import { useAppDispatch, useAppSelector } from '../../../hooks'
 
 import s from './Thead.module.scss'
 

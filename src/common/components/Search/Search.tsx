@@ -1,10 +1,9 @@
 import React, { ChangeEvent, FC, memo, useEffect, useState } from 'react'
 
-import { setAppStatus } from '../../../app/appSlice'
 import del from '../../../assets/close.png'
 import search from '../../../assets/search.svg'
-import { useAppDispatch } from '../../hooks/AppDispatch'
-import useDebounce from '../../hooks/useDebounce'
+import { useDebounce } from '../../hooks'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
 
 import s from './Search.module.scss'
 

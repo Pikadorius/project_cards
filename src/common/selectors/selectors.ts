@@ -1,4 +1,4 @@
-import { RootStateType } from '../hooks/AppSelector'
+import { RootStateType } from '../hooks/useAppSelector'
 
 //auth selectors
 export const getIsLoggedIn = (state: RootStateType) => state.auth.isLoggedIn

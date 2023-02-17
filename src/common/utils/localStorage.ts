@@ -1,6 +1,6 @@
-import { RootStateType } from '../hooks/AppSelector'
+import { RootStateType } from '../hooks/useAppSelector'
 
-const KEY = 'packs/card'
+const KEY = 'packs/cards'
 
 export function loadState() {
   try {

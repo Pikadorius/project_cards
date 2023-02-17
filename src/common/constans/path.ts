@@ -6,7 +6,7 @@ export const PATH = {
   NEW_PASSWORD: '/set-new-password',
   RECOVERY_INFO: '/recovery-info',
   PACK_LIST: '/pack-list',
-  CARD_LIST: '/card-list',
-  CARD_LIST_ID: '/card-list/:id',
+  CARD_LIST: '/cards-list',
+  CARD_LIST_ID: '/cards-list/:id',
   CURRENT_URL: window.location.href.split('#')[0],
 } as const

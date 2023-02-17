@@ -2,8 +2,8 @@ import React from 'react'
 
 import { Pagination } from '@mui/material'
 
-import { setSearchParams } from '../../../../featuries/packs/packsSlice'
-import { useAppDispatch } from '../../../hooks/AppDispatch'
+import { setSearchParams } from '../../../../features/packs/packsSlice'
+import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { SuperSelect } from '../../Select/SuperSelect'
 
 import s from './SuperPagination.module.css'
