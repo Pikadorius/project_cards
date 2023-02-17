@@ -10,9 +10,7 @@ const schemaParam = {
       /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
       'Incorrect email'
     ),
-  password: Yup.string()
-    .required('No password provided')
-    .matches(/(?=.*\d)(?=.*[a-z]).{8,}/, 'Incorrect password'),
+  password: Yup.string().required('No password provided'),
   confirmPwd: Yup.string().oneOf([Yup.ref('password')], 'Passwords does not match'),
   name: Yup.string()
     .required('Enter your name')

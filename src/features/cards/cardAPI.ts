@@ -11,21 +11,18 @@ import {
 
 export const cardAPI = {
   getCard: (params: SearchParamsCardType, cardsPackID: string) => {
-    return instance.get<'', AxiosResponse<GetCardResponseType>, SearchParamsCardType>(
-      'cards/card',
-      {
-        params: {
-          cardAnswer: params.cardAnswer,
-          cardQuestion: params.cardQuestion,
-          cardsPack_id: cardsPackID,
-          min: params.min,
-          max: params.max,
-          sortCards: params.sortCards,
-          page: params.page,
-          pageCount: params.pageCount,
-        },
-      }
-    )
+    return instance.get<GetCardResponseType>('cards/card', {
+      params: {
+        cardAnswer: params.cardAnswer,
+        cardQuestion: params.cardQuestion,
+        cardsPack_id: cardsPackID,
+        min: params.min,
+        max: params.max,
+        sortCards: params.sortCards,
+        page: params.page,
+        pageCount: params.pageCount,
+      },
+    })
   },
   createCard: (data: CreateCardRequestType) => {
     return instance.post<'', AxiosResponse<GetCardResponseType>, CreateCardRequestType>(
