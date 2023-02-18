@@ -38,7 +38,7 @@ const initialState: InitialStateType = {
   appError: null,
   appStatus: 'idle',
   isInitialized: false,
-  isModalActive: true,
+  isModalActive: false,
   packList,
   cardList,
 }
