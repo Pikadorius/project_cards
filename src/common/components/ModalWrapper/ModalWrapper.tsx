@@ -15,19 +15,21 @@ type PropsType = {
 }
 const ModalWrapper: FC<PropsType> = ({ children, title }) => {
   const dispatch = useAppDispatch()
+  const closeModal = () => {
+    dispatch(setModalActive(false))
+  }
 
   return (
     <div className={s.container}>
       <div className={s.wrapper}>
-        <div className={s.modalTitle}>
-          {title}
-          <IconButton aria-label="delete" onClick={() => dispatch(setModalActive(false))}>
+        <div className={s.modalHeader}>
+          <div className={s.title}>{title}</div>
+          <IconButton onClick={closeModal} size={'small'}>
             <CloseIcon />
           </IconButton>
         </div>
         <Divider />
-        <div>sdsd</div>
-        {children}
+        <div>{children}</div>
       </div>
     </div>
   )
