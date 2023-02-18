@@ -2,17 +2,17 @@ import React from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { UserAccount } from '../common/components/UserAccount/UserAccount'
-import { PATH } from '../common/constans/path'
-import { Login } from '../features/auth/Login/Login'
-import { CheckInfoRecovery } from '../features/auth/Recovery/CheckInfoRecovery'
-import { NewPassword } from '../features/auth/Recovery/NewPassword'
-import { Recovery } from '../features/auth/Recovery/Recovery'
-import { Registration } from '../features/auth/Registration/Registration'
-import { CardList } from '../features/cards/CardList/CardList'
-import { PackList } from '../features/packs/PackList/PackList'
-
 import RequireAuth from './RequireAuth'
+
+import { UserAccount } from 'common/components/UserAccount/UserAccount'
+import { PATH } from 'common/constans/path'
+import { Login } from 'features/auth/Login/Login'
+import { CheckInfoRecovery } from 'features/auth/Recovery/CheckInfoRecovery'
+import { NewPassword } from 'features/auth/Recovery/NewPassword'
+import { Recovery } from 'features/auth/Recovery/Recovery'
+import { Registration } from 'features/auth/Registration/Registration'
+import { CardList } from 'features/cards/CardList/CardList'
+import { PackList } from 'features/packs/PackList/PackList'
 
 const Pages = () => {
   return (

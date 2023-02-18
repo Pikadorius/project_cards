@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 
 import { useSearchParams } from 'react-router-dom'
 
+import ModalWrapper from '../../../common/components/ModalWrapper/ModalWrapper'
 import { isLoggedInSelector } from '../../auth/authSelectors'
 import {
   packsUserIdSelector,
@@ -78,6 +79,7 @@ export const PackList = () => {
 
   return (
     <div className={s.container}>
+      {/*<ModalWrapper title={'Add new pack'} />*/}
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
           <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />

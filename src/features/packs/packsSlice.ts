@@ -9,7 +9,7 @@ import {
   UpdatePackRequestType,
 } from './packsType'
 
-import { setAppError, setAppStatus } from 'app/appSlice'
+import { setAppStatus } from 'app/appSlice'
 import { errorUtils } from 'common/utils/errorHandler'
 import { RootStateType } from 'store/store'
 
@@ -29,6 +29,7 @@ export type SearchParamsType = {
 type InititalStateType = {
   cardPacks: PackType[]
   searchParams: SearchParamsType
+  isModalActive: boolean
 }
 
 const initialState: InititalStateType = {
@@ -45,6 +46,7 @@ const initialState: InititalStateType = {
     minCardsCount: 0,
     maxCardsCount: 0,
   },
+  isModalActive: false,
 }
 
 export const fetchPacksTC = createAsyncThunk('fetchPacks', async (_, { dispatch, getState }) => {
