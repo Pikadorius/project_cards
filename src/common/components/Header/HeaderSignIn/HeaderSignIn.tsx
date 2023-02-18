@@ -2,9 +2,9 @@ import React from 'react'
 
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { PATH } from '../../../constans/path'
-
 import s from './HeaderSignIn.module.scss'
+
+import { PATH } from 'common/constans/path'
 
 export const HeaderSignIn = () => {
   const navigate = useNavigate()

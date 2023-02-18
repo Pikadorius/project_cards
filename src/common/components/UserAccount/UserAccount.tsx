@@ -11,17 +11,17 @@ import avatar from 'assets/avatarBig.png'
 import camera from 'assets/cameraIcon.svg'
 import logout from 'assets/logout.svg'
 import { PATH } from 'common/constans/path'
-import { useAppDispatch } from 'common/hooks/useAppDispatch'
-import { useAppSelector } from 'common/hooks/useAppSelector'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { userNameHandler } from 'common/utils/userNameHandler'
+import { authUserInfoSelector, isLoggedInSelector } from 'features/auth/authSelectors'
 import { logoutTC } from 'features/auth/authSlice'
 
 export const UserAccount = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
-  const isLoggedIn = useAppSelector(state => state.auth.isLoggedIn)
+  const isLoggedIn = useAppSelector(isLoggedInSelector)
   // данные для UserAccount (name and email)
-  const user = useAppSelector(state => state.auth.user)
+  const user = useAppSelector(authUserInfoSelector)
   const userName = userNameHandler(user.name)
   // пока только на имя, аватарку не трогал
 

@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
 
-import emptyPack from '../../../assets/emptyPack.png'
-
 import s from './EmptyPackSearch.module.scss'
+
+import emptyPack from 'assets/emptyPack.png'
 
 export const EmptyPackSearch = memo(() => {
   return (

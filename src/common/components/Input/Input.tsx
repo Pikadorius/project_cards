@@ -2,10 +2,10 @@ import React, { FC, memo, useState } from 'react'
 
 import { FieldValues, UseFormRegister } from 'react-hook-form'
 
-import noEye from '../../../assets/eye-close.svg'
-import eye from '../../../assets/eye.svg'
-
 import s from './Input.module.scss'
+
+import noEye from 'assets/eye-close.svg'
+import eye from 'assets/eye.svg'
 
 type InputType = {
   label: string

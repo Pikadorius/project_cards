@@ -6,15 +6,16 @@ import { Avatar, Box, Divider, ListItemIcon, Menu, MenuItem, Tooltip } from '@mu
 import IconButton from '@mui/material/IconButton'
 import { Link } from 'react-router-dom'
 
-import ava from '../../../assets/ava.png'
-import { logoutTC } from '../../../features/auth/authSlice'
-import { setSearchParams } from '../../../features/packs/packsSlice'
-import { PATH } from '../../constans/path'
-import { useAppDispatch, useAppSelector } from '../../hooks'
+import ava from 'assets/ava.png'
+import { PATH } from 'common/constans/path'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { authUserIdSelector } from 'features/auth/authSelectors'
+import { logoutTC } from 'features/auth/authSlice'
+import { setSearchParams } from 'features/packs/packsSlice'
 
 export function AccountMenu() {
   const dispatch = useAppDispatch()
-  const user_id = useAppSelector(state => state.auth.user._id)
+  const user_id = useAppSelector(authUserIdSelector)
   const logoutHandler = () => {
     dispatch(logoutTC())
   }

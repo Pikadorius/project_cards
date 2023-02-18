@@ -9,3 +9,5 @@ export const isMessageSendSelector = (state: RootStateType) => state.auth.isMess
 export const isPasswordChangedSelector = (state: RootStateType) => state.auth.isPasswordChanged
 
 export const getRecoveryEmailSelector = (state: RootStateType) => state.auth.emailInRecovery
+export const authUserIdSelector = (state: RootStateType) => state.auth.user._id
+export const authUserInfoSelector = (state: RootStateType) => state.auth.user

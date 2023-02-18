@@ -1,22 +1,30 @@
 import React from 'react'
 
-import { resetSort, setAppError } from '../../../app/appSlice'
-import sort from '../../../assets/filterRemove.svg'
-import { resetAll, setSearchParams } from '../../../features/packs/packsSlice'
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { useAppSelector } from '../../hooks/useAppSelector'
-
 import s from './ResetSort.module.scss'
+
+import { resetSort, setAppError } from 'app/appSlice'
+import sort from 'assets/filterRemove.svg'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import {
+  packsCountOnPageSelector,
+  packsMaxSelector,
+  packsMinSelector,
+  packsNameSelector,
+  packsPageSelector,
+  packsSortSelector,
+  packsUserIdSelector,
+} from 'features/packs/packsSelectors'
+import { resetAll, setSearchParams } from 'features/packs/packsSlice'
 
 export const ResetSort = () => {
   const dispatch = useAppDispatch()
-  const userId = useAppSelector(state => state.packs.searchParams.user_id)
-  const packName = useAppSelector(state => state.packs.searchParams.packName)
-  const page = useAppSelector(state => state.packs.searchParams.page)
-  const min = useAppSelector(state => state.packs.searchParams.min)
-  const max = useAppSelector(state => state.packs.searchParams.max)
-  const pageCount = useAppSelector(state => state.packs.searchParams.pageCount)
-  const sortPack = useAppSelector(state => state.packs.searchParams.sortPack)
+  const userId = useAppSelector(packsUserIdSelector)
+  const packName = useAppSelector(packsNameSelector)
+  const page = useAppSelector(packsPageSelector)
+  const min = useAppSelector(packsMinSelector)
+  const max = useAppSelector(packsMaxSelector)
+  const pageCount = useAppSelector(packsCountOnPageSelector)
+  const sortPack = useAppSelector(packsSortSelector)
   const onClick = () => {
     if (
       packName.length > 0 ||

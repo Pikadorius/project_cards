@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 
 import { isLoggedInSelector } from '../../auth/authSelectors'
 import {
-  packsByUserSelector,
+  packsUserIdSelector,
   packsNameSelector,
   packsCountOnPageSelector,
   packsListSelector,
@@ -39,7 +39,7 @@ export const PackList = () => {
   const page = useAppSelector(packsPageSelector)
   const max = useAppSelector(packsMaxSelector)
   const min = useAppSelector(packsMinSelector)
-  const user_id = useAppSelector(packsByUserSelector)
+  const user_id = useAppSelector(packsUserIdSelector)
   const sortPack = useAppSelector(packsSortSelector)
   const packName = useAppSelector(packsNameSelector)
   const emptyCheck = packName !== '' && packs.length === 0

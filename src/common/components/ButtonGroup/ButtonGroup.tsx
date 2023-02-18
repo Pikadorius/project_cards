@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 
-import { setSearchParams } from '../../../features/packs/packsSlice'
-import { useAppDispatch, useAppSelector } from '../../hooks'
-
 import s from './ButtonGroup.module.scss'
 
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { authUserIdSelector } from 'features/auth/authSelectors'
+import { packsSelector, packsUserIdSelector } from 'features/packs/packsSelectors'
+import { setSearchParams } from 'features/packs/packsSlice'
+
 export const ButtonGroup = () => {
-  const userId = useAppSelector(state => state.auth.user._id)
-  const paramId = useAppSelector(state => state.packs.searchParams.user_id)
-  const cardsPack = useAppSelector(state => state.packs.cardPacks)
+  const userId = useAppSelector(authUserIdSelector)
+  const paramId = useAppSelector(packsUserIdSelector)
+  const cardsPack = useAppSelector(packsSelector)
   const [countPack] = cardsPack
 
   const dispatch = useAppDispatch()

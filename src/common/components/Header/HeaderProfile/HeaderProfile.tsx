@@ -6,9 +6,10 @@ import s from './HeaderProfile.module.scss'
 
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { userNameHandler } from 'common/utils/userNameHandler'
+import { authUserInfoSelector } from 'features/auth/authSelectors'
 
 export const HeaderProfile = () => {
-  const user = useAppSelector(state => state.auth.user)
+  const user = useAppSelector(authUserInfoSelector)
   const userName = userNameHandler(user.name)
 
   return (

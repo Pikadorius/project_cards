@@ -4,9 +4,9 @@ import CloseIcon from '@mui/icons-material/Close'
 import IconButton from '@mui/material/IconButton'
 import Snackbar from '@mui/material/Snackbar'
 
-import { appErrorSelector } from '../../../app/appSelectors'
-import { setAppError } from '../../../app/appSlice'
-import { useAppDispatch, useAppSelector } from '../../hooks'
+import { appErrorSelector } from 'app/appSelectors'
+import { setAppError } from 'app/appSlice'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 
 export default function SimpleSnackbar() {
   const error = useAppSelector(appErrorSelector)

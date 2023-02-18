@@ -7,15 +7,15 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useNavigate } from 'react-router-dom'
 
-import Delete from '../../../assets/Delete.svg'
-import edit from '../../../assets/Edit.svg'
-import teacher from '../../../assets/teacher.svg'
-import { deletePackTC, updatePackTC } from '../../../features/packs/packsSlice'
-import { UpdatePackRequestType } from '../../../features/packs/packsType'
-import { PATH } from '../../constans/path'
-import { useAppDispatch, useAppSelector } from '../../hooks'
-
 import s from './PackMenu.module.scss'
+
+import Delete from 'assets/Delete.svg'
+import edit from 'assets/Edit.svg'
+import teacher from 'assets/teacher.svg'
+import { PATH } from 'common/constans/path'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { deletePackTC, updatePackTC } from 'features/packs/packsSlice'
+import { UpdatePackRequestType } from 'features/packs/packsType'
 
 type PackMenuType = {
   title: string

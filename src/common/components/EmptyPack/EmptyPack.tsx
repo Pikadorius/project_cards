@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
 
-import emptyPack from '../../../assets/emptyPack.png'
-import { useAppSelector } from '../../hooks/useAppSelector'
-
 import s from './EmptyPack.module.scss'
+
+import emptyPack from 'assets/emptyPack.png'
+import { useAppSelector } from 'common/hooks/useAppSelector'
 
 export const EmptyPack = memo(() => {
   const cardSearch = useAppSelector(state => state.card.searchParams.cardQuestion)

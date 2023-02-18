@@ -2,18 +2,19 @@ import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 
 import { Slider } from '@mui/material'
 
-import { setSearchParams } from '../../../features/packs/packsSlice'
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { useAppSelector } from '../../hooks/useAppSelector'
+import { packsAllSearchParametersSelector } from '../../../features/packs/packsSelectors'
 
 import s from './Range.module.scss'
+
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { setSearchParams } from 'features/packs/packsSlice'
 
 type RangeType = {}
 
 export const Range = () => {
+  s
   const dispatch = useAppDispatch()
-  const userId = useAppSelector(state => state.auth.user._id)
-  const params = useAppSelector(state => state.packs.searchParams)
+  const params = useAppSelector(packsAllSearchParametersSelector)
   const { minCardsCount, maxCardsCount, min, max } = params
 
   const [value, setValue] = useState<number[]>([min, max])

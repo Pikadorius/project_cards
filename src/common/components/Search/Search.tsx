@@ -1,11 +1,10 @@
 import React, { ChangeEvent, FC, memo, useEffect, useState } from 'react'
 
-import del from '../../../assets/close.png'
-import search from '../../../assets/search.svg'
-import { useDebounce } from '../../hooks'
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-
 import s from './Search.module.scss'
+
+import del from 'assets/close.png'
+import search from 'assets/search.svg'
+import { useDebounce } from 'common/hooks'
 
 type SearchPropsType = {
   initialValue: string
@@ -17,7 +16,6 @@ export const Search: FC<SearchPropsType> = memo(({ initialValue, onChange }) => 
     setValue(initialValue)
   }, [initialValue])
 
-  const dispatch = useAppDispatch()
   const [value, setValue] = useState<string>(initialValue)
 
   let debouncedValue = useDebounce<string>(value, 200)

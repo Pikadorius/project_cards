@@ -1,13 +1,14 @@
 import React from 'react'
 
-import logo from '../../../assets/logo.svg'
-import { isLoggedInSelector } from '../../../features/auth/authSelectors'
-import { useAppSelector } from '../../hooks'
 import { Logo } from '../Logo/Logo'
 
 import s from './Header.module.scss'
 import { HeaderProfile } from './HeaderProfile/HeaderProfile'
 import { HeaderSignIn } from './HeaderSignIn/HeaderSignIn'
+
+import logo from 'assets/logo.svg'
+import { useAppSelector } from 'common/hooks'
+import { isLoggedInSelector } from 'features/auth/authSelectors'
 
 export const Header = () => {
   const isLoggedIn = useAppSelector(isLoggedInSelector)
