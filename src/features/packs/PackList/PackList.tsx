@@ -2,26 +2,27 @@ import React, { useEffect } from 'react'
 
 import { useSearchParams } from 'react-router-dom'
 
-import ModalWrapper from '../../../common/components/ModalWrapper/ModalWrapper'
-import { isLoggedInSelector } from '../../auth/authSelectors'
 import {
-  packsUserIdSelector,
-  packsNameSelector,
   packsCountOnPageSelector,
   packsListSelector,
   packsMaxSelector,
   packsMinSelector,
-  packsSortSelector,
+  packsNameSelector,
   packsPageSelector,
   packsSelector,
+  packsSortSelector,
   packsTotalPageCountSelector,
+  packsUserIdSelector,
 } from '../packsSelectors'
 
 import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
 
+import { isModalActiveSelector } from 'app/appSelectors'
+import { setModalActive } from 'app/appSlice'
 import { EmptyPackSearch } from 'common/components/EmptyPackSearch/EmptyPackSearch'
 import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
+import ModalWrapper from 'common/components/ModalWrapper/ModalWrapper'
 import { Search } from 'common/components/Search/Search'
 import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
 import { Sort } from 'common/components/Sort/Sort'
@@ -29,6 +30,7 @@ import { TablePackListWrapper } from 'common/components/Table/TablePackListWrapp
 import { Tbody } from 'common/components/Table/Tbody/Tbody'
 import { Thead } from 'common/components/Table/Thead/Thead'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { isLoggedInSelector } from 'features/auth/authSelectors'
 import { createPackTC, fetchPacksTC, setSearchParams } from 'features/packs/packsSlice'
 
 export const PackList = () => {
@@ -43,6 +45,7 @@ export const PackList = () => {
   const user_id = useAppSelector(packsUserIdSelector)
   const sortPack = useAppSelector(packsSortSelector)
   const packName = useAppSelector(packsNameSelector)
+  const isPackModalActive = useAppSelector(isModalActiveSelector)
   const emptyCheck = packName !== '' && packs.length === 0
 
   const dispatch = useAppDispatch()
@@ -79,7 +82,10 @@ export const PackList = () => {
 
   return (
     <div className={s.container}>
-      {/*<ModalWrapper title={'Add new pack'} />*/}
+      {isPackModalActive && <ModalWrapper title={'Add new pack'} />}
+      {/*проверка модалки - потом удалить*/}
+      <button onClick={() => dispatch(setModalActive(true))}>+</button>
+
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
           <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
