@@ -29,6 +29,7 @@ type InitialStateType = {
   appError: string | null
   appStatus: StatusType
   isInitialized: boolean
+  isModalActive: boolean
   packList: PackListType
   cardList: CardListType
 }
@@ -37,6 +38,7 @@ const initialState: InitialStateType = {
   appError: null,
   appStatus: 'idle',
   isInitialized: false,
+  isModalActive: true,
   packList,
   cardList,
 }
@@ -63,6 +65,9 @@ export const appSlice = createSlice({
     resetSort: state => {
       state.packList = state.packList.map(t => (t.status ? { ...t, status: 0 } : t))
     },
+    setModalActive: (state, action: PayloadAction<boolean>) => {
+      state.isModalActive = action.payload
+    },
   },
 })
 
@@ -73,6 +78,7 @@ export const {
   setSortStatusPack,
   setSortStatusCards,
   resetSort,
+  setModalActive,
 } = appSlice.actions
 
 export const appReducer = appSlice.reducer
