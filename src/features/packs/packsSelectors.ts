@@ -8,6 +8,6 @@ export const packsTotalPageCountSelector = (state: RootStateType) =>
 export const packsPageSelector = (state: RootStateType) => state.packs.searchParams.page
 export const packsMinSelector = (state: RootStateType) => state.packs.searchParams.min
 export const packsMaxSelector = (state: RootStateType) => state.packs.searchParams.max
-export const packNameSelector = (state: RootStateType) => state.packs.searchParams.packName
-export const packSortSelector = (state: RootStateType) => state.packs.searchParams.sortPack
-export const packByUserSelector = (state: RootStateType) => state.packs.searchParams.user_id
+export const packsNameSelector = (state: RootStateType) => state.packs.searchParams.packName
+export const packsSortSelector = (state: RootStateType) => state.packs.searchParams.sortPack
+export const packsByUserSelector = (state: RootStateType) => state.packs.searchParams.user_id

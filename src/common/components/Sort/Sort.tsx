@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ButtonGroup } from '../ButtonGroupe/ButtonGroup'
+import { ButtonGroup } from '../ButtonGroup/ButtonGroup'
 import { Range } from '../Range/Range'
 import { ResetSort } from '../ResetSort/ResetSort'
 

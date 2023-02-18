@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { setSearchParams } from '../../../features/packs/packsSlice'
 import { useAppDispatch, useAppSelector } from '../../hooks'
 
-import s from './ButtonGroupe.module.scss'
+import s from './ButtonGroup.module.scss'
 
 export const ButtonGroup = () => {
   const userId = useAppSelector(state => state.auth.user._id)

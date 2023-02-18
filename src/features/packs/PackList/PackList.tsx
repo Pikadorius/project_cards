@@ -4,13 +4,13 @@ import { useSearchParams } from 'react-router-dom'
 
 import { isLoggedInSelector } from '../../auth/authSelectors'
 import {
-  packByUserSelector,
-  packNameSelector,
+  packsByUserSelector,
+  packsNameSelector,
   packsCountOnPageSelector,
   packsListSelector,
   packsMaxSelector,
   packsMinSelector,
-  packSortSelector,
+  packsSortSelector,
   packsPageSelector,
   packsSelector,
   packsTotalPageCountSelector,
@@ -22,7 +22,7 @@ import { PacksHeader } from './PacksHeader/PacksHeader'
 import { EmptyPackSearch } from 'common/components/EmptyPackSearch/EmptyPackSearch'
 import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from 'common/components/Search/Search'
-import { SearchPanel } from 'common/components/SearchPanel/SerachPanel'
+import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
 import { Sort } from 'common/components/Sort/Sort'
 import { TablePackListWrapper } from 'common/components/Table/TablePackListWrapper/TablePackListWrapper'
 import { Tbody } from 'common/components/Table/Tbody/Tbody'
@@ -39,9 +39,9 @@ export const PackList = () => {
   const page = useAppSelector(packsPageSelector)
   const max = useAppSelector(packsMaxSelector)
   const min = useAppSelector(packsMinSelector)
-  const user_id = useAppSelector(packByUserSelector)
-  const sortPack = useAppSelector(packSortSelector)
-  const packName = useAppSelector(packNameSelector)
+  const user_id = useAppSelector(packsByUserSelector)
+  const sortPack = useAppSelector(packsSortSelector)
+  const packName = useAppSelector(packsNameSelector)
   const emptyCheck = packName !== '' && packs.length === 0
 
   const dispatch = useAppDispatch()
