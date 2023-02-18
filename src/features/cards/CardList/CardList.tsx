@@ -17,20 +17,30 @@ import { createCardTC, fetchCardTC, setSearchCardParams } from '../cardSlice'
 
 import { CardHeader } from './CardHeader/CardHeader'
 import s from './CardList.module.scss'
+import {
+  cardQuestionCardSelector,
+  cardSelector,
+  cardsListSelector,
+  cardsTotalCountSelector,
+  pageCardSelector,
+  pageCountCardSelector,
+  pagesTotalCountCardSelector,
+  sortCardsSelector,
+} from './cardSelectors'
 
 export const CardList = () => {
   const dispatch = useAppDispatch()
   let { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(isLoggedInSelector)
-  const cardsList = useAppSelector(state => state.app.cardList)
-  const card = useAppSelector(state => state.card.cards)
-  const page = useAppSelector(state => state.card.searchParams.page)
-  const pageCount = useAppSelector(state => state.card.searchParams.pageCount)
-  const pagesTotalCount = useAppSelector(state => state.card.searchParams.totalPagesCount)
-  const cardQuestion = useAppSelector(state => state.card.searchParams.cardQuestion)
-  const sortCards = useAppSelector(state => state.card.searchParams.sortCards)
-  const cardsTotalCount = useAppSelector(state => state.card.searchParams.cardsTotalCount)
+  const cardsList = useAppSelector(cardsListSelector)
+  const card = useAppSelector(cardSelector)
+  const page = useAppSelector(pageCardSelector)
+  const pageCount = useAppSelector(pageCountCardSelector)
+  const pagesTotalCount = useAppSelector(pagesTotalCountCardSelector)
+  const cardQuestion = useAppSelector(cardQuestionCardSelector)
+  const sortCards = useAppSelector(sortCardsSelector)
+  const cardsTotalCount = useAppSelector(cardsTotalCountSelector)
   const packActive = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
   const namePackActive = packActive?.name
 
