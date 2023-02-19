@@ -4,7 +4,7 @@ import BackspaceIcon from '@mui/icons-material/Backspace'
 import IconButton from '@mui/material/IconButton'
 import TextField from '@mui/material/TextField'
 
-import ModalButtons from '../ModalButtons/ModalButtons'
+import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './CreatePackModal.module.scss'
 
