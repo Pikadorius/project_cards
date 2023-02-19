@@ -25,11 +25,20 @@ export type CardListType = typeof cardList
 
 export type PackListType = typeof packList
 
+export type ModalType =
+  | 'createPack'
+  | 'deletePack'
+  | 'updatePack'
+  | 'updateCard'
+  | 'createCard'
+  | 'deleteCard'
+  | 'idle'
+
 type InitialStateType = {
   appError: string | null
   appStatus: StatusType
   isInitialized: boolean
-  isModalActive: boolean
+  modalType: ModalType
   packList: PackListType
   cardList: CardListType
 }
@@ -38,7 +47,7 @@ const initialState: InitialStateType = {
   appError: null,
   appStatus: 'idle',
   isInitialized: false,
-  isModalActive: false,
+  modalType: 'idle',
   packList,
   cardList,
 }
@@ -65,8 +74,8 @@ export const appSlice = createSlice({
     resetSort: state => {
       state.packList = state.packList.map(t => (t.status ? { ...t, status: 0 } : t))
     },
-    setModalActive: (state, action: PayloadAction<boolean>) => {
-      state.isModalActive = action.payload
+    setModal: (state, action: PayloadAction<ModalType>) => {
+      state.modalType = action.payload
     },
   },
 })
@@ -78,7 +87,7 @@ export const {
   setSortStatusPack,
   setSortStatusCards,
   resetSort,
-  setModalActive,
+  setModal,
 } = appSlice.actions
 
 export const appReducer = appSlice.reducer
