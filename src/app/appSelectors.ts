@@ -5,4 +5,4 @@ export const appErrorSelector = (state: RootStateType) => state.app.appError
 
 export const isInitializedSelector = (state: RootStateType) => state.app.isInitialized
 
-export const isModalActiveSelector = (state: RootStateType) => state.app.isModalActive
+export const modalTypeSelector = (state: RootStateType) => state.app.modalType
