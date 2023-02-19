@@ -8,7 +8,7 @@ import { TeachIcon } from '../../Icon/TeachIcon/TeachIcon'
 
 import s from './Tbody.module.scss'
 
-import { ModalType, setChangedItemId, setChangedItemName } from 'app/appSlice'
+import { ModalType, setChangedItemId, setChangedItemName, setModal } from 'app/appSlice'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
@@ -18,10 +18,9 @@ import { PackType } from 'features/packs/packsType'
 
 type TbodyType = {
   packs?: PackType[]
-  setModalType: (modalType: ModalType) => void
 }
 
-export const Tbody: React.FC<TbodyType> = memo(({ packs, setModalType }) => {
+export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
   const dispatch = useAppDispatch()
   const userId = useAppSelector(state => state.auth.user._id)
   const navigate = useNavigate()
@@ -36,14 +35,14 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs, setModalType }) => {
         }
 
         const deletePack = () => {
-          setModalType('deletePack')
+          dispatch(setModal('deletePack'))
           dispatch(setChangedItemId(t._id))
           dispatch(setChangedItemName(t.name))
           // dispatch(deletePackTC(t._id))
         }
 
         const updatePack = () => {
-          setModalType('updatePack')
+          dispatch(setModal('updatePack'))
           dispatch(setChangedItemId(t._id))
           dispatch(setChangedItemName(t.name))
           /*const data: UpdatePackRequestType = {

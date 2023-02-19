@@ -3,6 +3,7 @@ import React, { FC } from 'react'
 import { ModalType } from '../../../../app/appSlice'
 import ModalWrapper from '../ModalWrapper/ModalWrapper'
 
+import CreateCardModal from './CreateCardModal/CreateCardModal'
 import CreatePackModal from './CreatePackModal/CreatePackModal'
 import DeleteModal from './DeleteModal/DeleteModal'
 
@@ -33,6 +34,18 @@ const ModalBody: FC<PacksModalT> = ({ modalType }) => {
       return (
         <ModalWrapper title={'Delete card'}>
           <DeleteModal type={'card'} />
+        </ModalWrapper>
+      )
+    case 'createCard':
+      return (
+        <ModalWrapper title={'Create card'}>
+          <CreateCardModal type={'create'} />
+        </ModalWrapper>
+      )
+    case 'updateCard':
+      return (
+        <ModalWrapper title={'Edit card'}>
+          <CreateCardModal type={'update'} />
         </ModalWrapper>
       )
     default:

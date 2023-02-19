@@ -2,7 +2,13 @@ import React, { memo, useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { setChangedItemId, setChangedItemName, setModal } from '../../../../app/appSlice'
+import {
+  setChangedItemAnswer,
+  setChangedItemCardsId,
+  setChangedItemId,
+  setChangedItemName,
+  setModal,
+} from '../../../../app/appSlice'
 import Delete from '../../../../assets/Delete.svg'
 import edit from '../../../../assets/Edit.svg'
 import { updateCardTC } from '../../../../features/cards/cardSlice'
@@ -31,8 +37,18 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
     dispatch(setChangedItemName(cardName))
     dispatch(setChangedItemId(cardID))
   }
-  const onClickUpdateHandler = (cardID: string, cardsPackID: string) => {
-    let updateCard = {
+  const onClickUpdateHandler = (
+    cardID: string,
+    cardsPackID: string,
+    cardQuestion: string,
+    cardAnswer: string
+  ) => {
+    dispatch(setModal('updateCard'))
+    dispatch(setChangedItemId(cardID))
+    dispatch(setChangedItemName(cardQuestion))
+    dispatch(setChangedItemAnswer(cardAnswer))
+    dispatch(setChangedItemCardsId(cardsPackID))
+    /*let updateCard = {
       card: {
         _id: cardID,
         question: 'Updated',
@@ -47,7 +63,7 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
     }
     let data = { updateCard, cardsPackID }
 
-    dispatch(updateCardTC(data))
+    dispatch(updateCardTC(data))*/
   }
 
   useEffect(() => {
@@ -72,7 +88,9 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
                 <div className={s.iconContainer}>
                   <img
                     className={s.icon}
-                    onClick={() => onClickUpdateHandler(t._id, t.cardsPack_id)}
+                    onClick={() =>
+                      onClickUpdateHandler(t._id, t.cardsPack_id, t.question, t.answer)
+                    }
                     src={edit}
                     alt="edit"
                   />

@@ -3,6 +3,7 @@ import React, { useCallback, useEffect } from 'react'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import { modalTypeSelector } from '../../../app/appSelectors'
+import { setChangedItemId, setModal } from '../../../app/appSlice'
 import arrow from '../../../assets/arrow.svg'
 import { EmptyPack } from '../../../common/components/EmptyPack/EmptyPack'
 import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
@@ -15,7 +16,7 @@ import { Thead } from '../../../common/components/Table/Thead/Thead'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks'
 import { isLoggedInSelector } from '../../auth/authSelectors'
-import { createCardTC, fetchCardTC, setSearchCardParams } from '../cardSlice'
+import { fetchCardTC, setSearchCardParams } from '../cardSlice'
 
 import { CardHeader } from './CardHeader/CardHeader'
 import s from './CardList.module.scss'
@@ -56,19 +57,22 @@ export const CardList = () => {
 
   const createCards = useCallback(() => {
     if (!id) return
-    let newCard = {
-      cardsPack_id: id,
-      question: 'New cards',
-      answer: '...',
-      grade: 0,
-      shots: 4,
-      answerImg: 'url or base 64',
-      questionImg: 'url or base 64',
-      questionVideo: 'url or base 64',
-      answerVideo: 'url or base 64',
-    }
 
-    dispatch(createCardTC({ card: newCard }))
+    dispatch(setModal('createCard'))
+    dispatch(setChangedItemId(id))
+    // let newCard = {
+    //   cardsPack_id: id,
+    //   question: 'New cards',
+    //   answer: '...',
+    //   grade: 0,
+    //   shots: 4,
+    //   answerImg: 'url or base 64',
+    //   questionImg: 'url or base 64',
+    //   questionVideo: 'url or base 64',
+    //   answerVideo: 'url or base 64',
+    // }
+    //
+    // dispatch(createCardTC({ card: newCard }))
   }, [id])
 
   if (!isLoggedIn) {

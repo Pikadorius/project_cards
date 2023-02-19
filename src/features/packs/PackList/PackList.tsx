@@ -52,9 +52,6 @@ export const PackList = () => {
 
   const [sortParams, setSortParams] = useSearchParams()
 
-  const setModalType = (modalType: ModalType) => {
-    dispatch(setModal(modalType))
-  }
   const onChange = (page: number, pageCount: number) => {
     dispatch(setSearchParams({ page, pageCount }))
   }
@@ -101,7 +98,7 @@ export const PackList = () => {
             <>
               <TablePackListWrapper>
                 <Thead packList={packList} />
-                <Tbody packs={packs} setModalType={setModalType} />
+                <Tbody packs={packs} />
               </TablePackListWrapper>
               <SuperPagination
                 page={page}
