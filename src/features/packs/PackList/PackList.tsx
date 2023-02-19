@@ -2,6 +2,9 @@ import React, { useEffect } from 'react'
 
 import { useSearchParams } from 'react-router-dom'
 
+import { modalTypeSelector } from '../../../app/appSelectors'
+import { ModalType, setModal } from '../../../app/appSlice'
+import PacksModals from '../../../common/components/Modals/PacksModals/PacksModals'
 import {
   packsCountOnPageSelector,
   packsListSelector,
@@ -28,7 +31,7 @@ import { Tbody } from 'common/components/Table/Tbody/Tbody'
 import { Thead } from 'common/components/Table/Thead/Thead'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { isLoggedInSelector } from 'features/auth/authSelectors'
-import { createPackTC, fetchPacksTC, setSearchParams } from 'features/packs/packsSlice'
+import { fetchPacksTC, setSearchParams } from 'features/packs/packsSlice'
 
 export const PackList = () => {
   const packList = useAppSelector(packsListSelector)
@@ -42,18 +45,23 @@ export const PackList = () => {
   const user_id = useAppSelector(packsUserIdSelector)
   const sortPack = useAppSelector(packsSortSelector)
   const packName = useAppSelector(packsNameSelector)
+  const modalType = useAppSelector(modalTypeSelector)
   const emptyCheck = packName !== '' && packs.length === 0
 
   const dispatch = useAppDispatch()
 
   const [sortParams, setSortParams] = useSearchParams()
 
+  const setModalType = (modalType: ModalType) => {
+    dispatch(setModal(modalType))
+  }
   const onChange = (page: number, pageCount: number) => {
     dispatch(setSearchParams({ page, pageCount }))
   }
 
   const createPack = () => {
-    dispatch(createPackTC({ cardsPack: { name: 'test pack' } }))
+    dispatch(setModal('createPack'))
+    // dispatch(createPackTC({ cardsPack: { name: 'test pack' } }))
   }
 
   const searchByName = (value: string) => {
@@ -75,9 +83,11 @@ export const PackList = () => {
       sortPack: sortPack,
     })
   }, [page, pageCount, min, max, sortPack, user_id, packName])
+  s
 
   return (
     <div className={s.container}>
+      {modalType !== 'idle' && <PacksModals modalType={modalType} />}
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
           <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
@@ -91,7 +101,7 @@ export const PackList = () => {
             <>
               <TablePackListWrapper>
                 <Thead packList={packList} />
-                <Tbody packs={packs} />
+                <Tbody packs={packs} setModalType={setModalType} />
               </TablePackListWrapper>
               <SuperPagination
                 page={page}
