@@ -14,10 +14,6 @@ const DeleteModal = () => {
   const deletedItemId = useAppSelector(modalItemIdSelector)
   const deletedItemName = useAppSelector(modalItemNameSelector)
 
-  const cancelHandler = () => {
-    resetModalValues(dispatch)
-  }
-
   const deleteModal = () => {
     dispatch(deletePackTC(deletedItemId))
     resetModalValues(dispatch)
@@ -31,7 +27,7 @@ const DeleteModal = () => {
         </p>
         <p>All cards will be deleted.</p>
       </div>
-      <ModalButtons onCancel={cancelHandler} onSuccess={deleteModal} successBtnName={'Delete'} />
+      <ModalButtons onSuccess={deleteModal} successBtnName={'Delete'} />
     </div>
   )
 }

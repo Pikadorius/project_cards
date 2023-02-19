@@ -2,15 +2,23 @@ import React, { FC } from 'react'
 
 import s from './ModalButtons.module.scss'
 
+import { useAppDispatch } from 'common/hooks'
+import { resetModalValues } from 'common/utils'
+
 type ModalButtonType = {
-  onCancel: () => void
   onSuccess: () => void
   successBtnName: string
 }
-const ModalButtons: FC<ModalButtonType> = ({ onCancel, successBtnName, onSuccess }) => {
+
+const ModalButtons: FC<ModalButtonType> = ({ successBtnName, onSuccess }) => {
+  const dispatch = useAppDispatch()
+  const cancelHandler = () => {
+    resetModalValues(dispatch)
+  }
+
   return (
     <div className={s.innerWrapper}>
-      <button className={`${s.cancelBtn} ${s.btn}`} onClick={onCancel}>
+      <button className={`${s.cancelBtn} ${s.btn}`} onClick={cancelHandler}>
         Cancel
       </button>
       <button className={s.btn} onClick={onSuccess}>
