@@ -41,6 +41,8 @@ type InitialStateType = {
   modalType: ModalType
   changedItemId: string
   changedItemName: string
+  changedItemAnswer: string
+  changedItemCardsId: string
   packList: PackListType
   cardList: CardListType
 }
@@ -52,6 +54,8 @@ const initialState: InitialStateType = {
   modalType: 'idle',
   changedItemId: '',
   changedItemName: '',
+  changedItemAnswer: '',
+  changedItemCardsId: '',
   packList,
   cardList,
 }
@@ -87,6 +91,12 @@ export const appSlice = createSlice({
     setChangedItemName: (state, action: PayloadAction<string>) => {
       state.changedItemName = action.payload
     },
+    setChangedItemAnswer: (state, action: PayloadAction<string>) => {
+      state.changedItemAnswer = action.payload
+    },
+    setChangedItemCardsId: (state, action: PayloadAction<string>) => {
+      state.changedItemCardsId = action.payload
+    },
   },
 })
 
@@ -100,6 +110,8 @@ export const {
   setModal,
   setChangedItemId,
   setChangedItemName,
+  setChangedItemCardsId,
+  setChangedItemAnswer,
 } = appSlice.actions
 
 export const appReducer = appSlice.reducer
