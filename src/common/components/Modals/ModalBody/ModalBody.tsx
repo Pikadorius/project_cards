@@ -1,14 +1,15 @@
 import React, { FC } from 'react'
 
 import { ModalType } from '../../../../app/appSlice'
-import CreatePackModal from '../CreatePackModal/CreatePackModal'
-import DeleteModal from '../DeleteModal/DeleteModal'
 import ModalWrapper from '../ModalWrapper/ModalWrapper'
+
+import CreatePackModal from './CreatePackModal/CreatePackModal'
+import DeleteModal from './DeleteModal/DeleteModal'
 
 type PacksModalT = {
   modalType: ModalType
 }
-const PacksModals: FC<PacksModalT> = ({ modalType }) => {
+const ModalBody: FC<PacksModalT> = ({ modalType }) => {
   switch (modalType) {
     case 'createPack':
       return (
@@ -19,7 +20,7 @@ const PacksModals: FC<PacksModalT> = ({ modalType }) => {
     case 'deletePack':
       return (
         <ModalWrapper title={'Delete pack'}>
-          <DeleteModal />
+          <DeleteModal type={'pack'} />
         </ModalWrapper>
       )
     case 'updatePack':
@@ -28,9 +29,15 @@ const PacksModals: FC<PacksModalT> = ({ modalType }) => {
           <CreatePackModal type={'update'} />
         </ModalWrapper>
       )
+    case 'deleteCard':
+      return (
+        <ModalWrapper title={'Delete pack'}>
+          <DeleteModal type={'card'} />
+        </ModalWrapper>
+      )
     default:
       return <div>LOL</div>
   }
 }
 
-export default PacksModals
+export default ModalBody

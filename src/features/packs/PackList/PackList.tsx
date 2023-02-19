@@ -2,9 +2,6 @@ import React, { useEffect } from 'react'
 
 import { useSearchParams } from 'react-router-dom'
 
-import { modalTypeSelector } from '../../../app/appSelectors'
-import { ModalType, setModal } from '../../../app/appSlice'
-import PacksModals from '../../../common/components/Modals/PacksModals/PacksModals'
 import {
   packsCountOnPageSelector,
   packsListSelector,
@@ -21,8 +18,11 @@ import {
 import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
 
+import { modalTypeSelector } from 'app/appSelectors'
+import { ModalType, setModal } from 'app/appSlice'
 import { EmptyPackSearch } from 'common/components/EmptyPackSearch/EmptyPackSearch'
 import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
+import ModalBody from 'common/components/Modals/ModalBody/ModalBody'
 import { Search } from 'common/components/Search/Search'
 import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
 import { Sort } from 'common/components/Sort/Sort'
@@ -87,7 +87,7 @@ export const PackList = () => {
 
   return (
     <div className={s.container}>
-      {modalType !== 'idle' && <PacksModals modalType={modalType} />}
+      {modalType !== 'idle' && <ModalBody modalType={modalType} />}
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
           <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
