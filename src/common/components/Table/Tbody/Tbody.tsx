@@ -8,14 +8,13 @@ import { TeachIcon } from '../../Icon/TeachIcon/TeachIcon'
 
 import s from './Tbody.module.scss'
 
-import { setModalActive } from 'app/appSlice'
+import { ModalType, setChangedItemId, setChangedItemName, setModal } from 'app/appSlice'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { dateHandler } from 'common/utils/dateHandler'
 import { userNameHandler } from 'common/utils/userNameHandler'
-import { updatePackTC } from 'features/packs/packsSlice'
-import { PackType, UpdatePackRequestType } from 'features/packs/packsType'
+import { PackType } from 'features/packs/packsType'
 
 type TbodyType = {
   packs?: PackType[]
@@ -36,19 +35,24 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
         }
 
         const deletePack = () => {
-          dispatch(setModalActive(true))
+          dispatch(setModal('deletePack'))
+          dispatch(setChangedItemId(t._id))
+          dispatch(setChangedItemName(t.name))
           // dispatch(deletePackTC(t._id))
         }
 
         const updatePack = () => {
-          const data: UpdatePackRequestType = {
+          dispatch(setModal('updatePack'))
+          dispatch(setChangedItemId(t._id))
+          dispatch(setChangedItemName(t.name))
+          /*const data: UpdatePackRequestType = {
             cardsPack: {
               name: 'Updated pack',
               _id: t._id,
             },
           }
 
-          dispatch(updatePackTC(data))
+          dispatch(updatePackTC(data))*/
         }
 
         const teachPack = () => {

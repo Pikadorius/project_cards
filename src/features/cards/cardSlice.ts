@@ -9,7 +9,7 @@ import {
   UpdateCardObjType,
 } from './cardType'
 
-import { setAppError, setAppStatus } from 'app/appSlice'
+import { setAppStatus } from 'app/appSlice'
 import { errorUtils } from 'common/utils/errorHandler'
 import { RootStateType } from 'store/store'
 
@@ -79,17 +79,24 @@ export const updateCardTC = createAsyncThunk(
   }
 )
 
-export const deleteCardTC = createAsyncThunk('deleteCard', async (data: string[], { dispatch }) => {
-  dispatch(setAppStatus('loading'))
+export const deleteCardTC = createAsyncThunk(
+  'deleteCard',
+  async (data: string, { dispatch, getState }) => {
+    dispatch(setAppStatus('loading'))
+    const state = getState() as RootStateType
+    const cardsPackId = state.card.cards[0].cardsPack_id
 
-  try {
-    const res = await cardAPI.deleteCard(data[0])
+    console.log(cardsPackId)
 
-    dispatch(fetchCardTC(data[1]))
-  } catch (e: any) {
-    errorUtils(e, dispatch)
+    try {
+      const res = await cardAPI.deleteCard(data)
+
+      dispatch(fetchCardTC(cardsPackId))
+    } catch (e: any) {
+      errorUtils(e, dispatch)
+    }
   }
-})
+)
 
 const cardSlice = createSlice({
   name: 'cardListPage',

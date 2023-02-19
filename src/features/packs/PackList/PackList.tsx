@@ -18,11 +18,11 @@ import {
 import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
 
-import { isModalActiveSelector } from 'app/appSelectors'
-import { setModalActive } from 'app/appSlice'
+import { modalTypeSelector } from 'app/appSelectors'
+import { ModalType, setModal } from 'app/appSlice'
 import { EmptyPackSearch } from 'common/components/EmptyPackSearch/EmptyPackSearch'
 import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
-import { Modal } from 'common/components/ModalWrapper/Modal'
+import ModalBody from 'common/components/Modals/ModalBody/ModalBody'
 import { Search } from 'common/components/Search/Search'
 import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
 import { Sort } from 'common/components/Sort/Sort'
@@ -45,8 +45,7 @@ export const PackList = () => {
   const user_id = useAppSelector(packsUserIdSelector)
   const sortPack = useAppSelector(packsSortSelector)
   const packName = useAppSelector(packsNameSelector)
-  const isPackModalActive = useAppSelector(isModalActiveSelector)
-  const isModalActive = useAppSelector(state => state.app.isModalActive)
+  const modalType = useAppSelector(modalTypeSelector)
   const emptyCheck = packName !== '' && packs.length === 0
 
   const dispatch = useAppDispatch()
@@ -58,8 +57,8 @@ export const PackList = () => {
   }
 
   const createPack = () => {
+    dispatch(setModal('createPack'))
     // dispatch(createPackTC({ cardsPack: { name: 'test pack' } }))
-    dispatch(setModalActive(true))
   }
 
   const searchByName = (value: string) => {
@@ -81,9 +80,11 @@ export const PackList = () => {
       sortPack: sortPack,
     })
   }, [page, pageCount, min, max, sortPack, user_id, packName])
+  s
 
   return (
     <div className={s.container}>
+      {modalType !== 'idle' && <ModalBody modalType={modalType} />}
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
           <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
@@ -109,7 +110,6 @@ export const PackList = () => {
           )}
         </div>
       </div>
-      {isModalActive && <Modal title={'add new pack'} />}
     </div>
   )
 }
