@@ -26,12 +26,9 @@ export type SearchParamsType = {
   maxCardsCount: number
 }
 
-export type ModalType = 'deletePack' | 'updatePack' | 'createPack' | 'idle'
-
 type InititalStateType = {
   cardPacks: PackType[]
   searchParams: SearchParamsType
-  modalActive: ModalType
 }
 
 const initialState: InititalStateType = {
@@ -48,7 +45,6 @@ const initialState: InititalStateType = {
     minCardsCount: 0,
     maxCardsCount: 0,
   },
-  modalActive: 'idle',
 }
 
 export const fetchPacksTC = createAsyncThunk('fetchPacks', async (_, { dispatch, getState }) => {
