@@ -22,6 +22,7 @@ import { isModalActiveSelector } from 'app/appSelectors'
 import { setModalActive } from 'app/appSlice'
 import { EmptyPackSearch } from 'common/components/EmptyPackSearch/EmptyPackSearch'
 import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
+import AddModal from 'common/components/Modals/AddModal/AddModal'
 import ModalWrapper from 'common/components/ModalWrapper/ModalWrapper'
 import { Search } from 'common/components/Search/Search'
 import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
@@ -82,7 +83,11 @@ export const PackList = () => {
 
   return (
     <div className={s.container}>
-      {isPackModalActive && <ModalWrapper title={'Add new pack'} />}
+      {isPackModalActive && (
+        <ModalWrapper title={'Add new pack'}>
+          <AddModal title={'aaa'} onClick={() => {}} />
+        </ModalWrapper>
+      )}
       {/*проверка модалки - потом удалить*/}
       <button onClick={() => dispatch(setModalActive(true))}>+</button>
 
