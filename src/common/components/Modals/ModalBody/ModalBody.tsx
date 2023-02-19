@@ -31,12 +31,12 @@ const ModalBody: FC<PacksModalT> = ({ modalType }) => {
       )
     case 'deleteCard':
       return (
-        <ModalWrapper title={'Delete pack'}>
+        <ModalWrapper title={'Delete card'}>
           <DeleteModal type={'card'} />
         </ModalWrapper>
       )
     default:
-      return <div>LOL</div>
+      return <></>
   }
 }
 
