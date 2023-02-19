@@ -2,6 +2,9 @@ import React, { FC, memo } from 'react'
 
 import { useParams } from 'react-router-dom'
 
+import { authUserIdSelector } from '../../../auth/authSelectors'
+import { packNameCardSelector, packUserIdCardSelector } from '../cardSelectors'
+
 import s from './CardHeader.module.scss'
 
 import { PackMenu } from 'common/components/PackMenu/PackMenu'
@@ -13,9 +16,9 @@ type CardHeaderType = {
 
 export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
   let { id } = useParams<{ id: string }>()
-  const userId = useAppSelector(state => state.auth.user._id)
-  const packUserId = useAppSelector(state => state.card.searchParams.packUserId)
-  const packName = useAppSelector(state => state.card.searchParams.packName)
+  const userId = useAppSelector(authUserIdSelector)
+  const packUserId = useAppSelector(packUserIdCardSelector)
+  const packName = useAppSelector(packNameCardSelector)
   const pack = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
   let packByName = pack ? pack.user_name : 'Unknown...'
 

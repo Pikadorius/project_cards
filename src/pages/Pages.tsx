@@ -2,6 +2,8 @@ import React from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
+import { LearnCardPage } from '../features/cards/LearnCardPage/LearnCardPage'
+
 import RequireAuth from './RequireAuth'
 
 import { UserAccount } from 'common/components/UserAccount/UserAccount'
@@ -31,6 +33,7 @@ const Pages = () => {
         <Route path={PATH.CARD_LIST} element={<CardList />} />
         <Route path={PATH.CARD_LIST_ID} element={<CardList />} />
         <Route path={PATH.ACCOUNT} element={<UserAccount />} />
+        <Route path={PATH.CARD_LEARN} element={<LearnCardPage />} />
       </Route>
     </Routes>
   )

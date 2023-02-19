@@ -9,7 +9,7 @@ import {
   UpdateCardObjType,
 } from './cardType'
 
-import { setAppError, setAppStatus } from 'app/appSlice'
+import { setAppStatus } from 'app/appSlice'
 import { errorUtils } from 'common/utils/errorHandler'
 import { RootStateType } from 'store/store'
 

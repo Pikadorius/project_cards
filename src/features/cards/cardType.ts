@@ -1,3 +1,5 @@
+import { AnswerStatuses } from './LearnCardPage/learnCardSlice'
+
 export type InititalStateCardType = {
   cards: CardType[]
   searchParams: SearchParamsCardType
@@ -82,4 +84,14 @@ export type CardQueryParamsType = {
   cardsPack_id?: string
   packName?: string
   packUserId?: string
+}
+
+export type InititalStateLearnCardType = {
+  id: number
+  title: string
+  status: AnswerStatuses
+}
+
+export type ArrTypeCard = {
+  arr: InititalStateLearnCardType[]
 }
