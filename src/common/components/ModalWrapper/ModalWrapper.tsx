@@ -4,9 +4,10 @@ import CloseIcon from '@mui/icons-material/Close'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 
+import { setModal } from '../../../app/appSlice'
+
 import s from './ModalWrapper.module.scss'
 
-import { setModalActive } from 'app/appSlice'
 import { useAppDispatch } from 'common/hooks'
 
 type PropsType = {
@@ -16,7 +17,7 @@ type PropsType = {
 const ModalWrapper: FC<PropsType> = ({ children, title }) => {
   const dispatch = useAppDispatch()
   const closeModal = () => {
-    dispatch(setModalActive(false))
+    dispatch(setModal('idle'))
   }
 
   return (

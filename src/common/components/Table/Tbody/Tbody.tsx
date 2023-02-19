@@ -2,19 +2,22 @@ import React, { memo } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
+import { modalTypeSelector } from '../../../../app/appSelectors'
+import { setModal } from '../../../../app/appSlice'
 import { DeleteIcon } from '../../Icon/DeleteIcon/Delete'
 import { EditIcon } from '../../Icon/EditIcon/EditIcon'
 import { TeachIcon } from '../../Icon/TeachIcon/TeachIcon'
+import DeleteModal from '../../Modals/DeleteModal/DeleteModal'
+import ModalWrapper from '../../ModalWrapper/ModalWrapper'
 
 import s from './Tbody.module.scss'
 
-import { setModalActive } from 'app/appSlice'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { dateHandler } from 'common/utils/dateHandler'
 import { userNameHandler } from 'common/utils/userNameHandler'
-import { deletePackTC, updatePackTC } from 'features/packs/packsSlice'
+import { updatePackTC } from 'features/packs/packsSlice'
 import { PackType, UpdatePackRequestType } from 'features/packs/packsType'
 
 type TbodyType = {
@@ -25,6 +28,7 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
   const dispatch = useAppDispatch()
   const userId = useAppSelector(state => state.auth.user._id)
   const navigate = useNavigate()
+  const modalType = useAppSelector(modalTypeSelector)
 
   return (
     <tbody>
@@ -36,8 +40,8 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
         }
 
         const deletePack = () => {
-          dispatch(setModalActive(true))
-          dispatch(deletePackTC(t._id))
+          dispatch(setModal('deletePack'))
+          // dispatch(deletePackTC(t._id))
         }
 
         const updatePack = () => {
