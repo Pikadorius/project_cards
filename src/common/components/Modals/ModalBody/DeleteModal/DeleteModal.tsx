@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 
-import ModalButtons from '../ModalButtons/ModalButtons'
+import { deleteCardTC } from '../../../../../features/cards/cardSlice'
+import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './DeleteModal.module.scss'
 
@@ -9,13 +10,16 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
 import { deletePackTC } from 'features/packs/packsSlice'
 
-const DeleteModal = () => {
+type DeleteModalType = {
+  type: 'card' | 'pack'
+}
+const DeleteModal: FC<DeleteModalType> = ({ type }) => {
   const dispatch = useAppDispatch()
   const deletedItemId = useAppSelector(modalItemIdSelector)
   const deletedItemName = useAppSelector(modalItemNameSelector)
 
   const deleteModal = () => {
-    dispatch(deletePackTC(deletedItemId))
+    type === 'pack' ? dispatch(deletePackTC(deletedItemId)) : dispatch(deleteCardTC(deletedItemId))
     resetModalValues(dispatch)
   }
 
@@ -25,7 +29,7 @@ const DeleteModal = () => {
         <p>
           Do you really want to remove <span className={s.itemName}>{`${deletedItemName}`}</span>?
         </p>
-        <p>All cards will be deleted.</p>
+        {type === 'pack' ? <p>All cards will be deleted.</p> : <p>This card will be deleted.</p>}
       </div>
       <ModalButtons onSuccess={deleteModal} successBtnName={'Delete'} />
     </div>
