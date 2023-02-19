@@ -22,8 +22,7 @@ import { isModalActiveSelector } from 'app/appSelectors'
 import { setModalActive } from 'app/appSlice'
 import { EmptyPackSearch } from 'common/components/EmptyPackSearch/EmptyPackSearch'
 import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
-import AddModal from 'common/components/Modals/AddModal/AddModal'
-import ModalWrapper from 'common/components/ModalWrapper/ModalWrapper'
+import { Modal } from 'common/components/ModalWrapper/Modal'
 import { Search } from 'common/components/Search/Search'
 import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
 import { Sort } from 'common/components/Sort/Sort'
@@ -32,7 +31,7 @@ import { Tbody } from 'common/components/Table/Tbody/Tbody'
 import { Thead } from 'common/components/Table/Thead/Thead'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { isLoggedInSelector } from 'features/auth/authSelectors'
-import { createPackTC, fetchPacksTC, setSearchParams } from 'features/packs/packsSlice'
+import { fetchPacksTC, setSearchParams } from 'features/packs/packsSlice'
 
 export const PackList = () => {
   const packList = useAppSelector(packsListSelector)
@@ -47,6 +46,7 @@ export const PackList = () => {
   const sortPack = useAppSelector(packsSortSelector)
   const packName = useAppSelector(packsNameSelector)
   const isPackModalActive = useAppSelector(isModalActiveSelector)
+  const isModalActive = useAppSelector(state => state.app.isModalActive)
   const emptyCheck = packName !== '' && packs.length === 0
 
   const dispatch = useAppDispatch()
@@ -58,7 +58,8 @@ export const PackList = () => {
   }
 
   const createPack = () => {
-    dispatch(createPackTC({ cardsPack: { name: 'test pack' } }))
+    // dispatch(createPackTC({ cardsPack: { name: 'test pack' } }))
+    dispatch(setModalActive(true))
   }
 
   const searchByName = (value: string) => {
@@ -83,14 +84,6 @@ export const PackList = () => {
 
   return (
     <div className={s.container}>
-      {isPackModalActive && (
-        <ModalWrapper title={'Add new pack'}>
-          <AddModal title={'aaa'} onClick={() => {}} />
-        </ModalWrapper>
-      )}
-      {/*проверка модалки - потом удалить*/}
-      <button onClick={() => dispatch(setModalActive(true))}>+</button>
-
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
           <PacksHeader title={'Packs list'} buttonTitle={'Add new pack'} onClick={createPack} />
@@ -116,6 +109,7 @@ export const PackList = () => {
           )}
         </div>
       </div>
+      {isModalActive && <Modal title={'add new pack'} />}
     </div>
   )
 }

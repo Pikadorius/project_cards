@@ -2,10 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 type StatusType = 'idle' | 'loading' | 'failed' | 'success'
 
-// type PackListTileType = 'Name' | 'Cards' | 'Last Updated' | 'Created by' | 'Actions'
-//
-// type SortName = 'name' | 'cardsCount' | 'updated' | 'user_name'
-
 const packList = [
   { title: 'Name', status: 0, sortName: 'name' },
   { title: 'Cards', status: 0, sortName: 'cardsCount' },

@@ -14,7 +14,7 @@ import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { dateHandler } from 'common/utils/dateHandler'
 import { userNameHandler } from 'common/utils/userNameHandler'
-import { deletePackTC, updatePackTC } from 'features/packs/packsSlice'
+import { updatePackTC } from 'features/packs/packsSlice'
 import { PackType, UpdatePackRequestType } from 'features/packs/packsType'
 
 type TbodyType = {
@@ -37,7 +37,7 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
 
         const deletePack = () => {
           dispatch(setModalActive(true))
-          dispatch(deletePackTC(t._id))
+          // dispatch(deletePackTC(t._id))
         }
 
         const updatePack = () => {

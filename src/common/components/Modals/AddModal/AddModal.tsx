@@ -6,11 +6,7 @@ type AddModalType = {
 }
 
 const AddModal: FC<AddModalType> = ({ title, onClick }) => {
-  return (
-    <div>
-      <input value={title} />
-    </div>
-  )
+  return <div>{/*<input value={title} />*/}</div>
 }
 
 export default AddModal
