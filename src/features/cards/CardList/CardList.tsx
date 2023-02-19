@@ -2,9 +2,11 @@ import React, { useCallback, useEffect } from 'react'
 
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
+import { modalTypeSelector } from '../../../app/appSelectors'
 import arrow from '../../../assets/arrow.svg'
 import { EmptyPack } from '../../../common/components/EmptyPack/EmptyPack'
 import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
+import ModalBody from '../../../common/components/Modals/ModalBody/ModalBody'
 import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SearchPanel'
 import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
@@ -41,6 +43,7 @@ export const CardList = () => {
   const cardQuestion = useAppSelector(cardQuestionCardSelector)
   const sortCards = useAppSelector(sortCardsSelector)
   const cardsTotalCount = useAppSelector(cardsTotalCountSelector)
+  const modalType = useAppSelector(modalTypeSelector)
   const packActive = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
   const namePackActive = packActive?.name
 
@@ -82,6 +85,7 @@ export const CardList = () => {
 
   return (
     <div className={s.container}>
+      {modalType !== 'idle' && <ModalBody modalType={modalType} />}
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
           <div onClick={() => navigate(-1)} className={s.linkBackward}>

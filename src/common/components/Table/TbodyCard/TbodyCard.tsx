@@ -2,9 +2,10 @@ import React, { memo, useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
+import { setChangedItemId, setChangedItemName, setModal } from '../../../../app/appSlice'
 import Delete from '../../../../assets/Delete.svg'
 import edit from '../../../../assets/Edit.svg'
-import { deleteCardTC, updateCardTC } from '../../../../features/cards/cardSlice'
+import { updateCardTC } from '../../../../features/cards/cardSlice'
 import { CardType } from '../../../../features/cards/cardType'
 import { useAppDispatch, useAppSelector } from '../../../hooks'
 import { dateHandler } from '../../../utils'
@@ -24,8 +25,11 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
 
   let isMyCard = userId === packUserId
 
-  const onClickDeleteHandler = (cardID: string, cardsPackID: string) => {
-    dispatch(deleteCardTC([cardID, cardsPackID]))
+  const onClickDeleteHandler = (cardID: string, cardsPackID: string, cardName: string) => {
+    // dispatch(deleteCardTC([cardID, cardsPackID]))
+    dispatch(setModal('deleteCard'))
+    dispatch(setChangedItemName(cardName))
+    dispatch(setChangedItemId(cardID))
   }
   const onClickUpdateHandler = (cardID: string, cardsPackID: string) => {
     let updateCard = {
@@ -74,7 +78,7 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
                   />
                   <img
                     className={s.icon}
-                    onClick={() => onClickDeleteHandler(t._id, t.cardsPack_id)}
+                    onClick={() => onClickDeleteHandler(t._id, t.cardsPack_id, t.question)}
                     src={Delete}
                     alt="delete"
                   />
