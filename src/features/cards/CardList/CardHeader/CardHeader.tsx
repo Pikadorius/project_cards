@@ -1,7 +1,8 @@
 import React, { FC, memo } from 'react'
 
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
+import { PATH } from '../../../../common/constans/path'
 import { authUserIdSelector } from '../../../auth/authSelectors'
 import { packNameCardSelector, packUserIdCardSelector } from '../cardSelectors'
 
@@ -16,6 +17,7 @@ type CardHeaderType = {
 
 export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
   let { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
   const userId = useAppSelector(authUserIdSelector)
   const packUserId = useAppSelector(packUserIdCardSelector)
   const packName = useAppSelector(packNameCardSelector)
@@ -40,7 +42,7 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
         </button>
       ) : (
         <button
-          onClick={() => alert('Learn to pack')}
+          onClick={() => navigate(PATH.CARD_LEARN)}
           className={s.btn}
           disabled={pack && pack.cardsCount === 0}
         >

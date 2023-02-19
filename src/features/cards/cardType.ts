@@ -92,6 +92,18 @@ export type InititalStateLearnCardType = {
   status: AnswerStatuses
 }
 
-export type ArrTypeCard = {
-  arr: InititalStateLearnCardType[]
+export type CardGradeDataType = {
+  grade: number
+  card_id: string
+}
+
+export type CardGradeResponseType = {
+  updatedGrade: {
+    _id: string
+    cardsPack_id: string
+    card_id: string
+    user_id: string
+    grade: number
+    shots: number
+  }
 }

@@ -3,16 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import { useAppDispatch, useAppSelector } from '../../../common/hooks'
-import {
-  cardAnswerCardSelector,
-  cardQuestionCardSelector,
-  cardSelector,
-  packNameCardSelector,
-} from '../CardList/cardSelectors'
-import { fetchCardTC } from '../cardSlice'
+import { cardSelector, packNameCardSelector } from '../CardList/cardSelectors'
+import { fetchCardTC, updatedGradeTC } from '../cardSlice'
 import { CardType } from '../cardType'
 
-import { AnswerStatuses, changeStatus } from './learnCardSlice'
+import { AnswerStatuses, changeStatus, resetStatus } from './learnCardSlice'
 
 const getCard = (cards: any[]) => {
   const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0)
@@ -31,11 +26,12 @@ const getCard = (cards: any[]) => {
 
 export const LearnCardPage = () => {
   const [isChecked, setIsChecked] = useState<boolean>(true)
+  const [grade, setGrade] = useState<number>(0)
   const [first, setFirst] = useState<boolean>(false)
   let { id } = useParams<{ id: string }>()
 
   const packName = useAppSelector(packNameCardSelector)
-  const gradesCardLearn = useAppSelector(state => state.learnCard.arr)
+  const gradesCardLearn = useAppSelector(state => state.learnCard)
   const cards = useAppSelector(cardSelector)
   const dispatch = useAppDispatch()
 
@@ -55,7 +51,8 @@ export const LearnCardPage = () => {
 
   const onNext = () => {
     setIsChecked(true)
-
+    dispatch(updatedGradeTC({ grade: grade, card_id: card._id }))
+    dispatch(resetStatus())
     if (cards.length > 0) {
       setCard(getCard(cards))
     }
@@ -63,6 +60,7 @@ export const LearnCardPage = () => {
 
   const onChangeCheckedHandler = (isActive: AnswerStatuses, grade: number) => {
     dispatch(changeStatus({ id: grade, status: isActive }))
+    setGrade(grade)
   }
 
   return (

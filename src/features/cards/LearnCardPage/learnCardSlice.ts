@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-import { ArrTypeCard, InititalStateLearnCardType } from '../cardType'
+import { InititalStateLearnCardType } from '../cardType'
 
 export enum AnswerStatuses {
   IsNoActive = 0,
   IsActive = 1,
 }
 
-let arr: InititalStateLearnCardType[] = [
+let initialState: InititalStateLearnCardType[] = [
   { id: 1, title: 'Did not know', status: AnswerStatuses.IsActive },
   { id: 2, title: 'Forgot', status: AnswerStatuses.IsNoActive },
   { id: 3, title: 'A lot of thought', status: AnswerStatuses.IsNoActive },
@@ -15,26 +15,33 @@ let arr: InititalStateLearnCardType[] = [
   { id: 5, title: 'Knew the answer', status: AnswerStatuses.IsNoActive },
 ]
 
-const initialState: ArrTypeCard = {
-  arr: arr,
-}
-
 const cardSlice = createSlice({
   name: 'learnCardPage',
   initialState,
   reducers: {
     changeStatus: (state, action: PayloadAction<{ id: number; status: AnswerStatuses }>) => {
-      state.arr = state.arr.map(e => ({ ...e, status: AnswerStatuses.IsNoActive }))
-
-      let grade = state.arr.find(e => e.id === action.payload.id)
-
-      if (grade) {
-        grade.status = action.payload.status
-      }
+      return state.map(e =>
+        e.id === action.payload.id
+          ? { ...e, status: action.payload.status }
+          : {
+              ...e,
+              status: AnswerStatuses.IsNoActive,
+            }
+      )
+    },
+    resetStatus: (state, action: PayloadAction) => {
+      return state.map((e, i) =>
+        i === 0
+          ? { ...e, status: AnswerStatuses.IsActive }
+          : {
+              ...e,
+              status: AnswerStatuses.IsNoActive,
+            }
+      )
     },
   },
 })
 
-export const { changeStatus } = cardSlice.actions
+export const { changeStatus, resetStatus } = cardSlice.actions
 
 export const learnCardReducer = cardSlice.reducer
