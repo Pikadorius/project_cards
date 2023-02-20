@@ -28,8 +28,8 @@ const ModalWrapper: FC<PropsType> = ({ children, title }) => {
   return (
     <Portal>
       <div className={s.container} onClick={closeModal}>
-        <div className={s.wrapper}>
-          <div onClick={onContentClick} className={s.modalHeader}>
+        <div className={s.wrapper} onClick={onContentClick}>
+          <div className={s.modalHeader}>
             <div className={s.title}>{title}</div>
             <IconButton onClick={closeModal} size={'small'}>
               <CloseIcon />
