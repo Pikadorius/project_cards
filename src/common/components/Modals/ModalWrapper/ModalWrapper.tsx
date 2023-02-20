@@ -5,6 +5,7 @@ import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 
 import { resetModalValues } from '../../../utils'
+import { Portal } from '../../Portal/Portal'
 
 import s from './ModalWrapper.module.scss'
 
@@ -21,18 +22,20 @@ const ModalWrapper: FC<PropsType> = ({ children, title }) => {
   }
 
   return (
-    <div className={s.container}>
-      <div className={s.wrapper}>
-        <div className={s.modalHeader}>
-          <div className={s.title}>{title}</div>
-          <IconButton onClick={closeModal} size={'small'}>
-            <CloseIcon />
-          </IconButton>
+    <Portal>
+      <div className={s.container}>
+        <div className={s.wrapper}>
+          <div className={s.modalHeader}>
+            <div className={s.title}>{title}</div>
+            <IconButton onClick={closeModal} size={'small'}>
+              <CloseIcon />
+            </IconButton>
+          </div>
+          <Divider />
+          <div>{children}</div>
         </div>
-        <Divider />
-        <div>{children}</div>
       </div>
-    </div>
+    </Portal>
   )
 }
 
