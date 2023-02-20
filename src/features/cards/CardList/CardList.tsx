@@ -2,9 +2,12 @@ import React, { useCallback, useEffect } from 'react'
 
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
+import { modalTypeSelector } from '../../../app/appSelectors'
+import { setChangedItemId, setModal } from '../../../app/appSlice'
 import arrow from '../../../assets/arrow.svg'
 import { EmptyPack } from '../../../common/components/EmptyPack/EmptyPack'
 import SuperPagination from '../../../common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
+import ModalBody from '../../../common/components/Modals/ModalBody/ModalBody'
 import { Search } from '../../../common/components/Search/Search'
 import { SearchPanel } from '../../../common/components/SearchPanel/SearchPanel'
 import { TablePackListWrapper } from '../../../common/components/Table/TablePackListWrapper/TablePackListWrapper'
@@ -13,7 +16,7 @@ import { Thead } from '../../../common/components/Table/Thead/Thead'
 import { PATH } from '../../../common/constans/path'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks'
 import { isLoggedInSelector } from '../../auth/authSelectors'
-import { createCardTC, fetchCardTC, setSearchCardParams } from '../cardSlice'
+import { fetchCardTC, setSearchCardParams } from '../cardSlice'
 
 import { CardHeader } from './CardHeader/CardHeader'
 import s from './CardList.module.scss'
@@ -41,6 +44,7 @@ export const CardList = () => {
   const cardQuestion = useAppSelector(cardQuestionCardSelector)
   const sortCards = useAppSelector(sortCardsSelector)
   const cardsTotalCount = useAppSelector(cardsTotalCountSelector)
+  const modalType = useAppSelector(modalTypeSelector)
   const packActive = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
   const namePackActive = packActive?.name
 
@@ -53,19 +57,22 @@ export const CardList = () => {
 
   const createCards = useCallback(() => {
     if (!id) return
-    let newCard = {
-      cardsPack_id: id,
-      question: 'New cards',
-      answer: '...',
-      grade: 0,
-      shots: 4,
-      answerImg: 'url or base 64',
-      questionImg: 'url or base 64',
-      questionVideo: 'url or base 64',
-      answerVideo: 'url or base 64',
-    }
 
-    dispatch(createCardTC({ card: newCard }))
+    dispatch(setModal('createCard'))
+    dispatch(setChangedItemId(id))
+    // let newCard = {
+    //   cardsPack_id: id,
+    //   question: 'New cards',
+    //   answer: '...',
+    //   grade: 0,
+    //   shots: 4,
+    //   answerImg: 'url or base 64',
+    //   questionImg: 'url or base 64',
+    //   questionVideo: 'url or base 64',
+    //   answerVideo: 'url or base 64',
+    // }
+    //
+    // dispatch(createCardTC({ card: newCard }))
   }, [id])
 
   if (!isLoggedIn) {
@@ -82,6 +89,7 @@ export const CardList = () => {
 
   return (
     <div className={s.container}>
+      {modalType !== 'idle' && <ModalBody modalType={modalType} />}
       <div className={s.wrapper}>
         <div className={s.innerWrapper}>
           <div onClick={() => navigate(-1)} className={s.linkBackward}>

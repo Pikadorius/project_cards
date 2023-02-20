@@ -18,7 +18,7 @@ function App() {
 
   const isInitialized = useAppSelector(isInitializedSelector)
   const appStatus = useAppSelector(appStatusSelector)
-  const isModalActive = useAppSelector(modalTypeSelector)
+  const isModalActive = useAppSelector(modalTypeSelector) !== 'idle'
   const [searchParams, setSearchParams] = useSearchParams()
   const packsQuery = searchParams.get('packs') || ''
 
@@ -31,7 +31,7 @@ function App() {
   }
 
   return (
-    <div className={isModalActive !== 'idle' ? 'app modalActive' : 'app'}>
+    <div className={isModalActive ? 'app modalActive' : 'app'}>
       <Header />
       <Pages />
       <SimpleSnackbar />
