@@ -1,10 +1,6 @@
 import React, { memo } from 'react'
 
-import StarIcon from '@mui/icons-material/Star'
-import Rating from '@mui/material/Rating'
-
 import { Button } from '../../../../common/components/Button/Button'
-import { Range } from '../../../../common/components/Range/Range'
 import { CardType } from '../../cardType'
 import s from '../LearnCardItem/LearnCardItem.module.scss'
 import { AnswerStatuses } from '../learnCardSlice'

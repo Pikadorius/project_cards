@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import arrow from '../../../assets/arrow.svg'
 import { useAppDispatch, useAppSelector } from '../../../common/hooks'
+import { getCard } from '../../../common/utils/getCard'
 import { cardSelector, packNameCardSelector } from '../CardList/cardSelectors'
 import { fetchCardTC, setSearchCardParams, updatedGradeTC } from '../cardSlice'
 import { CardType } from '../cardType'
@@ -11,21 +12,6 @@ import s from '../LearnCardPage/LearnCardPage.module.scss'
 
 import { LearnCardItem } from './LearnCardItem/LearnCardItem'
 import { AnswerStatuses, changeStatus, resetStatus } from './learnCardSlice'
-
-const getCard = (cards: any[]) => {
-  const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0)
-  const rand = Math.random() * sum
-  const res = cards.reduce(
-    (acc: { sum: number; id: number }, card, i) => {
-      const newSum = acc.sum + (6 - card.grade) * (6 - card.grade)
-
-      return { sum: newSum, id: newSum < rand ? i : acc.id }
-    },
-    { sum: 0, id: -1 }
-  )
-
-  return cards[res.id + 1]
-}
 
 export const LearnCardPage = memo(() => {
   const [isChecked, setIsChecked] = useState<boolean>(false)
