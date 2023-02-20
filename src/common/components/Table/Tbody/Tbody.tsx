@@ -2,13 +2,14 @@ import React, { memo } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
+import { fetchCardTC } from '../../../../features/cards/cardSlice'
 import { DeleteIcon } from '../../Icon/DeleteIcon/Delete'
 import { EditIcon } from '../../Icon/EditIcon/EditIcon'
 import { TeachIcon } from '../../Icon/TeachIcon/TeachIcon'
 
 import s from './Tbody.module.scss'
 
-import { ModalType, setChangedItemId, setChangedItemName, setModal } from 'app/appSlice'
+import { setChangedItemId, setChangedItemName, setModal } from 'app/appSlice'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
@@ -46,16 +47,17 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
           dispatch(setChangedItemId(t._id))
           dispatch(setChangedItemName(t.name))
           /*const data: UpdatePackRequestType = {
-            cardsPack: {
-              name: 'Updated pack',
-              _id: t._id,
-            },
-          }
-
-          dispatch(updatePackTC(data))*/
+                  cardsPack: {
+                    name: 'Updated pack',
+                    _id: t._id,
+                  },
+                }
+      
+                dispatch(updatePackTC(data))*/
         }
 
         const teachPack = () => {
+          dispatch(fetchCardTC(t._id))
           navigate(PATH.CARD_LEARN)
         }
 

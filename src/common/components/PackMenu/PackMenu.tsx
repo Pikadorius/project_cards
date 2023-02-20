@@ -5,7 +5,9 @@ import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
 import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+
+import { setSearchCardParams } from '../../../features/cards/cardSlice'
 
 import s from './PackMenu.module.scss'
 
@@ -23,8 +25,10 @@ type PackMenuType = {
 }
 
 export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
+  let { id } = useParams<{ id: string }>()
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const card = useAppSelector(state => state.card.cards)
+  const searchParams = useAppSelector(state => state.card.searchParams)
   const open = Boolean(anchorEl)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -54,6 +58,12 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
 
       dispatch(updatePackTC(data))
     }
+  }
+
+  const learnHandler = () => {
+    dispatch(setSearchCardParams({ page: 1, pageCount: searchParams.cardsTotalCount }))
+
+    return navigate(PATH.CARD_LEARN)
   }
 
   return (
@@ -106,7 +116,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
         <MenuItem onClick={deletePack}>
           <img className={s.icon} src={Delete} alt="delete" /> Delete
         </MenuItem>
-        <MenuItem onClick={() => alert('Learn to pack')}>
+        <MenuItem onClick={learnHandler}>
           <img className={s.icon} src={teacher} alt="learn pack" /> Learn
         </MenuItem>
       </Menu>
