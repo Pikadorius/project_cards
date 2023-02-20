@@ -19,7 +19,7 @@ import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
 
 import { modalTypeSelector } from 'app/appSelectors'
-import { ModalType, setModal } from 'app/appSlice'
+import { setModal } from 'app/appSlice'
 import { EmptyPackSearch } from 'common/components/EmptyPackSearch/EmptyPackSearch'
 import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import ModalBody from 'common/components/Modals/ModalBody/ModalBody'
@@ -50,8 +50,6 @@ export const PackList = () => {
 
   const dispatch = useAppDispatch()
 
-  const [sortParams, setSortParams] = useSearchParams()
-
   const onChange = (page: number, pageCount: number) => {
     dispatch(setSearchParams({ page, pageCount }))
   }
@@ -70,17 +68,7 @@ export const PackList = () => {
       return
     }
     dispatch(fetchPacksTC())
-    setSortParams({
-      user_id: String(user_id),
-      min: String(min),
-      max: String(max),
-      pageCount: String(pageCount),
-      page: String(page),
-      packName: packName,
-      sortPack: sortPack,
-    })
   }, [page, pageCount, min, max, sortPack, user_id, packName])
-  s
 
   return (
     <div className={s.container}>
