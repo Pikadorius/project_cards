@@ -18,18 +18,20 @@ export const GradesItem: FC<GradesItemType> = memo(({ onChangeChecked }) => {
       {gradesCardLearn.map((g, i) => {
         return (
           <div key={i} className={s.inputItem}>
-            <input
-              type={'checkbox'}
-              className={s.customCheckbox}
-              checked={g.status === AnswerStatuses.IsActive}
-              onChange={e =>
-                onChangeChecked(
-                  e.currentTarget.checked ? AnswerStatuses.IsActive : AnswerStatuses.IsNoActive,
-                  g.id
-                )
-              }
-            />
-            <span>{g.title}</span>
+            <label>
+              <input
+                type={'checkbox'}
+                className={s.customCheckbox}
+                checked={g.status === AnswerStatuses.IsActive}
+                onChange={e =>
+                  onChangeChecked(
+                    e.currentTarget.checked ? AnswerStatuses.IsActive : AnswerStatuses.IsNoActive,
+                    g.id
+                  )
+                }
+              />
+              <span>{g.title}</span>
+            </label>
           </div>
         )
       })}
