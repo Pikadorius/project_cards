@@ -47,13 +47,13 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
           dispatch(setChangedItemId(t._id))
           dispatch(setChangedItemName(t.name))
           /*const data: UpdatePackRequestType = {
-                  cardsPack: {
-                    name: 'Updated pack',
-                    _id: t._id,
-                  },
-                }
-      
-                dispatch(updatePackTC(data))*/
+                        cardsPack: {
+                          name: 'Updated pack',
+                          _id: t._id,
+                        },
+                      }
+            
+                      dispatch(updatePackTC(data))*/
         }
 
         const teachPack = () => {
@@ -71,7 +71,7 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
         return (
           <tr key={t._id} className={s.tr}>
             <td onClick={getCardsPack} className={`${s.td} ${s.packTitle}`}>
-              <span>{t.name}</span>
+              <span className={s.title}>{t.name}</span>
             </td>
             <td className={s.td}>{t.cardsCount}</td>
             <td className={s.td}>{dateUpdate}</td>
