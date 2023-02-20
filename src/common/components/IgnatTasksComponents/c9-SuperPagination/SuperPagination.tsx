@@ -2,11 +2,12 @@ import React from 'react'
 
 import { Pagination } from '@mui/material'
 
-import { setSearchParams } from '../../../../features/packs/packsSlice'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { SuperSelect } from '../../Select/SuperSelect'
 
 import s from './SuperPagination.module.css'
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { setSearchParams } from 'features/packs/packsSlice'
 
 export type SuperPaginationPropsType = {
   id?: string
