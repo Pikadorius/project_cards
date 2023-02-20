@@ -1,5 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
+import { learnCardReducer } from '../features/cards/LearnCardPage/learnCardSlice'
+
 import { appReducer } from 'app/appSlice'
 import { loadState, saveState } from 'common/utils'
 import { authReducer } from 'features/auth/authSlice'
@@ -12,6 +14,7 @@ export const store = configureStore({
     app: appReducer,
     packs: packsReducer,
     card: cardReducer,
+    learnCard: learnCardReducer,
   },
   preloadedState: loadState(),
 })

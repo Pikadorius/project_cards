@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 import { cardAPI } from './cardAPI'
 import {
+  CardGradeDataType,
   CardQueryParamsType,
   CreateCardRequestType,
   GetCardResponseType,
@@ -98,6 +99,22 @@ export const deleteCardTC = createAsyncThunk(
   }
 )
 
+export const updatedGradeTC = createAsyncThunk(
+  'updatedGrade',
+  async (data: CardGradeDataType, { dispatch }) => {
+    dispatch(setAppStatus('loading'))
+
+    try {
+      const res = await cardAPI.updatedCardGrade(data)
+
+      console.log(res.data)
+      dispatch(setAppStatus('success'))
+    } catch (e: any) {
+      errorUtils(e, dispatch)
+    }
+  }
+)
+
 const cardSlice = createSlice({
   name: 'cardListPage',
   initialState,
@@ -118,6 +135,16 @@ const cardSlice = createSlice({
     setSearchCardParams: (state, action: PayloadAction<CardQueryParamsType>) => {
       state.searchParams = { ...state.searchParams, ...action.payload }
     },
+    /*setGradeInCard: (state, action: PayloadAction<CardGradeDataType>) => {
+      return state.cards.map(e =>
+        e._id === action.payload.card_id
+          ? {
+              e,
+              grade: action.payload.grade,
+            }
+          : e
+      )
+    },*/
   },
 })
 

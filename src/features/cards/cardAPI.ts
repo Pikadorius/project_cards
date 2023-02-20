@@ -3,6 +3,8 @@ import { AxiosResponse } from 'axios'
 import { instance } from '../../common/constans/instance'
 
 import {
+  CardGradeDataType,
+  CardGradeResponseType,
   CreateCardRequestType,
   CreateCardType,
   GetCardResponseType,
@@ -39,5 +41,11 @@ export const cardAPI = {
       AxiosResponse<GetCardResponseType>,
       { card: Omit<CreateCardType, 'cardsPack_id'> & { _id: string } }
     >('cards/card', data)
+  },
+  updatedCardGrade: (data: CardGradeDataType) => {
+    return instance.put<'', AxiosResponse<CardGradeResponseType>, CardGradeDataType>(
+      'cards/grade',
+      data
+    )
   },
 }
