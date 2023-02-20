@@ -107,7 +107,7 @@ export const updatedGradeTC = createAsyncThunk(
     try {
       const res = await cardAPI.updatedCardGrade(data)
 
-      console.log(data.card_id)
+      console.log(res.data)
       dispatch(setAppStatus('success'))
     } catch (e: any) {
       errorUtils(e, dispatch)
