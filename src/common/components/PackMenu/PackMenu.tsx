@@ -106,7 +106,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
         <MenuItem onClick={deletePack}>
           <img className={s.icon} src={Delete} alt="delete" /> Delete
         </MenuItem>
-        <MenuItem onClick={() => alert('Learn to pack')}>
+        <MenuItem onClick={() => navigate(PATH.CARD_LEARN)}>
           <img className={s.icon} src={teacher} alt="learn pack" /> Learn
         </MenuItem>
       </Menu>
