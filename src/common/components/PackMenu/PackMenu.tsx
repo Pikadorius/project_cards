@@ -7,7 +7,7 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { setSearchCardParams } from '../../../features/cards/cardSlice'
+import { fetchCardTC, setSearchCardParams } from '../../../features/cards/cardSlice'
 
 import s from './PackMenu.module.scss'
 
@@ -62,6 +62,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
 
   const learnHandler = () => {
     dispatch(setSearchCardParams({ page: 1, pageCount: searchParams.cardsTotalCount }))
+    if (id) dispatch(fetchCardTC(id))
 
     return navigate(PATH.CARD_LEARN)
   }

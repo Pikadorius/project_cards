@@ -3,6 +3,8 @@ import React, { FC, memo } from 'react'
 import { useAppSelector } from '../../../../../common/hooks'
 import { AnswerStatuses } from '../../learnCardSlice'
 
+import s from './GradesItem.module.scss'
+
 type GradesItemType = {
   onChangeChecked: (isActive: AnswerStatuses, grade: number) => void
 }
@@ -11,13 +13,14 @@ export const GradesItem: FC<GradesItemType> = memo(({ onChangeChecked }) => {
   const gradesCardLearn = useAppSelector(state => state.learnCard)
 
   return (
-    <div>
-      <div>Rate yourself:</div>
+    <div className={s.gradesItem}>
+      <div className={s.grades}>Rate yourself:</div>
       {gradesCardLearn.map((g, i) => {
         return (
-          <div key={i}>
+          <div key={i} className={s.inputItem}>
             <input
               type={'checkbox'}
+              className={s.customCheckbox}
               checked={g.status === AnswerStatuses.IsActive}
               onChange={e =>
                 onChangeChecked(
@@ -26,7 +29,7 @@ export const GradesItem: FC<GradesItemType> = memo(({ onChangeChecked }) => {
                 )
               }
             />
-            {g.title}
+            <span>{g.title}</span>
           </div>
         )
       })}

@@ -14,7 +14,7 @@ export const CardsRating: React.FC<RatingCard> = memo(({ value }) => {
         name="text-feedback"
         value={value}
         readOnly
-        precision={0.5}
+        precision={0.25}
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
     </div>

@@ -3,6 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { cardAPI } from './cardAPI'
 import {
   CardGradeDataType,
+  CardGradeResponseType,
   CardQueryParamsType,
   CreateCardRequestType,
   GetCardResponseType,
@@ -103,11 +104,18 @@ export const updatedGradeTC = createAsyncThunk(
   'updatedGrade',
   async (data: CardGradeDataType, { dispatch }) => {
     dispatch(setAppStatus('loading'))
+    console.log(data.card_id)
 
     try {
       const res = await cardAPI.updatedCardGrade(data)
 
-      console.log(res.data)
+      console.log(res.data.updatedGrade.grade, res.data.updatedGrade.card_id)
+      dispatch(
+        setGradeInCard({
+          grade: res.data.updatedGrade.grade,
+          cardID: res.data.updatedGrade.card_id,
+        })
+      )
       dispatch(setAppStatus('success'))
     } catch (e: any) {
       errorUtils(e, dispatch)
@@ -135,19 +143,16 @@ const cardSlice = createSlice({
     setSearchCardParams: (state, action: PayloadAction<CardQueryParamsType>) => {
       state.searchParams = { ...state.searchParams, ...action.payload }
     },
-    /*setGradeInCard: (state, action: PayloadAction<CardGradeDataType>) => {
-      return state.cards.map(e =>
-        e._id === action.payload.card_id
-          ? {
-              e,
-              grade: action.payload.grade,
-            }
-          : e
-      )
-    },*/
+    setGradeInCard: (state, action: PayloadAction<{ grade: number; cardID: string }>) => {
+      const cardIndex = state.cards.findIndex(e => e._id === action.payload.cardID)
+
+      if (cardIndex !== -1) {
+        state.cards[cardIndex].grade = action.payload.grade
+      }
+    },
   },
 })
 
-export const { setState, setSearchCardParams } = cardSlice.actions
+export const { setState, setSearchCardParams, setGradeInCard } = cardSlice.actions
 
 export const cardReducer = cardSlice.reducer
