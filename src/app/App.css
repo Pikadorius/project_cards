@@ -38,15 +38,16 @@ select:-webkit-autofill:focus {
 }
 
 body {
+    position: relative;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     line-height: 17px;
 
-    background: #fff;
+    background: #ECECEC;
 }
 
 .app {
-    position: relative;
+    /*position: relative;*/
 
     width: 100vw;
     min-height: 100vh;
