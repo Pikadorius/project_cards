@@ -39,7 +39,7 @@ export const NewPassword = () => {
           type={'password'}
           label={'Password'}
           nameForValidate={'password'}
-          placeholder={'example12'}
+          placeholder={'********'}
           register={register}
           error={errorPassword}
         />

@@ -1,0 +1,34 @@
+@import '../../../../common/styles/mixins';
+
+.container {
+  height: calc(100vh - 62px);
+
+  .wrapper {
+    @include flexCenter;
+
+    height: 100%;
+
+    .innerWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      width: 413px;
+      padding: 35px 35px;
+
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
+
+      .title {
+        margin-bottom: 35px;
+
+        font-size: 26px;
+        font-weight: 600;
+        line-height: 32px;
+        color: #000000;
+      }
+
+    }
+  }
+}
