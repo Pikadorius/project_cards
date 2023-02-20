@@ -1,17 +1,16 @@
 import * as React from 'react'
 import { FC } from 'react'
 
-import PendingOutlinedIcon from '@mui/icons-material/PendingOutlined'
-import IconButton from '@mui/material/IconButton'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { setSearchCardParams } from '../../../features/cards/cardSlice'
+import { fetchCardTC, setSearchCardParams } from '../../../features/cards/cardSlice'
 
 import s from './PackMenu.module.scss'
 
 import Delete from 'assets/Delete.svg'
+import dots from 'assets/dots.svg'
 import edit from 'assets/Edit.svg'
 import teacher from 'assets/teacher.svg'
 import { PATH } from 'common/constans/path'
@@ -61,7 +60,9 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
   }
 
   const learnHandler = () => {
+    // localStorage.setItem('pageCount', String(searchParams.pageCount))
     dispatch(setSearchCardParams({ page: 1, pageCount: searchParams.cardsTotalCount }))
+    if (id) dispatch(fetchCardTC(id))
 
     return navigate(PATH.CARD_LEARN)
   }
@@ -70,9 +71,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
     <React.Fragment>
       <div className={s.menuTitle}>
         <h2>{title}</h2>
-        <IconButton onClick={handleClick} sx={{ padding: '0 10px' }}>
-          <PendingOutlinedIcon />
-        </IconButton>
+        <img className={s.dots} onClick={handleClick} src={dots} alt={'dots'} />
       </div>
 
       <Menu

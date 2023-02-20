@@ -11,7 +11,12 @@ type ButtonType = {
 
 export const Button: FC<ButtonType> = memo(({ type, title, isValid, callBack }) => {
   return (
-    <button onClick={callBack} disabled={!isValid} className={s.btn} type={type ? type : undefined}>
+    <button
+      onClick={callBack}
+      disabled={isValid ? !isValid : false}
+      className={s.btn}
+      type={type ? type : undefined}
+    >
       {title}
     </button>
   )

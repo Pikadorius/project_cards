@@ -1,8 +1,18 @@
 .menuTitle {
   display: flex;
   align-items: center;
+  gap: 10px;
+
+  .dots {
+    width: 18px;
+    height: 18px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
-.icon{
+.icon {
   padding-right: 10px;
 }
