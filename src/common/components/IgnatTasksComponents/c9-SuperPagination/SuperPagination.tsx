@@ -25,6 +25,16 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
 }) => {
   const lastPage = totalCount
   const dispatch = useAppDispatch()
+
+  const style = {
+    ul: {
+      '& .Mui-selected': {
+        backgroundColor: 'black',
+        color: 'white',
+      },
+    },
+  }
+
   const onChangeCallback = (event: any, page: number) => {
     // пишет студент
     onChange(page, itemsCountForPage)
@@ -39,11 +49,8 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
   return (
     <div className={s.pagination}>
       <Pagination
-        sx={
-          {
-            // стили для Pagination // пишет студент
-          }
-        }
+        sx={style}
+        color={'standard'}
         shape="rounded"
         page={page}
         count={lastPage}
