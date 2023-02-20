@@ -6,7 +6,7 @@ import s from './FormWrapper.module.scss'
 
 type FormWrapperType = {
   children?: ReactNode
-  title: string
+  title?: string
   forgot?: boolean
   questionText?: string
   recoveryPath?: string
