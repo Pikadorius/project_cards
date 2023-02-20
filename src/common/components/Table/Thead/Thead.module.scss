@@ -1,7 +1,9 @@
 @import '../../../styles/mixins';
+
 .header {
   height: calc(100% / 11);
-  background: #efefef;
+  background: #212121;
+  color: #fff;
 
   .tr {
     @include tr;
@@ -9,6 +11,7 @@
     &:last-child {
       cursor: inherit;
     }
+
     .th {
       padding-left: 36px;
       text-align: start;
@@ -16,6 +19,7 @@
       font-weight: 500;
       font-size: 14px;
       line-height: 17px;
+
       &:first-child {
         width: 35vw;
       }

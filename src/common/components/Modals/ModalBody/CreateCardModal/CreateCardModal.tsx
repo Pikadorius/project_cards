@@ -85,7 +85,6 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
           fullWidth
           label="Answer"
           variant="standard"
-          autoFocus
           onKeyDown={onEnterHandler}
           value={cardAnswer}
           onChange={onChangeCardAnswer}

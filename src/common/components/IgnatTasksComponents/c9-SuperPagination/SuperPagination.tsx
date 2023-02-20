@@ -2,11 +2,12 @@ import React from 'react'
 
 import { Pagination } from '@mui/material'
 
-import { setSearchParams } from '../../../../features/packs/packsSlice'
-import { useAppDispatch } from '../../../hooks/useAppDispatch'
 import { SuperSelect } from '../../Select/SuperSelect'
 
 import s from './SuperPagination.module.css'
+
+import { useAppDispatch } from 'common/hooks/useAppDispatch'
+import { setSearchParams } from 'features/packs/packsSlice'
 
 export type SuperPaginationPropsType = {
   id?: string
@@ -24,6 +25,16 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
 }) => {
   const lastPage = totalCount
   const dispatch = useAppDispatch()
+
+  const style = {
+    ul: {
+      '& .Mui-selected': {
+        backgroundColor: 'black',
+        color: 'white',
+      },
+    },
+  }
+
   const onChangeCallback = (event: any, page: number) => {
     // пишет студент
     onChange(page, itemsCountForPage)
@@ -38,11 +49,9 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
   return (
     <div className={s.pagination}>
       <Pagination
-        sx={
-          {
-            // стили для Pagination // пишет студент
-          }
-        }
+        sx={style}
+        color={'standard'}
+        shape="rounded"
         page={page}
         count={lastPage}
         onChange={onChangeCallback}

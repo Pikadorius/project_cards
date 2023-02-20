@@ -6,6 +6,8 @@ import { Avatar, Box, Divider, ListItemIcon, Menu, MenuItem, Tooltip } from '@mu
 import IconButton from '@mui/material/IconButton'
 import { Link } from 'react-router-dom'
 
+import s from './AccountMenu.module.scss'
+
 import ava from 'assets/ava.png'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
@@ -43,9 +45,11 @@ export function AccountMenu() {
             aria-haspopup="true"
             aria-expanded={open ? 'true' : undefined}
           >
-            <Avatar src={ava} sx={{ width: 36, height: 36 }}>
-              M
-            </Avatar>
+            <div className={s.avatar}>
+              <Avatar src={ava} sx={{ width: 36, height: 36 }}>
+                M
+              </Avatar>
+            </div>
           </IconButton>
         </Tooltip>
       </Box>
