@@ -44,6 +44,7 @@ const SuperPagination: React.FC<SuperPaginationPropsType> = ({
             // стили для Pagination // пишет студент
           }
         }
+        shape="rounded"
         page={page}
         count={lastPage}
         onChange={onChangeCallback}
