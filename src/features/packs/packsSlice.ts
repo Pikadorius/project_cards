@@ -82,6 +82,8 @@ export const deletePackTC = createAsyncThunk('deletePack', async (id: string, { 
     const res = await packsAPI.deletePack(id)
 
     dispatch(fetchPacksTC())
+
+    return true
   } catch (e: any) {
     errorUtils(e, dispatch)
   }

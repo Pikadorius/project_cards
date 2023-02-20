@@ -3,10 +3,15 @@ import { FC } from 'react'
 
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import { modalTypeSelector } from '../../../app/appSelectors'
-import { setChangedItemId, setChangedItemName, setModal } from '../../../app/appSlice'
+import {
+  setChangedItemId,
+  setChangedItemName,
+  setIsPackDeleted,
+  setModal,
+} from '../../../app/appSlice'
 import { fetchCardTC, setSearchCardParams } from '../../../features/cards/cardSlice'
 import ModalBody from '../Modals/ModalBody/ModalBody'
 
@@ -34,6 +39,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
   const modalType = useAppSelector(modalTypeSelector)
   const cards = useAppSelector(state => state.card.cards)
   const searchParams = useAppSelector(state => state.card.searchParams)
+  const isPackDeleted = useAppSelector(state => state.app.isPackDeleted)
   const open = Boolean(anchorEl)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -66,6 +72,12 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
     if (id) dispatch(fetchCardTC(id))
 
     return navigate(PATH.CARD_LEARN)
+  }
+
+  if (isPackDeleted) {
+    dispatch(setIsPackDeleted(false))
+
+    return <Navigate to={PATH.PACK_LIST} />
   }
 
   return (

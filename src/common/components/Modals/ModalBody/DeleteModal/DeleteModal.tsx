@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 
+import { setIsPackDeleted } from '../../../../../app/appSlice'
 import { deleteCardTC } from '../../../../../features/cards/cardSlice'
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
@@ -19,8 +20,11 @@ const DeleteModal: FC<DeleteModalType> = ({ type }) => {
   const deletedItemName = useAppSelector(modalItemNameSelector)
 
   const deleteModal = () => {
-    type === 'pack' ? dispatch(deletePackTC(deletedItemId)) : dispatch(deleteCardTC(deletedItemId))
-    resetModalValues(dispatch)
+    type === 'pack'
+      ? dispatch(deletePackTC(deletedItemId)).then(() => dispatch(setIsPackDeleted(true)))
+      : dispatch(deleteCardTC(deletedItemId))
+
+    setTimeout(() => resetModalValues(dispatch), 500)
   }
 
   return (
