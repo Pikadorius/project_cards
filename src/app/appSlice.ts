@@ -39,6 +39,7 @@ type InitialStateType = {
   changedItemName: string
   changedItemAnswer: string
   changedItemCardsId: string
+  isPackDeleted: boolean
   packList: PackListType
   cardList: CardListType
 }
@@ -52,6 +53,7 @@ const initialState: InitialStateType = {
   changedItemName: '',
   changedItemAnswer: '',
   changedItemCardsId: '',
+  isPackDeleted: false,
   packList,
   cardList,
 }
@@ -93,6 +95,9 @@ export const appSlice = createSlice({
     setChangedItemCardsId: (state, action: PayloadAction<string>) => {
       state.changedItemCardsId = action.payload
     },
+    setIsPackDeleted: (state, action: PayloadAction<boolean>) => {
+      state.isPackDeleted = action.payload
+    },
   },
 })
 
@@ -108,6 +113,7 @@ export const {
   setChangedItemName,
   setChangedItemCardsId,
   setChangedItemAnswer,
+  setIsPackDeleted,
 } = appSlice.actions
 
 export const appReducer = appSlice.reducer

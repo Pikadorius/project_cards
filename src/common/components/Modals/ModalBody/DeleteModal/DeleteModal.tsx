@@ -1,13 +1,14 @@
 import React, { FC } from 'react'
 
-import { deleteCardTC } from '../../../../../features/cards/cardSlice'
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './DeleteModal.module.scss'
 
 import { modalItemIdSelector, modalItemNameSelector } from 'app/appSelectors'
+import { setIsPackDeleted } from 'app/appSlice'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
+import { deleteCardTC } from 'features/cards/cardSlice'
 import { deletePackTC } from 'features/packs/packsSlice'
 
 type DeleteModalType = {
@@ -19,7 +20,9 @@ const DeleteModal: FC<DeleteModalType> = ({ type }) => {
   const deletedItemName = useAppSelector(modalItemNameSelector)
 
   const deleteModal = () => {
-    type === 'pack' ? dispatch(deletePackTC(deletedItemId)) : dispatch(deleteCardTC(deletedItemId))
+    type === 'pack'
+      ? dispatch(deletePackTC(deletedItemId)).then(() => dispatch(setIsPackDeleted(true)))
+      : dispatch(deleteCardTC(deletedItemId))
     resetModalValues(dispatch)
   }
 
