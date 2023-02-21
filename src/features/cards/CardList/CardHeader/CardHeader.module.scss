@@ -9,10 +9,17 @@
   justify-content: space-between;
   margin-bottom: 20px;
 
-  .title {
-    font-weight: 600;
-    font-size: 22px;
-    line-height: 27px;
+  .wrapper{
+
+    width: 70%;
+    word-wrap: break-word;
+
+    .title {
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 27px;
+    }
+
   }
 
   .btn {
@@ -25,4 +32,5 @@
     color: #fff;
     @include btn;
   }
+
 }

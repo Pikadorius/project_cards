@@ -28,7 +28,7 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
 
   return (
     <div className={s.innerWrapper}>
-      <div>
+      <div className={s.wrapper}>
         {isMyCard ? (
           <PackMenu title={packName} packId={id} />
         ) : (
