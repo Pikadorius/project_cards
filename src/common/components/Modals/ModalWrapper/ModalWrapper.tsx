@@ -4,12 +4,12 @@ import CloseIcon from '@mui/icons-material/Close'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 
-import { resetModalValues } from '../../../utils'
 import { Portal } from '../../Portal/Portal'
 
 import s from './ModalWrapper.module.scss'
 
 import { useAppDispatch } from 'common/hooks'
+import { resetModalValues } from 'common/utils'
 
 type PropsType = {
   children?: ReactNode

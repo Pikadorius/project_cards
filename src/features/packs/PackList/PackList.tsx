@@ -54,7 +54,6 @@ export const PackList = () => {
 
   const createPack = () => {
     dispatch(setModal('createPack'))
-    // dispatch(createPackTC({ cardsPack: { name: 'test pack' } }))
   }
 
   const searchByName = (value: string) => {

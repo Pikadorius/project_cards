@@ -5,24 +5,19 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
-import { modalTypeSelector } from '../../../app/appSelectors'
-import {
-  setChangedItemId,
-  setChangedItemName,
-  setIsPackDeleted,
-  setModal,
-} from '../../../app/appSlice'
-import { fetchCardTC, setSearchCardParams } from '../../../features/cards/cardSlice'
 import ModalBody from '../Modals/ModalBody/ModalBody'
 
 import s from './PackMenu.module.scss'
 
+import { isPackDeletedSelector, modalTypeSelector } from 'app/appSelectors'
+import { setChangedItemId, setChangedItemName, setIsPackDeleted, setModal } from 'app/appSlice'
 import Delete from 'assets/Delete.svg'
 import dots from 'assets/dots.svg'
 import edit from 'assets/Edit.svg'
 import teacher from 'assets/teacher.svg'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { fetchCardTC, setSearchCardParams } from 'features/cards/cardSlice'
 
 type PackMenuType = {
   title: string
@@ -39,7 +34,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
   const modalType = useAppSelector(modalTypeSelector)
   const cards = useAppSelector(state => state.card.cards)
   const searchParams = useAppSelector(state => state.card.searchParams)
-  const isPackDeleted = useAppSelector(state => state.app.isPackDeleted)
+  const isPackDeleted = useAppSelector(isPackDeletedSelector)
   const open = Boolean(anchorEl)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()

@@ -15,6 +15,7 @@ import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { dateHandler } from 'common/utils/dateHandler'
 import { userNameHandler } from 'common/utils/userNameHandler'
+import { authUserIdSelector } from 'features/auth/authSelectors'
 import { PackType } from 'features/packs/packsType'
 
 type TbodyType = {
@@ -23,7 +24,7 @@ type TbodyType = {
 
 export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
   const dispatch = useAppDispatch()
-  const userId = useAppSelector(state => state.auth.user._id)
+  const userId = useAppSelector(authUserIdSelector)
   const navigate = useNavigate()
 
   return (
@@ -39,21 +40,12 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
           dispatch(setModal('deletePack'))
           dispatch(setChangedItemId(t._id))
           dispatch(setChangedItemName(t.name))
-          // dispatch(deletePackTC(t._id))
         }
 
         const updatePack = () => {
           dispatch(setModal('updatePack'))
           dispatch(setChangedItemId(t._id))
           dispatch(setChangedItemName(t.name))
-          /*const data: UpdatePackRequestType = {
-                        cardsPack: {
-                          name: 'Updated pack',
-                          _id: t._id,
-                        },
-                      }
-            
-                      dispatch(updatePackTC(data))*/
         }
 
         const teachPack = () => {

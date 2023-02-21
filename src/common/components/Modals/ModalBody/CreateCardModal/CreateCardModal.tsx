@@ -4,14 +4,19 @@ import BackspaceIcon from '@mui/icons-material/Backspace'
 import IconButton from '@mui/material/IconButton'
 import TextField from '@mui/material/TextField'
 
-import { createCardTC, updateCardTC } from '../../../../../features/cards/cardSlice'
-import { resetModalValues } from '../../../../utils'
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './CreateCardModal.module.scss'
 
-import { modalItemIdSelector, modalItemNameSelector } from 'app/appSelectors'
+import {
+  modalItemAnswerSelector,
+  modalItemCardsIdSelector,
+  modalItemIdSelector,
+  modalItemNameSelector,
+} from 'app/appSelectors'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { resetModalValues } from 'common/utils'
+import { createCardTC, updateCardTC } from 'features/cards/cardSlice'
 
 type CreateModalType = {
   type: 'create' | 'update'
@@ -19,9 +24,9 @@ type CreateModalType = {
 const CreateCardModal: FC<CreateModalType> = ({ type }) => {
   const dispatch = useAppDispatch()
   const changedItemQuestion = useAppSelector(modalItemNameSelector)
-  const changedItemAnswer = useAppSelector(state => state.app.changedItemAnswer)
+  const changedItemAnswer = useAppSelector(modalItemAnswerSelector)
   const changedItemId = useAppSelector(modalItemIdSelector)
-  const changedItemCardsId = useAppSelector(state => state.app.changedItemCardsId)
+  const changedItemCardsId = useAppSelector(modalItemCardsIdSelector)
   const [cardQuestion, setCardQuestion] = useState(changedItemQuestion || 'Question')
   const [cardAnswer, setCardAnswer] = useState(changedItemAnswer || 'Answer')
 

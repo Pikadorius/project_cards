@@ -2,8 +2,6 @@ import React from 'react'
 
 import { Navigate, Route, Routes } from 'react-router-dom'
 
-import { LearnCardPage } from '../features/cards/LearnCardPage/LearnCardPage'
-
 import RequireAuth from './RequireAuth'
 
 import { UserAccount } from 'common/components/UserAccount/UserAccount'
@@ -14,6 +12,7 @@ import { NewPassword } from 'features/auth/Recovery/NewPassword'
 import { Recovery } from 'features/auth/Recovery/Recovery'
 import { Registration } from 'features/auth/Registration/Registration'
 import { CardList } from 'features/cards/CardList/CardList'
+import { LearnCardPage } from 'features/cards/LearnCardPage/LearnCardPage'
 import { PackList } from 'features/packs/PackList/PackList'
 
 const Pages = () => {
