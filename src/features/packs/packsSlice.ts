@@ -89,20 +89,6 @@ export const deletePackTC = createAsyncThunk('deletePack', async (id: string, { 
   }
 })
 
-export const deletePackFromCardsListTC = createAsyncThunk(
-  'deletePackFromCards',
-  async (id: string, { dispatch }) => {
-    dispatch(setAppStatus('loading'))
-    try {
-      const res = await packsAPI.deletePack(id)
-
-      dispatch(setAppStatus('success'))
-    } catch (e: any) {
-      errorUtils(e, dispatch)
-    }
-  }
-)
-
 export const updatePackTC = createAsyncThunk(
   'updatePack',
   async (data: UpdatePackRequestType, { dispatch }) => {
