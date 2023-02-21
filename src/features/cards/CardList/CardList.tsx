@@ -75,10 +75,6 @@ export const CardList = () => {
     // dispatch(createCardTC({ card: newCard }))
   }, [id])
 
-  if (!isLoggedIn) {
-    return <Navigate to={PATH.LOGIN} />
-  }
-
   useEffect(
     function () {
       if (!id) return

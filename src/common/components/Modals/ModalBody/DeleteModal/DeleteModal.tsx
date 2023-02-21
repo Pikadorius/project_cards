@@ -23,8 +23,7 @@ const DeleteModal: FC<DeleteModalType> = ({ type }) => {
     type === 'pack'
       ? dispatch(deletePackTC(deletedItemId)).then(() => dispatch(setIsPackDeleted(true)))
       : dispatch(deleteCardTC(deletedItemId))
-
-    setTimeout(() => resetModalValues(dispatch), 500)
+    resetModalValues(dispatch)
   }
 
   return (
