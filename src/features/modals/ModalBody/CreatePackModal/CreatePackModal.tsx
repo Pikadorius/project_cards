@@ -1,9 +1,6 @@
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
 
-import BackspaceIcon from '@mui/icons-material/Backspace'
-import IconButton from '@mui/material/IconButton'
-import TextField from '@mui/material/TextField'
-
+import { InputModal } from '../../../../common/components/InputModal/InputModal'
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './CreatePackModal.module.scss'
@@ -54,18 +51,14 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
   return (
     <div>
       <div className={s.description}>
-        <TextField
-          fullWidth
-          label="Pack name"
-          variant="standard"
-          autoFocus
+        <InputModal
+          label={'Pack name'}
+          placeholder={'Pack name'}
           onKeyDown={onEnterHandler}
           value={packName}
           onChange={onChangePackName}
+          reset={resetName}
         />
-        <IconButton onClick={resetName}>
-          <BackspaceIcon fontSize={'small'} />
-        </IconButton>
       </div>
       <ModalButtons
         onSuccess={onClickHandler}
