@@ -1,9 +1,6 @@
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
 
-import BackspaceIcon from '@mui/icons-material/Backspace'
-import IconButton from '@mui/material/IconButton'
-import TextField from '@mui/material/TextField'
-
+import { InputModal } from '../../../../common/components/InputModal/InputModal'
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './CreateCardModal.module.scss'
@@ -61,7 +58,7 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
     }
   }
 
-  const resetCardQuetion = () => {
+  const resetCardQuestion = () => {
     setCardQuestion('')
   }
 
@@ -72,31 +69,24 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
   return (
     <div>
       <div className={s.description}>
-        <TextField
-          fullWidth
-          label="Question"
-          variant="standard"
-          autoFocus
+        <InputModal
+          label={'Question'}
+          placeholder={'Question'}
           onKeyDown={onEnterHandler}
           value={cardQuestion}
           onChange={onChangeCardQuestion}
+          reset={resetCardQuestion}
         />
-        <IconButton onClick={resetCardQuetion}>
-          <BackspaceIcon fontSize={'small'} />
-        </IconButton>
       </div>
       <div className={s.description}>
-        <TextField
-          fullWidth
-          label="Answer"
-          variant="standard"
+        <InputModal
+          label={'Answer'}
+          placeholder={'Answer'}
           onKeyDown={onEnterHandler}
           value={cardAnswer}
           onChange={onChangeCardAnswer}
+          reset={resetCardAnswer}
         />
-        <IconButton onClick={resetCardAnswer}>
-          <BackspaceIcon fontSize={'small'} />
-        </IconButton>
       </div>
       <ModalButtons
         onSuccess={onClickHandler}
