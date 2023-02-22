@@ -83,7 +83,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
   return (
     <React.Fragment>
       <div className={s.menuTitle}>
-        <h2>{title}</h2>
+        <h2 className={s.title}>{title}</h2>
         <img className={s.dots} onClick={handleClick} src={dots} alt={'dots'} />
       </div>
       {modalType !== 'idle' && <ModalBody modalType={modalType} />}
