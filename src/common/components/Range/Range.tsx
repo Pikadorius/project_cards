@@ -77,7 +77,7 @@ export const Range = () => {
           />
         </div>
         <Slider
-          sx={{ width: '200px', color: '#212121' }}
+          sx={{ width: '200px' }}
           key={maxCardsCount + '' + minCardsCount}
           getAriaLabel={() => 'Temperature range'}
           value={value}
