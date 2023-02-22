@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import { learnCardReducer } from '../features/cards/LearnCardPage/learnCardSlice'
+import { modalReducer } from '../features/Modals/modalSlice'
 
 import { appReducer } from 'app/appSlice'
 import { loadState, saveState } from 'common/utils'
@@ -15,6 +16,7 @@ export const store = configureStore({
     packs: packsReducer,
     card: cardReducer,
     learnCard: learnCardReducer,
+    modal: modalReducer,
   },
   preloadedState: loadState(),
 })
