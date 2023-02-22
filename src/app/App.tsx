@@ -2,6 +2,10 @@ import React, { useEffect } from 'react'
 
 import './App.css'
 
+import { ThemeProvider } from '@mui/material'
+
+import { blackTheme } from '../common/styles/muiTheme'
+
 import { appStatusSelector, isInitializedSelector } from './appSelectors'
 
 import { Header } from 'common/components/Header/Header'
@@ -31,7 +35,9 @@ function App() {
   return (
     <div className={modalType !== 'idle' ? 'app modalActive' : 'app'}>
       <Header />
-      {modalType !== 'idle' && <Modal modalType={modalType} />}
+      <ThemeProvider theme={blackTheme}>
+        {modalType !== 'idle' && <Modal modalType={modalType} />}
+      </ThemeProvider>
       <Pages />
       <SimpleSnackbar />
       {appStatus === 'loading' && <Loader />}

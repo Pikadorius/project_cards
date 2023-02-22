@@ -1,6 +1,5 @@
 import React from 'react'
 
-import { ThemeProvider } from '@mui/material'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { Provider } from 'react-redux'
@@ -10,16 +9,12 @@ import App from './app/App'
 import reportWebVitals from './reportWebVitals'
 import { store } from './store/store'
 
-import { blackTheme } from 'common/styles/muiTheme'
-
 const root = createRoot(document.getElementById('root') as HTMLElement)
 
 root.render(
   <HashRouter>
     <Provider store={store}>
-      <ThemeProvider theme={blackTheme}>
-        <App />
-      </ThemeProvider>
+      <App />
     </Provider>
   </HashRouter>
 )
