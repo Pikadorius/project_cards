@@ -5,7 +5,7 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
-import ModalBody from '../Modals/ModalBody/ModalBody'
+import ModalBody from '../../../features/modals/ModalBody/ModalBody'
 
 import s from './PackMenu.module.scss'
 

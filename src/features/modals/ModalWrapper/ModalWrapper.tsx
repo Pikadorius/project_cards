@@ -4,10 +4,9 @@ import CloseIcon from '@mui/icons-material/Close'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 
-import { Portal } from '../../Portal/Portal'
-
 import s from './ModalWrapper.module.scss'
 
+import { Portal } from 'common/components/Portal/Portal'
 import { useAppDispatch } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
 

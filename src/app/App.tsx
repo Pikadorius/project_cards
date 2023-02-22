@@ -2,18 +2,15 @@ import React, { useEffect } from 'react'
 
 import './App.css'
 
-import { useSearchParams } from 'react-router-dom'
-
-import { modalTypeSelector } from '../features/modals/modalSelectors'
-
 import { appStatusSelector, isInitializedSelector } from './appSelectors'
 
 import { Header } from 'common/components/Header/Header'
 import Loader from 'common/components/Loader/Loader'
-import ModalBody from 'common/components/Modals/ModalBody/ModalBody'
 import SimpleSnackbar from 'common/components/SnackBar/Snackbar'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { authMeTC } from 'features/auth/authSlice'
+import ModalBody from 'features/modals/ModalBody/ModalBody'
+import { modalTypeSelector } from 'features/modals/modalSelectors'
 import Pages from 'pages/Pages'
 
 function App() {
@@ -22,9 +19,6 @@ function App() {
   const isInitialized = useAppSelector(isInitializedSelector)
   const appStatus = useAppSelector(appStatusSelector)
   const modalType = useAppSelector(modalTypeSelector)
-  const [searchParams, setSearchParams] = useSearchParams()
-
-  const packsQuery = searchParams.get('packs') || ''
 
   useEffect(() => {
     dispatch(authMeTC())
