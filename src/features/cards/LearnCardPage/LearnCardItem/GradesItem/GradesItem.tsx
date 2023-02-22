@@ -1,23 +1,23 @@
 import React, { FC, memo, useState } from 'react'
 
-import star from '../../../../../assets/star.png'
-import starFull from '../../../../../assets/starFull.png'
 import { useAppSelector } from '../../../../../common/hooks'
+import { RatingValueType } from '../../../cardType'
 import { AnswerStatuses } from '../../learnCardSlice'
 
 import s from './GradesItem.module.scss'
+import { Star } from './Star/Star'
 
 type GradesItemType = {
   onChangeChecked: (isActive: AnswerStatuses, grade: number) => void
 }
 
 export const GradesItem: FC<GradesItemType> = memo(({ onChangeChecked }) => {
-  const [starValue, setStarValue] = useState<boolean>(true)
+  const [rating, setRating] = useState<RatingValueType | 0>(0)
 
   const gradesCardLearn = useAppSelector(state => state.learnCard)
 
-  const onClickImg = () => {
-    setStarValue(false)
+  const changeRating = (rating: RatingValueType) => {
+    return () => setRating(rating)
   }
 
   return (
@@ -32,8 +32,6 @@ export const GradesItem: FC<GradesItemType> = memo(({ onChangeChecked }) => {
                   type={'checkbox'}
                   className={s.customCheckbox}
                   checked={g.status === AnswerStatuses.IsActive}
-                  onClick={onClickImg}
-                  title={g.title}
                   onChange={e =>
                     onChangeChecked(
                       e.currentTarget.checked ? AnswerStatuses.IsActive : AnswerStatuses.IsNoActive,
@@ -41,9 +39,11 @@ export const GradesItem: FC<GradesItemType> = memo(({ onChangeChecked }) => {
                     )
                   }
                 />
-                <span>{g.title}</span>
-                {/*{star && <img src={star} className={s.star} title={g.title} />}
-                {!star && <img src={starFull} className={s.star} title={g.title} />}*/}
+                <Star
+                  selected={rating >= g.id}
+                  setRating={changeRating(g.id)}
+                  description={g.title}
+                />
               </label>
             </div>
           )

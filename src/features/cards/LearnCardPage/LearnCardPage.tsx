@@ -24,8 +24,6 @@ export const LearnCardPage = memo(() => {
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
-  console.log(cards)
-
   const [card, setCard] = useState<CardType>(cards[0])
 
   useEffect(() => {
