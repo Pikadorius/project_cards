@@ -86,8 +86,10 @@ export type CardQueryParamsType = {
   packUserId?: string
 }
 
+export type RatingValueType = 1 | 2 | 3 | 4 | 5
+
 export type InititalStateLearnCardType = {
-  id: number
+  id: RatingValueType
   title: string
   status: AnswerStatuses
 }
