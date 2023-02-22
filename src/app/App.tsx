@@ -8,6 +8,7 @@ import { appStatusSelector, isInitializedSelector, modalTypeSelector } from './a
 
 import { Header } from 'common/components/Header/Header'
 import Loader from 'common/components/Loader/Loader'
+import ModalBody from 'common/components/Modals/ModalBody/ModalBody'
 import SimpleSnackbar from 'common/components/SnackBar/Snackbar'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { authMeTC } from 'features/auth/authSlice'
@@ -18,8 +19,10 @@ function App() {
 
   const isInitialized = useAppSelector(isInitializedSelector)
   const appStatus = useAppSelector(appStatusSelector)
+  const modalType = useAppSelector(modalTypeSelector)
   const isModalActive = useAppSelector(modalTypeSelector) !== 'idle'
   const [searchParams, setSearchParams] = useSearchParams()
+
   const packsQuery = searchParams.get('packs') || ''
 
   useEffect(() => {
@@ -33,6 +36,7 @@ function App() {
   return (
     <div className={isModalActive ? 'app modalActive' : 'app'}>
       <Header />
+      {modalType !== 'idle' && <ModalBody modalType={modalType} />}
       <Pages />
       <SimpleSnackbar />
       {appStatus === 'loading' && <Loader />}
