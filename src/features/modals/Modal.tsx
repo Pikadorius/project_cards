@@ -1,17 +1,16 @@
 import React, { FC } from 'react'
 
-import ModalWrapper from '../ModalWrapper/ModalWrapper'
-
-import CreateCardModal from './CreateCardModal/CreateCardModal'
-import CreatePackModal from './CreatePackModal/CreatePackModal'
-import DeleteModal from './DeleteModal/DeleteModal'
+import CreateCardModal from './ModalBody/CreateCardModal/CreateCardModal'
+import CreatePackModal from './ModalBody/CreatePackModal/CreatePackModal'
+import DeleteModal from './ModalBody/DeleteModal/DeleteModal'
+import ModalWrapper from './ModalWrapper/ModalWrapper'
 
 import { ModalType } from 'features/modals/modalSlice'
 
 type PacksModalT = {
   modalType: ModalType
 }
-const ModalBody: FC<PacksModalT> = ({ modalType }) => {
+const Modal: FC<PacksModalT> = ({ modalType }) => {
   switch (modalType) {
     case 'createPack':
       return (
@@ -54,4 +53,4 @@ const ModalBody: FC<PacksModalT> = ({ modalType }) => {
   }
 }
 
-export default ModalBody
+export default Modal

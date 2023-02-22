@@ -5,8 +5,6 @@ import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
-import ModalBody from '../../../features/modals/ModalBody/ModalBody'
-
 import s from './PackMenu.module.scss'
 
 import Delete from 'assets/Delete.svg'
@@ -16,6 +14,7 @@ import teacher from 'assets/teacher.svg'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { fetchCardTC, setSearchCardParams } from 'features/cards/cardSlice'
+import Modal from 'features/modals/Modal'
 import { isPackDeletedSelector, modalTypeSelector } from 'features/modals/modalSelectors'
 import {
   setChangedItemId,
@@ -86,7 +85,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
         <h2 className={s.title}>{title}</h2>
         <img className={s.dots} onClick={handleClick} src={dots} alt={'dots'} />
       </div>
-      {modalType !== 'idle' && <ModalBody modalType={modalType} />}
+      {modalType !== 'idle' && <Modal modalType={modalType} />}
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
