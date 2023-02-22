@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import { learnCardReducer } from '../features/cards/LearnCardPage/learnCardSlice'
-import { modalReducer } from '../features/Modals/modalSlice'
+import { modalReducer } from '../features/modals/modalSlice'
 
 import { appReducer } from 'app/appSlice'
 import { loadState, saveState } from 'common/utils'
