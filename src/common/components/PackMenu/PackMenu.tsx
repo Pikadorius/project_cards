@@ -9,8 +9,6 @@ import ModalBody from '../Modals/ModalBody/ModalBody'
 
 import s from './PackMenu.module.scss'
 
-import { isPackDeletedSelector, modalTypeSelector } from 'app/appSelectors'
-import { setChangedItemId, setChangedItemName, setIsPackDeleted, setModal } from 'app/appSlice'
 import Delete from 'assets/Delete.svg'
 import dots from 'assets/dots.svg'
 import edit from 'assets/Edit.svg'
@@ -18,6 +16,13 @@ import teacher from 'assets/teacher.svg'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { fetchCardTC, setSearchCardParams } from 'features/cards/cardSlice'
+import { isPackDeletedSelector, modalTypeSelector } from 'features/modals/modalSelectors'
+import {
+  setChangedItemId,
+  setChangedItemName,
+  setIsPackDeleted,
+  setModal,
+} from 'features/modals/modalSlice'
 
 type PackMenuType = {
   title: string

@@ -4,7 +4,9 @@ import './App.css'
 
 import { useSearchParams } from 'react-router-dom'
 
-import { appStatusSelector, isInitializedSelector, modalTypeSelector } from './appSelectors'
+import { modalTypeSelector } from '../features/modals/modalSelectors'
+
+import { appStatusSelector, isInitializedSelector } from './appSelectors'
 
 import { Header } from 'common/components/Header/Header'
 import Loader from 'common/components/Loader/Loader'
@@ -20,7 +22,6 @@ function App() {
   const isInitialized = useAppSelector(isInitializedSelector)
   const appStatus = useAppSelector(appStatusSelector)
   const modalType = useAppSelector(modalTypeSelector)
-  const isModalActive = useAppSelector(modalTypeSelector) !== 'idle'
   const [searchParams, setSearchParams] = useSearchParams()
 
   const packsQuery = searchParams.get('packs') || ''
@@ -34,7 +35,7 @@ function App() {
   }
 
   return (
-    <div className={isModalActive ? 'app modalActive' : 'app'}>
+    <div className={modalType !== 'idle' ? 'app modalActive' : 'app'}>
       <Header />
       {modalType !== 'idle' && <ModalBody modalType={modalType} />}
       <Pages />

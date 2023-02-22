@@ -1,3 +1,5 @@
+import { UseAppDispatch } from '../hooks/useAppDispatch'
+
 import {
   setChangedItemAnswer,
   setChangedItemCardsId,
@@ -5,8 +7,7 @@ import {
   setChangedItemName,
   setIsPackDeleted,
   setModal,
-} from '../../app/appSlice'
-import { UseAppDispatch } from '../hooks/useAppDispatch'
+} from 'features/modals/modalSlice'
 
 export const resetModalValues = (dispatch: UseAppDispatch) => {
   dispatch(setModal('idle'))

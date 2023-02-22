@@ -21,25 +21,10 @@ export type CardListType = typeof cardList
 
 export type PackListType = typeof packList
 
-export type ModalType =
-  | 'createPack'
-  | 'deletePack'
-  | 'updatePack'
-  | 'updateCard'
-  | 'createCard'
-  | 'deleteCard'
-  | 'idle'
-
 type InitialStateType = {
   appError: string | null
   appStatus: StatusType
   isInitialized: boolean
-  modalType: ModalType
-  changedItemId: string
-  changedItemName: string
-  changedItemAnswer: string
-  changedItemCardsId: string
-  isPackDeleted: boolean
   packList: PackListType
   cardList: CardListType
 }
@@ -48,12 +33,6 @@ const initialState: InitialStateType = {
   appError: null,
   appStatus: 'idle',
   isInitialized: false,
-  modalType: 'idle',
-  changedItemId: '',
-  changedItemName: '',
-  changedItemAnswer: '',
-  changedItemCardsId: '',
-  isPackDeleted: false,
   packList,
   cardList,
 }
@@ -80,24 +59,6 @@ export const appSlice = createSlice({
     resetSort: state => {
       state.packList = state.packList.map(t => (t.status ? { ...t, status: 0 } : t))
     },
-    setModal: (state, action: PayloadAction<ModalType>) => {
-      state.modalType = action.payload
-    },
-    setChangedItemId: (state, action: PayloadAction<string>) => {
-      state.changedItemId = action.payload
-    },
-    setChangedItemName: (state, action: PayloadAction<string>) => {
-      state.changedItemName = action.payload
-    },
-    setChangedItemAnswer: (state, action: PayloadAction<string>) => {
-      state.changedItemAnswer = action.payload
-    },
-    setChangedItemCardsId: (state, action: PayloadAction<string>) => {
-      state.changedItemCardsId = action.payload
-    },
-    setIsPackDeleted: (state, action: PayloadAction<boolean>) => {
-      state.isPackDeleted = action.payload
-    },
   },
 })
 
@@ -108,12 +69,6 @@ export const {
   setSortStatusPack,
   setSortStatusCards,
   resetSort,
-  setModal,
-  setChangedItemId,
-  setChangedItemName,
-  setChangedItemCardsId,
-  setChangedItemAnswer,
-  setIsPackDeleted,
 } = appSlice.actions
 
 export const appReducer = appSlice.reducer

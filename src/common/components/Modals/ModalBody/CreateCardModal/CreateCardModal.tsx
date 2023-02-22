@@ -8,15 +8,15 @@ import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './CreateCardModal.module.scss'
 
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { resetModalValues } from 'common/utils'
+import { createCardTC, updateCardTC } from 'features/cards/cardSlice'
 import {
   modalItemAnswerSelector,
   modalItemCardsIdSelector,
   modalItemIdSelector,
   modalItemNameSelector,
-} from 'app/appSelectors'
-import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { resetModalValues } from 'common/utils'
-import { createCardTC, updateCardTC } from 'features/cards/cardSlice'
+} from 'features/modals/modalSelectors'
 
 type CreateModalType = {
   type: 'create' | 'update'

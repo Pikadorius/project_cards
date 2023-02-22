@@ -9,13 +9,13 @@ import { TeachIcon } from '../../Icon/TeachIcon/TeachIcon'
 
 import s from './Tbody.module.scss'
 
-import { setChangedItemId, setChangedItemName, setModal } from 'app/appSlice'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 import { dateHandler } from 'common/utils/dateHandler'
 import { userNameHandler } from 'common/utils/userNameHandler'
 import { authUserIdSelector } from 'features/auth/authSelectors'
+import { setChangedItemId, setChangedItemName, setModal } from 'features/modals/modalSlice'
 import { PackType } from 'features/packs/packsType'
 
 type TbodyType = {

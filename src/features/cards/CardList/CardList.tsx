@@ -17,7 +17,6 @@ import {
   sortCardsSelector,
 } from './cardSelectors'
 
-import { setChangedItemId, setModal } from 'app/appSlice'
 import arrow from 'assets/arrow.svg'
 import { EmptyPack } from 'common/components/EmptyPack/EmptyPack'
 import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
@@ -27,6 +26,7 @@ import { TablePackListWrapper } from 'common/components/Table/TablePackListWrapp
 import { TbodyCard } from 'common/components/Table/TbodyCard/TbodyCard'
 import { Thead } from 'common/components/Table/Thead/Thead'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { setChangedItemId, setModal } from 'features/modals/modalSlice'
 
 export const CardList = () => {
   const dispatch = useAppDispatch()

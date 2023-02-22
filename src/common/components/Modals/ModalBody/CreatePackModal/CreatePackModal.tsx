@@ -8,9 +8,9 @@ import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './CreatePackModal.module.scss'
 
-import { modalItemIdSelector, modalItemNameSelector } from 'app/appSelectors'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
+import { modalItemIdSelector, modalItemNameSelector } from 'features/modals/modalSelectors'
 import { createPackTC, updatePackTC } from 'features/packs/packsSlice'
 
 type CreateModalType = {

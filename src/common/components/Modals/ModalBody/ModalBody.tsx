@@ -6,7 +6,7 @@ import CreateCardModal from './CreateCardModal/CreateCardModal'
 import CreatePackModal from './CreatePackModal/CreatePackModal'
 import DeleteModal from './DeleteModal/DeleteModal'
 
-import { ModalType } from 'app/appSlice'
+import { ModalType } from 'features/modals/modalSlice'
 
 type PacksModalT = {
   modalType: ModalType

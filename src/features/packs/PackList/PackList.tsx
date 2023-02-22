@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 
+import { setModal } from '../../modals/modalSlice'
 import {
   packsCountOnPageSelector,
   packsListSelector,
@@ -16,7 +17,6 @@ import {
 import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
 
-import { setModal } from 'app/appSlice'
 import { EmptyPackSearch } from 'common/components/EmptyPackSearch/EmptyPackSearch'
 import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
 import { Search } from 'common/components/Search/Search'

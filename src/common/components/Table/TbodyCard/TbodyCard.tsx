@@ -2,22 +2,22 @@ import React, { memo, useEffect } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
+import Delete from '../../../../assets/Delete.svg'
+import edit from '../../../../assets/Edit.svg'
+import { CardType } from '../../../../features/cards/cardType'
+import { dateHandler } from '../../../utils'
+import { CardsRating } from '../../Rating/Rating'
+
+import s from './TbodyCard.module.scss'
+
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import {
   setChangedItemAnswer,
   setChangedItemCardsId,
   setChangedItemId,
   setChangedItemName,
   setModal,
-} from '../../../../app/appSlice'
-import Delete from '../../../../assets/Delete.svg'
-import edit from '../../../../assets/Edit.svg'
-import { updateCardTC } from '../../../../features/cards/cardSlice'
-import { CardType } from '../../../../features/cards/cardType'
-import { useAppDispatch, useAppSelector } from '../../../hooks'
-import { dateHandler } from '../../../utils'
-import { CardsRating } from '../../Rating/Rating'
-
-import s from './TbodyCard.module.scss'
+} from 'features/modals/modalSlice'
 
 type TbodyType = {
   card?: CardType[]
@@ -26,13 +26,11 @@ type TbodyType = {
 export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
   const userId = useAppSelector(state => state.auth.user._id)
   const packUserId = useAppSelector(state => state.card.searchParams.packUserId)
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
 
   let isMyCard = userId === packUserId
 
   const onClickDeleteHandler = (cardID: string, cardsPackID: string, cardName: string) => {
-    // dispatch(deleteCardTC([cardID, cardsPackID]))
     dispatch(setModal('deleteCard'))
     dispatch(setChangedItemName(cardName))
     dispatch(setChangedItemId(cardID))
@@ -48,22 +46,6 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
     dispatch(setChangedItemName(cardQuestion))
     dispatch(setChangedItemAnswer(cardAnswer))
     dispatch(setChangedItemCardsId(cardsPackID))
-    /*let updateCard = {
-      card: {
-        _id: cardID,
-        question: 'Updated',
-        answer: '....',
-        grade: 0,
-        shots: 6,
-        answerImg: 'url or base 64',
-        questionImg: 'url or base 64',
-        questionVideo: 'url or base 64',
-        answerVideo: 'url or base 64',
-      },
-    }
-    let data = { updateCard, cardsPackID }
-
-    dispatch(updateCardTC(data))*/
   }
 
   useEffect(() => {
