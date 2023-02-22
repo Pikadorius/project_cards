@@ -16,8 +16,26 @@
 
 
     .inputItem {
+      position: relative;
 
-      line-height: 27px;
+      .starItem {
+        transition: all .2s ease-in-out;
+
+        &:hover .overlay {
+          display: block;
+        }
+
+        .overlay {
+          display: none;
+          position: absolute;
+          bottom: -10px;
+          left: 50%;
+          transform: translateX(-50%);
+          min-width: max-content;
+          font-size: 12px;
+          margin-bottom: 5px;
+        }
+      }
 
       .star {
         width: 30px;
@@ -29,83 +47,9 @@
         position: absolute;
         z-index: -1;
         opacity: 0;
-
       }
-
-      /*.customCheckbox + span {
-        display: inline-flex;
-        align-items: center;
-        user-select: none;
-        margin: 10px;
-      }
-
-      .customCheckbox + span::before {
-        content: '';
-        display: inline-block;
-        width: 1em;
-        height: 1em;
-        flex-shrink: 0;
-        flex-grow: 0;
-        border: 1px solid #adb5bd;
-        border-radius: 0.50em;
-        margin-right: 0.3em;
-        background-repeat: no-repeat;
-        background-position: center center;
-        background-size: 50% 50%;
-
-      }
-
-      .customCheckbox:checked + span::before {
-        border-color: #212121;
-        background-color: #212121;
-        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3e%3c/svg%3e");
-      }
-
-
-      .customCheckbox:not(:disabled):active + span::before {
-        background-color: #b3d7ff;
-        border-color: #b3d7ff;
-      }
-
-      .customCheckbox:disabled + span::before {
-        background-color: #e9ecef;
-      }*/
-
-      .starItem {
-        position: relative;
-        transition: opacity 0.5s linear;
-
-        &:after {
-          content: attr(data-overlay);
-          display: block;
-          width: 100%;
-          height: 100%;
-          position: absolute;
-          opacity: 0;
-        }
-
-        &:hover:after {
-          opacity: 1;
-          transform: translateY(-15px);
-          text-align: center;
-          white-space: nowrap;
-        }
-      }
-
-      /*.overlay {
-        display: none;
-        position: absolute;
-        text-align: center;
-      }
-
-      div:hover .overlay {
-        display: block;
-        transform: translateY(-15px);
-      }*/
     }
   }
-
-
 }
 
 
