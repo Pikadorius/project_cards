@@ -11,11 +11,11 @@ export const Logo: FC<LogoType> = memo(({ img }) => {
     <div className={s.logoContainer}>
       <a
         className={s.logoLink}
-        href={'https://it-incubator.io/'}
+        href={'https://github.com/Pikadorius/project_cards'}
         target={'_blank'}
         rel="noreferrer"
       >
-        <img src={img} alt="logo it-incubator" />
+        <img src={img} alt="logo it-incubator" className={s.logo} />
       </a>
     </div>
   )
