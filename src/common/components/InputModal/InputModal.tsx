@@ -1,6 +1,6 @@
 import React, { ChangeEvent, KeyboardEvent, FC, memo } from 'react'
 
-import clear from '../../../assets/clear.png'
+import clearInput from '../../../assets/clearInput.png'
 
 import s from './InputModal.module.scss'
 
@@ -28,7 +28,7 @@ export const InputModal: FC<InputType> = memo(
             placeholder={placeholder}
             autoFocus={focus}
           />
-          <img className={s.delIcon} src={clear} alt="clear icon" onClick={reset} />
+          <img className={s.delIcon} src={clearInput} alt="clear icon" onClick={reset} />
         </div>
       </label>
     )
