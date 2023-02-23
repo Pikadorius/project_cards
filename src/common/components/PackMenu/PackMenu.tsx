@@ -35,7 +35,6 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
   console.log(id)
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const modalType = useAppSelector(modalTypeSelector)
   const cards = useAppSelector(state => state.card.cards)
   const searchParams = useAppSelector(state => state.card.searchParams)
   const isPackDeleted = useAppSelector(isPackDeletedSelector)
@@ -85,7 +84,6 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
         <h2 className={s.title}>{title}</h2>
         <img className={s.dots} onClick={handleClick} src={dots} alt={'dots'} />
       </div>
-      {modalType !== 'idle' && <Modal modalType={modalType} />}
       <Menu
         anchorEl={anchorEl}
         id="account-menu"
