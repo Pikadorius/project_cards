@@ -58,6 +58,7 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
           value={packName}
           onChange={onChangePackName}
           reset={resetName}
+          focus={true}
         />
       </div>
       <ModalButtons

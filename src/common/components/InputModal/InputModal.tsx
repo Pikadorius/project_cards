@@ -11,10 +11,11 @@ type InputType = {
   value: string
   onChange: (e: ChangeEvent<HTMLInputElement>) => void
   reset: () => void
+  focus?: boolean
 }
 
 export const InputModal: FC<InputType> = memo(
-  ({ label, placeholder, onKeyDown, value, onChange, reset }) => {
+  ({ label, placeholder, onKeyDown, value, onChange, reset, focus }) => {
     return (
       <label className={s.labelInput}>
         {label}
@@ -25,7 +26,7 @@ export const InputModal: FC<InputType> = memo(
             value={value}
             onChange={onChange}
             placeholder={placeholder}
-            autoFocus
+            autoFocus={focus}
           />
           <img className={s.delIcon} src={clear} alt="clear icon" onClick={reset} />
         </div>
