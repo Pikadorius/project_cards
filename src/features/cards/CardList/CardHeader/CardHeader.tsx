@@ -37,16 +37,25 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
         {!isMyCard && <div>{`@${packByName}`}</div>}
       </div>
       {isMyCard ? (
-        <button onClick={onClick} className={s.btn}>
-          Add new card
-        </button>
+        <div className={s.btnBlock}>
+          <button
+            onClick={() => navigate(PATH.CARD_LEARN)}
+            className={s.btn}
+            disabled={pack && pack.cardsCount === 0}
+          >
+            Learn pack
+          </button>
+          <button onClick={onClick} className={s.btn}>
+            Add new card
+          </button>
+        </div>
       ) : (
         <button
           onClick={() => navigate(PATH.CARD_LEARN)}
           className={s.btn}
           disabled={pack && pack.cardsCount === 0}
         >
-          Learn to pack
+          Learn pack
         </button>
       )}
     </div>
