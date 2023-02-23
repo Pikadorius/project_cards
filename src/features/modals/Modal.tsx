@@ -12,16 +12,16 @@ type PacksModalT = {
 }
 const Modal: FC<PacksModalT> = ({ modalType }) => {
   switch (modalType) {
-    case 'createPack':
-      return (
-        <ModalWrapper title={'Add new pack'}>
-          <CreatePackModal type={'create'} />
-        </ModalWrapper>
-      )
     case 'deletePack':
       return (
         <ModalWrapper title={'Delete pack'}>
           <DeleteModal type={'pack'} />
+        </ModalWrapper>
+      )
+    case 'createPack':
+      return (
+        <ModalWrapper title={'Add new pack'}>
+          <CreatePackModal type={'create'} />
         </ModalWrapper>
       )
     case 'updatePack':

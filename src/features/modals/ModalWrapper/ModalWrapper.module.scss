@@ -3,18 +3,22 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.6);
 
   width: 100vw;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  opacity: 0;
+  transition: 0.5s;
 
   .wrapper {
     width: 395px;
     background: #FFFFFF;
     border-radius: 1em;
+    transform: scale(0.1);
+    transition: 0.5s;
 
     .modalHeader {
       height: 60px;
@@ -29,6 +33,10 @@
       }
     }
   }
-
-
 }
+
+.activeWrapper {
+  transition: 0.5s;
+  transform: scale(1)!important;
+}
+

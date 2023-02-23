@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react'
+import React, { FC, ReactNode, useEffect, useState } from 'react'
 
 import CloseIcon from '@mui/icons-material/Close'
 import Divider from '@mui/material/Divider'
@@ -16,18 +16,28 @@ type PropsType = {
 }
 const ModalWrapper: FC<PropsType> = ({ children, title }) => {
   const dispatch = useAppDispatch()
+
+  const [isShowed, setShowed] = useState(false)
   const closeModal = () => {
     resetModalValues(dispatch)
+    setShowed(false)
   }
 
   const onContentClick = (e: React.MouseEvent) => {
     e.stopPropagation()
   }
 
+  useEffect(() => {
+    setShowed(true)
+  }, [])
+
   return (
     <Portal>
-      <div className={s.container} onClick={closeModal}>
-        <div onClick={onContentClick} className={s.wrapper}>
+      <div className={s.container} style={{ opacity: isShowed ? '1' : '0' }} onClick={closeModal}>
+        <div
+          onClick={onContentClick}
+          className={isShowed ? `${s.wrapper} ${s.activeWrapper}` : s.wrapper}
+        >
           <div className={s.modalHeader}>
             <div className={s.title}>{title}</div>
             <IconButton onClick={closeModal} size={'small'}>
