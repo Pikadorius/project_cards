@@ -49,7 +49,7 @@ const Modal: FC<PacksModalT> = ({ modalType }) => {
         </ModalWrapper>
       )
     case 'idle':
-      return <ModalWrapper title={'Closed'} />
+      return <ModalWrapper title={'Closing...'} />
   }
 }
 
