@@ -42,6 +42,7 @@ export const CardList = () => {
   const cardsTotalCount = useAppSelector(cardsTotalCountSelector)
   const packActive = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
   const namePackActive = packActive?.name
+  //const pack = useAppSelector(state => state.packs.cardPacks.find(p => p._id === id))
 
   const searchByName = (value: string) => {
     dispatch(setSearchCardParams({ cardQuestion: value }))
