@@ -76,6 +76,7 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
           value={cardQuestion}
           onChange={onChangeCardQuestion}
           reset={resetCardQuestion}
+          focus={true}
         />
       </div>
       <div className={s.description}>
