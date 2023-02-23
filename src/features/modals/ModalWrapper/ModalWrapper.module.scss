@@ -1,5 +1,5 @@
 .container {
-  z-index: 10;
+  z-index: -1;
   position: absolute;
   top: 0;
   left: 0;
@@ -17,7 +17,7 @@
     width: 395px;
     background: #FFFFFF;
     border-radius: 1em;
-    transform: scale(0.1);
+    transform: scale(0);
     transition: 0.5s;
 
     .modalHeader {
@@ -36,7 +36,6 @@
 }
 
 .activeWrapper {
-  transition: 0.5s;
   transform: scale(1)!important;
 }
 

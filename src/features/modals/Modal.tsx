@@ -48,8 +48,8 @@ const Modal: FC<PacksModalT> = ({ modalType }) => {
           <CreateCardModal type={'update'} />
         </ModalWrapper>
       )
-    default:
-      return <></>
+    case 'idle':
+      return <ModalWrapper title={'Closed'} />
   }
 }
 

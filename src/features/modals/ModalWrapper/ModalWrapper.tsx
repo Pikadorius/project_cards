@@ -4,10 +4,12 @@ import CloseIcon from '@mui/icons-material/Close'
 import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 
+import { modalTypeSelector } from '../modalSelectors'
+
 import s from './ModalWrapper.module.scss'
 
 import { Portal } from 'common/components/Portal/Portal'
-import { useAppDispatch } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
 
 type PropsType = {
@@ -16,6 +18,7 @@ type PropsType = {
 }
 const ModalWrapper: FC<PropsType> = ({ children, title }) => {
   const dispatch = useAppDispatch()
+  const modalType = useAppSelector(modalTypeSelector)
 
   const [isShowed, setShowed] = useState(false)
   const closeModal = () => {
@@ -28,12 +31,18 @@ const ModalWrapper: FC<PropsType> = ({ children, title }) => {
   }
 
   useEffect(() => {
-    setShowed(true)
-  }, [])
+    modalType !== 'idle' && setShowed(true)
+
+    return () => setShowed(false)
+  }, [modalType])
 
   return (
     <Portal>
-      <div className={s.container} style={{ opacity: isShowed ? '1' : '0' }} onClick={closeModal}>
+      <div
+        className={s.container}
+        style={{ opacity: isShowed ? '1' : '0', zIndex: isShowed ? '10' : '-1' }}
+        onClick={closeModal}
+      >
         <div
           onClick={onContentClick}
           className={isShowed ? `${s.wrapper} ${s.activeWrapper}` : s.wrapper}
