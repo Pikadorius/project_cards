@@ -1,10 +1,10 @@
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
 
-import { InputModal } from '../../../../common/components/InputModal/InputModal'
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './CreateCardModal.module.scss'
 
+import { InputModal } from 'common/components/InputModal/InputModal'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
 import { createCardTC, updateCardTC } from 'features/cards/cardSlice'

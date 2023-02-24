@@ -4,8 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import { PATH } from '../../../../common/constans/path'
 import { authUserIdSelector } from '../../../auth/authSelectors'
-import { packsSelector } from '../../../packs/packsSelectors'
-import { PackType } from '../../../packs/packsType'
 import { cardSelector, packNameCardSelector, packUserIdCardSelector } from '../cardSelectors'
 
 import s from './CardHeader.module.scss'
@@ -15,7 +13,6 @@ import { useAppSelector } from 'common/hooks/useAppSelector'
 
 type CardHeaderType = {
   onClick: () => void
-  //pack: PackType | undefined
 }
 
 export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
@@ -37,11 +34,7 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
   return (
     <div className={s.innerWrapper}>
       <div className={s.wrapper}>
-        {isMyCard ? (
-          <PackMenu title={packName} packId={id} />
-        ) : (
-          <h2 className={s.title}>{packName}</h2>
-        )}
+        <PackMenu title={packName} packId={id} isMyCard={isMyCard} packUserId={packUserId} />
         {!isMyCard && <div>{`@${packByName}`}</div>}
       </div>
       {isMyCard ? (
@@ -49,7 +42,6 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
           <button
             onClick={() => navigate(PATH.CARD_LEARN)}
             className={s.btn}
-            //disabled={pack && pack.cardsCount === 0}
             disabled={cards.length === 0}
           >
             Learn pack
