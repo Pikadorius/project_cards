@@ -61,7 +61,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId, isMyCard, packUserId
   }
 
   const blockUserHandler = () => {
-    console.log(packUserId)
+    dispatch(setModal('blockUser'))
   }
 
   const learnHandler = () => {

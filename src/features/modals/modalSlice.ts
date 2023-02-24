@@ -7,6 +7,7 @@ export type ModalType =
   | 'updateCard'
   | 'createCard'
   | 'deleteCard'
+  | 'blockUser'
   | 'idle'
 
 const initialState = {

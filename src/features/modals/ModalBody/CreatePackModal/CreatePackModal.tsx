@@ -23,11 +23,6 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
 
   const onChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
     setPackName(e.currentTarget.value)
-    console.log(packName)
-  }
-
-  const privateHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setPrivate(e.currentTarget.checked)
   }
 
   const onClickHandler = () => {

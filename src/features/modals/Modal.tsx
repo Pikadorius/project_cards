@@ -5,6 +5,7 @@ import CreatePackModal from './ModalBody/CreatePackModal/CreatePackModal'
 import DeleteModal from './ModalBody/DeleteModal/DeleteModal'
 import ModalWrapper from './ModalWrapper/ModalWrapper'
 
+import BlockUserModal from 'features/modals/ModalBody/BlockUserModal/BlockUserModal'
 import { ModalType } from 'features/modals/modalSlice'
 
 type PacksModalT = {
@@ -46,6 +47,12 @@ const Modal: FC<PacksModalT> = ({ modalType }) => {
       return (
         <ModalWrapper title={'Edit card'}>
           <CreateCardModal type={'update'} />
+        </ModalWrapper>
+      )
+    case 'blockUser':
+      return (
+        <ModalWrapper title={'Block user'}>
+          <BlockUserModal />
         </ModalWrapper>
       )
     case 'idle':
