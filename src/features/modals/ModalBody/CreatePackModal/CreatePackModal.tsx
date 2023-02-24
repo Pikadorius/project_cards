@@ -18,15 +18,20 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
   const changedItemName = useAppSelector(modalItemNameSelector)
   const changedItemId = useAppSelector(modalItemIdSelector)
   const [packName, setPackName] = useState(changedItemName || 'New pack')
+  const [isPrivate, setPrivate] = useState(false)
 
   const onChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
     setPackName(e.currentTarget.value)
     console.log(packName)
   }
 
+  const privateHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setPrivate(e.currentTarget.checked)
+  }
+
   const onClickHandler = () => {
     type === 'create'
-      ? dispatch(createPackTC({ cardsPack: { name: packName } }))
+      ? dispatch(createPackTC({ cardsPack: { name: packName, private: isPrivate } }))
       : dispatch(
           updatePackTC({
             cardsPack: {
@@ -51,16 +56,30 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
   return (
     <div>
       <div className={s.description}>
-        <InputModal
-          label={'Pack name'}
-          placeholder={'Pack name'}
-          onKeyDown={onEnterHandler}
-          value={packName}
-          onChange={onChangePackName}
-          reset={resetName}
-          focus={true}
-        />
+        <div>
+          <InputModal
+            label={'Pack name'}
+            placeholder={'Pack name'}
+            onKeyDown={onEnterHandler}
+            value={packName}
+            onChange={onChangePackName}
+            reset={resetName}
+            focus={true}
+          />
+        </div>
+        <div>
+          <label className={s.checkboxField}>
+            <input
+              className={s.checkbox}
+              type={'checkbox'}
+              checked={isPrivate}
+              onChange={privateHandler}
+            />
+            <div className={s.checkboxTitle}>Private pack</div>
+          </label>
+        </div>
       </div>
+
       <ModalButtons
         onSuccess={onClickHandler}
         successBtnName={type === 'create' ? 'Add' : 'Save'}
