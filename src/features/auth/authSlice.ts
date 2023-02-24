@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { FieldValues } from 'react-hook-form'
 
 import { isInitialized, setAppError, setAppStatus } from '../../app/appSlice'
-import { errorUtils } from '../../common/utils/errorHandler'
+import { errorUtils } from '../../common/utils'
 
 import { authApi, BlockUserType, RegistrationRequestType, SetNewPasswordType } from './authApi'
 
@@ -125,6 +125,8 @@ export const blockUserTC = createAsyncThunk(
     dispatch(setAppStatus('loading'))
     try {
       const res = await authApi.blockUser(data)
+
+      console.log(res)
 
       dispatch(setAppStatus('success'))
     } catch (e: any) {

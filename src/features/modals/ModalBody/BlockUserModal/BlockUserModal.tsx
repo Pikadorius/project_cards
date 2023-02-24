@@ -1,18 +1,28 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
 
+import { blockUserTC } from '../../../auth/authSlice'
+import { userBlockIDSelector } from '../../modalSelectors'
+
 import s from './BlockUserModal.module.scss'
 
 import { InputModal } from 'common/components/InputModal/InputModal'
-import { useAppDispatch } from 'common/hooks'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
 import ModalButtons from 'features/modals/ModalButtons/ModalButtons'
 
 const BlockUserModal = () => {
+  const userBlockID = useAppSelector(userBlockIDSelector)
   const dispatch = useAppDispatch()
   const [blockReason, setBlockReason] = useState('')
 
   const onClickHandler = () => {
-    console.log(blockReason)
+    console.log(blockReason, userBlockID)
+    dispatch(
+      blockUserTC({
+        id: userBlockID,
+        blockReason: blockReason,
+      })
+    )
     resetModalValues(dispatch)
   }
 

@@ -20,10 +20,8 @@ export const UserAccount = () => {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(isLoggedInSelector)
-  // данные для UserAccount (name and email)
   const user = useAppSelector(authUserInfoSelector)
   const userName = userNameHandler(user.name)
-  // пока только на имя, аватарку не трогал
 
   const logoutHandler = () => {
     dispatch(logoutTC())
@@ -49,7 +47,6 @@ export const UserAccount = () => {
             <img src={avatar} alt="user avatar" />
           </div>
 
-          {/*пока сделал новую компоненту, не вижу смысла тут отслеживать с помощью react hook form*/}
           <EditableSpan value={userName} />
 
           <span className={s.emailText}>{user.email}</span>

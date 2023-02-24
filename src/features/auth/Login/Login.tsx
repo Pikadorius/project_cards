@@ -28,8 +28,6 @@ export const Login = () => {
     return <Navigate to={PATH.PACK_LIST} />
   }
 
-  console.log(register)
-
   return (
     <FormWrapper
       title={'Sign In'}

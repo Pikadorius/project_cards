@@ -18,6 +18,7 @@ import {
   setChangedItemName,
   setIsPackDeleted,
   setModal,
+  setUserID,
 } from 'features/modals/modalSlice'
 
 type PackMenuType = {
@@ -62,6 +63,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId, isMyCard, packUserId
 
   const blockUserHandler = () => {
     dispatch(setModal('blockUser'))
+    dispatch(setUserID(packUserId))
   }
 
   const learnHandler = () => {

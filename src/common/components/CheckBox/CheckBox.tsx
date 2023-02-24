@@ -14,7 +14,7 @@ export const CheckBox: FC<CheckBoxType> = memo(({ register, nameForValidate, lab
   return (
     <label className={s.labelCheckbox}>
       <input {...register(nameForValidate)} className={s.checkbox} type="checkbox" />
-      {label}
+      <span>{label}</span>
     </label>
   )
 })

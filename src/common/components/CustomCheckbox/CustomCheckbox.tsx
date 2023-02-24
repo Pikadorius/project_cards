@@ -1,6 +1,6 @@
 import React, { ChangeEvent, FC } from 'react'
 
-import s from './CustomCheckbox.module.scss'
+import s from '../CheckBox/CheckBox.module.scss'
 
 type PropsType = {
   checked: boolean
@@ -13,17 +13,15 @@ const CustomCheckbox: FC<PropsType> = ({ checked, onChange, title }) => {
   }
 
   return (
-    <div>
-      <label className={s.checkboxField}>
-        <input
-          className={s.checkbox}
-          type={'checkbox'}
-          checked={checked}
-          onChange={onChangeHandler}
-        />
-        <div className={s.checkboxTitle}>{title}</div>
-      </label>
-    </div>
+    <label className={s.labelCheckbox} style={{ marginTop: '20px' }}>
+      <input
+        className={s.checkbox}
+        type={'checkbox'}
+        checked={checked}
+        onChange={onChangeHandler}
+      />
+      <span>{title}</span>
+    </label>
   )
 }
 
