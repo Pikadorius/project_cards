@@ -2,7 +2,6 @@ import React, { memo } from 'react'
 
 import { useNavigate } from 'react-router-dom'
 
-import { fetchCardTC } from '../../../../features/cards/cardSlice'
 import { DeleteIcon } from '../../Icon/DeleteIcon/Delete'
 import { EditIcon } from '../../Icon/EditIcon/EditIcon'
 import { TeachIcon } from '../../Icon/TeachIcon/TeachIcon'
@@ -15,6 +14,7 @@ import { useAppSelector } from 'common/hooks/useAppSelector'
 import { dateHandler } from 'common/utils/dateHandler'
 import { userNameHandler } from 'common/utils/userNameHandler'
 import { authUserIdSelector } from 'features/auth/authSelectors'
+import { fetchCardTC } from 'features/cards/cardSlice'
 import { setChangedItemId, setChangedItemName, setModal } from 'features/modals/modalSlice'
 import { PackType } from 'features/packs/packsType'
 

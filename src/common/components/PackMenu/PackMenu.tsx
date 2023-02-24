@@ -2,20 +2,17 @@ import * as React from 'react'
 import { FC } from 'react'
 
 import Menu from '@mui/material/Menu'
-import MenuItem from '@mui/material/MenuItem'
 import { Navigate, useNavigate, useParams } from 'react-router-dom'
 
 import s from './PackMenu.module.scss'
 
-import Delete from 'assets/Delete.svg'
 import dots from 'assets/dots.svg'
-import edit from 'assets/Edit.svg'
-import teacher from 'assets/teacher.svg'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { FriendMenuItem } from 'features/cards/CardList/CardHeader/Menu/FriendMenuItem'
+import { MyMenuItem } from 'features/cards/CardList/CardHeader/Menu/MyMenuItem'
 import { fetchCardTC, setSearchCardParams } from 'features/cards/cardSlice'
-import Modal from 'features/modals/Modal'
-import { isPackDeletedSelector, modalTypeSelector } from 'features/modals/modalSelectors'
+import { isPackDeletedSelector } from 'features/modals/modalSelectors'
 import {
   setChangedItemId,
   setChangedItemName,
@@ -26,17 +23,16 @@ import {
 type PackMenuType = {
   title: string
   packId: string | undefined
+  isMyCard: boolean
+  packUserId: string
 }
 
-export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
-  console.log(packId)
+export const PackMenu: FC<PackMenuType> = ({ title, packId, isMyCard, packUserId }) => {
   let { id } = useParams<{ id: string }>()
 
-  console.log(id)
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
-  const cards = useAppSelector(state => state.card.cards)
   const searchParams = useAppSelector(state => state.card.searchParams)
+  const cards = useAppSelector(state => state.card.cards)
   const isPackDeleted = useAppSelector(isPackDeletedSelector)
   const open = Boolean(anchorEl)
   const dispatch = useAppDispatch()
@@ -64,8 +60,11 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
     }
   }
 
+  const blockUserHandler = () => {
+    console.log(packUserId)
+  }
+
   const learnHandler = () => {
-    // localStorage.setItem('pageCount', String(searchParams.pageCount))
     dispatch(setSearchCardParams({ page: 1, pageCount: searchParams.cardsTotalCount }))
     if (id) dispatch(fetchCardTC(id))
 
@@ -119,15 +118,20 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId }) => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={updatePack}>
-          <img className={s.icon} src={edit} alt="edit" /> Edit
-        </MenuItem>
-        <MenuItem onClick={deletePack}>
-          <img className={s.icon} src={Delete} alt="delete" /> Delete
-        </MenuItem>
-        <MenuItem onClick={learnHandler} disabled={cards.length === 0}>
-          <img className={s.icon} src={teacher} alt="learn pack" /> Learn
-        </MenuItem>
+        {isMyCard ? (
+          <MyMenuItem
+            updatePack={updatePack}
+            deletePack={deletePack}
+            learnHandler={learnHandler}
+            cards={cards}
+          />
+        ) : (
+          <FriendMenuItem
+            blockUserHandler={blockUserHandler}
+            learnHandler={learnHandler}
+            cards={cards}
+          />
+        )}
       </Menu>
     </React.Fragment>
   )
