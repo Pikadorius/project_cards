@@ -1,10 +1,11 @@
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
 
-import { InputModal } from '../../../../common/components/InputModal/InputModal'
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './CreatePackModal.module.scss'
 
+import CustomCheckbox from 'common/components/CustomCheckbox/CustomCheckbox'
+import { InputModal } from 'common/components/InputModal/InputModal'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
 import { modalItemIdSelector, modalItemNameSelector } from 'features/modals/modalSelectors'
@@ -67,17 +68,7 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
             focus={true}
           />
         </div>
-        <div>
-          <label className={s.checkboxField}>
-            <input
-              className={s.checkbox}
-              type={'checkbox'}
-              checked={isPrivate}
-              onChange={privateHandler}
-            />
-            <div className={s.checkboxTitle}>Private pack</div>
-          </label>
-        </div>
+        <CustomCheckbox checked={isPrivate} onChange={setPrivate} title={'Private pack'} />
       </div>
 
       <ModalButtons

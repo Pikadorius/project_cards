@@ -1,0 +1,28 @@
+.checkboxField {
+  padding: 30px 0 0 5px;
+  font-size: 16px;
+  display: flex;
+  align-content: center;
+
+  .checkbox {
+    display: block;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #000000;
+    cursor: pointer;
+    vertical-align: middle;
+  }
+
+  .checkbox:checked {
+    appearance: none;
+
+    background-image: url('../../../assets/checkbox.png');
+  }
+
+  .checkboxTitle {
+    display: block;
+    padding-left: 12px;
+  }
+}
