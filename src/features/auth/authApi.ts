@@ -7,6 +7,7 @@ import { createMessage } from 'common/utils'
 export type UserResponseType = {
   _id: string
   email: string
+  avatar?: string
   rememberMe: boolean
   isAdmin: boolean
   name: string

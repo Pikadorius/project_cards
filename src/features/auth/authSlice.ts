@@ -9,6 +9,7 @@ import { errorUtils } from 'common/utils'
 export type UserType = {
   _id: string
   email: string
+  avatar?: string
   rememberMe: boolean
   isAdmin: boolean
   name: string

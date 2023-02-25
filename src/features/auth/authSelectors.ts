@@ -11,3 +11,5 @@ export const isPasswordChangedSelector = (state: RootStateType) => state.auth.is
 export const getRecoveryEmailSelector = (state: RootStateType) => state.auth.emailInRecovery
 export const authUserIdSelector = (state: RootStateType) => state.auth.user._id
 export const authUserInfoSelector = (state: RootStateType) => state.auth.user
+
+export const authUserAvatarSelector = (state: RootStateType) => state.auth.user.avatar

@@ -13,7 +13,11 @@ import logout from 'assets/logout.svg'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { userNameHandler } from 'common/utils/userNameHandler'
-import { authUserInfoSelector, isLoggedInSelector } from 'features/auth/authSelectors'
+import {
+  authUserAvatarSelector,
+  authUserInfoSelector,
+  isLoggedInSelector,
+} from 'features/auth/authSelectors'
 import { logoutTC } from 'features/auth/authSlice'
 
 export const UserAccount = () => {
@@ -21,6 +25,7 @@ export const UserAccount = () => {
   const navigate = useNavigate()
   const isLoggedIn = useAppSelector(isLoggedInSelector)
   const user = useAppSelector(authUserInfoSelector)
+  const userAvatar = useAppSelector(authUserAvatarSelector) || avatar
   const userName = userNameHandler(user.name)
 
   const logoutHandler = () => {
@@ -44,7 +49,7 @@ export const UserAccount = () => {
             <div className={s.decoration}>
               <img className={s.cameraIcon} src={camera} alt="camera icon" />
             </div>
-            <img src={avatar} alt="user avatar" />
+            <img src={userAvatar} alt="user avatar" />
           </div>
 
           <EditableSpan value={userName} />
