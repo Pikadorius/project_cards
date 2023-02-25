@@ -19,7 +19,7 @@ import {
 
 import arrow from 'assets/arrow.svg'
 import { EmptyPack } from 'common/components/EmptyPack/EmptyPack'
-import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
+import SuperPagination from 'common/components/Pagination/SuperPagination'
 import { Search } from 'common/components/Search/Search'
 import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
 import { TablePackListWrapper } from 'common/components/Table/TablePackListWrapper/TablePackListWrapper'

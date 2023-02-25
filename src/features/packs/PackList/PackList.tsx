@@ -18,7 +18,7 @@ import s from './PackList.module.scss'
 import { PacksHeader } from './PacksHeader/PacksHeader'
 
 import { EmptyPackSearch } from 'common/components/EmptyPackSearch/EmptyPackSearch'
-import SuperPagination from 'common/components/IgnatTasksComponents/c9-SuperPagination/SuperPagination'
+import SuperPagination from 'common/components/Pagination/SuperPagination'
 import { Search } from 'common/components/Search/Search'
 import { SearchPanel } from 'common/components/SearchPanel/SearchPanel'
 import { Sort } from 'common/components/Sort/Sort'

@@ -9,8 +9,9 @@ import SuperSelect from './c5-SuperSelect/SuperSelect'
 import SuperRadio from './c6-SuperRadio/SuperRadio'
 import SuperRange from './c7-SuperRange/SuperRange'
 import SuperDebouncedInput from './c8-SuperDebouncedInput/SuperDebouncedInput'
-import SuperPagination from './c9-SuperPagination/SuperPagination'
 import s from './CommonComponents.module.css'
+
+import SuperPagination from 'common/components/Pagination/SuperPagination'
 
 const CommonComponents = () => {
   const arr = [
