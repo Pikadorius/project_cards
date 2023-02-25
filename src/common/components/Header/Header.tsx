@@ -6,7 +6,7 @@ import s from './Header.module.scss'
 import { HeaderProfile } from './HeaderProfile/HeaderProfile'
 import { HeaderSignIn } from './HeaderSignIn/HeaderSignIn'
 
-import logo from 'assets/logo3.png'
+import logo from 'assets/logo.png'
 import { useAppSelector } from 'common/hooks'
 import { isLoggedInSelector } from 'features/auth/authSelectors'
 
