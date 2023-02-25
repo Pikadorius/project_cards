@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { FieldValues } from 'react-hook-form'
 
-import { isInitialized, setAppError, setAppStatus } from '../../app/appSlice'
-import { errorUtils } from '../../common/utils'
-
 import { authApi, BlockUserType, RegistrationRequestType, SetNewPasswordType } from './authApi'
+
+import { isInitialized, setAppError, setAppStatus } from 'app/appSlice'
+import { errorUtils } from 'common/utils'
 
 export type UserType = {
   _id: string

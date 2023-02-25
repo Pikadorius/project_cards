@@ -1,7 +1,5 @@
 import { AxiosResponse } from 'axios'
 
-import { instance } from '../../common/constans/instance'
-
 import {
   CardGradeDataType,
   CardGradeResponseType,
@@ -10,6 +8,8 @@ import {
   GetCardResponseType,
   SearchParamsCardType,
 } from './cardType'
+
+import { instance } from 'common/constans/instance'
 
 export const cardAPI = {
   getCard: (params: SearchParamsCardType, cardsPackID: string) => {

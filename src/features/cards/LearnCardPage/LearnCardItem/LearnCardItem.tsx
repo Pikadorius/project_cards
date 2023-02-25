@@ -1,11 +1,12 @@
 import React, { memo } from 'react'
 
-import { Button } from '../../../../common/components/Button/Button'
 import { CardType } from '../../cardType'
 import s from '../LearnCardItem/LearnCardItem.module.scss'
 import { AnswerStatuses } from '../learnCardSlice'
 
 import { GradesItem } from './GradesItem/GradesItem'
+
+import { Button } from 'common/components/Button/Button'
 
 type FormWrapperType = {
   card: CardType

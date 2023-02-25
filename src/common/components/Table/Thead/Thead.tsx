@@ -1,17 +1,13 @@
 import React, { memo } from 'react'
 
-import {
-  CardListType,
-  PackListType,
-  setSortStatusCards,
-  setSortStatusPack,
-} from '../../../../app/appSlice'
 import sort from '../../../../assets/sortTable.svg'
-import { setSearchCardParams } from '../../../../features/cards/cardSlice'
-import { setSearchParams } from '../../../../features/packs/packsSlice'
-import { useAppDispatch, useAppSelector } from '../../../hooks'
 
 import s from './Thead.module.scss'
+
+import { CardListType, PackListType, setSortStatusCards, setSortStatusPack } from 'app/appSlice'
+import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { setSearchCardParams } from 'features/cards/cardSlice'
+import { setSearchParams } from 'features/packs/packsSlice'
 
 type TheadType = {
   packList?: PackListType

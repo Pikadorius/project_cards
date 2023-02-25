@@ -1,8 +1,8 @@
 import { AxiosResponse } from 'axios'
 import { FieldValues } from 'react-hook-form'
 
-import { instance, instanceRec } from '../../common/constans/instance'
-import { createMessage } from '../../common/utils/messageCreator'
+import { instance, instanceRec } from 'common/constans/instance'
+import { createMessage } from 'common/utils'
 
 export type UserResponseType = {
   _id: string

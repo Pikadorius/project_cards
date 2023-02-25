@@ -1,11 +1,12 @@
 import React, { FC, memo, useState } from 'react'
 
-import { useAppSelector } from '../../../../../common/hooks'
 import { RatingValueType } from '../../../cardType'
 import { AnswerStatuses } from '../../learnCardSlice'
 
 import s from './GradesItem.module.scss'
 import { Star } from './Star/Star'
+
+import { useAppSelector } from 'common/hooks'
 
 type GradesItemType = {
   onChangeChecked: (isActive: AnswerStatuses, grade: number) => void

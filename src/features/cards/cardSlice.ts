@@ -3,7 +3,6 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { cardAPI } from './cardAPI'
 import {
   CardGradeDataType,
-  CardGradeResponseType,
   CardQueryParamsType,
   CreateCardRequestType,
   GetCardResponseType,

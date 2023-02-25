@@ -1,16 +1,14 @@
 import React, { memo, useEffect } from 'react'
 
-import { useNavigate } from 'react-router-dom'
-
 import Delete from '../../../../assets/Delete.svg'
 import edit from '../../../../assets/Edit.svg'
-import { CardType } from '../../../../features/cards/cardType'
-import { dateHandler } from '../../../utils'
 import { CardsRating } from '../../Rating/Rating'
 
 import s from './TbodyCard.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { dateHandler } from 'common/utils'
+import { CardType } from 'features/cards/cardType'
 import {
   setChangedItemAnswer,
   setChangedItemCardsId,

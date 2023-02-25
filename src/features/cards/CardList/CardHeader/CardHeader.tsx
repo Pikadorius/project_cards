@@ -2,13 +2,13 @@ import React, { FC, memo, useEffect } from 'react'
 
 import { useNavigate, useParams } from 'react-router-dom'
 
-import { PATH } from '../../../../common/constans/path'
 import { authUserIdSelector } from '../../../auth/authSelectors'
 import { cardSelector, packNameCardSelector, packUserIdCardSelector } from '../cardSelectors'
 
 import s from './CardHeader.module.scss'
 
 import { PackMenu } from 'common/components/PackMenu/PackMenu'
+import { PATH } from 'common/constans/path'
 import { useAppSelector } from 'common/hooks/useAppSelector'
 
 type CardHeaderType = {

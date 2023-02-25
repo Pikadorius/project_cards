@@ -1,9 +1,7 @@
 import axios, { AxiosError } from 'axios'
 import { Dispatch } from 'redux'
 
-import { setAppError, setAppStatus } from '../../app/appSlice'
-// import { AppThunk } from '../../app/store';
-// import { packsAPI } from '../../api/packs-api';
+import { setAppError, setAppStatus } from 'app/appSlice'
 
 export const errorUtils = (e: Error | AxiosError<{ error: string }>, dispatch: Dispatch) => {
   const err = e as Error | AxiosError<{ error: string }>

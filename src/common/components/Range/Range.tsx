@@ -2,14 +2,11 @@ import React, { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react'
 
 import { Slider } from '@mui/material'
 
-import { packsAllSearchParametersSelector } from '../../../features/packs/packsSelectors'
-
 import s from './Range.module.scss'
 
 import { useAppDispatch, useAppSelector } from 'common/hooks'
+import { packsAllSearchParametersSelector } from 'features/packs/packsSelectors'
 import { setSearchParams } from 'features/packs/packsSlice'
-
-type RangeType = {}
 
 export const Range = () => {
   const dispatch = useAppDispatch()
