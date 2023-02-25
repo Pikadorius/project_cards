@@ -49,7 +49,7 @@ export const UserAccount = () => {
             <div className={s.decoration}>
               <img className={s.cameraIcon} src={camera} alt="camera icon" />
             </div>
-            <img src={userAvatar} alt="user avatar" />
+            <img src={userAvatar} alt="user avatar" style={{ width: '96px', height: '96px' }} />
           </div>
 
           <EditableSpan value={userName} />
