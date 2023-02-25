@@ -1,11 +1,14 @@
 import React, { ChangeEvent, KeyboardEvent, useState } from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
 import { blockUserTC } from '../../../auth/authSlice'
 import { userBlockIDSelector } from '../../modalSelectors'
 
 import s from './BlockUserModal.module.scss'
 
 import { InputModal } from 'common/components/InputModal/InputModal'
+import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
 import ModalButtons from 'features/modals/ModalButtons/ModalButtons'
@@ -13,6 +16,7 @@ import ModalButtons from 'features/modals/ModalButtons/ModalButtons'
 const BlockUserModal = () => {
   const userBlockID = useAppSelector(userBlockIDSelector)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const [blockReason, setBlockReason] = useState('')
 
   const onClickHandler = () => {
@@ -22,7 +26,7 @@ const BlockUserModal = () => {
         id: userBlockID,
         blockReason: blockReason,
       })
-    )
+    ).then(() => navigate(PATH.PACK_LIST))
     resetModalValues(dispatch)
   }
 

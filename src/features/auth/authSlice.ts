@@ -126,7 +126,7 @@ export const blockUserTC = createAsyncThunk(
     try {
       const res = await authApi.blockUser(data)
 
-      console.log(res)
+      dispatch(setAppError('User has been blocked'))
 
       dispatch(setAppStatus('success'))
     } catch (e: any) {
