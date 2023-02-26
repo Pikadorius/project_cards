@@ -32,6 +32,8 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
   const changedItemCardsId = useAppSelector(modalItemCardsIdSelector)
   const [cardQuestion, setCardQuestion] = useState(changedItemQuestion)
   const [cardAnswer, setCardAnswer] = useState(changedItemAnswer)
+  const [questionImg, setQuestionImg] = useState(changedItemQuestion)
+  const [answerImg, setAnswerImg] = useState(changedItemAnswer)
 
   const onChangeCardQuestion = (e: ChangeEvent<HTMLInputElement>) => {
     setCardQuestion(e.currentTarget.value)
@@ -40,17 +42,31 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
     setCardAnswer(e.currentTarget.value)
   }
 
+  console.log(changedItemId, cardQuestion, cardAnswer, questionImg, answerImg)
+
   const onClickHandler = () => {
     type === 'create'
       ? dispatch(
           createCardTC({
-            card: { cardsPack_id: changedItemId, question: cardQuestion, answer: cardAnswer },
+            card: {
+              cardsPack_id: changedItemId,
+              question: cardQuestion,
+              answer: cardAnswer,
+              questionImg: questionImg,
+              answerImg: answerImg,
+            },
           })
         )
       : dispatch(
           updateCardTC({
             updateCard: {
-              card: { _id: changedItemId, question: cardQuestion, answer: cardAnswer },
+              card: {
+                _id: changedItemId,
+                question: cardQuestion,
+                answer: cardAnswer,
+                questionImg: questionImg,
+                answerImg: answerImg,
+              },
             },
             cardsPackID: changedItemCardsId,
           })
@@ -109,10 +125,10 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
       ) : (
         <>
           <div className={s.description}>
-            <InputTypeFile label={'Question'} />
+            <InputTypeFile label={'Question'} callback={setQuestionImg} />
           </div>
           <div className={s.description}>
-            <InputTypeFile label={'Answer'} />
+            <InputTypeFile label={'Answer'} callback={setAnswerImg} />
           </div>
         </>
       )}
