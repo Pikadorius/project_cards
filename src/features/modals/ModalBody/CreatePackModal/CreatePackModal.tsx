@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, KeyboardEvent, useRef, useState } from 'react'
+import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
 
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
@@ -6,6 +6,7 @@ import s from './CreatePackModal.module.scss'
 
 import CustomCheckbox from 'common/components/CustomCheckbox/CustomCheckbox'
 import { InputModal } from 'common/components/InputModal/InputModal'
+import { InputTypeFile } from 'common/components/InputTypeFile/InputTypeFile'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
 import { modalItemIdSelector, modalItemNameSelector } from 'features/modals/modalSelectors'
@@ -51,6 +52,9 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
 
   return (
     <div>
+      <div className={s.cover}>
+        <InputTypeFile label={'Pack cover'} />
+      </div>
       <div className={s.description}>
         <div>
           <InputModal

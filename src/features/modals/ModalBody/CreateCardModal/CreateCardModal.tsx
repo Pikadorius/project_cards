@@ -1,12 +1,12 @@
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
 
-import { InputTypeFile } from '../../../../common/components/InputTypeFile/InputTypeFile'
-import { SelectModal } from '../../../../common/components/SelectModal/SelectModal'
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './CreateCardModal.module.scss'
 
 import { InputModal } from 'common/components/InputModal/InputModal'
+import { InputTypeFile } from 'common/components/InputTypeFile/InputTypeFile'
+import { SelectModal } from 'common/components/SelectModal/SelectModal'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
 import { createCardTC, updateCardTC } from 'features/cards/cardSlice'
@@ -73,7 +73,7 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
   }
 
   return (
-    <div>
+    <div className={s.container}>
       <div className={s.description}>
         <SelectModal
           label={'Choose a question format'}

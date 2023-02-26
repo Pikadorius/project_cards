@@ -1,5 +1,12 @@
+.cover {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+}
+
 .description {
-  padding: 30px 24px;
+  padding: 0 24px 22px;
   display: flex;
   flex-direction: column;
   word-wrap: break-word;
