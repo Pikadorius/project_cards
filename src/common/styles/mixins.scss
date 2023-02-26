@@ -48,6 +48,34 @@
       color: #ff244b;
     }
   }
+
+  .labelContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    height: 100px;
+    background-color: rgb(234, 234, 234);
+    opacity: 0.7;
+    border-radius: 15px;
+    border: 2px dashed rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    position: relative;
+    .label {
+      position: absolute;
+      width: 100%;
+      border-radius: inherit;
+      opacity: 0.6;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .labelText {
+        word-break: break-word;
+      }
+    }
+  }
 }
 
 @mixin select {
@@ -128,7 +156,8 @@
       justify-content: center;
       width: 100%;
       height: 80px;
-      background: rgb(234, 234, 234);
+      background: rgb(255, 255, 255);
+      border: 1px solid #212121;
       border-radius: 10px;
 
       top: 100%;
@@ -144,8 +173,8 @@
         width: 100%;
         gap: 7px;
 
-        .option{
-          background: rgb(255, 255, 255);
+        .option {
+          background: rgb(234, 234, 234);
           height: 25px;
           font-size: 14px;
           width: 90%;

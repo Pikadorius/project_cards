@@ -1,6 +1,9 @@
 .description {
-  padding: 15px 24px;
+  padding: 10px 24px;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
   word-wrap: break-word;
+  gap: 5px;
 }

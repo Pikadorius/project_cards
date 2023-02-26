@@ -30,18 +30,18 @@ export const SelectModal: FC<SelectModalType> = ({ label, selectValue, options, 
     setOpen(!open)
   }
   const onBlurHandler = () => {
-    setOpen(true)
+    setOpen(false)
   }
 
   let resClass = open ? s.arrowDownUp + ' ' + s.rotate : s.arrowDownUp
 
   return (
-    <div className={s.selectBlock} onBlur={onBlurHandler}>
+    <div className={s.selectBlock}>
       <label className={s.labelSelect}>
         {label}
-        <div className={s.select}>
+        <div className={s.select} onClick={onClickHandler} onBlur={() => onBlurHandler}>
           <span className={s.text}>{selectValue} </span>
-          <img className={resClass} src={arrowDownUp} alt="open select" onClick={onClickHandler} />
+          <img className={resClass} src={arrowDownUp} alt="open select" />
         </div>
       </label>
       {open && (

@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
 
+import { InputTypeFile } from '../../../../common/components/InputTypeFile/InputTypeFile'
 import { SelectModal } from '../../../../common/components/SelectModal/SelectModal'
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
@@ -81,27 +82,41 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
           onChange={setSelect}
         />
       </div>
-      <div className={s.description}>
-        <InputModal
-          label={'Question'}
-          placeholder={'Question'}
-          onKeyDown={onEnterHandler}
-          value={cardQuestion}
-          onChange={onChangeCardQuestion}
-          reset={resetCardQuestion}
-          focus={true}
-        />
-      </div>
-      <div className={s.description}>
-        <InputModal
-          label={'Answer'}
-          placeholder={'Answer'}
-          onKeyDown={onEnterHandler}
-          value={cardAnswer}
-          onChange={onChangeCardAnswer}
-          reset={resetCardAnswer}
-        />
-      </div>
+      {select === 'Text' ? (
+        <>
+          <div className={s.description}>
+            <InputModal
+              label={'Question'}
+              placeholder={'Question'}
+              onKeyDown={onEnterHandler}
+              value={cardQuestion}
+              onChange={onChangeCardQuestion}
+              reset={resetCardQuestion}
+              focus={true}
+            />
+          </div>
+          <div className={s.description}>
+            <InputModal
+              label={'Answer'}
+              placeholder={'Answer'}
+              onKeyDown={onEnterHandler}
+              value={cardAnswer}
+              onChange={onChangeCardAnswer}
+              reset={resetCardAnswer}
+            />
+          </div>
+        </>
+      ) : (
+        <>
+          <div className={s.description}>
+            <InputTypeFile label={'Question'} />
+          </div>
+          <div className={s.description}>
+            <InputTypeFile label={'Answer'} />
+          </div>
+        </>
+      )}
+
       <ModalButtons
         onSuccess={onClickHandler}
         successBtnName={type === 'create' ? 'Add' : 'Save'}
