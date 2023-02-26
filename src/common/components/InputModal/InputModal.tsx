@@ -19,7 +19,7 @@ export const InputModal: FC<InputType> = memo(
     return (
       <label className={s.labelInput}>
         {label}
-        <div className={s.inputContainer}>
+        <div>
           <input
             className={s.input}
             onKeyDown={onKeyDown}

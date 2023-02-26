@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
 
+import { SelectModal } from '../../../../common/components/SelectModal/SelectModal'
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './CreateCardModal.module.scss'
@@ -18,7 +19,11 @@ import {
 type CreateModalType = {
   type: 'create' | 'update'
 }
+
 const CreateCardModal: FC<CreateModalType> = ({ type }) => {
+  const [select, setSelect] = useState('Text')
+  const options = ['Text', 'Picture']
+
   const dispatch = useAppDispatch()
   const changedItemQuestion = useAppSelector(modalItemNameSelector)
   const changedItemAnswer = useAppSelector(modalItemAnswerSelector)
@@ -68,6 +73,14 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
 
   return (
     <div>
+      <div className={s.description}>
+        <SelectModal
+          label={'Choose a question format'}
+          selectValue={select}
+          options={options}
+          onChange={setSelect}
+        />
+      </div>
       <div className={s.description}>
         <InputModal
           label={'Question'}

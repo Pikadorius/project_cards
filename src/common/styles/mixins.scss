@@ -50,6 +50,119 @@
   }
 }
 
+@mixin select {
+  .selectBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+
+    .labelSelect {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 5px;
+      border-radius: 15px;
+      background-color: #212121;
+      color: rgb(255, 255, 255);
+      padding: 11px 12px;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.2s ease 0s;
+
+      .select {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 40px;
+        margin-top: 10px;
+
+        background: rgb(255, 255, 255);
+        border-radius: 10px;
+
+        .text {
+          display: flex;
+          align-items: center;
+          white-space: nowrap;
+          color: #030202;
+          font-size: 16px;
+        }
+
+        .arrowDownUp {
+          width: 17px;
+          height: 17px;
+          position: absolute;
+          top: 50%;
+          right: 10px;
+          transform: translateY(-50%);
+          cursor: pointer;
+
+          &:hover {
+            opacity: 0.7;
+          }
+        }
+
+        &:hover {
+          background: rgb(234, 234, 234);
+        }
+
+        &:focus {
+          background: rgb(255, 255, 255)
+        }
+
+        .rotate {
+          top: 30%;
+          transform: rotate(-180deg);
+        }
+      }
+    }
+
+    .optionsContainer {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 80px;
+      background: rgb(234, 234, 234);
+      border-radius: 10px;
+
+      top: 100%;
+      z-index: 3;
+      padding: 5px;
+      margin: 5px;
+
+      .optionWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        gap: 7px;
+
+        .option{
+          background: rgb(255, 255, 255);
+          height: 25px;
+          font-size: 14px;
+          width: 90%;
+          border-radius: 10px;
+          padding: 5px 10px;
+
+          &:hover {
+            height: 27px;
+            width: 91%;
+          }
+        }
+
+      }
+    }
+  }
+}
+
 @mixin flexCenter {
   display: flex;
   align-items: center;
