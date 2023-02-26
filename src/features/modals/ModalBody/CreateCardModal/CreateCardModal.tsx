@@ -24,8 +24,8 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
   const changedItemAnswer = useAppSelector(modalItemAnswerSelector)
   const changedItemId = useAppSelector(modalItemIdSelector)
   const changedItemCardsId = useAppSelector(modalItemCardsIdSelector)
-  const [cardQuestion, setCardQuestion] = useState(changedItemQuestion || 'Question')
-  const [cardAnswer, setCardAnswer] = useState(changedItemAnswer || 'Answer')
+  const [cardQuestion, setCardQuestion] = useState(changedItemQuestion)
+  const [cardAnswer, setCardAnswer] = useState(changedItemAnswer)
 
   const onChangeCardQuestion = (e: ChangeEvent<HTMLInputElement>) => {
     setCardQuestion(e.currentTarget.value)
