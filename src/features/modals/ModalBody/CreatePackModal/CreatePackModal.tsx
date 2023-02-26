@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
+import React, { ChangeEvent, FC, KeyboardEvent, useRef, useState } from 'react'
 
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
@@ -18,7 +18,7 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
   const dispatch = useAppDispatch()
   const changedItemName = useAppSelector(modalItemNameSelector)
   const changedItemId = useAppSelector(modalItemIdSelector)
-  const [packName, setPackName] = useState(changedItemName || 'New pack')
+  const [packName, setPackName] = useState(changedItemName)
   const [isPrivate, setPrivate] = useState(false)
 
   const onChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
