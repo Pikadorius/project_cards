@@ -61,8 +61,6 @@ export const createCardTC = createAsyncThunk(
       const res = await cardAPI.createCard(data)
 
       dispatch(fetchCardTC(data.card.cardsPack_id))
-
-      return res
     } catch (e: any) {
       errorUtils(e, dispatch)
     }

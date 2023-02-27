@@ -22,7 +22,8 @@ type CreateModalType = {
 }
 
 const CreateCardModal: FC<CreateModalType> = ({ type }) => {
-  const [select, setSelect] = useState('Text')
+  const [selectQuestion, setSelectQuestion] = useState('Text')
+  const [selectAnswer, setSelectAnswer] = useState('Text')
   const options = ['Text', 'Picture']
 
   const dispatch = useAppDispatch()
@@ -93,44 +94,52 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
       <div className={s.description}>
         <SelectModal
           label={'Choose a question format'}
-          selectValue={select}
+          selectValue={selectQuestion}
           options={options}
-          onChange={setSelect}
+          onChange={setSelectQuestion}
         />
       </div>
-      {select === 'Text' ? (
-        <>
-          <div className={s.description}>
-            <InputModal
-              label={'Question'}
-              placeholder={'Question'}
-              onKeyDown={onEnterHandler}
-              value={cardQuestion}
-              onChange={onChangeCardQuestion}
-              reset={resetCardQuestion}
-              focus={true}
-            />
-          </div>
-          <div className={s.description}>
-            <InputModal
-              label={'Answer'}
-              placeholder={'Answer'}
-              onKeyDown={onEnterHandler}
-              value={cardAnswer}
-              onChange={onChangeCardAnswer}
-              reset={resetCardAnswer}
-            />
-          </div>
-        </>
+      {selectQuestion === 'Text' ? (
+        <div className={s.description}>
+          <InputModal
+            label={'Question'}
+            placeholder={'Question'}
+            onKeyDown={onEnterHandler}
+            value={cardQuestion}
+            onChange={onChangeCardQuestion}
+            reset={resetCardQuestion}
+            focus={true}
+          />
+        </div>
       ) : (
-        <>
-          <div className={s.description}>
-            <InputTypeFile label={'Question'} callback={setQuestionImg} />
-          </div>
-          <div className={s.description}>
-            <InputTypeFile label={'Answer'} callback={setAnswerImg} />
-          </div>
-        </>
+        <div className={s.description}>
+          <InputTypeFile label={'Question'} callback={setQuestionImg} />
+        </div>
+      )}
+
+      <div className={s.description}>
+        <SelectModal
+          label={'Choose a answer format'}
+          selectValue={selectAnswer}
+          options={options}
+          onChange={setSelectAnswer}
+        />
+      </div>
+      {selectAnswer === 'Text' ? (
+        <div className={s.description}>
+          <InputModal
+            label={'Answer'}
+            placeholder={'Answer'}
+            onKeyDown={onEnterHandler}
+            value={cardAnswer}
+            onChange={onChangeCardAnswer}
+            reset={resetCardAnswer}
+          />
+        </div>
+      ) : (
+        <div className={s.description}>
+          <InputTypeFile label={'Answer'} callback={setAnswerImg} />
+        </div>
       )}
 
       <ModalButtons

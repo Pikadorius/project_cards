@@ -18,6 +18,10 @@ export const store = configureStore({
     modal: modalReducer,
   },
   preloadedState: loadState(),
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })
 
 export type RootStateType = ReturnType<typeof store.getState>

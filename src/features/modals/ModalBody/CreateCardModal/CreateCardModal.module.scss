@@ -6,7 +6,8 @@
   align-items: flex-start;
   word-wrap: break-word;
 
-  &:nth-child(2) {
+  &:nth-child(2n) {
     padding: 0 24px;
   }
 }
+

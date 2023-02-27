@@ -19,6 +19,21 @@ type FormWrapperType = {
 
 export const LearnCardItem = memo(
   ({ card, title, isChecked, onChangeChecked, onNext, onShowAnswer }: FormWrapperType) => {
+    let answerRes = (
+      <span style={{ backgroundColor: 'red' }}>
+        {card.answerImg ? (
+          <div
+            className={s.img}
+            style={{ backgroundImage: `url(${card.answerImg})`, backgroundColor: 'gray' }}
+          >
+            bla
+          </div>
+        ) : (
+          <div className={s.answer}>{card.answer}</div>
+        )}
+      </span>
+    )
+
     return (
       <div className={s.container}>
         <div className={s.wrapper}>
@@ -29,14 +44,25 @@ export const LearnCardItem = memo(
               <div className={s.questionBlock}>
                 <h3>Question:</h3>
                 <div className={s.questionItem}>
-                  <div className={s.question}>{card.question}</div>
+                  {card.questionImg ? (
+                    <div
+                      className={s.img}
+                      style={{ backgroundImage: `url(${card.questionImg})` }}
+                    />
+                  ) : (
+                    <div className={s.question}>{card.question}</div>
+                  )}
                 </div>
               </div>
               <div className={s.answerBlock}>
                 <h3>Answer:</h3>
                 <div className={s.answerItem}>
-                  {isChecked && <div className={s.answer}>{card.answer}</div>}
-                  {!isChecked && (
+                  {isChecked ? (
+                    <div
+                      className={s.img}
+                      style={{ backgroundImage: `url(${card.answerImg})`, backgroundColor: 'gray' }}
+                    />
+                  ) : (
                     <Button title={'Show answer'} callBack={onShowAnswer} isValid={true} />
                   )}
                 </div>

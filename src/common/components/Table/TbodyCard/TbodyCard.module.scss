@@ -8,8 +8,16 @@
 
   .td {
     padding-left: 36px;
-    width: calc((100vw - 80vw) / 2);
+    width: calc((100vw - 70vw) / 2);
     word-break: break-word;
+    .img {
+      height: 10vh;
+      width: 15vh;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
 
     &:first-child {
       width: 40vw;

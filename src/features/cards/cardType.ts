@@ -7,7 +7,9 @@ export type InititalStateCardType = {
 
 export type CardType = {
   answer: string
+  answerImg: string
   question: string
+  questionImg: string
   cardsPack_id: string
   grade: number
   shots: number

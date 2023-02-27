@@ -57,8 +57,21 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
 
         return isMyCard ? (
           <tr key={t._id} className={s.tr}>
-            <td className={s.td}>{t.question}</td>
-            <td className={s.td}>{t.answer}</td>
+            {t.questionImg ? (
+              <td className={s.td}>
+                <div className={s.img} style={{ backgroundImage: `url(${t.questionImg})` }} />
+              </td>
+            ) : (
+              <td className={s.td}>{t.question}</td>
+            )}
+            {t.answerImg ? (
+              <td className={s.td}>
+                <div className={s.img} style={{ backgroundImage: `url(${t.answerImg})` }} />
+              </td>
+            ) : (
+              <td className={s.td}>{t.answer}</td>
+            )}
+
             <td className={s.td}>{update}</td>
             <td className={s.td}>
               <div className={s.gradeColumn}>

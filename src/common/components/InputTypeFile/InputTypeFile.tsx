@@ -4,7 +4,7 @@ import s from './InputTypeFile.module.scss'
 
 type InputType = {
   label: string
-  callback?: (value: string) => void
+  callback: (value: string) => void
 }
 
 export const InputTypeFile: FC<InputType> = memo(({ label, callback }) => {
@@ -16,7 +16,7 @@ export const InputTypeFile: FC<InputType> = memo(({ label, callback }) => {
 
       if (file.size < 4000000) {
         convertFileToBase64(file, (file64: string) => {
-          //callback(file64)
+          callback(file64)
           setImage(file64)
         })
       } else {
@@ -45,6 +45,8 @@ export const InputTypeFile: FC<InputType> = memo(({ label, callback }) => {
       <div className={s.labelContainer}>
         <label className={s.label}>
           <span className={s.labelText}>Change cover</span>
+
+          {image && <div className={s.img} style={{ backgroundImage: `url(${image})` }} />}
           <input
             type="file"
             style={{ display: 'none' }}

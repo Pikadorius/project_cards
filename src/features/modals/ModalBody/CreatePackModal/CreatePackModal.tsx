@@ -53,7 +53,7 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
   return (
     <div>
       <div className={s.cover}>
-        <InputTypeFile label={'Pack cover'} />
+        <InputTypeFile label={'Pack cover'} callback={() => alert('InputTypeFile')} />
       </div>
       <div className={s.description}>
         <div>
