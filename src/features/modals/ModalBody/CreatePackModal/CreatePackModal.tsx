@@ -10,7 +10,11 @@ import { InputModal } from 'common/components/InputModal/InputModal'
 import { InputTypeFile } from 'common/components/InputTypeFile/InputTypeFile'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
-import { modalItemIdSelector, modalItemNameSelector } from 'features/modals/modalSelectors'
+import {
+  modalItemIdSelector,
+  modalItemNameSelector,
+  modalPackCoverSelector,
+} from 'features/modals/modalSelectors'
 import { createPackTC, updatePackTC } from 'features/packs/packsSlice'
 
 type CreateModalType = {
@@ -20,7 +24,7 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
   const dispatch = useAppDispatch()
   const changedItemName = useAppSelector(modalItemNameSelector)
   const changedItemId = useAppSelector(modalItemIdSelector)
-  const changedPackCover = useAppSelector(state => state.modal.changedPackCover)
+  const changedPackCover = useAppSelector(modalPackCoverSelector)
   const [packName, setPackName] = useState(changedItemName)
   const [isPrivate, setPrivate] = useState(false)
   const [packCover, setPackCover] = useState(changedPackCover || defaultCover)

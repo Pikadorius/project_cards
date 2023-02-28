@@ -10,3 +10,4 @@ export const modalItemCardsIdSelector = (state: RootStateType) => state.modal.ch
 export const modalItemAnswerSelector = (state: RootStateType) => state.modal.changedItemAnswer
 
 export const isPackDeletedSelector = (state: RootStateType) => state.modal.isPackDeleted
+export const modalPackCoverSelector = (state: RootStateType) => state.modal.changedPackCover
