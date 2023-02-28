@@ -2,6 +2,10 @@ import React, { ChangeEvent, FC, memo, useState } from 'react'
 
 import s from './InputTypeFile.module.scss'
 
+import { setAppError } from 'app/appSlice'
+import { useAppDispatch } from 'common/hooks'
+import { convertFileToBase64 } from 'common/utils'
+
 type InputType = {
   label: string
   callback: (value: string) => void
@@ -9,36 +13,35 @@ type InputType = {
 }
 
 export const InputTypeFile: FC<InputType> = memo(({ callback, defaultFile, label }) => {
+  const dispatch = useAppDispatch()
   const [image, setImage] = useState(defaultFile || '')
 
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0]
 
-      if (file.size < 4000000) {
+      if (file.size < 400000) {
         convertFileToBase64(file, (file64: string) => {
           callback(file64)
           setImage(file64)
         })
       } else {
-        console.error('Error: ', 'The file is too large')
+        dispatch(setAppError('File is too big'))
       }
     }
   }
 
-  console.log(image)
-
-  const convertFileToBase64 = (file: File, callBack: (value: string) => void) => {
-    const reader = new FileReader()
-
-    reader.readAsDataURL(file)
-
-    reader.onloadend = () => {
-      const file64 = reader.result as string
-
-      callBack(file64)
-    }
-  }
+  // const convertFileToBase64 = (file: File, callBack: (value: string) => void) => {
+  //   const reader = new FileReader()
+  //
+  //   reader.readAsDataURL(file)
+  //
+  //   reader.onloadend = () => {
+  //     const file64 = reader.result as string
+  //
+  //     callBack(file64)
+  //   }
+  // }
 
   return (
     <>
