@@ -34,7 +34,13 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
   return (
     <div className={s.innerWrapper}>
       <div className={s.wrapper}>
-        <PackMenu title={packName} packId={id} isMyCard={isMyCard} packUserId={packUserId} />
+        <PackMenu
+          title={packName}
+          packId={id}
+          isMyCard={isMyCard}
+          packUserId={packUserId}
+          packCover={pack && pack.deckCover}
+        />
         {!isMyCard && <div>{`@${packByName}`}</div>}
       </div>
       {isMyCard ? (

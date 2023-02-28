@@ -18,6 +18,7 @@ import {
   setChangedItemName,
   setIsPackDeleted,
   setModal,
+  setPackCover,
   setUserID,
 } from 'features/modals/modalSlice'
 
@@ -26,9 +27,10 @@ type PackMenuType = {
   packId: string | undefined
   isMyCard: boolean
   packUserId: string
+  packCover?: string
 }
 
-export const PackMenu: FC<PackMenuType> = ({ title, packId, isMyCard, packUserId }) => {
+export const PackMenu: FC<PackMenuType> = ({ title, packId, isMyCard, packUserId, packCover }) => {
   let { id } = useParams<{ id: string }>()
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -58,6 +60,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId, isMyCard, packUserId
       dispatch(setModal('updatePack'))
       dispatch(setChangedItemId(packId))
       dispatch(setChangedItemName(title))
+      dispatch(setPackCover(packCover || ''))
     }
   }
 
