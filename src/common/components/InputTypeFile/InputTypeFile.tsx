@@ -5,10 +5,11 @@ import s from './InputTypeFile.module.scss'
 type InputType = {
   label: string
   callback: (value: string) => void
+  defaultFile?: string
 }
 
-export const InputTypeFile: FC<InputType> = memo(({ label, callback }) => {
-  const [image, setImage] = useState('')
+export const InputTypeFile: FC<InputType> = memo(({ callback, defaultFile, label }) => {
+  const [image, setImage] = useState(defaultFile || '')
 
   const uploadHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {

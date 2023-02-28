@@ -18,6 +18,7 @@ const initialState = {
   changedItemCardsId: '',
   userBlockID: '',
   isPackDeleted: false,
+  changedPackCover: '',
 }
 
 const modalSlice = createSlice({
@@ -45,6 +46,9 @@ const modalSlice = createSlice({
     setUserID: (state, action: PayloadAction<string>) => {
       state.userBlockID = action.payload
     },
+    setPackCover: (state, action: PayloadAction<string>) => {
+      state.changedPackCover = action.payload
+    },
   },
 })
 
@@ -56,6 +60,7 @@ export const {
   setChangedItemAnswer,
   setIsPackDeleted,
   setUserID,
+  setPackCover,
 } = modalSlice.actions
 
 export const modalReducer = modalSlice.reducer

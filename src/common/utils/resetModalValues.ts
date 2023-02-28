@@ -7,6 +7,7 @@ import {
   setChangedItemName,
   setIsPackDeleted,
   setModal,
+  setPackCover,
 } from 'features/modals/modalSlice'
 
 export const resetModalValues = (dispatch: UseAppDispatch) => {
@@ -16,4 +17,5 @@ export const resetModalValues = (dispatch: UseAppDispatch) => {
   dispatch(setChangedItemCardsId(''))
   dispatch(setChangedItemAnswer(''))
   dispatch(setIsPackDeleted(false))
+  dispatch(setPackCover(''))
 }

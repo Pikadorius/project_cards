@@ -52,5 +52,6 @@ export type UpdatePackRequestType = {
   cardsPack: {
     _id: string
     name?: string
+    deckCover?: string
   }
 }

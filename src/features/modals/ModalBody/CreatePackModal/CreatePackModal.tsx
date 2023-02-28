@@ -20,9 +20,10 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
   const dispatch = useAppDispatch()
   const changedItemName = useAppSelector(modalItemNameSelector)
   const changedItemId = useAppSelector(modalItemIdSelector)
+  const changedPackCover = useAppSelector(state => state.modal.changedPackCover)
   const [packName, setPackName] = useState(changedItemName)
   const [isPrivate, setPrivate] = useState(false)
-  const [packCover, setPackCover] = useState(defaultCover)
+  const [packCover, setPackCover] = useState(changedPackCover || defaultCover)
 
   const onChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
     setPackName(e.currentTarget.value)
@@ -30,12 +31,15 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
 
   const onClickHandler = () => {
     type === 'create'
-      ? dispatch(createPackTC({ cardsPack: { name: packName, private: isPrivate } }))
+      ? dispatch(
+          createPackTC({ cardsPack: { name: packName, private: isPrivate, deckCover: packCover } })
+        )
       : dispatch(
           updatePackTC({
             cardsPack: {
               name: packName,
               _id: changedItemId,
+              deckCover: packCover,
             },
           })
         )
@@ -55,7 +59,7 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
   return (
     <div>
       <div className={s.cover}>
-        <InputTypeFile label={'Pack cover'} callback={() => alert('InputTypeFile')} />
+        <InputTypeFile label={'Pack cover'} callback={setPackCover} defaultFile={packCover} />
       </div>
       <div className={s.description}>
         <div>
