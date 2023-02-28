@@ -1,12 +1,10 @@
 @import '../../../common/styles/mixins';
 
 .container {
-  //position: relative;
   width: 100vw;
   height: 1px;
   max-height: min-content;
   min-height: calc(100vh - 62px);
-  //background-color: #ECECEC;
 
   .wrapper {
     position: relative;
@@ -29,5 +27,20 @@
     }
 
 
+  }
+}
+
+
+.packCover {
+  width: 180px;
+  height: auto;
+  padding: 13px 0 28px;
+
+  .img {
+    width: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 2px;
   }
 }

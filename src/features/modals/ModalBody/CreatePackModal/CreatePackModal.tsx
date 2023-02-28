@@ -1,5 +1,6 @@
 import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
 
+import defaultCover from '../../../../assets/defaultPackCover.png'
 import ModalButtons from '../../ModalButtons/ModalButtons'
 
 import s from './CreatePackModal.module.scss'
@@ -21,6 +22,7 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
   const changedItemId = useAppSelector(modalItemIdSelector)
   const [packName, setPackName] = useState(changedItemName)
   const [isPrivate, setPrivate] = useState(false)
+  const [packCover, setPackCover] = useState(defaultCover)
 
   const onChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
     setPackName(e.currentTarget.value)

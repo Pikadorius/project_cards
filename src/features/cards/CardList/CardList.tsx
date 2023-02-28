@@ -2,6 +2,7 @@ import React, { useCallback, useEffect } from 'react'
 
 import { useNavigate, useParams } from 'react-router-dom'
 
+import defaultCover from '../../../assets/defaultPackCover.png'
 import { fetchCardTC, setSearchCardParams } from '../cardSlice'
 
 import { CardHeader } from './CardHeader/CardHeader'
@@ -76,6 +77,14 @@ export const CardList = () => {
             <span className={s.backwardText}>Back to Packs List</span>
           </div>
           <CardHeader onClick={createCards} />
+
+          <div className={s.packCover}>
+            {packActive && packActive.deckCover ? (
+              <div className={s.img} style={{ backgroundImage: `url(${packActive.deckCover})` }} />
+            ) : (
+              <img src={defaultCover} alt="default cover" className={s.img} />
+            )}
+          </div>
 
           <SearchPanel>
             <Search initialValue={cardQuestion} onChange={searchByName} />
