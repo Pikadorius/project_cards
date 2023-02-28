@@ -72,17 +72,14 @@ type AnswerType = {
   card: CardType
 }
 
-const AnswerResult: FC<AnswerType> = ({ card }) => {
+const AnswerResult: FC<AnswerType> = memo(({ card }) => {
   return (
     <>
       {card.answerImg ? (
-        <div
-          className={s.img}
-          style={{ backgroundImage: `url(${card.answerImg})`, backgroundColor: '' }}
-        ></div>
+        <div className={s.img} style={{ backgroundImage: `url(${card.answerImg})` }} />
       ) : (
         <div className={s.answer}>{card.answer}</div>
       )}
     </>
   )
-}
+})

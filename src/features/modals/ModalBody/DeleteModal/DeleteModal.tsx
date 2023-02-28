@@ -1,6 +1,10 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 
+import { useNavigate } from 'react-router-dom'
+
+import { PATH } from '../../../../common/constans/path'
 import ModalButtons from '../../ModalButtons/ModalButtons'
+import { changedCardSelector, changedPackSelector } from '../../modalSelectors'
 
 import s from './DeleteModal.module.scss'
 
@@ -9,18 +13,35 @@ import { resetModalValues } from 'common/utils'
 import { deleteCardTC } from 'features/cards/cardSlice'
 import { setIsPackDeleted } from 'features/modals/modalSlice'
 import { deletePackTC } from 'features/packs/packsSlice'
+
 type DeleteModalType = {
   type: 'card' | 'pack'
 }
-const DeleteModal: FC<DeleteModalType> = ({ type }) => {
+const DeleteModal: FC<DeleteModalType> = memo(({ type }) => {
   const dispatch = useAppDispatch()
-  const deletedPack = useAppSelector(state => state.modal.pack)
-  const deletedCard = useAppSelector(state => state.modal.card)
+  const navigate = useNavigate()
+  const deletedPack = useAppSelector(changedPackSelector)
+  const deletedCard = useAppSelector(changedCardSelector)
 
-  const deleteModal = () => {
+  /*const deleteModal = () => {
     type === 'pack'
       ? dispatch(deletePackTC(deletedPack._id)).then(() => dispatch(setIsPackDeleted(true)))
       : dispatch(deleteCardTC(deletedCard._id))
+    resetModalValues(dispatch)
+  }*/
+
+  console.log(deletedPack._id, deletedCard._id)
+
+  const deleteModal = () => {
+    if (deletedPack._id) {
+      dispatch(setIsPackDeleted(true))
+      dispatch(deletePackTC(deletedPack._id)).then(() => navigate(PATH.PACK_LIST))
+    }
+    if (deletedCard._id) {
+      debugger
+      dispatch(setIsPackDeleted(true))
+      dispatch(deleteCardTC(deletedCard._id))
+    }
     resetModalValues(dispatch)
   }
 
@@ -39,6 +60,6 @@ const DeleteModal: FC<DeleteModalType> = ({ type }) => {
       <ModalButtons onSuccess={deleteModal} successBtnName={'Delete'} />
     </div>
   )
-}
+})
 
 export default DeleteModal

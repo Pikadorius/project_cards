@@ -28,9 +28,7 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
 
   let isMyCard = userId === packUserId
 
-  useEffect(() => {
-    console.log(pack)
-  }, [pack, cards])
+  useEffect(() => {}, [pack, cards])
 
   return (
     <div className={s.innerWrapper}>

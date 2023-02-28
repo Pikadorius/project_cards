@@ -2,11 +2,17 @@
 
 .tr {
   @include tr;
+  &:hover {
+    opacity: 0.8;
+    transition: all .2s ease-in-out;
+  }
 
   .td {
     padding-left: 36px;
     @include td;
     word-break: break-word;
+    border-bottom: 1px solid rgba(210, 210, 210, 0.9);
+
 
     .packInfo {
       display: flex;
@@ -27,8 +33,8 @@
 
       .img {
         padding: 0;
-        height: 30px;
-        width: 50px;
+        min-height: 30px;
+        min-width: 50px;
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;

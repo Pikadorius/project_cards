@@ -42,8 +42,6 @@ export const fetchCardTC = createAsyncThunk(
     try {
       const res = await cardAPI.getCard(params, cardsPackID)
 
-      console.log(res, 'res')
-
       dispatch(setState(res.data))
       dispatch(setAppStatus('success'))
     } catch (e: any) {
@@ -89,8 +87,6 @@ export const deleteCardTC = createAsyncThunk(
     const state = getState() as RootStateType
     const cardsPackId = state.card.cards[0].cardsPack_id
 
-    console.log(cardsPackId)
-
     try {
       const res = await cardAPI.deleteCard(data)
 
@@ -105,12 +101,10 @@ export const updatedGradeTC = createAsyncThunk(
   'updatedGrade',
   async (data: CardGradeDataType, { dispatch }) => {
     dispatch(setAppStatus('loading'))
-    console.log(data.card_id)
 
     try {
       const res = await cardAPI.updatedCardGrade(data)
 
-      console.log(res.data.updatedGrade.grade, res.data.updatedGrade.card_id)
       dispatch(
         setGradeInCard({
           grade: res.data.updatedGrade.grade,

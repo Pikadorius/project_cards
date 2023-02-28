@@ -31,18 +31,6 @@ export const InputTypeFile: FC<InputType> = memo(({ callback, defaultFile, label
     }
   }
 
-  // const convertFileToBase64 = (file: File, callBack: (value: string) => void) => {
-  //   const reader = new FileReader()
-  //
-  //   reader.readAsDataURL(file)
-  //
-  //   reader.onloadend = () => {
-  //     const file64 = reader.result as string
-  //
-  //     callBack(file64)
-  //   }
-  // }
-
   return (
     <>
       <label className={s.labelInput}>{label}</label>

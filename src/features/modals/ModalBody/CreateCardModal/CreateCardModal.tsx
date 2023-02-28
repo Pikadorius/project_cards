@@ -1,6 +1,7 @@
-import React, { ChangeEvent, FC, KeyboardEvent, useEffect, useState } from 'react'
+import React, { ChangeEvent, FC, KeyboardEvent, memo, useCallback, useState } from 'react'
 
 import ModalButtons from '../../ModalButtons/ModalButtons'
+import { cardsPackIdSelector, changedCardSelector } from '../../modalSelectors'
 
 import s from './CreateCardModal.module.scss'
 
@@ -15,12 +16,12 @@ type CreateModalType = {
   type: 'create' | 'update'
 }
 
-const CreateCardModal: FC<CreateModalType> = ({ type }) => {
+const CreateCardModal: FC<CreateModalType> = memo(({ type }) => {
   const options: OptionsType[] = ['Text', 'Picture']
 
   const dispatch = useAppDispatch()
-  const changedCard = useAppSelector(state => state.modal.card)
-  const cardsPackId = useAppSelector(state => state.modal.pack._id)
+  const changedCard = useAppSelector(changedCardSelector)
+  const cardsPackId = useAppSelector(cardsPackIdSelector)
 
   const [selectQuestion, setSelectQuestion] = useState<'Text' | 'Picture'>(
     changedCard.questionImg ? 'Picture' : 'Text'
@@ -37,21 +38,14 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
   )
   const [answerImg, setAnswerImg] = useState(selectAnswer === 'Text' ? '' : changedCard.answerImg)
 
-  useEffect(() => {
-    setQuestionImg(selectQuestion === 'Text' ? '' : changedCard.questionImg)
-    setAnswerImg(selectAnswer === 'Text' ? '' : changedCard.answerImg)
-  }, [selectAnswer, selectQuestion])
-
-  const onChangeCardQuestion = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangeCardQuestion = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setCardQuestion(e.currentTarget.value)
-  }
-  const onChangeCardAnswer = (e: ChangeEvent<HTMLInputElement>) => {
+  }, [])
+  const onChangeCardAnswer = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setCardAnswer(e.currentTarget.value)
-  }
+  }, [])
 
-  console.log(cardsPackId, cardQuestion, cardAnswer, questionImg, answerImg)
-
-  const onClickHandler = () => {
+  const onClickHandler = useCallback(() => {
     type === 'create'
       ? dispatch(
           createCardTC({
@@ -79,21 +73,21 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
           })
         )
     resetModalValues(dispatch)
-  }
+  }, [cardsPackId, cardQuestion, cardAnswer, changedCard._id, questionImg, answerImg])
 
-  const onEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+  const onEnterHandler = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       onClickHandler()
     }
-  }
+  }, [])
 
-  const resetCardQuestion = () => {
+  const resetCardQuestion = useCallback(() => {
     setCardQuestion('')
-  }
+  }, [])
 
-  const resetCardAnswer = () => {
+  const resetCardAnswer = useCallback(() => {
     setCardAnswer('')
-  }
+  }, [])
 
   return (
     <div className={s.container}>
@@ -162,6 +156,6 @@ const CreateCardModal: FC<CreateModalType> = ({ type }) => {
       />
     </div>
   )
-}
+})
 
 export default CreateCardModal

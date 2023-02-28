@@ -29,11 +29,3 @@ export type RootStateType = ReturnType<typeof store.getState>
 store.subscribe(() => {
   saveState(store.getState())
 })
-
-// export type UseAppDispatch = typeof store.dispatch
-// export const useAppDispatch: () => UseAppDispatch = useDispatch
-//
-// export type AppStateType = ReturnType<typeof store.getState>
-// export const useAppSelector: TypedUseSelectorHook<AppStateType> = useSelector
-
-// export default store

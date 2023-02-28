@@ -1,7 +1,8 @@
-import React, { ChangeEvent, FC, KeyboardEvent, useState } from 'react'
+import React, { ChangeEvent, FC, KeyboardEvent, memo, useCallback, useState } from 'react'
 
 import defaultCover from '../../../../assets/defaultPackCover.png'
 import ModalButtons from '../../ModalButtons/ModalButtons'
+import { changedPackSelector } from '../../modalSelectors'
 
 import s from './CreatePackModal.module.scss'
 
@@ -15,18 +16,18 @@ import { createPackTC, updatePackTC } from 'features/packs/packsSlice'
 type CreateModalType = {
   type: 'create' | 'update'
 }
-const CreatePackModal: FC<CreateModalType> = ({ type }) => {
+const CreatePackModal: FC<CreateModalType> = memo(({ type }) => {
   const dispatch = useAppDispatch()
-  const changedPack = useAppSelector(state => state.modal.pack)
+  const changedPack = useAppSelector(changedPackSelector)
   const [packName, setPackName] = useState(changedPack.name)
   const [isPrivate, setPrivate] = useState(false)
   const [packCover, setPackCover] = useState(changedPack.deckCover || defaultCover)
 
-  const onChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
+  const onChangePackName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setPackName(e.currentTarget.value)
-  }
+  }, [])
 
-  const onClickHandler = () => {
+  const onClickHandler = useCallback(() => {
     type === 'create'
       ? dispatch(
           createPackTC({ cardsPack: { name: packName, private: isPrivate, deckCover: packCover } })
@@ -41,17 +42,17 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
           })
         )
     resetModalValues(dispatch)
-  }
+  }, [packName, isPrivate, packCover, changedPack])
 
-  const onEnterHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+  const onEnterHandler = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       onClickHandler()
     }
-  }
+  }, [])
 
-  const resetName = () => {
+  const resetName = useCallback(() => {
     setPackName('')
-  }
+  }, [])
 
   return (
     <div>
@@ -79,6 +80,6 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
       />
     </div>
   )
-}
+})
 
 export default CreatePackModal

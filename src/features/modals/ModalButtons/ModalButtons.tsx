@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 
 import s from './ModalButtons.module.scss'
 
@@ -10,7 +10,7 @@ type ModalButtonType = {
   successBtnName: string
 }
 
-const ModalButtons: FC<ModalButtonType> = ({ successBtnName, onSuccess }) => {
+const ModalButtons: FC<ModalButtonType> = memo(({ successBtnName, onSuccess }) => {
   const dispatch = useAppDispatch()
   const cancelHandler = () => {
     resetModalValues(dispatch)
@@ -26,6 +26,6 @@ const ModalButtons: FC<ModalButtonType> = ({ successBtnName, onSuccess }) => {
       </button>
     </div>
   )
-}
+})
 
 export default ModalButtons

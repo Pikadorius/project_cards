@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC, memo } from 'react'
 
 import CreateCardModal from './ModalBody/CreateCardModal/CreateCardModal'
 import CreatePackModal from './ModalBody/CreatePackModal/CreatePackModal'
@@ -11,7 +11,7 @@ import { ModalType } from 'features/modals/modalSlice'
 type PacksModalT = {
   modalType: ModalType
 }
-const Modal: FC<PacksModalT> = ({ modalType }) => {
+const Modal: FC<PacksModalT> = memo(({ modalType }) => {
   switch (modalType) {
     case 'deletePack':
       return (
@@ -58,6 +58,6 @@ const Modal: FC<PacksModalT> = ({ modalType }) => {
     case 'idle':
       return <ModalWrapper title={'Closing...'} />
   }
-}
+})
 
 export default Modal

@@ -66,6 +66,7 @@ export const PackMenu: FC<PackMenuType> = ({ title, isMyCard, pack }) => {
   }
 
   if (isPackDeleted) {
+    debugger
     dispatch(setIsPackDeleted(false))
 
     return <Navigate to={PATH.PACK_LIST} />

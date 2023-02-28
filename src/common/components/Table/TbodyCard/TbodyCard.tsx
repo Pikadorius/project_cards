@@ -34,9 +34,7 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ cards, pack }) => {
     dispatch(setChangedPack(pack || ({} as PackType)))
   }
 
-  useEffect(() => {
-    console.log(userId === packUserId)
-  }, [packUserId])
+  useEffect(() => {}, [packUserId])
 
   return (
     <tbody>

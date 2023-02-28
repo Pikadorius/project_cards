@@ -6,14 +6,16 @@
     font-weight: 400;
 
     .input {
-      width: 347px;
-      height: 45px;
+      width: 100%;
+      min-width: 340px;
+      min-height: 45px;
       padding: 5px;
 
       font-size: 16px;
       font-weight: 500;
       line-height: 24px;
       color: #000;
+      word-break: break-word;
 
       background: #fff;
       border: none;
