@@ -8,6 +8,7 @@ import { TeachIcon } from '../../Icon/TeachIcon/TeachIcon'
 
 import s from './Tbody.module.scss'
 
+import defaultCover from 'assets/defaultPackCover.png'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch } from 'common/hooks/useAppDispatch'
 import { useAppSelector } from 'common/hooks/useAppSelector'
@@ -62,7 +63,14 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
         return (
           <tr key={t._id} className={s.tr}>
             <td onClick={getCardsPack} className={`${s.td} ${s.packTitle}`}>
-              <span className={s.title}>{t.name}</span>
+              <div className={s.packInfo}>
+                {t.deckCover ? (
+                  <div className={s.img} style={{ backgroundImage: `url(${t.deckCover})` }} />
+                ) : (
+                  <img src={defaultCover} alt="default cover" className={s.img} />
+                )}
+                <span className={s.title}>{t.name}</span>
+              </div>
             </td>
             <td className={s.td}>{t.cardsCount}</td>
             <td className={s.td}>{dateUpdate}</td>
