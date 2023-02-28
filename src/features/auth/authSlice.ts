@@ -143,8 +143,24 @@ export const updateNameTC = createAsyncThunk(
     try {
       const res = await authApi.update({ name: newName })
 
-      dispatch(updateUser(res.data.updatedUser.name))
+      dispatch(updateUserName(res.data.updatedUser.name))
       dispatch(setAppError('Name changed'))
+      dispatch(setAppStatus('success'))
+    } catch (e: any) {
+      errorUtils(e, dispatch)
+    }
+  }
+)
+
+export const updateAvatarTC = createAsyncThunk(
+  'updateAvatar',
+  async (newAvatar: string, { dispatch }) => {
+    dispatch(setAppStatus('loading'))
+    try {
+      const res = await authApi.update({ avatar: newAvatar })
+
+      dispatch(updateUserAvatar(res.data.updatedUser.avatar))
+      dispatch(setAppError('Avatar changed'))
       dispatch(setAppStatus('success'))
     } catch (e: any) {
       errorUtils(e, dispatch)
@@ -185,8 +201,11 @@ const authSlice = createSlice({
     isPasswordChanged: (state, action: PayloadAction<boolean>) => {
       state.isPasswordChanged = action.payload
     },
-    updateUser: (state, action: PayloadAction<string>) => {
+    updateUserName: (state, action: PayloadAction<string>) => {
       state.user.name = action.payload
+    },
+    updateUserAvatar: (state, action: PayloadAction<string | undefined>) => {
+      state.user.avatar = action.payload
     },
   },
 })
@@ -198,6 +217,7 @@ export const {
   isPasswordChanged,
   isMessageSend,
   setEmailInRecovery,
-  updateUser,
+  updateUserName,
+  updateUserAvatar,
 } = authSlice.actions
 export const authReducer = authSlice.reducer

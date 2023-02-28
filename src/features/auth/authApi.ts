@@ -31,7 +31,7 @@ export type SetNewPasswordType = {
 }
 
 export type UpdateUserType = {
-  name: string
+  name?: string
   avatar?: string
 }
 

@@ -8,8 +8,8 @@ import s from './UserAccount.module.scss'
 
 import arrow from 'assets/arrow.svg'
 import avatar from 'assets/avatarBig.png'
-import camera from 'assets/cameraIcon.svg'
 import logout from 'assets/logout.svg'
+import AvatarLoader from 'common/components/AvatarLoader/AvatarLoader'
 import { PATH } from 'common/constans/path'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { userNameHandler } from 'common/utils/userNameHandler'
@@ -47,7 +47,7 @@ export const UserAccount = () => {
           <h2 className={s.title}>Personal Information</h2>
           <div className={s.avatarContainer}>
             <div className={s.decoration}>
-              <img className={s.cameraIcon} src={camera} alt="camera icon" />
+              <AvatarLoader />
             </div>
             <img src={userAvatar} alt="user avatar" style={{ width: '96px', height: '96px' }} />
           </div>
