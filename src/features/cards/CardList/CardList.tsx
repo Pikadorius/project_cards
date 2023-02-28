@@ -80,7 +80,12 @@ export const CardList = () => {
 
           <div className={s.packCover}>
             {packActive && packActive.deckCover ? (
-              <div className={s.img} style={{ backgroundImage: `url(${packActive.deckCover})` }} />
+              <div
+                className={s.img}
+                style={{
+                  backgroundImage: `url(${packActive.deckCover})`,
+                }}
+              />
             ) : (
               <img src={defaultCover} alt="default cover" className={s.img} />
             )}
