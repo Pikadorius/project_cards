@@ -1,5 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+import { CardType } from 'features/cards/cardType'
+import { PackType } from 'features/packs/packsType'
+
 export type ModalType =
   | 'createPack'
   | 'deletePack'
@@ -19,6 +22,8 @@ const initialState = {
   userBlockID: '',
   isPackDeleted: false,
   changedPackCover: '',
+  pack: {} as PackType,
+  card: {} as CardType,
 }
 
 const modalSlice = createSlice({
@@ -28,39 +33,22 @@ const modalSlice = createSlice({
     setModal: (state, action: PayloadAction<ModalType>) => {
       state.modalType = action.payload
     },
-    setChangedItemId: (state, action: PayloadAction<string>) => {
-      state.changedItemId = action.payload
-    },
-    setChangedItemName: (state, action: PayloadAction<string>) => {
-      state.changedItemName = action.payload
-    },
-    setChangedItemAnswer: (state, action: PayloadAction<string>) => {
-      state.changedItemAnswer = action.payload
-    },
-    setChangedItemCardsId: (state, action: PayloadAction<string>) => {
-      state.changedItemCardsId = action.payload
-    },
     setIsPackDeleted: (state, action: PayloadAction<boolean>) => {
       state.isPackDeleted = action.payload
     },
     setUserID: (state, action: PayloadAction<string>) => {
       state.userBlockID = action.payload
     },
-    setPackCover: (state, action: PayloadAction<string>) => {
-      state.changedPackCover = action.payload
+    setChangedPack: (state, action: PayloadAction<PackType>) => {
+      state.pack = action.payload
+    },
+    setChangedCard: (state, action: PayloadAction<CardType>) => {
+      state.card = action.payload
     },
   },
 })
 
-export const {
-  setModal,
-  setChangedItemId,
-  setChangedItemName,
-  setChangedItemCardsId,
-  setChangedItemAnswer,
-  setIsPackDeleted,
-  setUserID,
-  setPackCover,
-} = modalSlice.actions
+export const { setModal, setIsPackDeleted, setUserID, setChangedPack, setChangedCard } =
+  modalSlice.actions
 
 export const modalReducer = modalSlice.reducer

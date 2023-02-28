@@ -13,24 +13,16 @@ import { FriendMenuItem } from 'features/cards/CardList/CardHeader/Menu/FriendMe
 import { MyMenuItem } from 'features/cards/CardList/CardHeader/Menu/MyMenuItem'
 import { fetchCardTC, setSearchCardParams } from 'features/cards/cardSlice'
 import { isPackDeletedSelector } from 'features/modals/modalSelectors'
-import {
-  setChangedItemId,
-  setChangedItemName,
-  setIsPackDeleted,
-  setModal,
-  setPackCover,
-  setUserID,
-} from 'features/modals/modalSlice'
+import { setChangedPack, setIsPackDeleted, setModal, setUserID } from 'features/modals/modalSlice'
+import { PackType } from 'features/packs/packsType'
 
 type PackMenuType = {
   title: string
-  packId: string | undefined
   isMyCard: boolean
-  packUserId: string
-  packCover?: string
+  pack: PackType
 }
 
-export const PackMenu: FC<PackMenuType> = ({ title, packId, isMyCard, packUserId, packCover }) => {
+export const PackMenu: FC<PackMenuType> = ({ title, isMyCard, pack }) => {
   let { id } = useParams<{ id: string }>()
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
@@ -48,25 +40,22 @@ export const PackMenu: FC<PackMenuType> = ({ title, packId, isMyCard, packUserId
   }
 
   const deletePack = () => {
-    if (packId) {
+    if (pack._id) {
       dispatch(setModal('deletePack'))
-      dispatch(setChangedItemId(packId))
-      dispatch(setChangedItemName(title))
+      dispatch(setChangedPack(pack))
     }
   }
 
   const updatePack = () => {
-    if (packId) {
+    if (pack._id) {
       dispatch(setModal('updatePack'))
-      dispatch(setChangedItemId(packId))
-      dispatch(setChangedItemName(title))
-      dispatch(setPackCover(packCover || ''))
+      dispatch(setChangedPack(pack))
     }
   }
 
   const blockUserHandler = () => {
     dispatch(setModal('blockUser'))
-    dispatch(setUserID(packUserId))
+    dispatch(setUserID(pack._id))
   }
 
   const learnHandler = () => {

@@ -1,21 +1,19 @@
 import { UseAppDispatch } from '../hooks/useAppDispatch'
 
+import { CardType } from 'features/cards/cardType'
 import {
-  setChangedItemAnswer,
-  setChangedItemCardsId,
-  setChangedItemId,
-  setChangedItemName,
+  setChangedCard,
+  setChangedPack,
   setIsPackDeleted,
   setModal,
-  setPackCover,
+  setUserID,
 } from 'features/modals/modalSlice'
+import { PackType } from 'features/packs/packsType'
 
 export const resetModalValues = (dispatch: UseAppDispatch) => {
+  dispatch(setUserID(''))
   dispatch(setModal('idle'))
-  dispatch(setChangedItemId(''))
-  dispatch(setChangedItemName(''))
-  dispatch(setChangedItemCardsId(''))
-  dispatch(setChangedItemAnswer(''))
   dispatch(setIsPackDeleted(false))
-  dispatch(setPackCover(''))
+  dispatch(setChangedPack({} as PackType))
+  dispatch(setChangedCard({} as CardType))
 }

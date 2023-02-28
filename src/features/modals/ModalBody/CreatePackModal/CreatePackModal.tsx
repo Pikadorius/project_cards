@@ -10,11 +10,6 @@ import { InputModal } from 'common/components/InputModal/InputModal'
 import { InputTypeFile } from 'common/components/InputTypeFile/InputTypeFile'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { resetModalValues } from 'common/utils'
-import {
-  modalItemIdSelector,
-  modalItemNameSelector,
-  modalPackCoverSelector,
-} from 'features/modals/modalSelectors'
 import { createPackTC, updatePackTC } from 'features/packs/packsSlice'
 
 type CreateModalType = {
@@ -22,12 +17,10 @@ type CreateModalType = {
 }
 const CreatePackModal: FC<CreateModalType> = ({ type }) => {
   const dispatch = useAppDispatch()
-  const changedItemName = useAppSelector(modalItemNameSelector)
-  const changedItemId = useAppSelector(modalItemIdSelector)
-  const changedPackCover = useAppSelector(modalPackCoverSelector)
-  const [packName, setPackName] = useState(changedItemName)
+  const changedPack = useAppSelector(state => state.modal.pack)
+  const [packName, setPackName] = useState(changedPack.name)
   const [isPrivate, setPrivate] = useState(false)
-  const [packCover, setPackCover] = useState(changedPackCover || defaultCover)
+  const [packCover, setPackCover] = useState(changedPack.deckCover || defaultCover)
 
   const onChangePackName = (e: ChangeEvent<HTMLInputElement>) => {
     setPackName(e.currentTarget.value)
@@ -42,7 +35,7 @@ const CreatePackModal: FC<CreateModalType> = ({ type }) => {
           updatePackTC({
             cardsPack: {
               name: packName,
-              _id: changedItemId,
+              _id: changedPack._id,
               deckCover: packCover,
             },
           })

@@ -27,7 +27,8 @@ import { TablePackListWrapper } from 'common/components/Table/TablePackListWrapp
 import { TbodyCard } from 'common/components/Table/TbodyCard/TbodyCard'
 import { Thead } from 'common/components/Table/Thead/Thead'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
-import { setChangedItemId, setModal } from 'features/modals/modalSlice'
+import { setChangedPack, setModal } from 'features/modals/modalSlice'
+import { PackType } from 'features/packs/packsType'
 
 export const CardList = () => {
   const dispatch = useAppDispatch()
@@ -55,7 +56,7 @@ export const CardList = () => {
     if (!id) return
 
     dispatch(setModal('createCard'))
-    dispatch(setChangedItemId(id))
+    dispatch(setChangedPack(packActive || ({} as PackType)))
   }, [id])
 
   useEffect(
@@ -100,7 +101,7 @@ export const CardList = () => {
             <>
               <TablePackListWrapper>
                 <Thead cardList={cardsList} />
-                <TbodyCard card={card} />
+                <TbodyCard cards={card} pack={packActive} />
               </TablePackListWrapper>
               <SuperPagination
                 page={page}

@@ -10,6 +10,7 @@ import s from './CardHeader.module.scss'
 import { PackMenu } from 'common/components/PackMenu/PackMenu'
 import { PATH } from 'common/constans/path'
 import { useAppSelector } from 'common/hooks/useAppSelector'
+import { PackType } from 'features/packs/packsType'
 
 type CardHeaderType = {
   onClick: () => void
@@ -34,13 +35,7 @@ export const CardHeader: FC<CardHeaderType> = memo(({ onClick }) => {
   return (
     <div className={s.innerWrapper}>
       <div className={s.wrapper}>
-        <PackMenu
-          title={packName}
-          packId={id}
-          isMyCard={isMyCard}
-          packUserId={packUserId}
-          packCover={pack && pack.deckCover}
-        />
+        <PackMenu pack={pack || ({} as PackType)} title={packName} isMyCard={isMyCard} />
         {!isMyCard && <div>{`@${packByName}`}</div>}
       </div>
       {isMyCard ? (

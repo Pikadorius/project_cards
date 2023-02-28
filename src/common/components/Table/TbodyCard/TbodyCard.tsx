@@ -9,41 +9,29 @@ import s from './TbodyCard.module.scss'
 import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { dateHandler } from 'common/utils'
 import { CardType } from 'features/cards/cardType'
-import {
-  setChangedItemAnswer,
-  setChangedItemCardsId,
-  setChangedItemId,
-  setChangedItemName,
-  setModal,
-} from 'features/modals/modalSlice'
+import { setChangedCard, setChangedPack, setModal } from 'features/modals/modalSlice'
+import { PackType } from 'features/packs/packsType'
 
 type TbodyType = {
-  card?: CardType[]
+  cards?: CardType[]
+  pack?: PackType
 }
 
-export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
+export const TbodyCard: React.FC<TbodyType> = memo(({ cards, pack }) => {
   const userId = useAppSelector(state => state.auth.user._id)
   const packUserId = useAppSelector(state => state.card.searchParams.packUserId)
   const dispatch = useAppDispatch()
 
   let isMyCard = userId === packUserId
 
-  const onClickDeleteHandler = (cardID: string, cardsPackID: string, cardName: string) => {
+  const onClickDeleteHandler = (card: CardType) => {
     dispatch(setModal('deleteCard'))
-    dispatch(setChangedItemName(cardName))
-    dispatch(setChangedItemId(cardID))
+    dispatch(setChangedCard(card))
   }
-  const onClickUpdateHandler = (
-    cardID: string,
-    cardsPackID: string,
-    cardQuestion: string,
-    cardAnswer: string
-  ) => {
+  const onClickUpdateHandler = (card: CardType) => {
     dispatch(setModal('updateCard'))
-    dispatch(setChangedItemId(cardID))
-    dispatch(setChangedItemName(cardQuestion))
-    dispatch(setChangedItemAnswer(cardAnswer))
-    dispatch(setChangedItemCardsId(cardsPackID))
+    dispatch(setChangedCard(card))
+    dispatch(setChangedPack(pack || ({} as PackType)))
   }
 
   useEffect(() => {
@@ -52,7 +40,7 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
 
   return (
     <tbody>
-      {card?.map(t => {
+      {cards?.map(t => {
         const update = dateHandler(t.updated)
 
         return isMyCard ? (
@@ -81,15 +69,13 @@ export const TbodyCard: React.FC<TbodyType> = memo(({ card }) => {
                 <div className={s.iconContainer}>
                   <img
                     className={s.icon}
-                    onClick={() =>
-                      onClickUpdateHandler(t._id, t.cardsPack_id, t.question, t.answer)
-                    }
+                    onClick={() => onClickUpdateHandler(t)}
                     src={edit}
                     alt="edit"
                   />
                   <img
                     className={s.icon}
-                    onClick={() => onClickDeleteHandler(t._id, t.cardsPack_id, t.question)}
+                    onClick={() => onClickDeleteHandler(t)}
                     src={Delete}
                     alt="delete"
                   />

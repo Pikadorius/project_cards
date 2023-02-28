@@ -16,12 +16,7 @@ import { dateHandler } from 'common/utils/dateHandler'
 import { userNameHandler } from 'common/utils/userNameHandler'
 import { authUserIdSelector } from 'features/auth/authSelectors'
 import { fetchCardTC } from 'features/cards/cardSlice'
-import {
-  setChangedItemId,
-  setChangedItemName,
-  setModal,
-  setPackCover,
-} from 'features/modals/modalSlice'
+import { setChangedPack, setModal } from 'features/modals/modalSlice'
 import { PackType } from 'features/packs/packsType'
 
 type TbodyType = {
@@ -44,15 +39,12 @@ export const Tbody: React.FC<TbodyType> = memo(({ packs }) => {
 
         const deletePack = () => {
           dispatch(setModal('deletePack'))
-          dispatch(setChangedItemId(t._id))
-          dispatch(setChangedItemName(t.name))
+          dispatch(setChangedPack(t))
         }
 
         const updatePack = () => {
           dispatch(setModal('updatePack'))
-          dispatch(setChangedItemId(t._id))
-          dispatch(setChangedItemName(t.name))
-          dispatch(setPackCover(t.deckCover))
+          dispatch(setChangedPack(t))
         }
 
         const teachPack = () => {

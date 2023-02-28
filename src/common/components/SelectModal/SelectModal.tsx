@@ -2,12 +2,13 @@ import React, { FC, useState } from 'react'
 
 import arrowDownUp from '../../../assets/arrowDownUp.svg'
 import s from '../SelectModal/SelectModal.module.scss'
+export type OptionsType = 'Text' | 'Picture'
 
 type SelectModalType = {
   label: string
   selectValue: string
-  options: string[]
-  onChange: (value: string) => void
+  options: OptionsType[]
+  onChange: (value: OptionsType) => void
 }
 
 export const SelectModal: FC<SelectModalType> = ({ label, selectValue, options, onChange }) => {
@@ -21,7 +22,7 @@ export const SelectModal: FC<SelectModalType> = ({ label, selectValue, options, 
     )
   })
 
-  const onChangeHandler = (value: string) => {
+  const onChangeHandler = (value: 'Text' | 'Picture') => {
     onChange(value)
     onClickHandler()
   }
