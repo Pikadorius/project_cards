@@ -65,12 +65,12 @@ export const PackMenu: FC<PackMenuType> = ({ title, isMyCard, pack }) => {
     return navigate(PATH.CARD_LEARN)
   }
 
-  if (isPackDeleted) {
+  /*if (isPackDeleted) {
     debugger
     dispatch(setIsPackDeleted(false))
 
     return <Navigate to={PATH.PACK_LIST} />
-  }
+  }*/
 
   return (
     <React.Fragment>

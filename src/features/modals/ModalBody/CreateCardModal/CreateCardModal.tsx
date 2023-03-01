@@ -23,20 +23,25 @@ const CreateCardModal: FC<CreateModalType> = memo(({ type }) => {
   const changedCard = useAppSelector(changedCardSelector)
   const cardsPackId = useAppSelector(cardsPackIdSelector)
 
-  const [selectQuestion, setSelectQuestion] = useState<'Text' | 'Picture'>(
-    changedCard.questionImg ? 'Picture' : 'Text'
+  let selectQuestionValue = changedCard.questionImg ? 'Picture' : 'Text'
+  let selectAnswerValue = changedCard.answerImg ? 'Picture' : 'Text'
+
+  const [selectQuestion, setSelectQuestion] = useState<'Text' | 'Picture' | string>(
+    type === 'create' ? 'Text' : selectQuestionValue
   )
-  const [selectAnswer, setSelectAnswer] = useState<'Text' | 'Picture'>(
-    changedCard.answerImg ? 'Picture' : 'Text'
+  const [selectAnswer, setSelectAnswer] = useState<'Text' | 'Picture' | string>(
+    type === 'create' ? 'Text' : selectAnswerValue
   )
-  const [cardQuestion, setCardQuestion] = useState(
-    selectQuestion === 'Text' ? changedCard.question : ''
-  )
-  const [cardAnswer, setCardAnswer] = useState(selectAnswer === 'Text' ? changedCard.answer : '')
-  const [questionImg, setQuestionImg] = useState(
-    selectQuestion === 'Text' ? '' : changedCard.questionImg
-  )
-  const [answerImg, setAnswerImg] = useState(selectAnswer === 'Text' ? '' : changedCard.answerImg)
+
+  let cardQuestionValue = selectQuestion === 'Text' ? changedCard.question : ''
+  let cardAnswerValue = selectAnswer === 'Text' ? changedCard.answer : ''
+  let questionImgValue = selectQuestion === 'Text' ? '' : changedCard.questionImg
+  let answerImgValue = selectAnswer === 'Text' ? '' : changedCard.answerImg
+
+  const [cardQuestion, setCardQuestion] = useState(type === 'create' ? '' : cardQuestionValue)
+  const [cardAnswer, setCardAnswer] = useState(type === 'create' ? '' : cardAnswerValue)
+  const [questionImg, setQuestionImg] = useState(type === 'create' ? '' : questionImgValue)
+  const [answerImg, setAnswerImg] = useState(type === 'create' ? '' : answerImgValue)
 
   const onChangeCardQuestion = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setCardQuestion(e.currentTarget.value)

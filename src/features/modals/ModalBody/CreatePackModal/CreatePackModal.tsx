@@ -19,9 +19,11 @@ type CreateModalType = {
 const CreatePackModal: FC<CreateModalType> = memo(({ type }) => {
   const dispatch = useAppDispatch()
   const changedPack = useAppSelector(changedPackSelector)
-  const [packName, setPackName] = useState(changedPack.name)
+  const [packName, setPackName] = useState(type === 'create' ? '' : changedPack.name)
   const [isPrivate, setPrivate] = useState(false)
   const [packCover, setPackCover] = useState(changedPack.deckCover || defaultCover)
+
+  console.log(packName)
 
   const onChangePackName = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     setPackName(e.currentTarget.value)

@@ -23,7 +23,7 @@ export const InputModal: FC<InputType> = memo(
           <input
             className={s.input}
             onKeyDown={onKeyDown}
-            value={value}
+            value={value && value}
             onChange={onChange}
             placeholder={placeholder}
             autoFocus={focus}
