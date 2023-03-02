@@ -188,7 +188,6 @@ const authSlice = createSlice({
     setUser: (state, action: PayloadAction<UserType>) => {
       state.user = action.payload
     },
-    // под вопросом (можно передавать false в isLoggedIn)
     logout: (state, action: PayloadAction<boolean>) => {
       state.isLoggedIn = action.payload
     },

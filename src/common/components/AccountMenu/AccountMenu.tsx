@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { Logout, Settings } from '@mui/icons-material'
+import { Logout } from '@mui/icons-material'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import { Avatar, Box, Divider, ListItemIcon, Menu, MenuItem, Tooltip } from '@mui/material'
 import IconButton from '@mui/material/IconButton'

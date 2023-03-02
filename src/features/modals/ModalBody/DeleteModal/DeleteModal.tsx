@@ -23,15 +23,6 @@ const DeleteModal: FC<DeleteModalType> = memo(({ type }) => {
   const deletedPack = useAppSelector(changedPackSelector)
   const deletedCard = useAppSelector(changedCardSelector)
 
-  /*const deleteModal = () => {
-    type === 'pack'
-      ? dispatch(deletePackTC(deletedPack._id)).then(() => dispatch(setIsPackDeleted(true)))
-      : dispatch(deleteCardTC(deletedCard._id))
-    resetModalValues(dispatch)
-  }*/
-
-  console.log(deletedPack._id, deletedCard._id)
-
   const deleteModal = () => {
     if (deletedPack._id) {
       dispatch(setIsPackDeleted(true))

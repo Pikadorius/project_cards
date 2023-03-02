@@ -20,7 +20,6 @@ const BlockUserModal = () => {
   const [blockReason, setBlockReason] = useState('')
 
   const onClickHandler = () => {
-    console.log(blockReason, userBlockID)
     dispatch(
       blockUserTC({
         id: userBlockID,

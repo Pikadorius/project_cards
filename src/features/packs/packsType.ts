@@ -39,8 +39,8 @@ export type GetPacksResponseType = {
 }
 
 export type CreatePackType = {
-  name?: string // если не отправить будет таким
-  deckCover?: string // не обязателен
+  name?: string
+  deckCover?: string
   private?: boolean
 }
 

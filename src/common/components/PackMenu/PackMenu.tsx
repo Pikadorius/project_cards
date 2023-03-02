@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { FC } from 'react'
+import { FC, memo } from 'react'
 
 import Menu from '@mui/material/Menu'
-import { Navigate, useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import s from './PackMenu.module.scss'
 
@@ -12,8 +12,7 @@ import { useAppDispatch, useAppSelector } from 'common/hooks'
 import { FriendMenuItem } from 'features/cards/CardList/CardHeader/Menu/FriendMenuItem'
 import { MyMenuItem } from 'features/cards/CardList/CardHeader/Menu/MyMenuItem'
 import { fetchCardTC, setSearchCardParams } from 'features/cards/cardSlice'
-import { isPackDeletedSelector } from 'features/modals/modalSelectors'
-import { setChangedPack, setIsPackDeleted, setModal, setUserID } from 'features/modals/modalSlice'
+import { setChangedPack, setModal, setUserID } from 'features/modals/modalSlice'
 import { PackType } from 'features/packs/packsType'
 
 type PackMenuType = {
@@ -22,13 +21,12 @@ type PackMenuType = {
   pack: PackType
 }
 
-export const PackMenu: FC<PackMenuType> = ({ title, isMyCard, pack }) => {
+export const PackMenu: FC<PackMenuType> = memo(({ title, isMyCard, pack }) => {
   let { id } = useParams<{ id: string }>()
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
   const searchParams = useAppSelector(state => state.card.searchParams)
   const cards = useAppSelector(state => state.card.cards)
-  const isPackDeleted = useAppSelector(isPackDeletedSelector)
   const open = Boolean(anchorEl)
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -64,13 +62,6 @@ export const PackMenu: FC<PackMenuType> = ({ title, isMyCard, pack }) => {
 
     return navigate(PATH.CARD_LEARN)
   }
-
-  /*if (isPackDeleted) {
-    debugger
-    dispatch(setIsPackDeleted(false))
-
-    return <Navigate to={PATH.PACK_LIST} />
-  }*/
 
   return (
     <React.Fragment>
@@ -130,4 +121,4 @@ export const PackMenu: FC<PackMenuType> = ({ title, isMyCard, pack }) => {
       </Menu>
     </React.Fragment>
   )
-}
+})
